@@ -48,7 +48,7 @@ void checkVoltage(void)
     bool flag = 0;
 
     //enableAllCh(BROADCAST);
-
+#if EXTERNAL_DC_CONTROL_PWM
     regValue[0] = IOUT__2;
     setIOUTAllCh(BROADCAST, &regValue[0], TRUE);
     // timeout flag  125=1ms
@@ -79,6 +79,7 @@ void checkVoltage(void)
             flag = 1;
         }
     }
+#endif
 }
 
 void greeting_and_goodbye(void)

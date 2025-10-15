@@ -382,11 +382,9 @@ static UNICOMM_Inst_Regs                        * const UC3                     
 * SYS parameters                                                              *
 ******************************************************************************/
 
-#define ADC0_SYS_NUM_ANALOG_CHAN                      (16)      /* !< Number of analog channels. */
+#define ADC_SYS_NUM_ANALOG_CHAN                       (16)      /* !< Number of analog channels. */
 #define BTIM_SYS_NUM_COUNTERS                         (4)       /* !< Max number of counters. */
-#define CRCP0_SYS_CRC32_ENABLE                        (1)       /* !< Parameter to exclude or include 32-bit CRC. This is added for
-                                                      Lego_N1 products where 32-bit CRC can be excluded in order to save
-                                                      gates. */
+#define CRCP_SYS_CRC32_ENABLE                         (1)       /* !< Parameter to exclude or include 32-bit CRC. */
 #define DMA_SYS_N_DMA_CHANNEL                         (12)      /* !< Number of DMA channels implemented in DMA. */
 #define DMA_SYS_N_DMA_FULL_CHANNEL                    (6)       /* !< Number of FULL-DMA channels implemented in DMA. If
                                                       SYS_N_DMA_CHANNEL is larger than SYS_N_DMA_FULL_CHANNEL, the
@@ -406,6 +404,89 @@ static UNICOMM_Inst_Regs                        * const UC3                     
 #define SPI1_SYS_FENTRIES                             (4)       /* !< The number of entries in RX and TX FIFO */
 #define SPG0_SYS_FENTRIES                             (4)       /* !< The number of entries in RX and TX FIFO */
 #define COMP_SYS_DACOUT_EN                            (1)       /* !< Boolean for if 8-bit DAC output to pin is available */
+#define VREF_SYS_INT_ADC_REF                          (1)       /* !< Supports internal voltage reference for ADCs. */
+
+#define UC0_UART_SYS_GLITCH_FILTER                    (0)
+#define UC0_UART_SYS_HW_FLOW_CONTROL                  (1)
+#define UC0_UART_SYS_9_BIT                            (1)
+#define UC0_UART_SYS_RS485                            (1)
+#define UC0_UART_SYS_LIN                              (1)
+#define UC0_UART_SYS_DALI                             (1)
+#define UC0_UART_SYS_IRDA                             (1)
+#define UC0_UART_SYS_SMART_CARD                       (1)
+#define UC0_UART_SYS_IDLE_LINE                        (1)
+#define UC0_UART_SYS_MANCHESTER_ENCODING              (1)
+#define UC0_UART_SYS_FIFO_LENGTH                      (4)
+#define UC0_UART_SYS_RX_TIMEOUT                       (1)
+#define UC0_UART_SYS_DMA                              (1)
+#define UC0_UART_SYS_EXTERNAL_DIRECTION               (1)
+
+#define UC1_UART_SYS_GLITCH_FILTER                    (0)
+#define UC1_UART_SYS_HW_FLOW_CONTROL                  (1)
+#define UC1_UART_SYS_9_BIT                            (1)
+#define UC1_UART_SYS_RS485                            (1)
+#define UC1_UART_SYS_LIN                              (1)
+#define UC1_UART_SYS_DALI                             (0)
+#define UC1_UART_SYS_IRDA                             (0)
+#define UC1_UART_SYS_SMART_CARD                       (0)
+#define UC1_UART_SYS_IDLE_LINE                        (1)
+#define UC1_UART_SYS_MANCHESTER_ENCODING              (0)
+#define UC1_UART_SYS_FIFO_LENGTH                      (4)
+#define UC1_UART_SYS_RX_TIMEOUT                       (1)
+#define UC1_UART_SYS_DMA                              (1)
+#define UC1_UART_SYS_EXTERNAL_DIRECTION               (1)
+
+#define UC3_UART_SYS_GLITCH_FILTER                    (0)
+#define UC3_UART_SYS_HW_FLOW_CONTROL                  (1)
+#define UC3_UART_SYS_9_BIT                            (1)
+#define UC3_UART_SYS_RS485                            (1)
+#define UC3_UART_SYS_LIN                              (0)
+#define UC3_UART_SYS_DALI                             (0)
+#define UC3_UART_SYS_IRDA                             (0)
+#define UC3_UART_SYS_SMART_CARD                       (1)
+#define UC3_UART_SYS_IDLE_LINE                        (1)
+#define UC3_UART_SYS_MANCHESTER_ENCODING              (0)
+#define UC3_UART_SYS_FIFO_LENGTH                      (4)
+#define UC3_UART_SYS_RX_TIMEOUT                       (1)
+#define UC3_UART_SYS_DMA                              (1)
+#define UC3_UART_SYS_EXTERNAL_DIRECTION               (1)
+
+/* UART driver config settings */
+#define UC_UART_SYS_GLITCH_FILTER                    (0)
+#define UC_UART_SYS_HW_FLOW_CONTROL                  (1)
+#define UC_UART_SYS_9_BIT                            (1)
+#define UC_UART_SYS_RS485                            (1)
+#define UC_UART_SYS_LIN                              (1)
+#define UC_UART_SYS_DALI                             (1)
+#define UC_UART_SYS_IRDA                             (1)
+#define UC_UART_SYS_SMART_CARD                       (1)
+#define UC_UART_SYS_MANCHESTER_ENCODING              (1)
+#define UC_UART_SYS_FIFO_LENGTH                      (4)
+#define UC_UART_SYS_BUSCLK                           (1)
+#define UC_UART_SYS_MFCLK                            (1)
+#define UC_UART_SYS_LFCLK                            (1)
+#define UC_UART_SYS_ASYNC_LFCLK                      (0)
+#define UC_UART_SYS_ASYNC_SYSCLK                     (0)
+#define UC_UART_SYS_ASYNC_HFCLK                      (0)
+#define UC_UART_SYS_ASYNC_PLL                        (0)
+
+#define UC2_SPI_SYS_EN_REPEAT                         (1)
+#define UC2_SPI_SYS_EN_RTOUT                          (1)
+#define UC2_SPI_SYS_EN_COMMAND_DATA                   (1)
+#define UC2_SPI_SYS_EN_CS_CTL                         (1)
+#define UC2_SPI_SYS_EN_PACKING                        (0)
+#define UC2_SPI_SYS_EN_FENTRIES                       (1)
+#define UC2_SPI_SYS_EN_DMA                            (1)
+#define UC2_SPI_SYS_EN_CLKDIV                         (1)
+
+#define UC3_SPI_SYS_EN_REPEAT                         (0)
+#define UC3_SPI_SYS_EN_RTOUT                          (0)
+#define UC3_SPI_SYS_EN_COMMAND_DATA                   (0)
+#define UC3_SPI_SYS_EN_CS_CTL                         (0)
+#define UC3_SPI_SYS_EN_PACKING                        (0)
+#define UC3_SPI_SYS_EN_FENTRIES                       (1)
+#define UC3_SPI_SYS_EN_DMA                            (0)
+#define UC3_SPI_SYS_EN_CLKDIV                         (1)
 
 /******************************************************************************
 * DMA Triggers                                                                *

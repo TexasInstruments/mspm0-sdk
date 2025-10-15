@@ -42,7 +42,7 @@
 <li>[B3] [B2] [B1] [B0] is a 32-bit word with [B3] = MSB and [B0] = LSB and represents the bits that will be acted on.<br></li>
 </ul>
 <p>Please see accompanying sub-system document for more information. <a href="https://www.ti.com/lit/????">I2C IO Exander Sub-system</a></p>
-<h2 id="peripherals-pin-assignments-used-in-this-example">Peripherals &amp; Pin Assignments Used in this example</h2>
+<h2 id="peripherals-pin-assignments">Peripherals &amp; Pin Assignments</h2>
 <table>
 <thead>
 <tr class="header">
@@ -53,19 +53,49 @@
 </thead>
 <tbody>
 <tr class="odd">
+<td>GPIOA</td>
+<td>PA13</td>
+<td>Standard Output</td>
+</tr>
+<tr class="even">
+<td>GPIOA</td>
+<td>PA26</td>
+<td>Standard Output</td>
+</tr>
+<tr class="odd">
+<td>GPIOA</td>
+<td>PA27</td>
+<td>Standard Output</td>
+</tr>
+<tr class="even">
+<td>GPIOA</td>
+<td>PA14</td>
+<td>Standard Input with internal pull-up</td>
+</tr>
+<tr class="odd">
+<td>GPIOA</td>
+<td>PA23</td>
+<td>Standard Input with internal pull-up</td>
+</tr>
+<tr class="even">
+<td>GPIOA</td>
+<td>PA18</td>
+<td>Standard with Wake Input</td>
+</tr>
+<tr class="odd">
 <td>SYSCTL</td>
-<td>—</td>
-<td>—</td>
+<td></td>
+<td></td>
 </tr>
 <tr class="even">
 <td>TIMG1</td>
-<td>—</td>
-<td>Blocking Delay</td>
+<td></td>
+<td></td>
 </tr>
 <tr class="odd">
 <td>TIMG0</td>
-<td>—</td>
-<td>Non-Blocking Delay</td>
+<td></td>
+<td></td>
 </tr>
 <tr class="even">
 <td>I2C0</td>
@@ -78,41 +108,16 @@
 <td>I2C Serial Clock line (SCL)</td>
 </tr>
 <tr class="even">
-<td>GPIO</td>
-<td>PA23</td>
-<td>IRQ_IN</td>
+<td>EVENT</td>
+<td></td>
+<td></td>
 </tr>
 <tr class="odd">
-<td>GPIO</td>
-<td>PA27</td>
-<td>LED_RGB_BLUE</td>
-</tr>
-<tr class="even">
-<td>GPIO</td>
-<td>PA26</td>
-<td>LED_RGB_RED</td>
-</tr>
-<tr class="odd">
-<td>GPIO</td>
-<td>PA13</td>
-<td>LED_RGB_GREEN</td>
-</tr>
-<tr class="even">
-<td>GPIO</td>
-<td>PA18</td>
-<td>SW_1 - BSL Button</td>
-</tr>
-<tr class="odd">
-<td>GPIO</td>
-<td>PA14</td>
-<td>SW_2 - User Button</td>
-</tr>
-<tr class="even">
 <td>DEBUGSS</td>
 <td>PA20</td>
 <td>Debug Clock</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>DEBUGSS</td>
 <td>PA19</td>
 <td>Debug Data In Out</td>
@@ -133,6 +138,48 @@
 </thead>
 <tbody>
 <tr class="odd">
+<td>PA13</td>
+<td>GPIOA</td>
+<td>PA13</td>
+<td>J4_39</td>
+<td><ul><li>PA13 can be connected to LED2 Green<br><ul><li><code>J3 ON</code> Connect to LED2 Green<br><li><code>J3 OFF</code> Disconnect from LED2 Green</ul></ul></td>
+</tr>
+<tr class="even">
+<td>PA26</td>
+<td>GPIOA</td>
+<td>PA26</td>
+<td>J4_38</td>
+<td><ul><li>PA26 can be connected to LED2 Red<br><ul><li><code>J12 ON</code> Connect to LED2 Red<br><li><code>J12 OFF</code> Disconnect from LED2 Red</ul></ul></td>
+</tr>
+<tr class="odd">
+<td>PA27</td>
+<td>GPIOA</td>
+<td>PA27</td>
+<td>J4_37</td>
+<td><ul><li>PA27 can be connected to LED2 Blue<br><ul><li><code>J13 ON</code> Connect to LED2 Blue<br><li><code>J13 OFF</code> Disconnect from LED2 Blue</ul></ul></td>
+</tr>
+<tr class="even">
+<td>PA14</td>
+<td>GPIOA</td>
+<td>PA14</td>
+<td>N/A</td>
+<td><ul><li>PA14 is connected to S2 button to GND with no external pull resistor<br><ul><li>Press <code>S2</code> button to connect pin to GND<br><li>Don’t use <code>S2</code> button if not needed by application</ul></ul></td>
+</tr>
+<tr class="odd">
+<td>PA23</td>
+<td>GPIOA</td>
+<td>PA23</td>
+<td>J2_12</td>
+<td>N/A</td>
+</tr>
+<tr class="even">
+<td>PA18</td>
+<td>GPIOA</td>
+<td>PA18</td>
+<td>J3_26</td>
+<td><ul><li>PA18 can be connected to S1 button to VCC with external pull-down<br><ul><li><code>J11 ON</code> Connect S1 button and external pull-down<br><li><code>J11 OFF</code> Disconnect S1 button and external pull-down</ul><br><li>PA18 can be connected to XDS-110 BSL_Invoke<br><ul><li><code>J101 17:18 OFF</code> Disconnect pin to XDS-110 BSL Invoke</ul></ul></td>
+</tr>
+<tr class="odd">
 <td>PA0</td>
 <td>I2C0</td>
 <td>SDA</td>
@@ -147,59 +194,17 @@
 <td><ul><li>PA1 is 5V tolerant open-drain so it requires pull-up<br><ul><li><code>J19 2:3</code> Use 3.3V pull-up<br><li><code>J9 1:2</code> Use 5V pull-up</ul></ul></td>
 </tr>
 <tr class="odd">
-<td>PA23</td>
-<td>GPIO</td>
-<td>INPUT</td>
-<td>J2_12</td>
-<td><ul><li>Interrupt Output Pin<br><ul><li>This pin is configured as input with pull up resistors enabled<br><li>Jumper to target MCU IO Expander interrupt output pin. See target demo for details.<br></ul></ul></td>
-</tr>
-<tr class="even">
-<td>PA27</td>
-<td>GPIO</td>
-<td>OUTPUT</td>
-<td>J4_37</td>
-<td><ul><li>BLUE RGB LED<br><ul></ul></td>
-</tr>
-<tr class="odd">
-<td>PA26</td>
-<td>GPIO</td>
-<td>OUTPUT</td>
-<td>J4_38</td>
-<td><ul><li>RED RGB LED<br><ul></ul></td>
-</tr>
-<tr class="even">
-<td>PA13</td>
-<td>GPIO</td>
-<td>OUTPUT</td>
-<td>J4_39</td>
-<td><ul><li>GREEN RGB LED<br><ul></ul></td>
-</tr>
-<tr class="odd">
-<td>PA18</td>
-<td>GPIO</td>
-<td>INPUT</td>
-<td>J3_26</td>
-<td><ul><li>SW_1 (BSL Button)<br><ul><li>This pin is configured as input</ul></td>
-</tr>
-<tr class="even">
-<td>PA14</td>
-<td>GPIO</td>
-<td>INPUT</td>
-<td>—</td>
-<td><ul><li>SW_2 (USER Button)<br><ul><li>This pin is configured as input with pull up resistors enabled</ul></td>
-</tr>
-<tr class="odd">
 <td>PA20</td>
 <td>DEBUGSS</td>
 <td>SWCLK</td>
-<td>N/A</td>
+<td>J2_13</td>
 <td><ul><li>PA20 is used by SWD during debugging<br><ul><li><code>J101 15:16 ON</code> Connect to XDS-110 SWCLK while debugging<br><li><code>J101 15:16 OFF</code> Disconnect from XDS-110 SWCLK if using pin in application</ul></ul></td>
 </tr>
 <tr class="even">
 <td>PA19</td>
 <td>DEBUGSS</td>
 <td>SWDIO</td>
-<td>N/A</td>
+<td>J2_17</td>
 <td><ul><li>PA19 is used by SWD during debugging<br><ul><li><code>J101 13:14 ON</code> Connect to XDS-110 SWDIO while debugging<br><li><code>J101 13:14 OFF</code> Disconnect from XDS-110 SWDIO if using pin in application</ul></ul></td>
 </tr>
 </tbody>
@@ -209,7 +214,7 @@
 <h3 id="low-power-recommendations">Low-Power Recommendations</h3>
 <p>TI recommends to terminate unused pins by setting the corresponding functions to GPIO and configure the pins to output low or input with internal pullup/pulldown resistor.</p>
 <p>SysConfig allows developers to easily configure unused pins by selecting <strong>Board</strong>→<strong>Configure Unused Pins</strong>.</p>
-<p>For more information about jumper configuration to achieve low-power using the MSPM0 LaunchPad, please visit the <a href="https://www.ti.com/lit/slau873">LP-MSPM0L1306 User’s Guide</a>.</p>
+<p>For more information about jumper configuration to achieve low-power using the MSPM0 LaunchPad, please visit the <a href="https://www.ti.com/lit/slau869">LP-MSPM0L1306 User’s Guide</a>.</p>
 <h2 id="example-usage">Example Usage</h2>
 <p>Make connections to target MSPM0 as described above. Be sure to compile with the proper target MCU set in the ‘demo.h’ file. Depending on the target MCU, Modify line #42 to be either MSPM0L1306_TARGET or MSPM0G3507_TARGET. <br>Compile, load and run the example.</br> On the MSPM0 Controller, press the USER button to step through the following sequence: <ul><li>Press -&gt; command Target to <u>set</u> (turn on) LED_RGB_GREEN</li> <li>Press -&gt; command Target to <u>clear</u> (turn off) LED_RGB_GREEN</li> <li>Press -&gt; command Target to <u>toggle</u> (turn on) LED_RGB_RED</li> <li>Press -&gt; command Target to <u>toggle</u> (turn off) LED_RGB_LED</li> <li>Press -&gt; command Target to read PORTx<br> <ul><li>On the MSPM0 Target, press and hold BSL Button first</li> <li>If return value is logic ‘1’ (Target BSL Button pressed), command Target to <u>set</u> (turn on) Target LED_RGB_BLUE</li> <li>else LED_RGB_BLUE remains off</li></ul> <li>Press -&gt; repeat sequence</li></ul></p>
 <!-- Close div from before_body_template.html -->

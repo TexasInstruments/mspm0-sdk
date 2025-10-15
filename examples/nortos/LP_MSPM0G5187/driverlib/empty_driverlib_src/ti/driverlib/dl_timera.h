@@ -205,6 +205,26 @@ typedef struct {
  */
 #define DL_TIMERA_CAPTURE_COMPARE_3_INDEX       DL_TIMER_CC_3_INDEX
 
+/**
+ * @brief  Index associated to Capture Compare 4
+ * @note   <b>This option is not supported by all device TimerA modules </b>
+ *         please refer to the "TIMx Configurations" table in the
+ *         device specific datasheet to determine Timer instances which
+ *         support "6 CC Channel" configuration with 4 external and 2 internal
+ *         CC channels.
+ */
+#define DL_TIMERA_CAPTURE_COMPARE_4_INDEX       DL_TIMER_CC_4_INDEX
+
+/**
+ * @brief  Index associated to Capture Compare 5
+ * @note   <b>This option is not supported by all device TimerA modules </b>
+ *         please refer to the "TIMx Configurations" table in the
+ *         device specific datasheet to determine Timer instances which
+ *         support "6 CC Channel" configuration with 4 external and 2 internal
+ *         CC channels.
+ */
+#define DL_TIMERA_CAPTURE_COMPARE_5_INDEX       DL_TIMER_CC_5_INDEX
+
 /** @}*/
 
 /** @addtogroup DL_TIMER_CCx

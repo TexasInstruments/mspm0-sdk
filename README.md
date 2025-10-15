@@ -34,9 +34,11 @@ You can learn more about the MSPM0 product family supported by this SDK [here](h
 * [MSPM0C1106 EVM - LP-MSPM0C1106](https://www.ti.com/tool/LP-MSPM0C1106)
 * [MSPM0G3507 EVM - LP-MSPM0G3507](https://www.ti.com/tool/LP-MSPM0G3507)
 * [MSPM0G3519 EVM - LP-MSPM0G3519](https://www.ti.com/tool/LP-MSPM0G3519)
+* [MSPM0G5187 EVM - LP-MSPM0G3518](https://www.ti.com/tool/LP-MSPM0G5187)
 * [MSPM0H3216 EVM - LP-MSPM0H3216](https://www.ti.com/tool/LP-MSPM0H3216)
 * [MSPM0L1117 EVM - LP-MSPM0L1117](https://www.ti.com/tool/LP-MSPM0L1117)
 * [MSPM0L1306 EVM - LP-MSPM0L1306](https://www.ti.com/tool/LP-MSPM0L1306)
+* [MSPM0L2117 EVM - LP-MSPM0L2117](https://www.ti.com/tool/LP-MSPM0L2117)
 * [MSPM0L2228 EVM - LP-MSPM0L2228](https://www.ti.com/tool/LP-MSPM0L2228)
 
 # Support #

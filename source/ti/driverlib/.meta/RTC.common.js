@@ -982,7 +982,15 @@ function getAdvancedConfig(peripheral)
                 {name: "256", displayName: "256 Hz frequency output"},
                 {name: "1", displayName: "1 Hz frequency output"},
             ],
-        }
+        },
+		{
+            name        : "enableRTCOutputPin",
+            displayName : "Enable RTC Output",
+            description : "Enable the RTC output to a pin",
+            hidden      : false,
+            default     : true,
+
+        },
         ])
     }
     return advancedConfig;

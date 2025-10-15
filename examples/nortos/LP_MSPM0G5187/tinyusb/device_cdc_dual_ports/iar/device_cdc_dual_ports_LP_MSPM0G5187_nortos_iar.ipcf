@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- IAR Project Connection File -->
+
+<iarProjectConnection version="1.2" name="device_cdc_dual_ports" oneShot="true"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="IarProjectConnection_1.2.xsd">
+
+    <device>
+        <name>MSPM0G5187</name>
+    </device>
+
+    <asmIncludePath>
+        <path>$PROJ_DIR$</path>
+    </asmIncludePath>
+
+    <includePath>
+        <path>$PROJ_DIR$</path>
+        <path>$MSPM0_SDK_INSTALL_DIR$/source/third_party/CMSIS/Core/Include</path>
+        <path>$PROJ_DIR$/third_party/tinyusb/src</path>
+        <path>$PROJ_DIR$/third_party/tinyusb/hw</path>
+        <path>$PROJ_DIR$/third_party/tinyusb/lib/fatfs/source</path>
+        <path>$PROJ_DIR$/third_party/tinyusb/lib/embedded-cli</path>
+        <path>$PROJ_DIR$/third_party/tinyusb/hw/bsp/mspm0</path>
+        <path>$MSPM0_SDK_INSTALL_DIR$$/source</path>
+        <path>$MSPM0_SDK_INSTALL_DIR$/source/ti</path>
+        <path>$MSPM0_SDK_INSTALL_DIR$/source/ti/devices/msp</path>
+        <path>$MSPM0_SDK_INSTALL_DIR$/source</path>
+    </includePath>
+
+    <defines>
+        <define>__MSPM0G5187__</define>
+        <define>__MSPM0G518X__</define>
+        <define>CFG_TUSB_MCU=OPT_MCU_MSPM0G518X</define>
+        <define>__USE_SYSCONFIG__</define>
+    </defines>
+
+    <extraOptions>
+        <args>
+            <arg>--diag_suppress=Pa039</arg>
+            <arg>--diag_suppress=Pe1143</arg>
+            <arg>--debug</arg>
+            <arg>--silent</arg>
+            <arg>-e</arg>
+            <arg>--aeabi</arg>
+            <arg>--thumb</arg>
+            <arg>--diag_suppress=Pa050</arg>
+        </args>
+    </extraOptions>
+
+    <linkerFile>
+        <override>true</override>
+        <path>$PROJ_DIR$/mspm0g5187.icf</path>
+    </linkerFile>
+
+    <linkerExtraOptions>
+        <args>
+            <arg>-L${CG_TOOL_ROOT}/arm-none-eabi/lib/thumb/v6-m/nofp</arg>
+            <arg>$MSPM0_SDK_INSTALL_DIR$/source/ti/driverlib/lib/iar/m0p/mspm0g518x/driverlib.a</arg>
+            <arg>-L$MSPM0_SDK_INSTALL_DIR$/source</arg>
+            <arg>-L$PROJ_DIR$</arg>
+            <arg>--silent</arg>
+        </args>
+    </linkerExtraOptions>
+
+    <customBuildTools>
+        <customBuildTool atRoot="true" name="SysConfig"> <!-- Custom build tool for entire project-->
+            <fileExtensions>.syscfg</fileExtensions>
+            <command>$SYSCONFIG_ROOT$/sysconfig_cli.bat -o $PROJ_DIR$ -s "$MSPM0_SDK_INSTALL_DIR$/.metadata/product.json" --compiler iar $FILE_PATH$</command>
+            <output>
+                <path>SysConfig_Generated_Files.ipcf</path>
+            </output>
+            <hasPrio>true</hasPrio> <!-- true: run this tool before all other tools-->
+        </customBuildTool>
+    </customBuildTools>
+
+    <heaps>
+        <heap> <!-- If omitted, id="0" -->
+            <size>0</size>
+        </heap>
+        <heap id="1">
+            <size>0</size>
+        </heap>
+    </heaps>
+    <stacks>
+        <stack> <!-- If omitted, id="0" -->
+            <size>512</size>
+        </stack>
+    </stacks>
+
+
+    <files>
+        <path copyTo="$PROJ_DIR$/device_cdc_dual_ports.syscfg">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/device_cdc_dual_ports.syscfg</path>
+        <path copyTo="$PROJ_DIR$/main.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/main.c</path>
+        <path copyTo="$PROJ_DIR$/mspm0g5187.icf">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/iar/mspm0g5187.icf</path>
+        <path copyTo="$PROJ_DIR$/README.html">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/README.html</path>
+        <path copyTo="$PROJ_DIR$/README.md">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/README.md</path>
+        <group name="Excluded_From_Build/third_party/tinyusb/lib/embedded-cli" build="false">
+            <path copyTo="$PROJ_DIR$/Excluded_From_Build/third_party/tinyusb/lib/embedded-cli/embedded_cli.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/lib/embedded-cli/embedded_cli.h</path>
+        </group>
+        <group name="Excluded_From_Build/third_party/tinyusb/lib/fatfs/source" build="false">
+            <path copyTo="$PROJ_DIR$/Excluded_From_Build/third_party/tinyusb/lib/fatfs/source/diskio.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/lib/fatfs/source/diskio.c</path>
+            <path copyTo="$PROJ_DIR$/Excluded_From_Build/third_party/tinyusb/lib/fatfs/source/diskio.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/lib/fatfs/source/diskio.h</path>
+            <path copyTo="$PROJ_DIR$/Excluded_From_Build/third_party/tinyusb/lib/fatfs/source/ff.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/lib/fatfs/source/ff.c</path>
+            <path copyTo="$PROJ_DIR$/Excluded_From_Build/third_party/tinyusb/lib/fatfs/source/ff.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/lib/fatfs/source/ff.h</path>
+            <path copyTo="$PROJ_DIR$/Excluded_From_Build/third_party/tinyusb/lib/fatfs/source/ffconf.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/lib/fatfs/source/ffconf.h</path>
+            <path copyTo="$PROJ_DIR$/Excluded_From_Build/third_party/tinyusb/lib/fatfs/source/ffsystem.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/lib/fatfs/source/ffsystem.c</path>
+            <path copyTo="$PROJ_DIR$/Excluded_From_Build/third_party/tinyusb/lib/fatfs/source/ffunicode.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/lib/fatfs/source/ffunicode.c</path>
+        </group>
+        <group name="iar" build="true">
+            <path copyTo="$PROJ_DIR$/iar/startup_mspm0g518x_iar.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/iar/startup_mspm0g518x_iar.c</path>
+        </group>
+        <group name="third_party/tinyusb/hw/bsp" build="true">
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/hw/bsp/ansi_escape.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/hw/bsp/ansi_escape.h</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/hw/bsp/board.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/hw/bsp/board.c</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/hw/bsp/board_api.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/hw/bsp/board_api.h</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/hw/bsp/board_mcu.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/hw/bsp/board_mcu.h</path>
+        </group>
+        <group name="third_party/tinyusb/hw/bsp/mspm0" build="true">
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/hw/bsp/mspm0/family.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/hw/bsp/mspm0/family.c</path>
+        </group>
+        <group name="third_party/tinyusb/hw/bsp/mspm0/boards/lp-mspm0g5117" build="true">
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/hw/bsp/mspm0/boards/lp-mspm0g5117/board.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/hw/bsp/mspm0/boards/lp-mspm0g5117/board.h</path>
+        </group>
+        <group name="third_party/tinyusb/hw/bsp/mspm0/boards/lp-mspm0g5187" build="true">
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/hw/bsp/mspm0/boards/lp-mspm0g5187/board.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/hw/bsp/mspm0/boards/lp-mspm0g5187/board.h</path>
+        </group>
+        <group name="third_party/tinyusb/src" build="true">
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/tusb.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/tusb.c</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/tusb.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/tusb.h</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/tusb_option.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/tusb_option.h</path>
+        </group>
+        <group name="third_party/tinyusb/src/class/audio" build="true">
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/audio/audio.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/audio/audio.h</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/audio/audio_device.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/audio/audio_device.c</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/audio/audio_device.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/audio/audio_device.h</path>
+        </group>
+        <group name="third_party/tinyusb/src/class/bth" build="true">
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/bth/bth_device.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/bth/bth_device.c</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/bth/bth_device.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/bth/bth_device.h</path>
+        </group>
+        <group name="third_party/tinyusb/src/class/cdc" build="true">
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/cdc/cdc.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/cdc/cdc.h</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/cdc/cdc_device.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/cdc/cdc_device.c</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/cdc/cdc_device.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/cdc/cdc_device.h</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/cdc/cdc_host.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/cdc/cdc_host.c</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/cdc/cdc_host.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/cdc/cdc_host.h</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/cdc/cdc_rndis.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/cdc/cdc_rndis.h</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/cdc/cdc_rndis_host.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/cdc/cdc_rndis_host.c</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/cdc/cdc_rndis_host.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/cdc/cdc_rndis_host.h</path>
+        </group>
+        <group name="third_party/tinyusb/src/class/cdc/serial" build="true">
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/cdc/serial/ch34x.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/cdc/serial/ch34x.h</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/cdc/serial/cp210x.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/cdc/serial/cp210x.h</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/cdc/serial/ftdi_sio.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/cdc/serial/ftdi_sio.h</path>
+        </group>
+        <group name="third_party/tinyusb/src/class/dfu" build="true">
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/dfu/dfu.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/dfu/dfu.h</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/dfu/dfu_device.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/dfu/dfu_device.c</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/dfu/dfu_device.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/dfu/dfu_device.h</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/dfu/dfu_rt_device.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/dfu/dfu_rt_device.c</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/dfu/dfu_rt_device.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/dfu/dfu_rt_device.h</path>
+        </group>
+        <group name="third_party/tinyusb/src/class/hid" build="true">
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/hid/hid.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/hid/hid.h</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/hid/hid_device.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/hid/hid_device.c</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/hid/hid_device.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/hid/hid_device.h</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/hid/hid_host.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/hid/hid_host.c</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/hid/hid_host.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/hid/hid_host.h</path>
+        </group>
+        <group name="third_party/tinyusb/src/class/midi" build="true">
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/midi/midi.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/midi/midi.h</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/midi/midi_device.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/midi/midi_device.c</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/midi/midi_device.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/midi/midi_device.h</path>
+        </group>
+        <group name="third_party/tinyusb/src/class/msc" build="true">
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/msc/msc.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/msc/msc.h</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/msc/msc_device.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/msc/msc_device.c</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/msc/msc_device.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/msc/msc_device.h</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/msc/msc_host.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/msc/msc_host.c</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/msc/msc_host.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/msc/msc_host.h</path>
+        </group>
+        <group name="third_party/tinyusb/src/class/net" build="true">
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/net/ecm_rndis_device.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/net/ecm_rndis_device.c</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/net/ncm.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/net/ncm.h</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/net/ncm_device.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/net/ncm_device.c</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/net/net_device.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/net/net_device.h</path>
+        </group>
+        <group name="third_party/tinyusb/src/class/usbtmc" build="true">
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/usbtmc/usbtmc.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/usbtmc/usbtmc.h</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/usbtmc/usbtmc_device.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/usbtmc/usbtmc_device.c</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/usbtmc/usbtmc_device.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/usbtmc/usbtmc_device.h</path>
+        </group>
+        <group name="third_party/tinyusb/src/class/vendor" build="true">
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/vendor/vendor_device.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/vendor/vendor_device.c</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/vendor/vendor_device.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/vendor/vendor_device.h</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/vendor/vendor_host.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/vendor/vendor_host.c</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/vendor/vendor_host.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/vendor/vendor_host.h</path>
+        </group>
+        <group name="third_party/tinyusb/src/class/video" build="true">
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/video/video.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/video/video.h</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/video/video_device.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/video/video_device.c</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/class/video/video_device.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/class/video/video_device.h</path>
+        </group>
+        <group name="third_party/tinyusb/src/common" build="true">
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/common/tusb_common.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/common/tusb_common.h</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/common/tusb_compiler.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/common/tusb_compiler.h</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/common/tusb_debug.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/common/tusb_debug.h</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/common/tusb_fifo.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/common/tusb_fifo.c</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/common/tusb_fifo.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/common/tusb_fifo.h</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/common/tusb_mcu.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/common/tusb_mcu.h</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/common/tusb_private.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/common/tusb_private.h</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/common/tusb_types.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/common/tusb_types.h</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/common/tusb_verify.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/common/tusb_verify.h</path>
+        </group>
+        <group name="third_party/tinyusb/src/device" build="true">
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/device/dcd.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/device/dcd.h</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/device/usbd.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/device/usbd.c</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/device/usbd.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/device/usbd.h</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/device/usbd_control.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/device/usbd_control.c</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/device/usbd_pvt.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/device/usbd_pvt.h</path>
+        </group>
+        <group name="third_party/tinyusb/src/host" build="true">
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/host/hcd.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/host/hcd.h</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/host/hub.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/host/hub.c</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/host/hub.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/host/hub.h</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/host/usbh.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/host/usbh.c</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/host/usbh.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/host/usbh.h</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/host/usbh_pvt.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/host/usbh_pvt.h</path>
+        </group>
+        <group name="third_party/tinyusb/src/osal" build="true">
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/osal/osal.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/osal/osal.h</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/osal/osal_freertos.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/osal/osal_freertos.h</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/osal/osal_mynewt.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/osal/osal_mynewt.h</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/osal/osal_none.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/osal/osal_none.h</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/osal/osal_pico.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/osal/osal_pico.h</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/osal/osal_rtthread.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/osal/osal_rtthread.h</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/osal/osal_rtx4.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/osal/osal_rtx4.h</path>
+        </group>
+        <group name="third_party/tinyusb/src/portable/mentor/musb" build="true">
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/portable/mentor/musb/dcd_musb.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/portable/mentor/musb/dcd_musb.c</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/portable/mentor/musb/hcd_musb.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/portable/mentor/musb/hcd_musb.c</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/portable/mentor/musb/musb_ti.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/portable/mentor/musb/musb_ti.h</path>
+            <path copyTo="$PROJ_DIR$/third_party/tinyusb/src/portable/mentor/musb/musb_type.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/tinyusb/device_cdc_dual_ports/third_party/tinyusb/src/portable/mentor/musb/musb_type.h</path>
+        </group>
+    </files>
+</iarProjectConnection>

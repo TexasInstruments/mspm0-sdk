@@ -728,7 +728,9 @@ function moduleInstances(inst){
         ((Common.isDeviceM0L() ||
         Common.isDeviceM0H() ||
         Common.isDeviceFamily_PARENT_MSPM0GX51X() ||
-        Common.isDeviceFamily_PARENT_MSPM0G352X()) &&
+        Common.isDeviceFamily_PARENT_MSPM0G352X() ||
+        Common.isDeviceFamily_PARENT_MSPM0GX218_GX207() ||
+        Common.isDeviceFamily_PARENT_MSPM0G122X()) &&
         (inst.basicMode.includes("DL_VREF_ENABLE_DISABLE"))))
     {
         if (["VREF+-","VREF+"].includes(inst.basicVrefPins))

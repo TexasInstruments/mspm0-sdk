@@ -52,6 +52,14 @@ uint8_t gTxPacket[I2C_TX_PACKET_SIZE] = {0x01, 0x02, 0x03, 0x04};
 /* Data received from Target */
 volatile uint8_t gRxPacket[I2C_RX_PACKET_SIZE];
 
+/* I2C clock configuration */
+DL_I2C_ClockConfig gI2CclockConfig;
+/* Frequency of selected I2C clock*/
+volatile uint32_t gClockSelFreq;
+
+/* Cycles to delay after controller transfer initiated */
+volatile uint32_t gDelayCycles;
+
 /* I2C Target address */
 #define I2C_TARGET_ADDRESS (0x48)
 
@@ -61,6 +69,26 @@ int main(void)
 
     /* Set LED to indicate start of transfer */
     DL_GPIO_setPins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);
+
+    /* Get I2C clock source and clock divider to use for delay cycle calculation */
+    DL_I2C_getClockConfig(I2C_INST, &gI2CclockConfig);
+    switch (gI2CclockConfig.clockSel) {
+        case DL_I2C_CLOCK_BUSCLK:
+            gClockSelFreq = 24000000;
+            break;
+        case DL_I2C_CLOCK_MFCLK:
+            gClockSelFreq = 4000000;
+            break;
+        default:
+            break;
+    }
+    /*
+     * Calculate number of clock cycles to delay after controller transfer initiated
+     * gDelayCycles = 3 I2C functional clock cycles
+     * gDelayCycles = 3 * I2C clock divider * (CPU clock freq / I2C clock freq)
+     */
+    gDelayCycles = (3 * (gI2CclockConfig.divideRatio + 1)) *
+                   (CPUCLK_FREQ / gClockSelFreq);
 
     /*
      * Fill FIFO with data. This example will send a MAX of 4 bytes since it
@@ -79,9 +107,12 @@ int main(void)
     DL_I2C_startControllerTransfer(I2C_INST, I2C_TARGET_ADDRESS,
         DL_I2C_CONTROLLER_DIRECTION_TX, I2C_TX_PACKET_SIZE);
 
+    /* Workaround for errata I2C_ERR_13 */
+    delay_cycles(gDelayCycles);
+
     /* Poll until the Controller writes all bytes */
-    while (DL_I2C_getControllerStatus(I2C_INST) &
-           DL_I2C_CONTROLLER_STATUS_BUSY_BUS)
+    while (
+        DL_I2C_getControllerStatus(I2C_INST) & DL_I2C_CONTROLLER_STATUS_BUSY)
         ;
 
     /* Trap if there was an error */

@@ -482,6 +482,29 @@ function moduleInstances(inst){
     return modInstances;
 }
 
+/*  ======== pinmuxRequirements ========
+ *  Returns peripheral pin requirements of the specified instance
+ *
+ *  param inst    - a fully configured module instance
+ *
+ *  returns req[] - an array of pin requirements needed by inst
+ */
+function pinmuxRequirements(inst)
+{
+    let resources = [];
+
+    let crc = {
+        name          : "peripheral",
+        displayName   : "CRCP Peripheral",
+        interfaceName : "CRCP",
+        resources     : resources,
+        signalTypes   : {
+
+        }
+    };
+    return [crc];
+}
+
 /*
  *  ======== devSpecific ========
  *  Device-specific extensions to be added to base module configuration
@@ -495,6 +518,8 @@ let devSpecific = {
     moduleInstances: moduleInstances,
 
     modules: setRequiredModules,
+
+    pinmuxRequirements: pinmuxRequirements,
 
 };
 

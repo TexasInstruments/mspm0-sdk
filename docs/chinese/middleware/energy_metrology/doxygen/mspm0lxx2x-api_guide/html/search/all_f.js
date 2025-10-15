@@ -33,6 +33,7 @@ var searchData=
   ['rmscurrent',['RMSCurrent',['../structphase_readings.html#a3a6a4607bd4d95c85a573bdddefabdb7',1,'phaseReadings::RMSCurrent()'],['../structneutral_readings.html#a7d6b405c34f7d020ab477a1718d80cef',1,'neutralReadings::RMSCurrent()']]],
   ['rmsvoltage',['RMSVoltage',['../structphase_readings.html#a7a20758c5036880b8df20b86e31b3eb7',1,'phaseReadings']]],
   ['rmsvoltagecycle',['RMSVoltageCycle',['../structphase_readings.html#a0ba1720b221bfe61b19899daf6a7c470',1,'phaseReadings']]],
+  ['rogowskisupportenable',['rogowskiSupportEnable',['../structmetrology_data.html#a22b06896db4c8b939a59e719b54d1395',1,'metrologyData']]],
   ['rs485en',['RS485EN',['../struct_d_l_t645_buf.html#a1c5e7be0eee3a21772252a6aadf96d7d',1,'DLT645Buf']]],
   ['rstackcount',['rstAckCount',['../struct_a_d_s___errors.html#ae874e913e979340134946329921fd772',1,'ADS_Errors::rstAckCount()'],['../struct_a_m_c___errors.html#a3bad45010bcf8fb91e4803fec7833c2b',1,'AMC_Errors::rstAckCount()']]],
   ['rstnackcount',['rstnAckCount',['../struct_a_d_s___errors.html#ac1c90b07b98b0abebc0bc454a5d21d1f',1,'ADS_Errors::rstnAckCount()'],['../struct_a_m_c___errors.html#ae5b226bb3c31a6392885c38715d81d2a',1,'AMC_Errors::rstnAckCount()']]],

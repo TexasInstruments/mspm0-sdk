@@ -125,6 +125,17 @@ exports = {
     isDeviceFamily_PARENT_MSPM0L211X        : isDeviceFamily_PARENT_MSPM0L211X,
     isDeviceFamily_PARENT_MSPM0L210X        : isDeviceFamily_PARENT_MSPM0L210X,
     isDeviceFamily_PARENT_MSPM0L112X        : isDeviceFamily_PARENT_MSPM0L112X,
+    // A2_256_3V
+    // - is this the proper top-level grouping ?
+    isDeviceFamily_PARENT_MSPM0GX218_GX207  : isDeviceFamily_PARENT_MSPM0GX218_GX207,
+    isDeviceFamily_PARENT_MSPM0G321X        : isDeviceFamily_PARENT_MSPM0G321X,
+    isDeviceFamily_PARENT_MSPM0G121X        : isDeviceFamily_PARENT_MSPM0G121X,
+    isDeviceFamily_PARENT_MSPM0G320X        : isDeviceFamily_PARENT_MSPM0G320X,
+    isDeviceFamily_PARENT_MSPM0G120X        : isDeviceFamily_PARENT_MSPM0G120X,
+    // A2_128_3V
+    isDeviceFamily_PARENT_MSPM0G122X        : isDeviceFamily_PARENT_MSPM0G122X,
+
+
     isDeviceFamily_MSPS003FX                : isDeviceFamily_MSPS003FX,
 
     I2CTargetWakeupWorkaroundFixed          : I2CTargetWakeupWorkaroundFixed,
@@ -208,6 +219,9 @@ exports = {
     getAttribute            : getAttribute,
 
     isValidInputStr         : isValidInputStr,
+    isPinMuxable            : isPinMuxable,
+
+    hasNPU                  : hasNPU,
 };
 
 /*
@@ -1885,6 +1899,34 @@ function isDeviceM0x310x(){
     return (["MSPM0G310X"].includes(deviceName));
 }
 
+/* checks if current device is one of MSPM0GX218_GX207 series */
+function isDeviceFamily_PARENT_MSPM0GX218_GX207() {
+    var deviceName = system.deviceData.device;
+    return (["MSPM0G321X","MSPM0G121X","MSPM0G320X", "MSPM0G120X"].includes(deviceName));
+}
+function isDeviceFamily_PARENT_MSPM0G321X(){
+    var deviceName = system.deviceData.device;
+    return (["MSPM0G321X"].includes(deviceName));
+}
+function isDeviceFamily_PARENT_MSPM0G121X(){
+    var deviceName = system.deviceData.device;
+    return (["MSPM0G121X"].includes(deviceName));
+}
+function isDeviceFamily_PARENT_MSPM0G320X(){
+    var deviceName = system.deviceData.device;
+    return (["MSPM0G320X"].includes(deviceName));
+}
+function isDeviceFamily_PARENT_MSPM0G120X(){
+    var deviceName = system.deviceData.device;
+    return (["MSPM0G120X"].includes(deviceName));
+}
+
+/* Checks if current device is one of MSPM0G122X series */
+function isDeviceFamily_PARENT_MSPM0G122X(){
+    var deviceName = system.deviceData.device;
+    return (["MSPM0G122X"].includes(deviceName));
+}
+
 /* Generic Device Check Functions */
 /* checks if current device is one of MSPM0G-series */
 function isDeviceM0G()
@@ -1893,7 +1935,9 @@ function isDeviceM0G()
             isDeviceFamily_PARENT_MSPM0GX51X() ||
             isDeviceFamily_PARENT_MSPM0G352X() ||
             isDeviceFamily_PARENT_MSPM0G511X() ||
-            isDeviceFamily_PARENT_MSPM0G518X());
+            isDeviceFamily_PARENT_MSPM0G518X() ||
+            isDeviceFamily_PARENT_MSPM0GX218_GX207() ||
+            isDeviceFamily_PARENT_MSPM0G122X());
 }
 /* checks if current device is one of MSPM0L-series */
 function isDeviceM0L(){
@@ -1952,6 +1996,12 @@ function getDeviceFamily(){
     }
     else if(isDeviceFamily_PARENT_MSPM0L210X()) {
         return "MSPM0L210X";
+    }
+    else if(isDeviceFamily_PARENT_MSPM0GX218_GX207()) {
+        return "MSPM0GX218_GX207";
+    }
+    else if(isDeviceFamily_PARENT_MSPM0G122X()) {
+        return "MSPM0G122X";
     }
     return undefined;
 }
@@ -3236,6 +3286,38 @@ function getMainTriggerETSELValue(inst) {
                 break;
         }
     }
+    else if(isDeviceFamily_PARENT_MSPM0GX218_GX207()){
+        switch (true) {
+            case (main_timer == "TIMA0" || main_timer == "TIMG0"):
+                return 0;
+                break;
+            case (main_timer == "TIMA1" || main_timer == "TIMG1"):
+                return 1;
+                break;
+            case (main_timer == "TIMG8"):
+                return 2;
+                break;
+            default:
+                return 0;
+                break;
+        }
+    }
+    else if(isDeviceFamily_PARENT_MSPM0G122X()){
+        switch (true) {
+            case (main_timer == "TIMA0" || main_timer == "TIMG0"):
+                return 0;
+                break;
+            case (main_timer == "TIMG1"):
+                return 1;
+                break;
+            case (main_timer == "TIMG8"):
+                return 2;
+                break;
+            default:
+                return 0;
+                break;
+        }
+    }
     // NOTE: not returning anything would lead to an undefined tool error with
     //       new devices.
     else{
@@ -3386,7 +3468,8 @@ function hasCOMPDACOutput() {
     || isDeviceFamily_PARENT_MSPM0G518X()
     || isDeviceFamily_PARENT_MSPM0H321X()
     || isDeviceFamily_PARENT_MSPM0L211X_L112X()
-    || isDeviceFamily_PARENT_MSPM0L210X());
+    || isDeviceFamily_PARENT_MSPM0L210X()
+    || isDeviceFamily_PARENT_MSPM0GX218_GX207());
 }
 
 /*
@@ -3420,4 +3503,33 @@ function getAttribute(object,attributeName){
  */
 function isValidInputStr(inputStr){
     return /^[a-zA-Z0-9\s_\-\.:/]+$/.test(inputStr);
+}
+
+/*
+ *  ======== isPinMuxable ========
+ *  Determines if a pin of a peripheral has IOMUX function
+ *
+ *  Checks if the pin has a mux setting mode 1 present (IOMUX function)
+ *
+ *  @param inst - peripheral instance object containing pin configuration
+ *  @param pinName - name of the pin to check for muxability
+ *
+ *  @returns true if the pin can be multiplexed, false otherwise
+ */
+function isPinMuxable(inst, pinName){
+    let pinObject = Object.keys(system.deviceData.devicePins[inst.peripheral[pinName]?.$solution?.packagePinName]?.mux?.muxSetting)?.includes("1")
+    if (pinObject){
+        return true;
+    }
+    return false;
+}
+
+/*
+ *  ======== hasNPU ========
+ *  Returns true if device supports NPU
+ *
+ *  @returns true if the pin can be multiplexed, false otherwise
+ */
+function hasNPU(){
+    return (/NPU/.test(peripherals));
 }

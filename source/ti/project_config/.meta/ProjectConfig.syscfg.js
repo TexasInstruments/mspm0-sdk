@@ -42,6 +42,7 @@
 /* get ti/drivers common utility functions */
 let Common = system.getScript("/ti/driverlib/Common.js");
 let MigrationCommon = system.getScript("/ti/project_config/Common.js");
+let Options = system.getScript("/ti/project_config/linker/LINKERMSPM0options.js");
 
 /*
  *  ======== _getPinResources ========
@@ -92,6 +93,11 @@ function validate(inst, validation)
                 }
                 if(inst.genLibGaugeL2 && inst.genLibGaugeL2Version == "MATHACL"){
                     validation.logError("MATHACL is not available for the selected device",inst,"genLibGaugeL2");
+                }
+            }
+            if(!Options.TIDriversSupport){
+                if(inst.genLibDrivers){
+                    validation.logError("TI Drivers are not supported for the selected device",inst,"genLibDrivers");
                 }
             }
         }
@@ -176,6 +182,17 @@ if((["ccs","ticlang","gcc"].includes(system.compiler))&&(!system.isStandAloneGUI
     deviceSelectLongDesc = deviceSelectLongDesc += `User must make sure to
     select the same device as the CCS Launch Device setting for proper configuration.`
 };
+
+let npuConfig = []
+if(Common.hasNPU()){
+    npuConfig= [
+        {
+            name: "genLibNPU",
+            displayName: "NPU Library",
+            default: false,
+        },
+    ]
+}
 
 let config = [
     compilerConfig,
@@ -352,7 +369,7 @@ This file is specific to the selected device family.
                             {name: "MATHACL"},
                         ]
                     },
-                ],
+                ].concat(npuConfig),
             },
         ],
     },

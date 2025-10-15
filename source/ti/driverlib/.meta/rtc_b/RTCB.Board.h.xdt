@@ -60,6 +60,7 @@
 
 % function printDefine() {
 /* Defines for RTC_B */
+% if(stat.offsetCalFreq != "OFF" && stat.enableRTCOutputPin) {
 %       let gpioStr = "GPIO"
 % /* RTC_OUT pin */
 %       let rtcOutPinName = "rtcbOut"+"Pin";
@@ -85,6 +86,7 @@
 %           let eventPubChannelStr2 = "(" + stat.pubChanID + ")";
 `eventPubChannelStr.padEnd(40, " ") + eventPubChannelStr2.padStart(40, " ")`
 %       }
+%}
 %} //printDefine()
 %
 % function printDeclare() {

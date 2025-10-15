@@ -79,7 +79,17 @@ const StackSizeOptions = {
     "MSPM0L210X": {
         "MSPM0L2104": 256,
         "MSPM0L2105": 256,
-    }
+    },
+    "MSPM0GX218_GX207": {
+        "MSPM0G3218": 256,
+        "MSPM0G1218": 256,
+        "MSPM0G3207": 256,
+        "MSPM0G1207": 256,
+    },
+    "MSPM0G122X": {
+        "MSPM0G1227": 256,
+        "MSPM0G1226": 256,
+    },
 };
 const FLASHOriginOptions = {
     "MSPM0G1X0X_G3X0X": {
@@ -160,7 +170,17 @@ const FLASHOriginOptions = {
     "MSPM0L210X": {
         "MSPM0L2104": "0x00000000",
         "MSPM0L2105": "0x00000000",
-    }
+    },
+    "MSPM0GX218_GX207": {
+        "MSPM0G3218": "0x00000000",
+        "MSPM0G1218": "0x00000000",
+        "MSPM0G3207": "0x00000000",
+        "MSPM0G1207": "0x00000000",
+    },
+    "MSPM0G122X": {
+        "MSPM0G1227": "0x00000000",
+        "MSPM0G1226": "0x00000000",
+    },
 };
 const FLASHLengthOptions = {
     "MSPM0G1X0X_G3X0X": {
@@ -241,7 +261,17 @@ const FLASHLengthOptions = {
     "MSPM0L210X": {
         "MSPM0L2104": "0x00004000",
         "MSPM0L2105": "0x00008000",
-    }
+    },
+    "MSPM0GX218_GX207": {
+        "MSPM0G3218": 0x00040000,
+        "MSPM0G1218": 0x00040000,
+        "MSPM0G3207": 0x00020000,
+        "MSPM0G1207": undefined,
+    },
+    "MSPM0G122X": {
+        "MSPM0G1227": undefined,
+        "MSPM0G1226": undefined,
+    },
 };
 const SRAMOriginOptions = {
     "MSPM0G1X0X_G3X0X": {
@@ -322,7 +352,17 @@ const SRAMOriginOptions = {
     "MSPM0L210X": {
         "MSPM0L2104": "0x20200000",
         "MSPM0L2105": "0x20200000",
-    }
+    },
+    "MSPM0GX218_GX207": {
+        "MSPM0G3218": "0x20200000",
+        "MSPM0G1218": "0x20200000",
+        "MSPM0G3207": "0x20200000",
+        "MSPM0G1207": "0x20200000",
+    },
+    "MSPM0G122X": {
+        "MSPM0G1227": undefined,
+        "MSPM0G1226": undefined,
+    },
 };
 const SRAMBank1OriginOptions = {
     "MSPM0G1X0X_G3X0X": {
@@ -399,7 +439,17 @@ const SRAMBank1OriginOptions = {
     "MSPM0L210X": {
         "MSPM0L2104": undefined,
         "MSPM0L2105": undefined,
-    }
+    },
+    "MSPM0GX218_GX207": {
+        "MSPM0G3218": undefined,
+        "MSPM0G1218": undefined,
+        "MSPM0G3207": undefined,
+        "MSPM0G1207": undefined,
+    },
+    "MSPM0G122X": {
+        "MSPM0G1227": undefined,
+        "MSPM0G1226": undefined,
+    },
 };
 const SRAMLengthOptions = {
     "MSPM0G1X0X_G3X0X": {
@@ -480,7 +530,17 @@ const SRAMLengthOptions = {
     "MSPM0L210X": {
         "MSPM0L2104": "0x00001000",
         "MSPM0L2105": "0x00001000",
-    }
+    },
+    "MSPM0GX218_GX207": {
+        "MSPM0G3218": "0x00008000",
+        "MSPM0G1218": "0x00008000",
+        "MSPM0G3207": "0x00008000",
+        "MSPM0G1207": "0x00008000",
+    },
+    "MSPM0G122X": {
+        "MSPM0G1227": undefined,
+        "MSPM0G1226": undefined,
+    },
 };
 const SRAMBank1LengthOptions = {
     "MSPM0G1X0X_G3X0X": {
@@ -561,7 +621,17 @@ const SRAMBank1LengthOptions = {
     "MSPM0L210X": {
         "MSPM0L2104": undefined,
         "MSPM0L2105": undefined,
-    }
+    },
+    "MSPM0GX218_GX207": {
+        "MSPM0G3218": undefined,
+        "MSPM0G1218": undefined,
+        "MSPM0G3207": undefined,
+        "MSPM0G1207": undefined,
+    },
+    "MSPM0G122X": {
+        "MSPM0G1227": undefined,
+        "MSPM0G1226": undefined,
+    },
 };
 const BCROriginOptions = {
     "MSPM0G1X0X_G3X0X": {
@@ -642,7 +712,17 @@ const BCROriginOptions = {
     "MSPM0L210X": {
         "MSPM0L2104": "0x41C00000",
         "MSPM0L2105": "0x41C00000",
-    }
+    },
+    "MSPM0GX218_GX207": {
+        "MSPM0G3218": "0x41C00000",
+        "MSPM0G1218": "0x41C00000",
+        "MSPM0G3207": "0x41C00000",
+        "MSPM0G1207": "0x41C00000",
+    },
+    "MSPM0G122X": {
+        "MSPM0G1227": undefined,
+        "MSPM0G1226": undefined,
+    },
 };
 const BCRLengthOptions = {
     "MSPM0G1X0X_G3X0X": {
@@ -727,7 +807,17 @@ const BCRLengthOptions = {
     "MSPM0L210X": {
         "MSPM0L2104": "0x000000FF",
         "MSPM0L2105": "0x000000FF",
-    }
+    },
+    "MSPM0GX218_GX207": {
+        "MSPM0G3218": "0x000000FF",
+        "MSPM0G1218": "0x000000FF",
+        "MSPM0G3207": "0x000000FF",
+        "MSPM0G1207": "0x000000FF",
+    },
+    "MSPM0G122X": {
+        "MSPM0G1227": undefined,
+        "MSPM0G1226": undefined,
+    },
 };
 const BSLOriginOptions = {
     "MSPM0G1X0X_G3X0X": {
@@ -808,7 +898,17 @@ const BSLOriginOptions = {
     "MSPM0L210X": {
         "MSPM0L2104": "0x41C00100",
         "MSPM0L2105": "0x41C00100",
-    }
+    },
+    "MSPM0GX218_GX207": {
+        "MSPM0G3218": "0x41C00100",
+        "MSPM0G1218": "0x41C00100",
+        "MSPM0G3207": "0x41C00100",
+        "MSPM0G1207": "0x41C00100",
+    },
+    "MSPM0G122X": {
+        "MSPM0G1227": undefined,
+        "MSPM0G1226": undefined,
+    },
 };
 const BSLLengthOptions = {
     "MSPM0G1X0X_G3X0X": {
@@ -889,7 +989,17 @@ const BSLLengthOptions = {
     "MSPM0L210X": {
         "MSPM0L2104": "0x00000080",
         "MSPM0L2105": "0x00000080",
-    }
+    },
+    "MSPM0GX218_GX207": {
+        "MSPM0G3218": "0x00000080",
+        "MSPM0G1218": "0x00000080",
+        "MSPM0G3207": "0x00000080",
+        "MSPM0G1207": "0x00000080",
+    },
+    "MSPM0G122X": {
+        "MSPM0G1227": undefined,
+        "MSPM0G1226": undefined,
+    },
 };
 const DATAOriginOptions = {
     "MSPM0G1X0X_G3X0X": {
@@ -970,7 +1080,17 @@ const DATAOriginOptions = {
     "MSPM0L210X": {
         "MSPM0L2104": undefined,
         "MSPM0L2105": undefined,
-    }
+    },
+    "MSPM0GX218_GX207": {
+        "MSPM0G3218": "0x41D00000",
+        "MSPM0G1218": "0x41D00000",
+        "MSPM0G3207": "0x41D00000",
+        "MSPM0G1207": "0x41D00000",
+    },
+    "MSPM0G122X": {
+        "MSPM0G1227": undefined,
+        "MSPM0G1226": undefined,
+    },
 };
 const DATALengthOptions = {
     "MSPM0G1X0X_G3X0X": {
@@ -1043,15 +1163,41 @@ const DATALengthOptions = {
         "MSPM0G5187": "0x00002000",
     },
     "MSPM0L211X_L112X": {
-        "MSPM0L2117": undefined,
-        "MSPM0L2116": undefined,
-        "MSPM0L1127": undefined,
-        "MSPM0L1126": undefined,
+        "MSPM0L2117": "0x00002000",
+        "MSPM0L2116": "0x00002000",
+        "MSPM0L1127": "0x00002000",
+        "MSPM0L1126": "0x00002000",
     },
     "MSPM0L210X": {
         "MSPM0L2104": undefined,
         "MSPM0L2105": undefined,
     }
+};
+
+/*
+ * Define if the devices support TIDrivers.
+ * This is used for the genlibs file
+ * -- verified by seeing if the library file exists in
+ *    source\ti\drivers\lib\ticlang\m0p for the device family
+*/
+const TIDriversSupport = {
+    "MSPM0G1X0X_G3X0X"      : true,
+    /*
+     * MSPM0L11XX_L13XX is an exception, the library file exists but there is no
+     * TIDrivers support
+     */
+    "MSPM0L11XX_L13XX"      : false,
+    "MSPM0L122X_L222X"      : true,
+    "MSPM0C110X"            : false,
+    "MSPM0GX51X"            : true,
+    "MSPM0G352X"            : false,
+    "MSPM0L111X"            : true,
+    "MSPM0H321X"            : false,
+    "MSPM0C1105_C1106"      : false,
+    "MSPM0G511X"            : false,
+    "MSPM0G518X"            : false,
+    "MSPM0L211X_L112X"      : false,
+    "MSPM0L210X"            : false,
 };
 
 let index = Common.getDeviceFamily();
@@ -1070,4 +1216,6 @@ exports = {
     BSLLength   : BSLLengthOptions[index],
     DATAOrigin  : DATAOriginOptions[index],
     DATALength  : DATALengthOptions[index],
+
+    TIDriversSupport : TIDriversSupport[index],
 }

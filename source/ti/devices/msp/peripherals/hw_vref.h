@@ -1,33 +1,33 @@
 /*****************************************************************************
 
-  Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+  Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/ 
 
-  Redistribution and use in source and binary forms, with or without
-  modification, are permitted provided that the following conditions
+  Redistribution and use in source and binary forms, with or without 
+  modification, are permitted provided that the following conditions 
   are met:
 
-   Redistributions of source code must retain the above copyright
+   Redistributions of source code must retain the above copyright 
    notice, this list of conditions and the following disclaimer.
 
    Redistributions in binary form must reproduce the above copyright
-   notice, this list of conditions and the following disclaimer in the
-   documentation and/or other materials provided with the
+   notice, this list of conditions and the following disclaimer in the 
+   documentation and/or other materials provided with the   
    distribution.
 
    Neither the name of Texas Instruments Incorporated nor the names of
    its contributors may be used to endorse or promote products derived
    from this software without specific prior written permission.
 
-  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
   LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
   DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 *****************************************************************************/
@@ -36,8 +36,8 @@
 #define ti_devices_msp_peripherals_hw_vref__include
 
 /* Filename: hw_vref.h */
-/* Revised: 2023-05-10 21:34:47 */
-/* Revision: 346daa750fb9270ab4d9c503b44addb19c7cc8cc */
+/* Revised: 2025-09-02 22:58:34 */
+/* Revision: 46c5772b5c087a3277379fbff0316007e1d65e70 */
 
 #ifndef __CORTEX_M
   #ifdef __cplusplus
@@ -178,11 +178,12 @@ typedef struct {
                                                                                     enabled */
 
 /* VREF_CTL0 Bits */
-/* VREF_CTL0[ENABLE] Bits */
-#define VREF_CTL0_ENABLE_OFS                     (0)                             /* !< ENABLE Offset */
-#define VREF_CTL0_ENABLE_MASK                    ((uint32_t)0x00000001U)         /* !< This bit enables the VREF module. */
-#define VREF_CTL0_ENABLE_DISABLE                 ((uint32_t)0x00000000U)         /* !< VREF is disabled */
-#define VREF_CTL0_ENABLE_ENABLE                  ((uint32_t)0x00000001U)         /* !< VREF is enabled */
+
+/* VREF_CTL0[ENABLE0] Bits */
+#define VREF_CTL0_ENABLE0_OFS                    (0)                             /* !< ENABLE0 Offset */
+#define VREF_CTL0_ENABLE0_MASK                   ((uint32_t)0x00000001U)         /* !< This bit enables the VREF0 */
+#define VREF_CTL0_ENABLE0_DISABLE                ((uint32_t)0x00000000U)         /* !< VREF0 is disabled */
+#define VREF_CTL0_ENABLE0_ENABLE                 ((uint32_t)0x00000001U)         /* !< VREF0 is enabled */
 /* VREF_CTL0[BUFCONFIG] Bits */
 #define VREF_CTL0_BUFCONFIG_OFS                  (7)                             /* !< BUFCONFIG Offset */
 #define VREF_CTL0_BUFCONFIG_MASK                 ((uint32_t)0x00000080U)         /* !< These bits configure output buffer. */
@@ -194,25 +195,33 @@ typedef struct {
                                                                                     mode */
 #define VREF_CTL0_SHMODE_DISABLE                 ((uint32_t)0x00000000U)         /* !< Sample and hold mode is disable */
 #define VREF_CTL0_SHMODE_ENABLE                  ((uint32_t)0x00000100U)         /* !< Sample and hold mode is enable */
-/* VREF_CTL0[COMP_VREF_ENABLE] Bits */
-#define VREF_CTL0_COMP_VREF_ENABLE_OFS           (1)                             /* !< COMP_VREF_ENABLE Offset */
-#define VREF_CTL0_COMP_VREF_ENABLE_MASK          ((uint32_t)0x00000002U)         /* !< Comparator Vref Enable */
-#define VREF_CTL0_COMP_VREF_ENABLE_DISABLE       ((uint32_t)0x00000000U)         /* !< COMP VREF is disabled */
-#define VREF_CTL0_COMP_VREF_ENABLE_ENABLE        ((uint32_t)0x00000002U)         /* !< COMP VREF is enabled */
-
-/* VREF_CTL0[ADC_VREF_ENABLE] Bits */
-#define VREF_CTL0_ADC_VREF_ENABLE_OFS            (1)                             /* !< ADC_VREF_ENABLE Offset */
-#define VREF_CTL0_ADC_VREF_ENABLE_MASK           ((uint32_t)0x00000002U)         /* !< ADC Vref Enable */
-#define VREF_CTL0_ADC_VREF_ENABLE_DISABLE        ((uint32_t)0x00000000U)         /* !< ADC VREF is disabled */
-#define VREF_CTL0_ADC_VREF_ENABLE_ENABLE         ((uint32_t)0x00000002U)         /* !< ADC VREF is enabled */
-
+/* VREF_CTL0[ENABLE1] Bits */
+#define VREF_CTL0_ENABLE1_OFS                    (1)                             /* !< ENABLE1 Offset */
+#define VREF_CTL0_ENABLE1_MASK                   ((uint32_t)0x00000002U)         /* !< This bit enables the VREF1 */
+#define VREF_CTL0_ENABLE1_DISABLE                ((uint32_t)0x00000000U)         /* !< VREF1 is disabled */
+#define VREF_CTL0_ENABLE1_ENABLE                 ((uint32_t)0x00000002U)         /* !< VREF1 is enabled */
+/* VREF_CTL0[ENABLE2] Bits */
+#define VREF_CTL0_ENABLE2_OFS                    (2)                             /* !< ENABLE2 Offset */
+#define VREF_CTL0_ENABLE2_MASK                   ((uint32_t)0x00000004U)         /* !< This bit enables the VREF2 */
+#define VREF_CTL0_ENABLE2_DISABLE                ((uint32_t)0x00000000U)         /* !< VREF2 is disabled */
+#define VREF_CTL0_ENABLE2_ENABLE                 ((uint32_t)0x00000004U)         /* !< VREF2 is enabled */
 
 /* VREF_CTL1 Bits */
-/* VREF_CTL1[READY] Bits */
-#define VREF_CTL1_READY_OFS                      (0)                             /* !< READY Offset */
-#define VREF_CTL1_READY_MASK                     ((uint32_t)0x00000001U)         /* !< These bits defines status of VREF */
-#define VREF_CTL1_READY_NOTRDY                   ((uint32_t)0x00000000U)         /* !< VREF output is not ready */
-#define VREF_CTL1_READY_RDY                      ((uint32_t)0x00000001U)         /* !< VREF output is ready */
+/* VREF_CTL1[READY0] Bits */
+#define VREF_CTL1_READY0_OFS                     (0)                             /* !< READY0 Offset */
+#define VREF_CTL1_READY0_MASK                    ((uint32_t)0x00000001U)         /* !< These bits defines status of VREF0 */
+#define VREF_CTL1_READY0_NOTRDY                  ((uint32_t)0x00000000U)         /* !< VREF0 not ready */
+#define VREF_CTL1_READY0_RDY                     ((uint32_t)0x00000001U)         /* !< VREF ready */
+/* VREF_CTL1[READY1] Bits */
+#define VREF_CTL1_READY1_OFS                     (2)                             /* !< READY1 Offset */
+#define VREF_CTL1_READY1_MASK                    ((uint32_t)0x00000004U)         /* !< These bits defines status of VREF1 */
+#define VREF_CTL1_READY1_NOTRDY                  ((uint32_t)0x00000000U)         /* !< VREF1 not Ready */
+#define VREF_CTL1_READY1_RDY                     ((uint32_t)0x00000004U)         /* !< VREF1 ready */
+/* VREF_CTL1[READY2] Bits */
+#define VREF_CTL1_READY2_OFS                     (3)                             /* !< READY2 Offset */
+#define VREF_CTL1_READY2_MASK                    ((uint32_t)0x00000008U)         /* !< These bits defines status of VREF2 */
+#define VREF_CTL1_READY2_NOTRDY                  ((uint32_t)0x00000000U)         /* !< VREF2 not Ready */
+#define VREF_CTL1_READY2_RDY                     ((uint32_t)0x00000008U)         /* !< VREF2 Ready */
 
 /* VREF_CTL2 Bits */
 /* VREF_CTL2[SHCYCLE] Bits */
@@ -243,6 +252,33 @@ typedef struct {
 #define VREF_CTL2_HCYCLE_MINIMUM                 ((uint32_t)0x00000000U)         /* !< smallest hold cycle */
 #define VREF_CTL2_HCYCLE_MAXIMUM                 ((uint32_t)0xFFFF0000U)         /* !< largest hold cycle */
 
+
+/******************************************************************************
+* VREF Register Backwards Compatible Control Bits
+******************************************************************************/
+/* VREF_CTL1[READY] Bits */
+#define VREF_CTL1_READY_OFS                      VREF_CTL1_READY0_OFS            /* !< READY Offset */
+#define VREF_CTL1_READY_MASK                     VREF_CTL1_READY0_MASK           /* !< These bits defines status of VREF */
+#define VREF_CTL1_READY_NOTRDY                   VREF_CTL1_READY0_NOTRDY         /* !< VREF output is not ready */
+#define VREF_CTL1_READY_RDY                      VREF_CTL1_READY0_RDY            /* !< VREF output is ready */
+
+/* VREF_CTL0[ENABLE] Bits */
+#define VREF_CTL0_ENABLE_OFS                     VREF_CTL0_ENABLE0_OFS           /* !< ENABLE Offset */
+#define VREF_CTL0_ENABLE_MASK                    VREF_CTL0_ENABLE0_MASK          /* !< This bit enables the VREF module. */
+#define VREF_CTL0_ENABLE_DISABLE                 VREF_CTL0_ENABLE0_DISABLE       /* !< VREF is disabled */
+#define VREF_CTL0_ENABLE_ENABLE                  VREF_CTL0_ENABLE0_ENABLE        /* !< VREF is enabled */
+
+/* VREF_CTL0[COMP_VREF_ENABLE] Bits */
+#define VREF_CTL0_COMP_VREF_ENABLE_OFS           VREF_CTL0_ENABLE1_OFS           /* !< COMP_VREF_ENABLE Offset */
+#define VREF_CTL0_COMP_VREF_ENABLE_MASK          VREF_CTL0_ENABLE1_MASK          /* !< Comparator Vref Enable */
+#define VREF_CTL0_COMP_VREF_ENABLE_DISABLE       VREF_CTL0_ENABLE1_DISABLE       /* !< COMP VREF is disabled */
+#define VREF_CTL0_COMP_VREF_ENABLE_ENABLE        VREF_CTL0_ENABLE1_ENABLE        /* !< COMP VREF is enabled */
+
+/* VREF_CTL0[ADC_VREF_ENABLE] Bits */
+#define VREF_CTL0_ADC_VREF_ENABLE_OFS            VREF_CTL0_ENABLE2_OFS           /* !< ADC_VREF_ENABLE Offset */
+#define VREF_CTL0_ADC_VREF_ENABLE_MASK           VREF_CTL0_ENABLE2_MASK          /* !< ADC Vref Enable */
+#define VREF_CTL0_ADC_VREF_ENABLE_DISABLE        VREF_CTL0_ENABLE2_DISABLE       /* !< ADC VREF is disabled */
+#define VREF_CTL0_ADC_VREF_ENABLE_ENABLE         VREF_CTL0_ENABLE2_ENABLE        /* !< ADC VREF is enabled */
 
 #ifdef __cplusplus
 }

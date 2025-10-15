@@ -61,7 +61,14 @@ let migration_inst = MigrationController.$static;
  *                TI C/C++ toolchain
  */
 % if(migration_inst.genLibDrivers){
--l"ti/drivers/lib/ticlang/m0p/drivers_`Common.getDeviceFamily().toLowerCase()`.a"
+%%{
+  // Workaround Exception: MSPM0GX51X library name
+  let deviceFamilyName = Common.getDeviceFamily();
+  if(deviceFamilyName == "MSPM0GX51X") {
+    deviceFamilyName = "mspm0g151x_g351x"
+  }
+%%}
+-l"ti/drivers/lib/ticlang/m0p/drivers_`deviceFamilyName.toLowerCase()`.a"
 % }
 % if(migration_inst.genLibGC){
 -l"ti/gui_composer/lib/ticlang/m0p/gui_composer.a"
@@ -105,4 +112,7 @@ let migration_inst = MigrationController.$static;
 % }
 % if(migration_inst.genLibDL){
 -l"ti/driverlib/lib/ticlang/m0p/`Common.getDeviceFamily().toLowerCase()`/driverlib.a"
+% }
+% if(migration_inst.genLibNPU && Common.hasNPU()){
+-l"ti/npu/lib/ticlang/m0p/npu.a"
 % }

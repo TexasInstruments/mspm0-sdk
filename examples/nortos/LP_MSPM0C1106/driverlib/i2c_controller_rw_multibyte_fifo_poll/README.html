@@ -50,17 +50,17 @@
 <tbody>
 <tr class="odd">
 <td>GPIOA</td>
-<td>Open-Drain Output</td>
-<td>PA0</td>
-<td>Red LED1</td>
-<td>Populate Jumper(s): J4[1:2]</td>
-</tr>
-<tr class="even">
-<td>GPIOA</td>
 <td>Standard Output</td>
 <td>PA15</td>
 <td>J4_38</td>
 <td></td>
+</tr>
+<tr class="even">
+<td>GPIOB</td>
+<td>Standard Output</td>
+<td>PB20</td>
+<td>LED2 Blue</td>
+<td>Populate Jumper(s): J7[1:2]</td>
 </tr>
 <tr class="odd">
 <td>SYSCTL</td>
@@ -72,15 +72,15 @@
 <tr class="even">
 <td>I2C0</td>
 <td>I2C Serial Data line (SDA)</td>
-<td>PA30</td>
-<td>J1_10</td>
+<td>PA0</td>
+<td>J4_34</td>
 <td></td>
 </tr>
 <tr class="odd">
 <td>I2C0</td>
 <td>I2C Serial Clock line (SCL)</td>
-<td>PA27</td>
-<td>J1_9</td>
+<td>PA11</td>
+<td>J14_7</td>
 <td></td>
 </tr>
 <tr class="even">
@@ -113,7 +113,7 @@
 <p>SysConfig allows developers to easily configure unused pins by selecting <strong>Board</strong>→<strong>Configure Unused Pins</strong>.</p>
 <p>For more information about jumper configuration to achieve low-power using the MSPM0 LaunchPad, please visit the LP-MSPM0C1106 User’s Guide.</p>
 <h2 id="example-usage">Example Usage</h2>
-<p>Connect SDA and SCL between I2C Controller and Target. Note that I2C requires pull-up resistors. Internal pull-ups can be enabled in SysConfig (see datasheet for resistance specification), but external pull-ups might be required based on I2C speed and capacitance. External pull-ups can be connected or enabled using the LaunchPad. Compile, load and run the example. LED1 will toggle periodically if transmission and reception were successful. LED1 will remain off if there is a problem during initialization. LED1 will remain on if there is a problem during data transfers.</p>
+<p>Connect SDA and SCL between I2C Controller and Target. Note that I2C requires pull-up resistors. Internal pull-ups can be enabled in SysConfig (see datasheet for resistance specification), but external pull-ups might be required based on I2C speed and capacitance. External pull-ups can be connected or enabled using the LaunchPad. Compile, load and run the example. LED2 will toggle periodically if transmission and reception were successful. LED2 will remain off if there is a problem during initialization. LED2 will remain on if there is a problem during data transfers.</p>
 <!-- Close div from before_body_template.html -->
 </div>
 <footer id="tiFooter">

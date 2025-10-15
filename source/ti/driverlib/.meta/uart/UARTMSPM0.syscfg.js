@@ -60,10 +60,10 @@ if(Common.isUnicommUART()){
         let uartPeripherals = system.deviceData.interfaces["UART"].peripherals.map(a => a.name);
         for(let item of uartPeripherals){
             let unicomm = system.deviceData.peripherals[item].attributes.UNICOMM;
-            if(system.deviceData.peripherals[item].attributes["SYS_"+unicomm+"_UART_IRDA_EN"]=="true"){
+            if(system.deviceData.peripherals[item].attributes["SYS_UART_IRDA_EN"]=="true"){
                 irDAPeripherals.push(item);
             }
-            if(system.deviceData.peripherals[item].attributes["SYS_"+unicomm+"_UART_DALI_MENC_EN"]=="true"){
+            if(system.deviceData.peripherals[item].attributes["SYS_UART_DALI_MENC_EN"]=="true"){
                 manchesterPeripherals.push(item);
             }
         }
@@ -108,20 +108,27 @@ function validatePinmux(inst, validation) {
     // UNICOMM UART Validation
     else{
         try{
-            let peripheralSolution = inst.peripheral.$solution.peripheralName;
-            let unicomm = system.deviceData.peripherals[peripheralSolution].attributes.UNICOMM;
+            let selectedInstance = inst.peripheral.$solution.peripheralName;
+            let selectedPeripheral = system.deviceData.peripherals[selectedInstance];
             if(inst.enableManchester){
-                if(system.deviceData.peripherals[peripheralSolution].attributes["SYS_"+unicomm+"_UART_DALI_MENC_EN"]  == "false") {
+                if(Common.getAttribute(selectedPeripheral,"SYS_UART_DALI_MENC_EN")=="false"){
                 // if( /* has Manchester */){
                     validation.logError("Manchester Encoding is only available on: " + manchesterPeripherals.toString() + ". Please select one of these instances from PinMux if available.",
                     inst,"enableManchester");
                 }
             }
             if(inst.enableIrda){
-                if(system.deviceData.peripherals[peripheralSolution].attributes["SYS_"+unicomm+"_UART_IRDA_EN"] == "false") {
+                if(Common.getAttribute(selectedPeripheral,"SYS_UART_IRDA_EN")=="false"){
                 // if( /* hasIrDA */){
                     validation.logError("IrDA Mode is only available on: " + irDAPeripherals.toString() + ". Please select one of these instances from PinMux if available.",
                     inst,"enableIrda");
+                }
+            }
+
+            // Digital Glitch Filter
+            if(Common.getAttribute(selectedPeripheral,"SYS_UART_DGFLT_PRESENT")=="false"){
+                if(inst.digitalGlitchFilter !== 0){
+                    validation.logError("UART Digital Glitch Filter is not supported on " + selectedInstance + ".", inst, "digitalGlitchFilter");
                 }
             }
         }

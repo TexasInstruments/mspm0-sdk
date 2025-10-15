@@ -219,7 +219,7 @@ function pinmuxRequirements(inst)
         interfaceNames    : ["RTC_OUT"]   /* pinmux tool name */
     };
 
-    if (inst.offsetCalFreq != "OFF") {
+    if (inst.offsetCalFreq != "OFF" && inst.enableRTCOutputPin) {
         resources.push(rtcOut);
     }
 

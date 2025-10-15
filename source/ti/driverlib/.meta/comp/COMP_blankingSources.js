@@ -223,6 +223,57 @@ let blankingSources = {
     MSPM0L210X: {
         // N/A: COMP not available for this device
     },
+    MSPM0GX218_GX207: {
+        1: {
+            peripheral: "TIMA0",
+            channel: "2",
+        },
+        2: {
+            peripheral: "TIMA1",
+            channel: "3",
+        },
+        3: {
+            peripheral: "TIMA1",
+            channel: "1",
+        },
+        4: {
+            peripheral: "TIMG0",
+            channel: "1",
+        },
+        5: {
+            peripheral: "TIMG1",
+            channel: "1",
+        },
+        6: {
+            peripheral: "TIMG8",
+            channel: "1",
+        }
+    },
+    MSPM0G122X: {
+        1: {
+            peripheral: "TIMA0",
+            channel: "2",
+        },
+        2: {
+            peripheral: "TIMA1",
+            channel: "3",
+        },
+        // 3: {
+        //     // "Tied off"
+        // },
+        4: {
+            peripheral: "TIMG0",
+            channel: "1",
+        },
+        5: {
+            peripheral: "TIMG1",
+            channel: "1",
+        },
+        6: {
+            peripheral: "TIMG8",
+            channel: "1",
+        }
+    },
 }
 
 let index = Common.getDeviceFamily();

@@ -1650,30 +1650,20 @@ See the device TRM for more details.
                 displayFormat: "hex",
                 default     : 0,
                 getValue    : (inst) => {
-                    if (Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() ||
-                        Common.isDeviceFamily_PARENT_MSPM0GX51X() ||
-                        Common.isDeviceFamily_PARENT_MSPM0G352X() ||
-                        Common.isDeviceFamily_PARENT_MSPM0L111X() ||
-                        Common.isDeviceFamily_PARENT_MSPM0G511X() ||
-                        Common.isDeviceFamily_PARENT_MSPM0G518X())
+                    if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() || Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX()){
+                        return calculateBCRCRC(inst);
+                    }
+                    else if(Common.isDeviceFamily_PARENT_MSPM0C110X()){
+                        /* M0C doesn't support BCR CRC validation */
+                        return 0xFFFFFFFF;
+                    }
+                    else if (deviceOptions.CRC_BITS == 32)
                     {
                         return calculateBCRCRC_Advanced_32Bit(inst);
                     }
-                    else if (Common.isDeviceFamily_PARENT_MSPM0H321X() ||
-                             Common.isDeviceFamily_PARENT_MSPM0C1105_C1106() ||
-                             Common.isDeviceFamily_PARENT_MSPM0L211X_L112X() ||
-                             Common.isDeviceFamily_PARENT_MSPM0L210X())
+                    else if (deviceOptions.CRC_BITS == 16)
                     {
                         return calculateBCRCRC_Advanced_16Bit(inst);
-                    }
-                    else if (!Common.isDeviceFamily_PARENT_MSPM0C110X())
-                    {
-                        return calculateBCRCRC(inst);
-                    }
-                    else
-                    {
-                        /* M0C doesn't support BCR CRC validation */
-                        return 0xFFFFFFFF;
                     }
                 },
             },
@@ -1683,25 +1673,16 @@ See the device TRM for more details.
                 hidden: true,
                 default: "",
                 getValue: (inst) => {
-                    if (Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() ||
-                        Common.isDeviceFamily_PARENT_MSPM0GX51X() ||
-                        Common.isDeviceFamily_PARENT_MSPM0G352X() ||
-                        Common.isDeviceFamily_PARENT_MSPM0L111X() ||
-                        Common.isDeviceFamily_PARENT_MSPM0G511X() ||
-                        Common.isDeviceFamily_PARENT_MSPM0G518X() ||
-                        Common.isDeviceFamily_PARENT_MSPM0H321X() ||
-                        Common.isDeviceFamily_PARENT_MSPM0C1105_C1106())
-                    {
-                        return createAdvancedBCRConfigString(inst);
-                    }
-                    else if (!Common.isDeviceFamily_PARENT_MSPM0C110X())
-                    {
+                    if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() || Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX()){
                         return createBCRString(inst);
+                    }
+                    else if(Common.isDeviceFamily_PARENT_MSPM0C110X()){
+                         /* M0C doesn't support BCR CRC validation */
+                         return "FFFFFFFF";
                     }
                     else
                     {
-                        /* M0C doesn't support BCR CRC validation */
-                        return "FFFFFFFF";
+                        return createAdvancedBCRConfigString(inst);
                     }
                 }
             },
@@ -1856,7 +1837,8 @@ function createAdvancedBCRConfigString(inst)
         Common.isDeviceFamily_PARENT_MSPM0L211X_L112X() ||
         Common.isDeviceFamily_PARENT_MSPM0L210X() ||
         Common.isDeviceFamily_PARENT_MSPM0G511X() ||
-        Common.isDeviceFamily_PARENT_MSPM0G518X())
+        Common.isDeviceFamily_PARENT_MSPM0G518X() ||
+        Common.isDeviceFamily_PARENT_MSPM0GX218_GX207())
     {
     /* Reserved, 32-bits (bc_reserved_1 or bc_reserved_2 for H321x) */
         bcrConfigStr +=  "FFFFFFFF"
@@ -2081,7 +2063,8 @@ function createROMBSLString(inst)
         !Common.isDeviceFamily_PARENT_MSPM0G352X() &&
         !Common.isDeviceFamily_PARENT_MSPM0L111X() &&
         !Common.isDeviceFamily_PARENT_MSPM0G511X() &&
-        !Common.isDeviceFamily_PARENT_MSPM0G518X()){
+        !Common.isDeviceFamily_PARENT_MSPM0G518X() &&
+        !Common.isDeviceFamily_PARENT_MSPM0GX218_GX207()){
         /* Reserved, 16-bits */
         bslConfigStr += "FFFF";
     }
@@ -2092,7 +2075,8 @@ function createROMBSLString(inst)
         Common.isDeviceFamily_PARENT_MSPM0G352X() ||
         Common.isDeviceFamily_PARENT_MSPM0L111X() ||
         Common.isDeviceFamily_PARENT_MSPM0G511X() ||
-        Common.isDeviceFamily_PARENT_MSPM0G518X()){
+        Common.isDeviceFamily_PARENT_MSPM0G518X() ||
+        Common.isDeviceFamily_PARENT_MSPM0GX218_GX207()){
         bslConfigStr += inst.uartBaudDefault;
     }
 

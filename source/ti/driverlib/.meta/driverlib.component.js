@@ -88,22 +88,14 @@ if(/LFSS/.test(peripherals) && Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
         "ti/driverlib/RTCA",
         "ti/driverlib/TAMPERIO",
     );
-};
-
-/* System: GX51X, L111X, and H321X, and G511X have an RTC_B within the LFSS Peripheral */
-if(/LFSS/.test(peripherals) && (Common.isDeviceFamily_PARENT_MSPM0GX51X() ||
-                                Common.isDeviceFamily_PARENT_MSPM0G352X() ||
-                                Common.isDeviceFamily_PARENT_MSPM0L111X() ||
-                                Common.isDeviceFamily_PARENT_MSPM0H321X() ||
-                                Common.isDeviceFamily_PARENT_MSPM0C1105_C1106() ||
-                                Common.isDeviceFamily_PARENT_MSPM0G511X() ||
-                                Common.isDeviceFamily_PARENT_MSPM0G518X() ||
-                                Common.isDeviceFamily_PARENT_MSPM0L211X_L112X() ||
-                                Common.isDeviceFamily_PARENT_MSPM0L210X())) {
+}
+/* System: RTC_B within the LFSS Peripheral */
+else if(/LFSS/.test(peripherals)) {
     systemModulesList.push(
         "/ti/driverlib/RTCB",
     );
-}
+};
+
 
 /* System (LCD): MSPM0L222X-specific modules */
 if(/LCD/.test(peripherals)){
@@ -214,35 +206,30 @@ if(["MSPM0G350X","MSPM0G310X", "MSPM0G351X"].includes(system.deviceData.device))
     );
 }
 
-let securityModulesList = [
-]
+let securityModulesList = []
+
+/* AESADV  */
+if(/AESADV/.test(peripherals)) {
+    securityModulesList.push(
+        "/ti/driverlib/AESADV",
+    );
+}
 if(/AES/.test(peripherals) && !/AESADV/.test(peripherals)) {
     securityModulesList.push(
         "/ti/driverlib/AES",
     );
 }
 
-/* MSPM0Gxx-specific modules - not available for MSPM0G110x */
+/* TRNG */
 if(/TRNG/.test(peripherals)) {
     securityModulesList.push(
         "/ti/driverlib/TRNG",
     );
 }
 
-/* AESADV available on MSPM0L122X_L222X, MSPM0GX51X and MSPM0L111X  */
-if(/AESADV/.test(peripherals)) {
-    securityModulesList.push(
-        "/ti/driverlib/AESADV",
-    );
-}
 
 /*
  * SECURITY CONFIGURATOR available on:
- * - MSPM0L122X_L222X
- * - MSPM0GX51X
- * - MSPM0L111X
- * - MSPM0H321x
- * - MSPM0C1105_C1106
  */
 if (Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() ||
     Common.isDeviceFamily_PARENT_MSPM0GX51X() ||
@@ -253,7 +240,8 @@ if (Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() ||
     Common.isDeviceFamily_PARENT_MSPM0G511X() ||
     Common.isDeviceFamily_PARENT_MSPM0G518X() ||
     Common.isDeviceFamily_PARENT_MSPM0L211X_L112X() ||
-    Common.isDeviceFamily_PARENT_MSPM0L210X()){
+    Common.isDeviceFamily_PARENT_MSPM0L210X() ||
+    Common.isDeviceFamily_PARENT_MSPM0GX218_GX207()){
     securityModulesList.push(
         "/ti/driverlib/SECCONFIG",
     );

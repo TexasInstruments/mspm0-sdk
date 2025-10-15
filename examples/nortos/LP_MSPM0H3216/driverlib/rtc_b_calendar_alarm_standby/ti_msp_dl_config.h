@@ -91,10 +91,6 @@ extern "C" {
 
 
 /* Defines for RTC_B */
-#define GPIO_RTC_B_RTCOUT_PORT                                           (GPIOA)
-#define GPIO_RTC_B_RTCOUT_PIN                                   (DL_GPIO_PIN_13)
-#define GPIO_RTC_B_IOMUX_RTCOUT                                  (IOMUX_PINCM25)
-#define GPIO_RTC_B_IOMUX_RTCOUT_FUNC             (IOMUX_PINCM25_PF_LFSS_RTC_OUT)
 
 
 

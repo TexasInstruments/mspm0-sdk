@@ -180,6 +180,24 @@ let DMA_TRIGGERS = {
         "UC2"	: ["DMA_UC2_TX_BD_TRIG","DMA_UC2_RX_BD_TRIG"],
         "UC3"	: ["DMA_UC3_TX_BD_TRIG","DMA_UC3_RX_BD_TRIG"],
     },
+    MSPM0GX218_GX207: {
+        "SW"    : ["DMA_SOFTWARE_TRIG"],
+        "FSUB_0": ["DMA_GENERIC_SUB0_TRIG"],
+        "FSUB_1": ["DMA_GENERIC_SUB1_TRIG"],
+        "AES"   : ["DMA_AESADV_AES_0_TRIG", "DMA_AESADV_AES_1_TRIG"],
+        "DAC0"  : ["DMA_DAC0_EVT_BD_1_TRIG"],
+        "UC4"   : ["DMA_UC4_TX_BD_TRIG","DMA_UC4_RX_BD_TRIG"],
+        "UC0"   : ["DMA_UC0_TX_BD_TRIG","DMA_UC0_RX_BD_TRIG"],
+        "UC5"   : ["DMA_UC5_TX_BD_TRIG","DMA_UC5_RX_BD_TRIG"],
+        "UC2"   : ["DMA_UC2_TX_BD_TRIG","DMA_UC2_RX_BD_TRIG"],
+        "UC9"   : ["DMA_UC9_TX_BD_TRIG","DMA_UC9_RX_BD_TRIG"],
+        "ADC0"  : ["DMA_ADC0_EVT_GEN_BD_TRIG"],
+        "ADC1"  : ["DMA_ADC1_EVT_GEN_BD_TRIG"]
+    },
+    MSPM0G122X: {
+        // TBA
+        undefined,
+    },
 };
 
 let index = Common.getDeviceFamily();

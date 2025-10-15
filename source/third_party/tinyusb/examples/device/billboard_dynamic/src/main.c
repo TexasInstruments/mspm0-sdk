@@ -30,7 +30,7 @@
 
 #include "bsp/board_api.h"
 #include "tusb.h"
-#include "usb_descriptor.h"
+#include "usb_descriptors.h"
 
 /* 
  * Blink pattern
@@ -45,6 +45,7 @@ enum {
 };
 
 static uint32_t blink_interval_ms = BLINK_NOT_MOUNTED;
+uint8_t descriptorState;
 
 static void led_blinking_task(void);
 static void switch_billboard_task(void);

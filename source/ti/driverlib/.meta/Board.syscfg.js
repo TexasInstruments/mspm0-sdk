@@ -91,7 +91,7 @@ else if(Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX() && Common.isDeviceM0x110
 /* MSPM0L122X specific options */
 else if(Common.isDeviceFamily_PARENT_MSPM0L122X()){
     MasterOrder = [
-        "SYSCTL", "RTCA", "PWM", "CAPTURE", "COMPARE",  "TIMER", "TAMPERIO", "IWDT", "I2C", "i2cSMBUS", "UART", "uartLIN",
+        "SYSCTL", "RTCA", "PWM", "QEI", "CAPTURE", "COMPARE",  "TIMER", "TAMPERIO", "IWDT", "I2C", "i2cSMBUS", "UART", "uartLIN",
         "SPI", "ADC12", "COMP", "VREF", "EVENT", "DMA",
         "GPIO", "AESADV", "CRCP", "TRNG", "SYSTICK", "WWDT",
     ];
@@ -99,7 +99,7 @@ else if(Common.isDeviceFamily_PARENT_MSPM0L122X()){
 /* MSPM0L222X specific options */
 else if(Common.isDeviceFamily_PARENT_MSPM0L222X()){
     MasterOrder = [
-        "SYSCTL", "RTCA", "PWM", "CAPTURE", "COMPARE",  "TIMER", "TAMPERIO", "IWDT", "I2C", "i2cSMBUS", "UART", "uartLIN",
+        "SYSCTL", "RTCA", "PWM", "QEI", "CAPTURE", "COMPARE",  "TIMER", "TAMPERIO", "IWDT", "I2C", "i2cSMBUS", "UART", "uartLIN",
         "SPI", "ADC12", "COMP", "VREF", "EVENT", "DMA",
         "GPIO", "AESADV", "CRCP", "TRNG", "SYSTICK", "WWDT", "LCD",
     ];
@@ -175,6 +175,24 @@ else if(Common.isDeviceFamily_PARENT_MSPM0L210X()){
         "GPIO", "CRC", "RTCB", "SYSTICK", "WWDT","LCD"
     ];
 }
+// TODO: sanity check list for new device
+/* MSPM0GX218_GX207 specific options */
+else if(Common.isDeviceFamily_PARENT_MSPM0GX218_GX207()){
+    MasterOrder = [
+        "SYSCTL", "PWM", "QEI", "CAPTURE", "COMPARE", "TIMER", "IWDT", "I2C", "i2cSMBUS", "UART", "uartLIN",
+        "SPI", "ADC12", "COMP", "VREF", "EVENT", "DMA",
+        "GPIO", "AESADV", "CRCP", "RTCB", "SYSTICK", "DAC12", "WWDT", "MATHACL", "MCAN"
+    ];
+}
+/* MSPM0G122X specific options */
+else if(Common.isDeviceFamily_PARENT_MSPM0G122X()){
+    MasterOrder = [
+        "SYSCTL", "PWM", "QEI", "CAPTURE", "COMPARE", "TIMER", "IWDT", "I2C", "i2cSMBUS", "UART", "uartLIN",
+        "SPI", "ADC12", "COMP", "VREF", "EVENT", "DMA",
+        "GPIO", "AESADV", "CRCP", "RTCB", "SYSTICK", "DAC12", "WWDT", "MATHACL", "MCAN"
+    ];
+}
+
 
 
 

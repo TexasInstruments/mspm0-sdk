@@ -56,10 +56,15 @@ function pinmuxRequirements(inst) {
 
 let genericConfig = [
     {
+        name: "$name",
+        hidden: false,
+    },
+    {
         name: "dwAlternateModeVdo",
         displayName: "Alternate Mode VDO",
         default: 0,
         isInteger: true,
+        displayFormat: "hex",
         range: [0,0xFFFFFFFF],
     },
     {
@@ -67,7 +72,6 @@ let genericConfig = [
         displayName: "Alternate Mode String",
         default: "Billboard AUM",
     },
-    // TODO: ADD these
     //       .wSVID                      = 0x8087,
     {
         name: "wSVID",
@@ -109,6 +113,7 @@ let base = {
     validate: validate,
     defaultInstanceName: "AUM_",
     moduleInstances: moduleInstances,
+    maxInstances: 128,
 };
 
 exports = base;

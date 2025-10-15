@@ -951,7 +951,6 @@ typedef struct {
                                                                                     chopping mode. */
 #define SYSCTL_PMUOPAMP_CHOPCLKMODE_CHOPDISABLED ((uint32_t)0x00000000U)         /* !< Chopping disabled */
 #define SYSCTL_PMUOPAMP_CHOPCLKMODE_REGCHOP      ((uint32_t)0x00000400U)         /* !< Normal chopping */
-#define SYSCTL_PMUOPAMP_CHOPCLKMODE_ADCASSIST    ((uint32_t)0x00000800U)         /* !< ADC Assisted chopping */
 /* SYSCTL_PMUOPAMP[OUTENABLE] Bits */
 #define SYSCTL_PMUOPAMP_OUTENABLE_OFS            (6)                             /* !< OUTENABLE Offset */
 #define SYSCTL_PMUOPAMP_OUTENABLE_MASK           ((uint32_t)0x00000040U)         /* !< Set OUTENABLE to connect the GPAMP

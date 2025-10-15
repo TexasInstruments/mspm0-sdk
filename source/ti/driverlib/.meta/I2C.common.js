@@ -522,25 +522,25 @@ function getValueI2CdigitalGlitchFilterCalc(inst) {
 
     switch (inst.advDigitalGlitchFilter)
     {
-        case "1":
+        case "CLOCKS_1":
             filterTimeNs = (1)/sourceClkFreq;
         break;
-        case "2":
+        case "CLOCKS_2":
             filterTimeNs = (2)/sourceClkFreq;
         break;
-        case "3":
+        case "CLOCKS_3":
             filterTimeNs = (3)/sourceClkFreq;
         break;
-        case "4":
+        case "CLOCKS_4":
             filterTimeNs = (4)/sourceClkFreq;
         break;
-        case "8":
+        case "CLOCKS_8":
             filterTimeNs = (8)/sourceClkFreq;
         break;
-        case "16":
+        case "CLOCKS_16":
             filterTimeNs = (16)/sourceClkFreq;
         break;
-        case "31":
+        case "CLOCKS_31":
             filterTimeNs = (31)/sourceClkFreq;
         break;
         case "DISABLED":
@@ -988,7 +988,30 @@ length; however, it's not available to wake-up the device from low-power mode.`,
                 description : 'Calculated digital glitch filter',
                 hidden      : false,
                 default     : "0 s",
-                getValue    : (inst) => (Common.getUnitPrefix((getValueI2CdigitalGlitchFilterCalc(inst))).str+'s'),
+                getValue    : (inst) => {
+                    let returnVal = (Common.getUnitPrefix((getValueI2CdigitalGlitchFilterCalc(inst))).str+'s');
+
+                    if(Common.isUnicommI2C()){
+                        let selectedInstance = inst.peripheral.$solution.peripheralName;
+                        let selectedPeripheral = system.deviceData.peripherals[selectedInstance];
+                        let i2cMode = undefined;
+                        if(inst.basicEnableController && !inst.basicEnableTarget){
+                            i2cMode = "C";
+                        }
+                        if(!inst.basicEnableController && inst.basicEnableTarget){
+                            i2cMode = "T";
+                        }
+                        if(!_.isUndefined(i2cMode)){
+                            if(Common.getAttribute(selectedPeripheral,"SYS_I2C"+i2cMode+"_EN_DGFLT")=="false"){
+                                returnVal = "n/a";
+                            }
+                        }
+                    }
+
+                    return returnVal;
+
+
+                },
             },
             /****** Start of CONTROLLER ADVANCED CONFIGURATION *******/
             {
@@ -1505,6 +1528,9 @@ function getPinmuxValidation(inst,validation){
             if(Common.getAttribute(selectedPeripheral,"SYS_I2C"+i2cMode+"_EN_DGFLT")=="false"){
                 if(inst.advDigitalGlitchFilter !== "DISABLED"){
                     validation.logError("I2C Digital Glitch Filter is not supported on " + selectedInstance + ".", inst, "advDigitalGlitchFilter");
+                }
+                else{
+                    validation.logInfo("I2C Digital Glitch Filter is not supported on " + selectedInstance + ".", inst, "advDigitalGlitchFilter");
                 }
             }
             // SMBUS

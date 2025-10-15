@@ -77,10 +77,6 @@ SYSCONFIG_WEAK void SYSCFG_DL_GPIO_init(void)
     DL_GPIO_enableOutput(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN |
 		GPIO_LEDS_USER_TEST_PIN);
 
-    /* Configure RTC_B OUT pin */
-    DL_GPIO_initPeripheralOutputFunction(
-        GPIO_RTC_B_IOMUX_RTCOUT, GPIO_RTC_B_IOMUX_RTCOUT_FUNC);
-
 }
 
 

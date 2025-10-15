@@ -53,6 +53,14 @@ const SYSOSCFreqOptions = {
         { name: 32000000, displayName: "32 MHz" },
         { name: 4000000,  displayName: "4 MHz"  },
     ],
+    "MSPM0GX218_GX207": [
+        { name: 32000000, displayName: "32 MHz" },
+        { name: 4000000,  displayName: "4 MHz"  },
+    ],
+    "MSPM0G122X": [
+        { name: 32000000, displayName: "32 MHz" },
+        { name: 4000000,  displayName: "4 MHz"  },
+    ],
 }
 
 const LFCLKSourceOptions = {
@@ -118,6 +126,16 @@ const LFCLKSourceOptions = {
         { name: "LFXT", displayName: "LF External XTAL" },
         { name: "LFCLK_IN", displayName: "LFCLK Digital In" }
     ],
+    "MSPM0GX218_GX207": [
+        { name: "LFOSC" },
+        { name: "LFXT", displayName: "LF External XTAL" },
+        { name: "LFCLK_IN", displayName: "LFCLK Digital In" }
+    ],
+    "MSPM0G122X": [
+        { name: "LFOSC" },
+        { name: "LFXT", displayName: "LF External XTAL" },
+        { name: "LFCLK_IN", displayName: "LFCLK Digital In" }
+    ],
 };
 
 const MFPCLKSourceOptions = {
@@ -169,6 +187,14 @@ const MFPCLKSourceOptions = {
         { name: "HFCLK" },
     ],
     "MSPM0L210X": [
+        { name: "SYSOSC" },
+        { name: "HFCLK" },
+    ],
+    "MSPM0GX218_GX207": [
+        { name: "SYSOSC" },
+        { name: "HFCLK" },
+    ],
+    "MSPM0G122X": [
         { name: "SYSOSC" },
         { name: "HFCLK" },
     ],
@@ -239,6 +265,16 @@ const MCLKSourceOptions = {
         { name: "LFCLK" },
         { name: "HSCLK" },
     ],
+    "MSPM0GX218_GX207": [
+        { name: "SYSOSC" },
+        { name: "LFCLK" },
+        { name: "HSCLK" },
+    ],
+    "MSPM0G122X": [
+        { name: "SYSOSC" },
+        { name: "LFCLK" },
+        { name: "HSCLK" },
+    ],
 };
 
 const HFCLKSourceOptions = {
@@ -288,6 +324,14 @@ const HFCLKSourceOptions = {
         {name: "HFCLK_IN", displayName: "HFCLK Digital In"}
     ],
     "MSPM0L210X": [
+        {name: "HFXT", displayName: "HF External XTAL"},
+        {name: "HFCLK_IN", displayName: "HFCLK Digital In"}
+    ],
+    "MSPM0GX218_GX207": [
+        {name: "HFXT", displayName: "HF External XTAL"},
+        {name: "HFCLK_IN", displayName: "HFCLK Digital In"}
+    ],
+    "MSPM0G122X": [
         {name: "HFXT", displayName: "HF External XTAL"},
         {name: "HFCLK_IN", displayName: "HFCLK Digital In"}
     ],
@@ -389,6 +433,22 @@ const EXCLKSourceOptions = {
         { name: "MFPCLK" },
         { name: "HFCLK" },
     ],
+    "MSPM0GX218_GX207": [
+        { name: "SYSOSC" },
+        { name: "ULPCLK" },
+        { name: "LFCLK" },
+        { name: "MFPCLK" },
+        { name: "HFCLK" },
+        { name: "SYSPLLOUT1", displayName: "SYSPLL Clock 1" },
+    ],
+    "MSPM0G122X": [
+        { name: "SYSOSC" },
+        { name: "ULPCLK" },
+        { name: "LFCLK" },
+        { name: "MFPCLK" },
+        { name: "HFCLK" },
+        { name: "SYSPLLOUT1", displayName: "SYSPLL Clock 1" },
+    ],
 };
 
 const HSCLKSourceOptions = {
@@ -442,6 +502,16 @@ const HSCLKSourceOptions = {
         { name: "HFCLK" },
     ],
     "MSPM0L210X": [
+        { name: "HFCLK" },
+    ],
+    "MSPM0GX218_GX207": [
+        { name: "SYSPLLCLK0" },
+        { name: "SYSPLLCLK2X" },
+        { name: "HFCLK" },
+    ],
+    "MSPM0G122X": [
+        { name: "SYSPLLCLK0" },
+        { name: "SYSPLLCLK2X" },
         { name: "HFCLK" },
     ],
 };
@@ -522,6 +592,18 @@ const BORThreshOptions = {
         {name: "2"},
         {name: "3"},
     ],
+    "MSPM0GX218_GX207": [
+        {name: "0"},
+        {name: "1"},
+        {name: "2"},
+        {name: "3"},
+    ],
+    "MSPM0G122X": [
+        {name: "0"},
+        {name: "1"},
+        {name: "2"},
+        {name: "3"},
+    ],
 }
 
 let WaitStateOptions = {
@@ -586,6 +668,16 @@ let WaitStateOptions = {
         {name: "0"},
         {name: "1"},
     ],
+    "MSPM0GX218_GX207": [
+        {name: "0"},
+        {name: "1"},
+        {name: "2"},
+    ],
+    "MSPM0G122X": [
+        {name: "0"},
+        {name: "1"},
+        {name: "2"},
+    ],
 }
 
 let AutoTrimAvailable = {
@@ -602,6 +694,8 @@ let AutoTrimAvailable = {
     "MSPM0G518X"        : true,
     "MSPM0L211X_L112X"  : false,
     "MSPM0L210X"        : false,
+    "MSPM0GX218_GX207"  : undefined,  // TBA
+    "MSPM0G122X"        : undefined,  // TBA
 }
 
 let index = Common.getDeviceFamily();

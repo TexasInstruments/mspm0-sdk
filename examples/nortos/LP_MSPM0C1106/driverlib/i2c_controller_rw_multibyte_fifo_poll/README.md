@@ -9,11 +9,11 @@ control any I2C target, or to create custom drivers.
 ## Peripherals, Pin Functions, MCU Pins, Launchpad Pins
 | Peripheral | Function | MCU Pin | Launchpad Pin | Launchpad Settings |
 | --- | --- | --- | --- | --- |
-| GPIOA | Open-Drain Output | PA0 | Red LED1 | Populate Jumper(s): J4[1:2] |
 | GPIOA | Standard Output | PA15 | J4_38 |  |
+| GPIOB | Standard Output | PB20 | LED2 Blue | Populate Jumper(s): J7[1:2] |
 | SYSCTL |  |  |  |  |
-| I2C0 | I2C Serial Data line (SDA) | PA30 | J1_10 |  |
-| I2C0 | I2C Serial Clock line (SCL) | PA27 | J1_9 |  |
+| I2C0 | I2C Serial Data line (SDA) | PA0 | J4_34 |  |
+| I2C0 | I2C Serial Clock line (SCL) | PA11 | J14_7 |  |
 | EVENT |  |  |  |  |
 | BOARD | Debug Clock | PA20 | J14_4 |  |
 | BOARD | Debug Data In Out | PA19 | J14_2 |  |
@@ -41,6 +41,6 @@ SysConfig (see datasheet for resistance specification), but external pull-ups
 might be required based on I2C speed and capacitance. External pull-ups can be
 connected or enabled using the LaunchPad.
 Compile, load and run the example.
-LED1 will toggle periodically if transmission and reception were successful.
-LED1 will remain off if there is a problem during initialization.
-LED1 will remain on if there is a problem during data transfers.
+LED2 will toggle periodically if transmission and reception were successful.
+LED2 will remain off if there is a problem during initialization.
+LED2 will remain on if there is a problem during data transfers.

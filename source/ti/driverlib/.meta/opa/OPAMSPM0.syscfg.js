@@ -253,6 +253,53 @@ function validate(inst, validation)
     }
 }
 
+/*
+ *  ======== validatePinmux ========
+ *  Validate this inst's configuration
+ *
+ *  param inst       - module instance to be validated
+ *  param validation - object to hold detected validation issues
+ */
+function validatePinmux(inst, validation){
+    /* Pin Configuration Validation */
+    // Do not allow pin configuration to be enabled if the pin is not muxable
+    if (inst.pinIn0PosUsed == true)
+    {
+        let pinConfigInst = inst.In0PosPinConfig;
+        if(!Common.isPinMuxable(inst, "In0PosPin") && pinConfigInst.enableConfig){
+            validation.logError("Pin Configuration is not available for the selected pin", pinConfigInst, ["enableConfig"])
+        }
+    }
+    if (inst.pinIn1PosUsed == true)
+    {
+        let pinConfigInst  = inst.In1PosPinConfige;
+        if(!Common.isPinMuxable(inst, "In1PosPin") && pinConfigInst.enableConfig){
+            validation.logError("Pin Configuration is not available for the selected pin", pinConfigInst, ["enableConfig"])
+        }
+    }
+    if (inst.pinIn0NegUsed == true)
+    {
+        let pinConfigInst = inst.In0NegPinConfig;
+        if(!Common.isPinMuxable(inst, "In0NegPin") && pinConfigInst.enableConfig){
+            validation.logError("Pin Configuration is not available for the selected pin", pinConfigInst, ["enableConfig"])
+        }
+    }
+    if (inst.pinIn1NegUsed == true)
+    {
+        let pinConfigInst = inst.In1NegPinConfig;
+        if(!Common.isPinMuxable(inst, "In1NegPin") && pinConfigInst.enableConfig){
+            validation.logError("Pin Configuration is not available for the selected pin", pinConfigInst, ["enableConfig"])
+        }
+    }
+    if (inst.pinOutUsed == true)
+    {
+        let pinConfigInst = inst.OutPinConfig;
+        if(!Common.isPinMuxable(inst, "OutPin") && pinConfigInst.enableConfig){
+            validation.logError("Pin Configuration is not available for the selected pin", pinConfigInst, ["enableConfig"])
+        }
+    }
+}
+
 const PSELChOptions = [
     {name: "OPEN", displayName: "Open"},
     {name: "IN0_POS", displayName: "IN0+ pin"},
@@ -882,8 +929,9 @@ let devSpecific = {
 
     maxInstances: Common.peripheralCount("OA"),
 
-   /* override generic requirements with  device-specific reqs (if any) */
-   validate: validate,
+    /* override generic requirements with  device-specific reqs (if any) */
+    validate: validate,
+    validatePinmux: validatePinmux,
 
     pinmuxRequirements: pinmuxRequirements,
 

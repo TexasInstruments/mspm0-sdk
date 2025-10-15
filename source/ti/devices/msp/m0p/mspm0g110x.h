@@ -311,6 +311,7 @@ static DEBUGSS_Regs                             * const DEBUGSS                 
 #define FLASHCTL_SYS_WEPROTAWIDTH                     (32)      /* !< Bit width of WEPROTA register */
 #define FLASHCTL_SYS_WEPROTBWIDTH                     (12)      /* !< Bit width of WEPROTB register */
 #define FLASHCTL_SYS_WEPROTCWIDTH                     (0)       /* !< Bit width of WEPROTC register */
+#define GPAMP_SYS_ADC_CHOPPING                        (1)       /* !< GPAMP supports ADC assited chopping */
 
 /******************************************************************************
 * DMA Triggers                                                                *

@@ -8,13 +8,13 @@ LNK = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 SYSCONFIG_GUI_TOOL = $(dir $(SYSCONFIG_TOOL))sysconfig_gui$(suffix $(SYSCONFIG_TOOL))
 SYSCFG_CMD_STUB = $(SYSCONFIG_TOOL) --compiler ticlang --product $(MSPM0_SDK_INSTALL_DIR)/.metadata/product.json
 SYSCFG_GUI_CMD_STUB = $(SYSCONFIG_GUI_TOOL) --compiler ticlang --product $(MSPM0_SDK_INSTALL_DIR)/.metadata/product.json
-SYSCFG_FILES := $(shell $(SYSCFG_CMD_STUB) --listGeneratedFiles --listReferencedFiles --output . ../io_expander_i2c_host.syscfg)
+SYSCFG_FILES := $(shell $(SYSCFG_CMD_STUB) --listGeneratedFiles --listReferencedFiles --output . ../controller.syscfg)
 
 SYSCFG_C_FILES = $(filter %.c,$(SYSCFG_FILES))
 SYSCFG_H_FILES = $(filter %.h,$(SYSCFG_FILES))
 SYSCFG_OPT_FILES = $(filter %.opt,$(SYSCFG_FILES))
 
-OBJECTS = io_expander_i2c_host.obj demo.obj i2c_controller.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
+OBJECTS = controller.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
 NAME = io_expander_i2c_host
 
 CFLAGS += -I.. \
@@ -46,7 +46,7 @@ all: $(NAME).out
 $(SYSCFG_FILES): syscfg
 	@ echo generation complete
 
-syscfg: ../io_expander_i2c_host.syscfg
+syscfg: ../controller.syscfg
 	@ echo Generating configuration files...
 	@ $(SYSCFG_CMD_STUB) --output $(@D) $<
 
@@ -58,7 +58,7 @@ $(SYSCONFIG_GUI_TOOL):
         (in your SDK's imports.mak) to a standalone SysConfig installation \
         rather than one inside CCS)
 
-syscfg-gui: ../io_expander_i2c_host.syscfg $(SYSCONFIG_GUI_TOOL)
+syscfg-gui: ../controller.syscfg $(SYSCONFIG_GUI_TOOL)
 	@ echo Opening SysConfig GUI
 	@ $(SYSCFG_GUI_CMD_STUB) $<
 
@@ -70,15 +70,7 @@ endef
 
 $(foreach c_file,$(SYSCFG_C_FILES),$(eval $(call C_RULE,$(c_file))))
 
-io_expander_i2c_host.obj: ../io_expander_i2c_host.c $(SYSCFG_H_FILES)
-	@ echo Building $@
-	@ $(CC) $(CFLAGS) -c $< -o $@
-
-demo.obj: ../demo.c $(SYSCFG_H_FILES)
-	@ echo Building $@
-	@ $(CC) $(CFLAGS) -c $< -o $@
-
-i2c_controller.obj: ../i2c_controller.c $(SYSCFG_H_FILES)
+controller.obj: ../controller.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 

@@ -215,7 +215,9 @@ SYSCONFIG_WEAK void SYSCFG_DL_`inst.$name`_init(void) {
 %    let channel = "DL_"+flavorCat.toUpperCase()+"_CAPTURE_COMPARE_"+cc+"_INDEX";
 %    let chanCtlFct = "DL_"+flavorCat+"_setCaptureCompareOutCtl("+inst.$name+"_INST, "+chosenInitVal+",\n\t\t"+
 %        chosenOutInv + ", " + chosenOutSrc + ",\n\t\t" + channel + ");\n";
+%   if(!Common.isInternalTimerChannel(cc)){
     `chanCtlFct`
+%   }
 %
 %   let shadowUpdateMode = "DL_TIMER_CC_UPDATE_METHOD_" + ccInstance.shadowUpdateMode;
 %%{
@@ -346,7 +348,9 @@ SYSCONFIG_WEAK void SYSCFG_DL_`inst.$name`_init(void) {
     let dirArgs = "";
 
     for (let cc of inst.ccIndex) { // 1
-        dirArgs += "DL_TIMER_CC"+cc+"_OUTPUT | ";
+        if(!Common.isInternalTimerChannel(cc)){
+            dirArgs += "DL_TIMER_CC"+cc+"_OUTPUT | ";
+        }
     } // 1
     dirArgs = dirArgs.slice(0,-2); /* remove last OR */
     let dirFct = "DL_"+flavorCat+"_setCCPDirection("+inst.$name+"_INST , "+dirArgs+");";

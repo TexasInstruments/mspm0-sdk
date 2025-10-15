@@ -8,13 +8,13 @@ LNK = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 SYSCONFIG_GUI_TOOL = $(dir $(SYSCONFIG_TOOL))sysconfig_gui$(suffix $(SYSCONFIG_TOOL))
 SYSCFG_CMD_STUB = $(SYSCONFIG_TOOL) --compiler ticlang --product $(MSPM0_SDK_INSTALL_DIR)/.metadata/product.json
 SYSCFG_GUI_CMD_STUB = $(SYSCONFIG_GUI_TOOL) --compiler ticlang --product $(MSPM0_SDK_INSTALL_DIR)/.metadata/product.json
-SYSCFG_FILES := $(shell $(SYSCFG_CMD_STUB) --listGeneratedFiles --listReferencedFiles --output . ../io_expander_i2c_target.syscfg)
+SYSCFG_FILES := $(shell $(SYSCFG_CMD_STUB) --listGeneratedFiles --listReferencedFiles --output . ../io_expander_i2c.syscfg)
 
 SYSCFG_C_FILES = $(filter %.c,$(SYSCFG_FILES))
 SYSCFG_H_FILES = $(filter %.h,$(SYSCFG_FILES))
 SYSCFG_OPT_FILES = $(filter %.opt,$(SYSCFG_FILES))
 
-OBJECTS = io_expander_i2c_target.obj i2c_target.obj io_expander.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
+OBJECTS = io_expander_i2c.obj expander.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
 NAME = io_expander_i2c_target
 
 CFLAGS += -I.. \
@@ -46,7 +46,7 @@ all: $(NAME).out
 $(SYSCFG_FILES): syscfg
 	@ echo generation complete
 
-syscfg: ../io_expander_i2c_target.syscfg
+syscfg: ../io_expander_i2c.syscfg
 	@ echo Generating configuration files...
 	@ $(SYSCFG_CMD_STUB) --output $(@D) $<
 
@@ -58,7 +58,7 @@ $(SYSCONFIG_GUI_TOOL):
         (in your SDK's imports.mak) to a standalone SysConfig installation \
         rather than one inside CCS)
 
-syscfg-gui: ../io_expander_i2c_target.syscfg $(SYSCONFIG_GUI_TOOL)
+syscfg-gui: ../io_expander_i2c.syscfg $(SYSCONFIG_GUI_TOOL)
 	@ echo Opening SysConfig GUI
 	@ $(SYSCFG_GUI_CMD_STUB) $<
 
@@ -70,15 +70,11 @@ endef
 
 $(foreach c_file,$(SYSCFG_C_FILES),$(eval $(call C_RULE,$(c_file))))
 
-io_expander_i2c_target.obj: ../io_expander_i2c_target.c $(SYSCFG_H_FILES)
+io_expander_i2c.obj: ../io_expander_i2c.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-i2c_target.obj: ../i2c_target.c $(SYSCFG_H_FILES)
-	@ echo Building $@
-	@ $(CC) $(CFLAGS) -c $< -o $@
-
-io_expander.obj: ../io_expander.c $(SYSCFG_H_FILES)
+expander.obj: ../expander.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 

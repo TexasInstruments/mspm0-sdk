@@ -45,8 +45,7 @@
     let inst = CRC.$static;
     let defs = Common.genBoardHeader(inst, CRC);
 
-    let updatedInstanceName = system.getScript("/ti/driverlib/crc/CRC_options.js").updatedInstanceName;
-    let CRCInstance = updatedInstanceName?"CRC0":"CRC";
+    let CRCInstance = inst?.peripheral?.$solution?.peripheralName;
 
     switch(content) {
         case "Define":

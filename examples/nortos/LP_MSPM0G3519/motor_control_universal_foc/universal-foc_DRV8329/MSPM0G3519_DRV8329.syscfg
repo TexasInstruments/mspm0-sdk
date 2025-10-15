@@ -15,7 +15,6 @@ const ADC122        = ADC12.addInstance();
 const Board         = scripting.addModule("/ti/driverlib/Board");
 const CAPTURE       = scripting.addModule("/ti/driverlib/CAPTURE", {}, false);
 const CAPTURE1      = CAPTURE.addInstance();
-const CRC           = scripting.addModule("/ti/driverlib/CRC");
 const CRCP          = scripting.addModule("/ti/driverlib/CRCP");
 const DAC12         = scripting.addModule("/ti/driverlib/DAC12");
 const GPIO          = scripting.addModule("/ti/driverlib/GPIO", {}, false);
@@ -105,9 +104,6 @@ CAPTURE1.$name                = "CAPTURE";
 CAPTURE1.interrupts           = ["CC0_DN","ZERO"];
 CAPTURE1.subscriberChannel    = 14;
 CAPTURE1.peripheral.$assign   = "TIMG6";
-
-CRC.polynomial = "16_POLYNOMIAL";
-CRC.seed       = 0xFFFF;
 
 CRCP.polynomial = "16_POLYNOMIAL_CCIT_ZERO";
 CRCP.seed       = 0xFFFF;

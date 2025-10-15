@@ -53,7 +53,8 @@
 % }
 
 `("#define USB_VID").padEnd(40, " ") + ("0x"+inst.vidVal.toString(16)).padStart(6, " ")`
-#define USB_BCD   0x0200
+% // Note: Original value replaced for dynamic  value, new default is 0x201?
+`("#define USB_BCD").padEnd(40, " ") + ("0x"+inst.bcdVal.toString(16)).padStart(6, " ")`
 
 //--------------------------------------------------------------------+
 // Device Descriptors
@@ -113,9 +114,18 @@ uint8_t const * tud_descriptor_device_cb(void)
     let audioInsts  = tusbCommon.getAudioInstances(inst);
     let mscInsts    = tusbCommon.getMSCInstances(inst);
     let billboardInsts  = tusbCommon.getBillboardInstances(inst);
+    let billboardStrNames = billboardInsts.flatMap(i=>{
+        let billboardStrs = [];
+        billboardStrs.push(i.$name);
+        billboardStrs.push(i.websiteString)
+        for(var aumMod of i.associated_devBillboardAUM){
+            billboardStrs.push(aumMod.AUMStr);
+        }
+        return billboardStrs;
+    });
 
     /* Generic Array of Configured Classes*/
-    let activeClassNames = [].concat(cdcInsts.map(x=>x.$name),hidInsts.map(x=>x.$name),audioInsts.map(x=>x.$name),mscInsts.map(x=>x.$name))
+    let activeClassNames = [].concat(cdcInsts.map(x=>x.$name),hidInsts.map(x=>x.$name),audioInsts.map(x=>x.$name),mscInsts.map(x=>x.$name),billboardStrNames)
 
     // list of class enums
     let cdcEnum = cdcInsts.flatMap(i=>["ITF_NUM_"+i.$name,"ITF_NUM_"+i.$name+"_DATA"]);
@@ -261,6 +271,9 @@ enum {
     }
     if(mscInsts.length>0){
         configTotalLenStr += " + ("+mscInsts.length.toString()+" * TUD_MSC_DESC_LEN)"
+    }
+    if(billboardInsts.length>0){
+        configTotalLenStr += " + ("+billboardInsts.length.toString()+" * TUD_BILLBOARD_DESC_LEN)"
     }
     configTotalLenStr += ")";
 %%}
@@ -460,6 +473,13 @@ uint8_t const desc_fs_configuration[] = {
                         EPNUM_`myClass.$name`_IN,
                         `myClass.epIOSize`),
 %       }
+%       for(var myClass of inst.associated_devBillboard){
+%%{
+    // Define descriptor dynamic arguments
+    let strIdx = activeClassNames.indexOf(myClass.$name)+4; // String Index
+%%}
+    TUD_BILLBOARD_DESC_DESCRIPTOR(`strIdx`),
+%       }
 %    }
 %
 };
@@ -477,6 +497,90 @@ uint8_t const * tud_descriptor_configuration_cb(uint8_t index)
   // This example use the same configuration for both high and full speed mode
   return desc_fs_configuration;
 }
+%%{
+    // Billboard Descriptors
+%%}
+% if(billboardInsts.length>0){
+%   for(var myClass of inst.associated_devBillboard){
+%%{
+    // Define descriptor dynamic arguments
+    let strIdx = activeClassNames.indexOf(myClass.$name)+4; // Class String Index
+    let webStrIdx = activeClassNames.indexOf(myClass.websiteString)+4;  // Website String Index
+%%}
+//--------------------------------------------------------------------+
+// BOS Descriptor
+//--------------------------------------------------------------------+
+/*
+ * Initial Billboard descriptor, will be re-configured at run-time
+ * this example will start off in thunderbolt mode.
+ */
+bos_desc_t BOS_desc =
+{
+  /* BOS initialization */
+  .BOS = {
+    .bLength            = (sizeof(BOS_desc.BOS)),
+    .bDescriptorType    = TUSB_DESC_BOS,
+    .wTotalLength       = (sizeof(bos_desc_t)),
+    .bNumDeviceCaps     = TUD_TOTAL_CAP_COUNT,
+  },
+
+  /* Container ID initialization */
+  .containerID = {
+    .bLength            = (sizeof(BOS_desc.containerID)),
+    .bDescriptorType    = TUSB_DESC_DEVICE_CAPABILITY,
+    .bDevCapabilityType = DEVICE_CAPABILITY_CONTAINER_id,
+    .bReserved          = 0x00,
+    .UUID               = {TUD_BOS_CONTAINER_EXAMPLE_UUID},
+  },
+
+  /* Billboard Capability descriptor initialization */
+  .billboardCapability = {
+    .bLength                        = (sizeof(BOS_desc.billboardCapability)),
+    .bDescriptorType                = TUSB_DESC_DEVICE_CAPABILITY,
+    .bDevCapabilityType             = DEVICE_CAPABILITY_BILLBOARD,
+    .iAdditionalInfoURL             = `webStrIdx`,
+    .bNumberOfAlternateOrUSB4Modes  = BILLBOARD_AUM_COUNT,
+    .bPreferredAlternateOrUSB4Mode  = 0x00,
+    .VCONNPower                     = 0x0000,
+    .bmConfigured                   = {0},
+    .bcdVersion                     = 0x0122,
+    .bAdditionalFailureInfo         = 0x00,
+    .bReserved                      = 0x00,
+    .aum = {
+%       for(var aumMod of myClass.associated_devBillboardAUM){
+        /* Index `myClass.associated_devBillboardAUM.indexOf(aumMod)` : `aumMod.$name` */
+        {
+        .wSVID                      = `("0x"+aumMod.wSVID.toString(16))`,
+        .bAlternateOrUSB4Mode       = `("0x"+aumMod.bAlternateOrUSB4Mode.toString(16))`,
+%       // Billboard Index + displacement (4 default + 2 for billbord strs) + AUM index
+%       let aumStrIdx =activeClassNames.indexOf(myClass.$name)+6+myClass.associated_devBillboardAUM.indexOf(aumMod)
+        .iAlternateOrUSB4ModeString = `aumStrIdx`,
+        },
+%       } // loop through AUMs
+    },
+  },
+
+  /* AUM capability descriptor initialization */
+  .billboardAumCapability = {
+%       for(var aumMod of myClass.associated_devBillboardAUM){
+    /* Index `myClass.associated_devBillboardAUM.indexOf(aumMod)` : `aumMod.$name` */
+    {
+    .bLength            = (sizeof(BOS_desc.billboardAumCapability[`myClass.associated_devBillboardAUM.indexOf(aumMod)`])),
+    .bDescriptorType    = TUSB_DESC_DEVICE_CAPABILITY,
+    .bDevCapabilityType = DEVICE_CAPABILITY_BILLBOARD_AUM,
+    .bIndex             = `("0x"+(myClass.associated_devBillboardAUM.indexOf(aumMod)).toString(16))`,
+    .dwAlternateModeVdo = `("0x"+aumMod.dwAlternateModeVdo.toString(16))`,
+    },
+%       } // loop through AUMs
+  },
+};
+%   }
+/* Return Billboard descriptor in BOS callback */
+uint8_t const * tud_descriptor_bos_cb(void)
+{
+    return (uint8_t const *) &BOS_desc;
+}
+% }
 
 %%{
   // String Codegen
@@ -516,6 +620,13 @@ char const *string_desc_arr[] = {
 %       }
 %       for(var myClass of inst.associated_devMSC){
     "`(myClass.overrideDefaultStr)?myClass.classString:myClass.defaultClassString`", // `myClass.$name`
+%       }
+%       for(var myClass of inst.associated_devBillboard){
+    "`(myClass.overrideDefaultStr)?myClass.classString:myClass.defaultClassString`", // `myClass.$name`
+    "`myClass.websiteString`", // iAdditionalInfoURL
+%           for(var aumMod of myClass.associated_devBillboardAUM){
+    "`aumMod.AUMStr`",
+%           }
 %       }
 %    }
 };

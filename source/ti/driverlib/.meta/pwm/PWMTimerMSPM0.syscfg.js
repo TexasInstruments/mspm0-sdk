@@ -2340,7 +2340,7 @@ let configPWM = [
         \n **NOTE:** Channels 2 and 3 are only available on TIMA0`,
         default: [0,1],
         minSelections: 0,
-        options: ccIndexOptions,
+        options: ccIndexAllOptions,
         onChange: onChangeCCIndex
     },
 ];

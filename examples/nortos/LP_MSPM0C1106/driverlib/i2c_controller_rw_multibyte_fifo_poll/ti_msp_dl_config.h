@@ -85,23 +85,22 @@ extern "C" {
 #define I2C_INST_INT_IRQN                                          I2C0_INT_IRQn
 #define I2C_BUS_SPEED_HZ                                                  400000
 #define GPIO_I2C_SDA_PORT                                                  GPIOA
-#define GPIO_I2C_SDA_PIN                                          DL_GPIO_PIN_30
-#define GPIO_I2C_IOMUX_SDA                                       (IOMUX_PINCM46)
-#define GPIO_I2C_IOMUX_SDA_FUNC                        IOMUX_PINCM46_PF_I2C0_SDA
+#define GPIO_I2C_SDA_PIN                                           DL_GPIO_PIN_0
+#define GPIO_I2C_IOMUX_SDA                                        (IOMUX_PINCM1)
+#define GPIO_I2C_IOMUX_SDA_FUNC                         IOMUX_PINCM1_PF_I2C0_SDA
 #define GPIO_I2C_SCL_PORT                                                  GPIOA
-#define GPIO_I2C_SCL_PIN                                          DL_GPIO_PIN_27
-#define GPIO_I2C_IOMUX_SCL                                       (IOMUX_PINCM45)
-#define GPIO_I2C_IOMUX_SCL_FUNC                        IOMUX_PINCM45_PF_I2C0_SCL
+#define GPIO_I2C_SCL_PIN                                          DL_GPIO_PIN_11
+#define GPIO_I2C_IOMUX_SCL                                       (IOMUX_PINCM16)
+#define GPIO_I2C_IOMUX_SCL_FUNC                        IOMUX_PINCM16_PF_I2C0_SCL
 
 
 
-/* Port definition for Pin Group GPIO_LEDS */
-#define GPIO_LEDS_PORT                                                   (GPIOA)
-
-/* Defines for USER_LED_1: GPIOA.0 with pinCMx 1 on package pin 1 */
-#define GPIO_LEDS_USER_LED_1_PIN                                 (DL_GPIO_PIN_0)
-#define GPIO_LEDS_USER_LED_1_IOMUX                                (IOMUX_PINCM1)
+/* Defines for USER_LED_1: GPIOB.20 with pinCMx 39 on package pin 41 */
+#define GPIO_LEDS_USER_LED_1_PORT                                        (GPIOB)
+#define GPIO_LEDS_USER_LED_1_PIN                                (DL_GPIO_PIN_20)
+#define GPIO_LEDS_USER_LED_1_IOMUX                               (IOMUX_PINCM39)
 /* Defines for USER_TEST: GPIOA.15 with pinCMx 27 on package pin 30 */
+#define GPIO_LEDS_USER_TEST_PORT                                         (GPIOA)
 #define GPIO_LEDS_USER_TEST_PIN                                 (DL_GPIO_PIN_15)
 #define GPIO_LEDS_USER_TEST_IOMUX                                (IOMUX_PINCM27)
 

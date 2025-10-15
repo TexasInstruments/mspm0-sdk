@@ -97,7 +97,8 @@
                         // do nothing
                     }
                     else if((Common.isDeviceFamily_PARENT_MSPM0GX51X() ||
-                                Common.isDeviceFamily_PARENT_MSPM0G352X()) &&
+                                Common.isDeviceFamily_PARENT_MSPM0G352X()  ||
+                                Common.isDeviceFamily_PARENT_MSPM0GX218_GX207()) &&
                                 ind == 11 && inst.disChan11){
                         // do nothing
                     }

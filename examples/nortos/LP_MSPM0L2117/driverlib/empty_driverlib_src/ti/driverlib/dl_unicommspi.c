@@ -82,13 +82,6 @@ uint16_t DL_SPI_receiveDataBlocking16(UNICOMM_Inst_Regs *unicomm)
     return DL_SPI_receiveData16(unicomm);
 }
 
-uint32_t DL_SPI_receiveDataBlocking32(UNICOMM_Inst_Regs *unicomm)
-{
-    while (DL_SPI_isRXFIFOEmpty(unicomm)) {
-    };
-    return DL_SPI_receiveData32(unicomm);
-}
-
 void DL_SPI_transmitDataBlocking8(UNICOMM_Inst_Regs *unicomm, uint8_t data)
 {
     while (DL_SPI_isTXFIFOFull(unicomm)) {
@@ -136,19 +129,6 @@ bool DL_SPI_receiveDataCheck16(UNICOMM_Inst_Regs *unicomm, uint16_t *buffer)
         status = false;
     } else {
         *buffer = DL_SPI_receiveData16(unicomm);
-        status  = true;
-    }
-
-    return status;
-}
-
-bool DL_SPI_receiveDataCheck32(UNICOMM_Inst_Regs *unicomm, uint32_t *buffer)
-{
-    bool status;
-    if (DL_SPI_isRXFIFOEmpty(unicomm)) {
-        status = false;
-    } else {
-        *buffer = DL_SPI_receiveData32(unicomm);
         status  = true;
     }
 
@@ -216,21 +196,6 @@ uint32_t DL_SPI_drainRXFIFO16(
     for (i = 0; i < maxCount; i++) {
         if (!DL_SPI_isRXFIFOEmpty(unicomm)) {
             buffer[i] = DL_SPI_receiveData16(unicomm);
-        } else {
-            break;
-        }
-    }
-
-    return i;
-}
-
-uint32_t DL_SPI_drainRXFIFO32(
-    UNICOMM_Inst_Regs *unicomm, uint32_t *buffer, uint32_t maxCount)
-{
-    uint32_t i;
-    for (i = 0; i < maxCount; i++) {
-        if (!DL_SPI_isRXFIFOEmpty(unicomm)) {
-            buffer[i] = DL_SPI_receiveData32(unicomm);
         } else {
             break;
         }

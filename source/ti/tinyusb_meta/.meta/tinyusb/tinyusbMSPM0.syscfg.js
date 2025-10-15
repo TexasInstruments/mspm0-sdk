@@ -259,7 +259,7 @@ let devCDCGroup = {
     description: "",
     longDescription: `
 USB communications device class (CDC)`,
-    collapsed: false,
+    collapsed: true,
     config: devCDCConfig,
 };
 
@@ -269,7 +269,7 @@ let devHIDGroup = {
     description: "",
     longDescription: `
 USB human interface device class (HID)`,
-    collapsed: false,
+    collapsed: true,
     config: devHIDConfig,
 };
 
@@ -279,7 +279,7 @@ let devMSCGroup = {
     description: "",
     longDescription: `
 The USB mass storage device class (MSC)`,
-    collapsed: false,
+    collapsed: true,
     config: devMSCConfig,
 };
 
@@ -288,7 +288,7 @@ let devAUDIOGroup = {
     displayName: "Audio Configuration",
     description: "",
     longDescription: ``,
-    collapsed: false,
+    collapsed: true,
     config: devAudioConfig,
 };
 
@@ -297,7 +297,7 @@ let devBILLBOARDGroup = {
     displayName: "Billboard Configuration",
     description: "",
     longDescription: ``,
-    collapsed: false,
+    collapsed: true,
     config: devBillboardConfig,
 };
 
@@ -308,7 +308,7 @@ let hostCDCGroup = {
     description: "",
     longDescription: `
 USB communications device class (CDC)`,
-    collapsed: false,
+    collapsed: true,
     config: hostCDCConfig,
 };
 
@@ -318,7 +318,7 @@ let hostHIDGroup = {
     description: "",
     longDescription: `
 USB human interface device class (HID)`,
-    collapsed: false,
+    collapsed: true,
     config: hostHIDConfig,
 };
 
@@ -328,7 +328,7 @@ let hostMSCGroup = {
     description: "",
     longDescription: `
 The USB mass storage device class (MSC)`,
-    collapsed: false,
+    collapsed: true,
     config: hostMSCConfig,
 };
 
@@ -343,9 +343,9 @@ let deviceConfig = {
     config: [
         devCDCGroup,
         devHIDGroup,
-        // devAUDIOGroup,
+        devAUDIOGroup,
         devMSCGroup,
-        // devBILLBOARDGroup,
+        devBILLBOARDGroup,
     ],
 };
 
@@ -369,7 +369,7 @@ let uartConfig = {
     displayName: "UART Configuration",
     description: "",
     longDescription: ``,
-    collapsed: false,
+    collapsed: true,
     config: [
         {
             name: "configureUART",
@@ -389,7 +389,7 @@ let gpioConfig = {
     displayName: "GPIO Configuration",
     description: "",
     longDescription: ``,
-    collapsed: false,
+    collapsed: true,
     config: [
         {
             name: "configureGPIO",
@@ -409,7 +409,7 @@ let systickConfig = {
     displayName: "SysTick Configuration",
     description: "",
     longDescription: ``,
-    collapsed: false,
+    collapsed: true,
     config: [
         {
             name: "configureSysTick",
@@ -493,6 +493,16 @@ While this option is enabled, SysConfig will generate the following files:
         range: [0, 0xFFFF],
     },
     {
+        name: "bcdVal",
+        displayName: "BCD Value",
+        description: "Vendor ID",
+        longDescription: `Vendor ID`,
+        default: 0x200,
+        isInteger: true,
+        displayFormat: "hex",
+        range: [0, 0xFFFF],
+    },
+    {
         name: "strManufacturer",
         displayName: "Manufacturer",
         longDescription: `Manufacturer Name for descriptor string`,
@@ -551,7 +561,7 @@ modConfig = modConfig.concat([
         displayName: "USB Peripheral Configuration",
         description: "",
         longDescription: ``,
-        collapsed: false,
+        collapsed: true,
         config: [
 
         ],
@@ -631,7 +641,7 @@ function moduleInstances(inst) {
             group: "GROUP_DEV_AUDIO",
 
         };
-        // modInstances.push(modInst); // Disable Audio for now
+        modInstances.push(modInst);
         modInst = {
             name: "associated_devMSC",
             displayName: "MSC Instance Configuration",
@@ -671,7 +681,7 @@ function moduleInstances(inst) {
             group: "GROUP_DEV_BILLBOARD",
 
         };
-        // modInstances.push(modInst); // disable Billboard for now
+        modInstances.push(modInst);
     }
 
     /* Host Module Instances */

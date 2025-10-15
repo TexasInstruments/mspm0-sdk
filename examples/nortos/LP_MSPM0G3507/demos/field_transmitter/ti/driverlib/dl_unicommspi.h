@@ -1663,27 +1663,6 @@ __STATIC_INLINE uint16_t DL_SPI_receiveData16(UNICOMM_Inst_Regs *unicomm)
 }
 
 /**
- *  @brief      Reads 32-bit data from the RX FIFO
- *
- *  Reads the data from the RX FIFO without checking its status. Use if
- *  already sure the RX FIFO has data available. See related APIs for
- *  additional receive options.
- *
- *  Can be used for any data transfers that are less than or equal to 32 bits.
- *
- *  @param[in]  unicomm   pointer to the register overlay for the peripheral
- *
- *  @return     The data in the RX FIFO
- *
- *  @sa         DL_SPI_receiveDataBlocking32
- *  @sa         DL_SPI_receiveDataCheck32
- */
-__STATIC_INLINE uint32_t DL_SPI_receiveData32(UNICOMM_Inst_Regs *unicomm)
-{
-    return unicomm->spi->RXDATA;
-}
-
-/**
  *  @brief      Enable SPI interrupts
  *
  *  @param[in]  unicomm            Pointer to the register overlay for the
@@ -1893,24 +1872,6 @@ uint8_t DL_SPI_receiveDataBlocking8(UNICOMM_Inst_Regs *unicomm);
 uint16_t DL_SPI_receiveDataBlocking16(UNICOMM_Inst_Regs *unicomm);
 
 /**
- *  @brief      Blocks to ensure receive is ready before reading data
- *
- *  Reads the data from the RX FIFO after blocking to ensure the RX FIFO is not
- *  empty. Will wait indefinitely until there is data in the RX FIFO. See
- *  related APIs for additional receive options.
- *
- *  Can be used for any data transfers that are less than or equal to 32 bits.
- *
- *  @param[in]  unicomm   pointer to the register overlay for the peripheral
- *
- *  @return     The data in the RX FIFO
- *
- *  @sa         DL_SPI_transmitData32
- *  @sa         DL_SPI_transmitDataCheck32
- */
-uint32_t DL_SPI_receiveDataBlocking32(UNICOMM_Inst_Regs *unicomm);
-
-/**
  *  @brief      Checks the TX FIFO before trying to transmit data
  *
  *  Checks if the TX FIFO is already full before trying to add new data to the
@@ -2021,28 +1982,6 @@ bool DL_SPI_receiveDataCheck8(UNICOMM_Inst_Regs *unicomm, uint8_t *buffer);
 bool DL_SPI_receiveDataCheck16(UNICOMM_Inst_Regs *unicomm, uint16_t *buffer);
 
 /**
- *  @brief      Checks the RX FIFO before trying to transmit data
- *
- *  Checks if the RX FIFO is already empty before trying to read new data from
- *  the FIFO. Exits immediately if empty rather than trying to block. See
- *  related APIs for additional receive options.
- *
- *  Can be used for any data transfers that are less than or equal to 32 bits.
- *
- *  @param[in]  unicomm    pointer to the register overlay for the peripheral
- *  @param[in]  buffer a buffer to write the received data into
- *
- *  @return     If the receive occurred
- *
- *  @retval     true  if data was read from the RX FIFO
- *  @retval     false if the RX FIFO was empty and data was not read
- *
- *  @sa         DL_SPI_receiveData32
- *  @sa         DL_SPI_receiveDataBlocking32
- */
-bool DL_SPI_receiveDataCheck32(UNICOMM_Inst_Regs *unicomm, uint32_t *buffer);
-
-/**
  *  @brief       Read all available data out of the RX FIFO using 8 bit access
  *
  *  @param[in]   unicomm   Pointer to the register overlay for the peripheral
@@ -2065,19 +2004,6 @@ uint32_t DL_SPI_drainRXFIFO8(
  */
 uint32_t DL_SPI_drainRXFIFO16(
     UNICOMM_Inst_Regs *unicomm, uint16_t *buffer, uint32_t maxCount);
-
-/**
- *  @brief       Read all available data out of the RX FIFO using 32 bit access
- *
- *  @param[in]   unicomm   Pointer to the register overlay for the peripheral
- *  @param[out]  buffer    Buffer to write received data into
- *  @param[in]   maxCount  Max number of words to read from the RX FIFO
- *
- *  @return      Number of words read from the RX FIFO
- *
- */
-uint32_t DL_SPI_drainRXFIFO32(
-    UNICOMM_Inst_Regs *unicomm, uint32_t *buffer, uint32_t maxCount);
 
 /**
  *  @brief      Fill the TX FIFO using 8 bit access

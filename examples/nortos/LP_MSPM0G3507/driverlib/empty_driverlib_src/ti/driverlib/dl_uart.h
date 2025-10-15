@@ -1645,7 +1645,7 @@ __STATIC_INLINE void DL_UART_setExternalDriverSetup(
 __STATIC_INLINE uint32_t DL_UART_getExternalDriverSetup(const UART_Regs *uart)
 {
     return ((uart->LCRH &
-             UART_LCRH_EXTDIR_SETUP_MASK >> UART_LCRH_EXTDIR_SETUP_OFS));
+             UART_LCRH_EXTDIR_SETUP_MASK) >> UART_LCRH_EXTDIR_SETUP_OFS);
 }
 
 /**
@@ -1681,7 +1681,7 @@ __STATIC_INLINE void DL_UART_setExternalDriverHold(
 __STATIC_INLINE uint32_t DL_UART_getExternalDriverHold(const UART_Regs *uart)
 {
     return ((
-        uart->LCRH & UART_LCRH_EXTDIR_HOLD_MASK >> UART_LCRH_EXTDIR_HOLD_OFS));
+        uart->LCRH & UART_LCRH_EXTDIR_HOLD_MASK) >> UART_LCRH_EXTDIR_HOLD_OFS);
 }
 
 /**

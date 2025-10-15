@@ -41,8 +41,9 @@
 
     /* shorthand names for some common references in template below */
     let inst = CRC.$static;
-    let updatedInstanceName = system.getScript("/ti/driverlib/crc/CRC_options.js").updatedInstanceName;
-    let CRCInstance = updatedInstanceName?"CRC0":"CRC";
+
+    let CRCInstance = inst?.peripheral?.$solution?.peripheralName;
+
     if (inst.length == 0) return;
 
 

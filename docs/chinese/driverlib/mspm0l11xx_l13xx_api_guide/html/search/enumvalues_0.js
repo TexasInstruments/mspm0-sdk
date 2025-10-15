@@ -227,7 +227,6 @@ var searchData=
   ['dl_5fgpamp_5fchopping_5ffreq_5f2khz',['DL_GPAMP_CHOPPING_FREQ_2KHZ',['../group___g_p_a_m_p.html#gga48d7e73ac05ca795bddf8dd1831fbf6ca26489a926fa96c7eafeea62eba0e5a78',1,'dl_gpamp.h']]],
   ['dl_5fgpamp_5fchopping_5ffreq_5f4khz',['DL_GPAMP_CHOPPING_FREQ_4KHZ',['../group___g_p_a_m_p.html#gga48d7e73ac05ca795bddf8dd1831fbf6cab110ede124af373a4bbd4cf0dbf6c9db',1,'dl_gpamp.h']]],
   ['dl_5fgpamp_5fchopping_5ffreq_5f8khz',['DL_GPAMP_CHOPPING_FREQ_8KHZ',['../group___g_p_a_m_p.html#gga48d7e73ac05ca795bddf8dd1831fbf6ca445ab149a22677d88be7939700f6a870',1,'dl_gpamp.h']]],
-  ['dl_5fgpamp_5fchopping_5fmode_5fadc_5fassisted',['DL_GPAMP_CHOPPING_MODE_ADC_ASSISTED',['../group___g_p_a_m_p.html#ggaf2d678648f91d1ada18427c273ca364aa0d8aa5e3657c057ab7c3d6b7803e0ff0',1,'dl_gpamp.h']]],
   ['dl_5fgpamp_5fchopping_5fmode_5fdisabled',['DL_GPAMP_CHOPPING_MODE_DISABLED',['../group___g_p_a_m_p.html#ggaf2d678648f91d1ada18427c273ca364aa600f116851dec2c33b7dcc0132f9c88f',1,'dl_gpamp.h']]],
   ['dl_5fgpamp_5fchopping_5fmode_5fstandard',['DL_GPAMP_CHOPPING_MODE_STANDARD',['../group___g_p_a_m_p.html#ggaf2d678648f91d1ada18427c273ca364aaee9618d63dfc07da8238dbd4f152eca7',1,'dl_gpamp.h']]],
   ['dl_5fgpamp_5fnsel_5fin_5fneg',['DL_GPAMP_NSEL_IN_NEG',['../group___g_p_a_m_p.html#gga49ea64d599a8148fcc6f3c6acad673dfa9f7364c00df81b0031c2bff926d225bc',1,'dl_gpamp.h']]],

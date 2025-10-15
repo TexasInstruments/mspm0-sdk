@@ -14,7 +14,7 @@ SYSCFG_C_FILES = $(filter %.c,$(SYSCFG_FILES))
 SYSCFG_H_FILES = $(filter %.h,$(SYSCFG_FILES))
 SYSCFG_OPT_FILES = $(filter %.opt,$(SYSCFG_FILES))
 
-OBJECTS = LP_MSPM0H3216_i2c_target_rw_multibyte_fifo_poll.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
+OBJECTS = i2c_target_rw_multibyte_fifo_poll.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
 NAME = i2c_target_rw_multibyte_fifo_poll
 
 CFLAGS += -I.. \
@@ -86,7 +86,7 @@ endef
 
 $(foreach c_file,$(SYSCFG_C_FILES),$(eval $(call C_RULE,$(c_file))))
 
-LP_MSPM0H3216_i2c_target_rw_multibyte_fifo_poll.obj: ../LP_MSPM0H3216/i2c_target_rw_multibyte_fifo_poll.c $(SYSCFG_H_FILES)
+i2c_target_rw_multibyte_fifo_poll.obj: ../i2c_target_rw_multibyte_fifo_poll.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -c -o $@
 

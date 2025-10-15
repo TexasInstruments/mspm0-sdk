@@ -98,7 +98,7 @@
 % }
 %
 % function printGPIO() {
-% if (stat.offsetCalFreq != "OFF") {
+% if (stat.offsetCalFreq != "OFF" && stat.enableRTCOutputPin) {
     /* Configure RTCOUT pin */
     DL_GPIO_initPeripheralOutputFunction(
         GPIO_RTC_IOMUX_RTCOUT, GPIO_RTC_IOMUX_RTCOUT_FUNC);

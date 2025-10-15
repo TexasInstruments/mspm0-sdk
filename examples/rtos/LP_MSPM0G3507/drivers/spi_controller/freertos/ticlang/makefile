@@ -62,11 +62,11 @@ spicontroller.obj: ../../spicontroller.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-ti_display_Display.obj: /home/a0273011/.cache/bazel/_bazel_a0273011/dd237d46d8fee3fb72298676893138fd/sandbox/linux-sandbox/900/execroot/__main__/source/ti/display/Display.c
+ti_display_Display.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/1304/execroot/__main__/source/ti/display/Display.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-ti_display_DisplayUart.obj: /home/a0273011/.cache/bazel/_bazel_a0273011/dd237d46d8fee3fb72298676893138fd/sandbox/linux-sandbox/900/execroot/__main__/source/ti/display/DisplayUart.c
+ti_display_DisplayUart.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/1304/execroot/__main__/source/ti/display/DisplayUart.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 

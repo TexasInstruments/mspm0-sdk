@@ -47,7 +47,7 @@ if(Common.isUnicommUART()){
         let uartPeripherals = system.deviceData.interfaces["UART"].peripherals.map(a => a.name);
         for(let item of uartPeripherals){
             let unicomm = system.deviceData.peripherals[item].attributes.UNICOMM;
-            if(system.deviceData.peripherals[item].attributes["SYS_"+unicomm+"_UART_LIN_EN"]=="true"){
+            if(system.deviceData.peripherals[item].attributes["SYS_UART_LIN_EN"]=="true"){
                 linPeripherals.push(item);
             }
         }
@@ -101,11 +101,18 @@ function validatePinmux(inst, validation) {
     }
     if(Common.isUnicommUART()){
         try{
-            let peripheralSolution = inst.peripheral.$solution.peripheralName;
-            let unicomm = system.deviceData.peripherals[peripheralSolution].attributes.UNICOMM;
-            if(system.deviceData.peripherals[peripheralSolution].attributes["SYS_"+unicomm+"_UART_IRDA_EN"]=="false"){
+            let selectedInstance = inst.peripheral.$solution.peripheralName;
+            let selectedPeripheral = system.deviceData.peripherals[selectedInstance];
+            if(Common.getAttribute(selectedPeripheral,"SYS_UART_LIN_EN")=="false"){
                 validation.logError("LIN functionality is only available on: " +linPeripherals.toString() + ". Please select one of these instances from PinMux if available.",
                     inst,"peripheral");
+            }
+
+            // Digital Glitch Filter
+            if(Common.getAttribute(selectedPeripheral,"SYS_UART_DGFLT_PRESENT")=="false"){
+                if(inst.digitalGlitchFilter !== 0){
+                    validation.logError("UART Digital Glitch Filter is not supported on " + selectedInstance + ".", inst, "digitalGlitchFilter");
+                }
             }
         }catch(e){/*do nothing*/}
     }

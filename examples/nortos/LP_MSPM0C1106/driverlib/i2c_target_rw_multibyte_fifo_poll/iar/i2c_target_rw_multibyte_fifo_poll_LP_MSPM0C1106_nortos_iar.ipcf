@@ -75,15 +75,13 @@
 
 
     <files>
+        <path copyTo="$PROJ_DIR$/i2c_target_rw_multibyte_fifo_poll.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0C1106/driverlib/i2c_target_rw_multibyte_fifo_poll/i2c_target_rw_multibyte_fifo_poll.c</path>
         <path copyTo="$PROJ_DIR$/i2c_target_rw_multibyte_fifo_poll.syscfg">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0C1106/driverlib/i2c_target_rw_multibyte_fifo_poll/i2c_target_rw_multibyte_fifo_poll.syscfg</path>
         <path copyTo="$PROJ_DIR$/mspm0c1106.icf">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0C1106/driverlib/i2c_target_rw_multibyte_fifo_poll/iar/mspm0c1106.icf</path>
         <path copyTo="$PROJ_DIR$/README.html">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0C1106/driverlib/i2c_target_rw_multibyte_fifo_poll/README.html</path>
         <path copyTo="$PROJ_DIR$/README.md">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0C1106/driverlib/i2c_target_rw_multibyte_fifo_poll/README.md</path>
         <group name="iar" build="true">
             <path copyTo="$PROJ_DIR$/iar/startup_mspm0c1105_c1106_iar.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0C1106/driverlib/i2c_target_rw_multibyte_fifo_poll/iar/startup_mspm0c1105_c1106_iar.c</path>
-        </group>
-        <group name="LP_MSPM0H3216" build="true">
-            <path copyTo="$PROJ_DIR$/LP_MSPM0H3216/i2c_target_rw_multibyte_fifo_poll.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0C1106/driverlib/i2c_target_rw_multibyte_fifo_poll/LP_MSPM0H3216/i2c_target_rw_multibyte_fifo_poll.c</path>
         </group>
     </files>
 </iarProjectConnection>

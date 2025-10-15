@@ -108,11 +108,11 @@
 %       let parentPeripheral = undefined;
 %       if(ownedBy !== undefined && inst.$ownedBy.$name !== "/ti/driverlib/DMA") {
 %%{
-            if(inst.$ownedBy.peripheral !== undefined){
+            if(inst.$ownedBy.peripheral !== undefined && !["/ti/driverlib/CRC","/ti/driverlib/CRCP"].includes(inst.$ownedBy.$name)) {
                 parentPeripheral = inst.$ownedBy.peripheral.$solution.peripheralName;
                 peripheralTriggerString = "#define " + (inst.$ownedBy.$name).replace("/ti/driverlib/","") + "_INST_DMA_TRIGGER";
             }
-            /* case for static modules */
+            /* case for generic dma triggers (not tied to specific peripheral) */
             else{
                 parentPeripheral = inst.$ownedBy.$name;
                 peripheralTriggerString = "#define " + (inst.$ownedBy.$name).replace("/ti/driverlib/","") + "_DMA_TRIGGER";

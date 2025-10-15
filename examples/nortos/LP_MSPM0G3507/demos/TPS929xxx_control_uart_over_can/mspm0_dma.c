@@ -57,9 +57,6 @@ void dmaTransfer(
     DL_DMA_setTransferSize(DMA, DMA_CH0_CHAN_ID, dmaTxSize);
     DL_DMA_setTransferSize(DMA, DMA_CH1_CHAN_ID, dmaRxSize);
 
-    // Enable Tx DMA
-    DL_DMA_enableChannel(DMA, DMA_CH0_CHAN_ID);
-
     if (responseEnabled == TRUE) {
         // Clear IFG to prevent previous received data to be transferred by the DMA
         DL_UART_Main_clearInterruptStatus(
@@ -76,6 +73,10 @@ void dmaTransfer(
 
         // Enable Rx DMA
         DL_DMA_enableChannel(DMA, DMA_CH1_CHAN_ID);
+        gDMARxDone = false;
+        // Enable Tx DMA
+        DL_DMA_enableChannel(DMA, DMA_CH0_CHAN_ID);
+        gDMATxDone = false;
 
         // In order to avoid program entering infinite waiting for receiving specified numbers of response,
         // we set a longest wait time, if the response wait time exceed the time, the program will also exit the wait
@@ -102,9 +103,11 @@ void dmaTransfer(
         // Disable DMA0 DMA1
         DL_DMA_disableChannel(DMA, DMA_CH1_CHAN_ID);
         DL_DMA_disableChannel(DMA, DMA_CH0_CHAN_ID);
-        gDMARxDone = false;
-        gDMATxDone = false;
     } else {
+        // Enable Tx DMA
+        DL_DMA_enableChannel(DMA, DMA_CH0_CHAN_ID);
+        gDMATxDone = false;
+
         // In order to avoid program entering infinite waiting for sending specified numbers of command bytes,
         // we set a longest wait time, if the response wait time exceed the time, the program will also exit the wait
         // Launch timer and set wait time = 200ms
@@ -118,16 +121,15 @@ void dmaTransfer(
         if (timeOutFlag == 1) {
             // You can take some action once the command bytes have not been sent
             // Below is an example: turn on one red LED on the launch board
-            // Set P1.0 high to turn on the red LED in the launch pad
-            DL_GPIO_setPins(GPIO_GRP_0_LED1_PORT, GPIO_GRP_0_LED1_PIN);
+            // Set PA0 high to turn on the red LED in the launch pad
+            LED_ERR_ON;
         } else {
             // Successfully sent all command bytes, clear the red LED
-            DL_GPIO_clearPins(GPIO_GRP_0_LED1_PORT, GPIO_GRP_0_LED1_PIN);
+            LED_ERR_OFF;
         }
 
         // Disable DMA0
         DL_DMA_disableChannel(DMA, DMA_CH0_CHAN_ID);
-        gDMATxDone = false;
     }
 }
 

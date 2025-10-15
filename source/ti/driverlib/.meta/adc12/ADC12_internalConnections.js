@@ -107,9 +107,34 @@ let ADC12_internalSignals = {
             CH31: "Supply Monitor",
         },
     },
+    MSPM0GX218_GX207: {
+        ADC0: {
+            CH11: "Temperature Sensor",
+            CH30: "Internal VREF", // TODO: Keep name ? or "VREF 1"?
+        },
+        ADC1: {
+            CH30: "Internal VREF", // TODO: Keep name ? or "VREF 2"?
+            CH31: "Supply Monitor",
+        }
+    },
+    MSPM0G122X: {
+        ADC0: {
+            CH11: "Temperature Sensor",
+            CH30: "Internal VREF", // VREF 1?
+            CH31: "Supply Monitor",
+        }
+    },
+
+
 }
 
 // SYS_ADC_MEMCTL_DIM
+/*
+ * ADCMEM range is obtained from system parameters
+ * - system parameters are instance-level, but this value is device-leve
+ * - currently using pre-defined list unless we decide to use the system parameter
+ *   of an arbitrary instance
+ */
 let ADC12_adcMemRange = {
     MSPM0G1X0X_G3X0X    : 11,
     MSPM0L11XX_L13XX    : 3,
@@ -124,6 +149,8 @@ let ADC12_adcMemRange = {
     MSPM0G518X          : 11,
     MSPM0L211X_L112X    : 11,
     MSPM0L210X          : 11,
+    MSPM0GX218_GX207    : 11,
+    MSPM0G122X          : 11,
 }
 
 /*

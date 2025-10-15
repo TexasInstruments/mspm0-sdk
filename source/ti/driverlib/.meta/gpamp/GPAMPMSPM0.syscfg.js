@@ -39,6 +39,7 @@
 
 /* get Common /ti/driverlib utility functions */
 let Common = system.getScript("/ti/driverlib/Common.js");
+let DeviceOptions = system.getScript("/ti/driverlib/gpamp/GPAMP_options.js");
 
 /************************* General functions *******************************/
 function hasMuxablePins(interfaceName, pinName) {
@@ -214,6 +215,21 @@ function getNSELChDisabledOptions(inst)
 }
 
 /* PROFILES CONFIGURATION */
+// ADC Chopping Mode is only available on some devices
+let profileOptions = [
+    {name: "CONFIG_PROFILE_1", displayName: "General Purpose RRI mode with standard chopping"},
+]
+if(DeviceOptions.supportsADCAssistedChopping){
+    profileOptions.push(
+        {name: "CONFIG_PROFILE_2", displayName: "ADC Buffer mode, ADC-assisted chopping"},
+    )
+}
+profileOptions.push(
+    {name: "CONFIG_PROFILE_3", displayName: "Unity-Gain mode"},
+    {name: "CUSTOM", displayName: "Custom"},
+)
+
+/* PROFILES CONFIGURATION */
 let gpampConfig = [
     /****** PROFILES CONFIGURATION *******/
     {
@@ -252,17 +268,22 @@ The Quick Profile Options are:
     * Allows custom configuration.`,
                 hidden      : false,
                 default     : "CUSTOM",
-                options     : [
-                    {name: "CONFIG_PROFILE_1", displayName: "General Purpose RRI mode with standard chopping"},
-                    {name: "CONFIG_PROFILE_2", displayName: "ADC Buffer mode, ADC-assisted chopping"},
-                    {name: "CONFIG_PROFILE_3", displayName: "Unity-Gain mode"},
-                    {name: "CUSTOM", displayName: "Custom"},
-                ],
+                options     : profileOptions,
                 onChange    : onChangeGPAMPProfile,
             },
         ],
     },
 ]
+
+let choppingModeOptions = [
+    {name: "DISABLED", displayName: "Chopping disabled"},
+    {name: "STANDARD", displayName: "Standard chopping mode"},
+];
+if(DeviceOptions.supportsADCAssistedChopping){
+    choppingModeOptions.push(
+        {name: "ADC_ASSISTED", displayName: "ADC-assisted chopping mode"},
+    )
+}
 
 gpampConfig = gpampConfig.concat([
     {
@@ -354,11 +375,7 @@ chopping.\n
 `,
                 hidden      : false,
                 default     : "DISABLED",
-                options     : [
-                    {name: "DISABLED", displayName: "Chopping disabled"},
-                    {name: "STANDARD", displayName: "Standard chopping mode"},
-                    {name: "ADC_ASSISTED", displayName: "ADC-assisted chopping mode"},
-                ],
+                options     : choppingModeOptions,
                 onChange    : onChangeCfgChoppingMode,
             },
             {

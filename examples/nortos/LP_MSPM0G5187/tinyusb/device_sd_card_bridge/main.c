@@ -48,6 +48,7 @@ enum {
 };
 
 static uint32_t blink_interval_ms = BLINK_NOT_MOUNTED;
+SD_Card_t mspm0SdCard;
 
 void led_blinking_task(void);
 void initializeSdCardChipSelectPin(void);

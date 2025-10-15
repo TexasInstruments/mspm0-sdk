@@ -64,6 +64,14 @@ let COMP_POS_internalSignals = {
         COMP0: undefined,
     },
     MSPM0L210X: undefined,
+    MSPM0GX218_GX207: {
+        COMP0: undefined,
+        COMP1: undefined,
+    },
+    MSPM0G122X: {
+        COMP0: undefined,
+        COMP1: undefined,
+    },
 }
 
 let COMP_NEG_internalSignals = {
@@ -134,6 +142,18 @@ let COMP_NEG_internalSignals = {
         },
     },
     MSPM0L210X: undefined,
+    MSPM0GX218_GX207: {
+        COMP0: {
+            5: "Temperature Sensor",
+        },
+        COMP1: undefined,
+    },
+    MSPM0G122X: {
+        COMP0: {
+            5: "Temperature Sensor",
+        },
+        COMP1: undefined,
+    },
 }
 
 /* Pin Channels */

@@ -756,6 +756,14 @@ function getPositiveChannelOptionsWithReason(inst){
             {name: "DL_COMP_IPSEL_CHANNEL_3", displayName: "COMPx_IN3+", reason: "not available on chosen COMP instance"},
         ];
     }
+    else if(Common.isDeviceFamily_PARENT_MSPM0GX218_GX207() || Common.isDeviceFamily_PARENT_MSPM0G122X()){
+        PositiveChannelOptionsWithReason = [
+            {name: "DL_COMP_IPSEL_CHANNEL_0", displayName: "COMPx_IN0+", reason: "not available on chosen COMP instance"},
+            {name: "DL_COMP_IPSEL_CHANNEL_1", displayName: "COMPx_IN1+", reason: "not available on chosen COMP instance"},
+            {name: "DL_COMP_IPSEL_CHANNEL_2", displayName: "COMPx_IN2+", reason: "not available on chosen COMP instance"},
+            {name: "DL_COMP_IPSEL_CHANNEL_3", displayName: "COMPx_IN3+", reason: "not available on chosen COMP instance"},
+        ];
+    }
     return PositiveChannelOptionsWithReason;
 }
 
@@ -849,6 +857,14 @@ function getNegativeChannelOptionsWithReason(inst){
             {name: "DL_COMP_IMSEL_CHANNEL_5", displayName: "Temperature Sensor", reason: "not available on chosen COMP instance"},
         ];
     }
+    else if(Common.isDeviceFamily_PARENT_MSPM0GX218_GX207() || Common.isDeviceFamily_PARENT_MSPM0G122X()){
+        NegativeChannelOptionsWithReason = [
+            {name: "DL_COMP_IMSEL_CHANNEL_0", displayName: "COMPx_IN0-", reason: "not available on chosen COMP instance"},
+            {name: "DL_COMP_IMSEL_CHANNEL_1", displayName: "COMPx_IN1-", reason: "not available on chosen COMP instance"},
+            {name: "DL_COMP_IMSEL_CHANNEL_2", displayName: "COMPx_IN2-", reason: "not available on chosen COMP instance"},
+            {name: "DL_COMP_IMSEL_CHANNEL_5", displayName: "Temperature Sensor", reason: "not available on chosen COMP instance"},
+        ];
+    }
     return NegativeChannelOptionsWithReason;
 }
 
@@ -864,6 +880,9 @@ function getNegativeChannelDisabledOptions(inst) {
             break;
         case "COMP1":
             validChannels = [ 0, 1, 2, 5];
+            if(Common.isDeviceFamily_PARENT_MSPM0GX218_GX207){
+                validChannels = [ 0, 1, 2];
+            }
             break;
         case "COMP2":
             validChannels = [ 0, 1, 5];

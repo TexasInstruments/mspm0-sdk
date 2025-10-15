@@ -60,7 +60,7 @@
 
 % function printDefine() {
 %       let gpioStr = "GPIO"
-% if (stat.offsetCalFreq != "OFF") {
+% if (stat.offsetCalFreq != "OFF" && stat.enableRTCOutputPin) {
 % /* RTC_OUT pin */
 /* Defines for RTC */
 %       let rtcOutPinName = "rtcOut"+"Pin";

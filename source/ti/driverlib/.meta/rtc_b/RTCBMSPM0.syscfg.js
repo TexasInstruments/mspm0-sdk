@@ -164,7 +164,10 @@ function pinmuxRequirements(inst)
         displayName       : "RTC_B Out Pin", /* GUI name */
         interfaceNames    : ["RTC_OUT"]   /* pinmux tool name */
     };
-    resources.push(RTCBOut);
+
+	if (inst.offsetCalFreq != "OFF" && inst.enableRTCOutputPin) {
+        resources.push(RTCBOut);
+    }
 
 
     let rtc_b = {

@@ -25,6 +25,30 @@
  *
  * This file is part of the TinyUSB stack.
  */
+/*!****************************************************************************
+ *  @file       audio_device.h
+ *  @brief      Audio Device Class Driver implementation
+ * 
+ * @details This file implements the Audio device driver for TinyUSB stack.
+ * It handles the USB Audio protocol including:
+ * - Device enumeration and configuration
+ * - Audio streaming between USB host and device
+ * - Control requests handling (volume, mute, sampling frequency)
+ * - Buffer management for audio data
+ *
+ * The Audio implementation supports:
+ * - Multiple audio interfaces
+ * - Configurable audio formats and sampling rates
+ * - Synchronous and asynchronous audio streaming modes
+ * - Volume and mute controls
+ * - Multiple audio channels
+ * - Feedback for adaptive isochronous transfers
+ *
+ *   <hr>
+ ******************************************************************************/
+/** @addtogroup AUDIO_DEVICE
+ * @{
+ */
 
 #ifndef _TUSB_AUDIO_DEVICE_H_
 #define _TUSB_AUDIO_DEVICE_H_
@@ -83,11 +107,32 @@
 #endif
 #endif
 
-// End point sizes IN BYTES - Limits: Full Speed <= 1023, High Speed <= 1024
+/**
+ * @brief Enable Audio IN endpoint (device-to-host audio streaming)
+ * 
+ * When set to 1, this configuration enables the Audio IN endpoint functionality,
+ * allowing the device to transmit audio data to the host. This is used for
+ * microphone or audio source functionality. The endpoint sizes are specified in bytes,
+ * with maximum limits of 1023 bytes for Full Speed and 1024 bytes for High Speed.
+ * 
+ * If set to 0, the Audio IN endpoint is disabled, and related code for audio
+ * transmission to host will not be compiled.
+ */
 #ifndef CFG_TUD_AUDIO_ENABLE_EP_IN
 #define CFG_TUD_AUDIO_ENABLE_EP_IN 0   // TX
 #endif
 
+/**
+ * @brief Enable Audio OUT endpoint (host-to-device audio streaming)
+ * 
+ * When set to 1, this configuration enables the Audio OUT endpoint functionality,
+ * allowing the device to receive audio data from the host. This is used for
+ * speaker or audio sink functionality. The endpoint sizes are specified in bytes,
+ * with maximum limits of 1023 bytes for Full Speed and 1024 bytes for High Speed.
+ * 
+ * If set to 0, the Audio OUT endpoint is disabled, and related code for audio
+ * reception from host will not be compiled.
+ */
 #ifndef CFG_TUD_AUDIO_ENABLE_EP_OUT
 #define CFG_TUD_AUDIO_ENABLE_EP_OUT 0  // RX
 #endif
@@ -125,23 +170,86 @@
 #endif
 #endif // CFG_TUD_AUDIO_ENABLE_EP_OUT
 
-// Software EP FIFO buffer sizes - must be >= max EP SIZEs!
+/**
+ * @brief Software buffer size for Audio function 1's IN endpoint (host ← device)
+ * 
+ * @details Defines the size of the software FIFO buffer used for the audio IN endpoint 
+ * of the first audio function. This buffer stores audio data before transmission to the host.
+ * 
+ * The buffer size MUST be greater than or equal to the maximum endpoint size
+ * (CFG_TUD_AUDIO_FUNC_1_EP_IN_SZ_MAX). This is required to ensure proper data handling
+ * without buffer overflows.
+ */
 #ifndef CFG_TUD_AUDIO_FUNC_1_EP_IN_SW_BUF_SZ
 #define CFG_TUD_AUDIO_FUNC_1_EP_IN_SW_BUF_SZ                0
 #endif
+
+/**
+ * @brief Software buffer size for Audio function 2's IN endpoint (host ← device)
+ * 
+ * @details Defines the size of the software FIFO buffer used for the audio IN endpoint 
+ * of the first audio function. This buffer stores audio data before transmission to the host.
+ * 
+ * The buffer size MUST be greater than or equal to the maximum endpoint size
+ * (CFG_TUD_AUDIO_FUNC_2_EP_IN_SZ_MAX). This is required to ensure proper data handling
+ * without buffer overflows.
+ */
 #ifndef CFG_TUD_AUDIO_FUNC_2_EP_IN_SW_BUF_SZ
 #define CFG_TUD_AUDIO_FUNC_2_EP_IN_SW_BUF_SZ                0
 #endif
+
+/**
+ * @brief Software buffer size for Audio function 3's IN endpoint (host ← device)
+ * 
+ * @details Defines the size of the software FIFO buffer used for the audio IN endpoint 
+ * of the first audio function. This buffer stores audio data before transmission to the host.
+ * 
+ * The buffer size MUST be greater than or equal to the maximum endpoint size
+ * (CFG_TUD_AUDIO_FUNC_3_EP_IN_SZ_MAX). This is required to ensure proper data handling
+ * without buffer overflows.
+ */
 #ifndef CFG_TUD_AUDIO_FUNC_3_EP_IN_SW_BUF_SZ
 #define CFG_TUD_AUDIO_FUNC_3_EP_IN_SW_BUF_SZ                0
 #endif
 
+/**
+ * @brief Software buffer size for Audio function 1's OUT endpoint (host → device)
+ * 
+ * @details Defines the size of the software FIFO buffer used for the audio OUT endpoint 
+ * of the first audio function. This buffer stores audio data received from the host.
+ * 
+ * The buffer size MUST be greater than or equal to the maximum endpoint size
+ * (CFG_TUD_AUDIO_FUNC_1_EP_OUT_SZ_MAX). This is required to ensure proper data handling
+ * without buffer overflows.
+ */
 #ifndef CFG_TUD_AUDIO_FUNC_1_EP_OUT_SW_BUF_SZ
 #define CFG_TUD_AUDIO_FUNC_1_EP_OUT_SW_BUF_SZ               0
 #endif
+
+/**
+ * @brief Software buffer size for Audio function 2's OUT endpoint (host → device)
+ * 
+ * @details Defines the size of the software FIFO buffer used for the audio OUT endpoint 
+ * of the first audio function. This buffer stores audio data received from the host.
+ * 
+ * The buffer size MUST be greater than or equal to the maximum endpoint size
+ * (CFG_TUD_AUDIO_FUNC_2_EP_OUT_SZ_MAX). This is required to ensure proper data handling
+ * without buffer overflows.
+ */
 #ifndef CFG_TUD_AUDIO_FUNC_2_EP_OUT_SW_BUF_SZ
 #define CFG_TUD_AUDIO_FUNC_2_EP_OUT_SW_BUF_SZ               0
 #endif
+
+/**
+ * @brief Software buffer size for Audio function 3's OUT endpoint (host → device)
+ * 
+ * @details Defines the size of the software FIFO buffer used for the audio OUT endpoint 
+ * of the first audio function. This buffer stores audio data received from the host.
+ * 
+ * The buffer size MUST be greater than or equal to the maximum endpoint size
+ * (CFG_TUD_AUDIO_FUNC_3_EP_OUT_SZ_MAX). This is required to ensure proper data handling
+ * without buffer overflows.
+ */
 #ifndef CFG_TUD_AUDIO_FUNC_3_EP_OUT_SW_BUF_SZ
 #define CFG_TUD_AUDIO_FUNC_3_EP_OUT_SW_BUF_SZ               0
 #endif
@@ -182,28 +290,105 @@
 #endif
 #endif
 
-// (For TYPE-I format only) Flow control is necessary to allow IN ep send correct amount of data, unless it's a virtual device where data is perfectly synchronized to USB clock.
+/**
+ * @brief Controls flow control behavior for Audio IN endpoint (host ← device)
+ * 
+ * @details This configuration option determines how flow control is handled for 
+ * the Audio IN endpoint (data flowing from device to host).
+ * 
+ * When enabled (1), the stack will automatically manage flow control by:
+ * - Detecting buffer overflow/underflow conditions
+ * - Adjusting the data rate to maintain synchronization with the host
+ * - Handling feedback data from the host to ensure proper isochronous transfers
+ * 
+ * When disabled (0), the application is responsible for handling flow control
+ * and maintaining proper data flow to avoid buffer issues.
+ */
 #ifndef CFG_TUD_AUDIO_EP_IN_FLOW_CONTROL
 #define CFG_TUD_AUDIO_EP_IN_FLOW_CONTROL  1
 #endif
 
-// Enable/disable feedback EP (required for asynchronous RX applications)
+/**
+ * @brief Enables the Audio feedback endpoint
+ * 
+ * @details This configuration option controls whether the Audio class driver
+ * enables a dedicated feedback endpoint for isochronous adaptive or asynchronous
+ * audio streaming.
+ * 
+ * When enabled (1):
+ * - The stack will create and manage an additional feedback endpoint
+ * - This endpoint allows the device to communicate timing information to the host
+ * - Helps maintain synchronization between host and device clocks
+ * - Required for adaptive and asynchronous isochronous transfers
+ * 
+ * When disabled (0):
+ * - No feedback endpoint is created
+ * - Only synchronous isochronous transfers are supported
+ * - The device and host must share the same clock or use other synchronization methods
+ */
 #ifndef CFG_TUD_AUDIO_ENABLE_FEEDBACK_EP
 #define CFG_TUD_AUDIO_ENABLE_FEEDBACK_EP                    0                             // Feedback - 0 or 1
 #endif
 
-// Enable/disable conversion from 16.16 to 10.14 format on full-speed devices. See tud_audio_n_fb_set().
-// Can be override by tud_audio_feedback_format_correction_cb()
+/**
+ * @brief Enables automatic feedback format correction
+ * 
+ * @details This configuration option controls whether the Audio class driver
+ * automatically corrects the format of feedback data sent to the host.
+ * 
+ * When enabled (1):
+ * - The stack will automatically convert feedback values to the proper format
+ *   required by the USB Audio Class specification
+ * - Ensures that feedback data is correctly formatted as 10.14 or 16.16 
+ *   fixed-point values depending on the speed mode
+ * - Handles endianness conversion and bit-precision adjustments
+ * - Simplifies application development by abstracting format details
+ * 
+ * When disabled (0):
+ * - The application must provide correctly formatted feedback values
+ * - The application is responsible for ensuring compliance with USB Audio
+ *   format requirements
+ */
 #ifndef CFG_TUD_AUDIO_ENABLE_FEEDBACK_FORMAT_CORRECTION
 #define CFG_TUD_AUDIO_ENABLE_FEEDBACK_FORMAT_CORRECTION     0                             // 0 or 1
 #endif
 
-// Enable/disable interrupt EP (required for notifying host of control changes)
+/**
+ * @brief Enables the Audio interrupt endpoint
+ * 
+ * @details This configuration option controls whether the Audio class driver
+ * creates and manages an interrupt endpoint for control and status information.
+ * 
+ * When enabled (1):
+ * - The stack will create and manage an interrupt endpoint
+ * - This endpoint allows the device to send status information and notifications to the host
+ * - Enables reporting of volume changes, mute status updates, and other control events
+ * - Supports features like hardware button presses on audio devices
+ * 
+ * When disabled (0):
+ * - No interrupt endpoint is created
+ * - Status changes can only be discovered by the host through polling control requests
+ * - Reduces endpoint usage but limits notification capabilities
+ */
 #ifndef CFG_TUD_AUDIO_ENABLE_INTERRUPT_EP
 #define CFG_TUD_AUDIO_ENABLE_INTERRUPT_EP                   0                             // Feedback - 0 or 1
 #endif
 
-// Audio control interrupt EP - 6 Bytes according to UAC 2 specification (p. 74)
+/**
+ * @brief Size of the Audio interrupt endpoint
+ * 
+ * @details Defines the maximum packet size for the interrupt endpoint used by
+ * the Audio class driver for sending status and control information to the host.
+ * 
+ * This value determines how much status data can be sent in a single interrupt
+ * transfer. For most audio control applications, a small size (2-8 bytes) is
+ * sufficient as interrupt transfers typically contain minimal control information
+ * such as volume changes, mute status, or button presses.
+ * 
+ * The USB specification limits interrupt endpoint sizes to:
+ * - Full-speed: 64 bytes maximum
+ * - High-speed: 1024 bytes maximum
+ */
 #define CFG_TUD_AUDIO_INTERRUPT_EP_SZ                       6
 
 // Use software encoding/decoding
@@ -253,19 +438,66 @@
 
 // For PCM encoding/decoding
 
+/**
+ * @brief Enables audio encoding/decoding support
+ * 
+ * @details This configuration option controls whether the Audio class driver
+ * includes support for encoding and decoding audio data formats.
+ * 
+ * When enabled (1):
+ * - The stack includes code for processing different audio encodings
+ * - Supports conversion between encoded formats and PCM
+ * - Allows the device to handle compressed audio formats
+ * - Enables features like on-device encoding/decoding of audio streams
+ * 
+ * When disabled (0):
+ * - Only raw audio data transfer is supported
+ * - Reduces code size by excluding encoding/decoding functionality
+ * - The application must handle any format conversions externally
+ */
 #ifndef CFG_TUD_AUDIO_ENABLE_ENCODING
 #define CFG_TUD_AUDIO_ENABLE_ENCODING                       0
 #endif
 
+/**
+ * @brief Enables audio decoding support
+ * 
+ * @details This configuration option controls whether the Audio class driver
+ * includes support for decoding audio data from various formats to PCM.
+ * 
+ * When enabled (1):
+ * - The stack includes code for decoding compressed or encoded audio formats
+ * - Supports conversion from encoded formats (like MP3, AAC, etc.) to PCM
+ * - Allows the device to receive compressed audio and process it natively
+ * - Enables features like on-device playback of compressed audio streams
+ * 
+ * When disabled (0):
+ * - Only raw audio data handling is supported
+ * - Reduces code size by excluding decoding functionality
+ * - The application must handle any format decoding externally
+ */
 #ifndef CFG_TUD_AUDIO_ENABLE_DECODING
 #define CFG_TUD_AUDIO_ENABLE_DECODING                       0
 #endif
 
-// This enabling allows to save the current coding parameters e.g. # of bytes per sample etc. - TYPE_I includes common PCM encoding
+/**
+ * @brief Enables Type I audio encoding support
+ * 
+ * @details This configuration option controls whether the Audio class driver
+ * includes support for Type I audio encoding as defined in the USB Audio Class
+ * specification.
+ */
 #ifndef CFG_TUD_AUDIO_ENABLE_TYPE_I_ENCODING
 #define CFG_TUD_AUDIO_ENABLE_TYPE_I_ENCODING                0
 #endif
 
+/**
+ * @brief Enables Type I audio decoding support
+ * 
+ * @details This configuration option controls whether the Audio class driver
+ * includes support for Type I audio decoding as defined in the USB Audio Class
+ * specification.
+ */
 #ifndef CFG_TUD_AUDIO_ENABLE_TYPE_I_DECODING
 #define CFG_TUD_AUDIO_ENABLE_TYPE_I_DECODING                0
 #endif
@@ -307,43 +539,179 @@
 // Remaining types not support so far
 
 // Number of support FIFOs to set up - multiple channels can be handled by one FIFO - very common is two channels per FIFO stemming from one I2S interface
+
+/**
+ * @brief Number of supported software FIFOs for TX (device → host) for Audio function 1
+ * 
+ * @details Defines how many software FIFO buffers are supported for transmitting
+ * audio data from the device to the host for Audio function 1.
+ * 
+ * Each FIFO represents a separate audio data channel or stream that can be
+ * transmitted independently. Multiple FIFOs are useful for:
+ * - Stereo or multi-channel audio (e.g., one FIFO per audio channel)
+ * - Supporting multiple sample rates or bit depths simultaneously
+ * - Handling different audio formats in parallel
+ */
 #ifndef CFG_TUD_AUDIO_FUNC_1_N_TX_SUPP_SW_FIFO
 #define CFG_TUD_AUDIO_FUNC_1_N_TX_SUPP_SW_FIFO              0
 #endif
+
+/**
+ * @brief Number of supported software FIFOs for TX (device → host) for Audio function 2
+ * 
+ * @details Defines how many software FIFO buffers are supported for transmitting
+ * audio data from the device to the host for Audio function 2.
+ * 
+ * Each FIFO represents a separate audio data channel or stream that can be
+ * transmitted independently. Multiple FIFOs are useful for:
+ * - Stereo or multi-channel audio (e.g., one FIFO per audio channel)
+ * - Supporting multiple sample rates or bit depths simultaneously
+ * - Handling different audio formats in parallel
+ */
 #ifndef CFG_TUD_AUDIO_FUNC_2_N_TX_SUPP_SW_FIFO
 #define CFG_TUD_AUDIO_FUNC_2_N_TX_SUPP_SW_FIFO              0
 #endif
+
+/**
+ * @brief Number of supported software FIFOs for TX (device → host) for Audio function 3
+ * 
+ * @details Defines how many software FIFO buffers are supported for transmitting
+ * audio data from the device to the host for Audio function 3.
+ * 
+ * Each FIFO represents a separate audio data channel or stream that can be
+ * transmitted independently. Multiple FIFOs are useful for:
+ * - Stereo or multi-channel audio (e.g., one FIFO per audio channel)
+ * - Supporting multiple sample rates or bit depths simultaneously
+ * - Handling different audio formats in parallel
+ */
 #ifndef CFG_TUD_AUDIO_FUNC_3_N_TX_SUPP_SW_FIFO
 #define CFG_TUD_AUDIO_FUNC_3_N_TX_SUPP_SW_FIFO              0
 #endif
 
+/**
+ * @brief Number of supported software FIFOs for RX (host → device) for Audio function 1
+ * 
+ * @details Defines how many software FIFO buffers are supported for receiving
+ * audio data from the host to the device for Audio function 1.
+ * 
+ * Each FIFO represents a separate audio data channel or stream that can be
+ * received independently. Multiple FIFOs are useful for:
+ * - Stereo or multi-channel audio (e.g., one FIFO per audio channel)
+ * - Supporting multiple sample rates or bit depths simultaneously
+ * - Handling different audio formats in parallel
+ */
 #ifndef CFG_TUD_AUDIO_FUNC_1_N_RX_SUPP_SW_FIFO
 #define CFG_TUD_AUDIO_FUNC_1_N_RX_SUPP_SW_FIFO              0
 #endif
+
+/**
+ * @brief Number of supported software FIFOs for RX (host → device) for Audio function 2
+ * 
+ * @details Defines how many software FIFO buffers are supported for receiving
+ * audio data from the host to the device for Audio function 2.
+ * 
+ * Each FIFO represents a separate audio data channel or stream that can be
+ * received independently. Multiple FIFOs are useful for:
+ * - Stereo or multi-channel audio (e.g., one FIFO per audio channel)
+ * - Supporting multiple sample rates or bit depths simultaneously
+ * - Handling different audio formats in parallel
+ */
 #ifndef CFG_TUD_AUDIO_FUNC_2_N_RX_SUPP_SW_FIFO
 #define CFG_TUD_AUDIO_FUNC_2_N_RX_SUPP_SW_FIFO              0
 #endif
+
+/**
+ * @brief Number of supported software FIFOs for RX (host → device) for Audio function 3
+ * 
+ * @details Defines how many software FIFO buffers are supported for receiving
+ * audio data from the host to the device for Audio function 3.
+ * 
+ * Each FIFO represents a separate audio data channel or stream that can be
+ * received independently. Multiple FIFOs are useful for:
+ * - Stereo or multi-channel audio (e.g., one FIFO per audio channel)
+ * - Supporting multiple sample rates or bit depths simultaneously
+ * - Handling different audio formats in parallel
+ */
 #ifndef CFG_TUD_AUDIO_FUNC_3_N_RX_SUPP_SW_FIFO
 #define CFG_TUD_AUDIO_FUNC_3_N_RX_SUPP_SW_FIFO              0
 #endif
 
 // Size of support FIFOs IN BYTES - if size > 0 there are as many FIFOs set up as CFG_TUD_AUDIO_FUNC_X_N_TX_SUPP_SW_FIFO and CFG_TUD_AUDIO_FUNC_X_N_RX_SUPP_SW_FIFO
+
+/**
+ * @brief Number of supported software FIFOs for RX (host → device) for Audio function 1
+ * 
+ * @details Defines how many software FIFO buffers are supported for receiving
+ * audio data from the host to the device for Audio function 1.
+ * 
+ * Each FIFO represents a separate audio data channel or stream that can be
+ * received independently. Multiple FIFOs are useful for:
+ * - Stereo or multi-channel audio (e.g., one FIFO per audio channel)
+ * - Supporting multiple sample rates or bit depths simultaneously
+ * - Handling different audio formats in parallel
+ */
 #ifndef CFG_TUD_AUDIO_FUNC_1_TX_SUPP_SW_FIFO_SZ
 #define CFG_TUD_AUDIO_FUNC_1_TX_SUPP_SW_FIFO_SZ             0         // FIFO size - minimum size: ceil(f_s/1000) * max(# of TX channels) / (# of TX support FIFOs) * max(# of bytes per sample)
 #endif
+
+/**
+ * @brief Number of supported software FIFOs for RX (host → device) for Audio function 2
+ * 
+ * @details Defines how many software FIFO buffers are supported for receiving
+ * audio data from the host to the device for Audio function 2.
+ * 
+ * Each FIFO represents a separate audio data channel or stream that can be
+ * received independently. Multiple FIFOs are useful for:
+ * - Stereo or multi-channel audio (e.g., one FIFO per audio channel)
+ * - Supporting multiple sample rates or bit depths simultaneously
+ * - Handling different audio formats in parallel
+ */
 #ifndef CFG_TUD_AUDIO_FUNC_2_TX_SUPP_SW_FIFO_SZ
 #define CFG_TUD_AUDIO_FUNC_2_TX_SUPP_SW_FIFO_SZ             0
 #endif
+
+/**
+ * @brief Number of supported software FIFOs for RX (host → device) for Audio function 3
+ * 
+ * @details Defines how many software FIFO buffers are supported for receiving
+ * audio data from the host to the device for Audio function 3.
+ * 
+ * Each FIFO represents a separate audio data channel or stream that can be
+ * received independently. Multiple FIFOs are useful for:
+ * - Stereo or multi-channel audio (e.g., one FIFO per audio channel)
+ * - Supporting multiple sample rates or bit depths simultaneously
+ * - Handling different audio formats in parallel
+ */
 #ifndef CFG_TUD_AUDIO_FUNC_3_TX_SUPP_SW_FIFO_SZ
 #define CFG_TUD_AUDIO_FUNC_3_TX_SUPP_SW_FIFO_SZ             0
 #endif
 
+/**
+ * @brief Size of each software FIFO for RX (host → device) for Audio function 1
+ * 
+ * @details Defines the size in bytes of each software FIFO buffer used for receiving
+ * audio data from the host to the device for Audio function 1.
+ */
 #ifndef CFG_TUD_AUDIO_FUNC_1_RX_SUPP_SW_FIFO_SZ
 #define CFG_TUD_AUDIO_FUNC_1_RX_SUPP_SW_FIFO_SZ             0         // FIFO size - minimum size: ceil(f_s/1000) * max(# of RX channels) / (# of RX support FIFOs) * max(# of bytes per sample)
 #endif
+
+/**
+ * @brief Size of each software FIFO for RX (host → device) for Audio function 2
+ * 
+ * @details Defines the size in bytes of each software FIFO buffer used for receiving
+ * audio data from the host to the device for Audio function 2.
+ */
 #ifndef CFG_TUD_AUDIO_FUNC_2_RX_SUPP_SW_FIFO_SZ
 #define CFG_TUD_AUDIO_FUNC_2_RX_SUPP_SW_FIFO_SZ             0
 #endif
+
+/**
+ * @brief Size of each software FIFO for RX (host → device) for Audio function 3
+ * 
+ * @details Defines the size in bytes of each software FIFO buffer used for receiving
+ * audio data from the host to the device for Audio function 3.
+ */
 #ifndef CFG_TUD_AUDIO_FUNC_3_RX_SUPP_SW_FIFO_SZ
 #define CFG_TUD_AUDIO_FUNC_3_RX_SUPP_SW_FIFO_SZ             0
 #endif
@@ -357,15 +725,22 @@
 extern "C" {
 #endif
 
-/** \addtogroup AUDIO_Serial Serial
- *  @{
- *  \defgroup   AUDIO_Serial_Device Device
- *  @{ */
-
 //--------------------------------------------------------------------+
 // Application API (Multiple Interfaces)
 // CFG_TUD_AUDIO > 1
 //--------------------------------------------------------------------+
+/**
+ * @brief Check if the specified audio function is mounted by the host
+ * 
+ * This function checks if the specified audio function has been configured and
+ * mounted by the USB host. An audio function is considered mounted when the host
+ * has completed device configuration and the interface is ready for use.
+ * 
+ * @param[in] func_id    Audio function ID (zero-based index, less than CFG_TUD_AUDIO)
+ * 
+ * @return true if the audio function is mounted and ready for use
+ * @return false if the audio function is not mounted or the func_id is invalid
+ */
 bool     tud_audio_n_mounted    (uint8_t func_id);
 
 #if CFG_TUD_AUDIO_ENABLE_EP_OUT && !CFG_TUD_AUDIO_ENABLE_DECODING
@@ -404,6 +779,19 @@ bool    tud_audio_int_n_write                     (uint8_t func_id, const audio_
 // Application API (Interface0)
 //--------------------------------------------------------------------+
 
+/**
+ * @brief Check if the default audio function is mounted by the host
+ * 
+ * This function checks if the first audio function (function ID 0) has been 
+ * configured and mounted by the USB host. An audio function is considered 
+ * mounted when the host has completed device configuration and the interface 
+ * is ready for use.
+ * 
+ * This is a convenience wrapper around tud_audio_n_mounted(0).
+ * 
+ * @return true if the default audio function is mounted and ready for use
+ * @return false if the default audio function is not mounted
+ */
 static inline bool         tud_audio_mounted                (void);
 
 // RX API
@@ -449,6 +837,30 @@ static inline bool tud_audio_int_write                      (const audio_interru
 // Since transmission is triggered via interrupts, a persistent memory location is required onto which the buffer pointer in pointing. If you already have such
 // available you may directly use 'tud_control_xfer(...)'. In this case data does not need to be copied into an additional buffer and you save some time.
 // If the request's wLength is zero, a status packet is sent instead.
+
+/**
+ * @brief Buffer control endpoint data and schedule a transmit
+ * 
+ * @details This function is intended to be used when responding to control requests
+ * without a persistent buffer. It copies the provided data into the control buffer
+ * of the corresponding audio driver and schedules a transmit to send the response.
+ * 
+ * Since transmission is triggered via interrupts, a persistent memory location is
+ * required for the buffer pointer. If you already have such a persistent buffer
+ * available, you may directly use 'tud_control_xfer(...)' instead. This avoids
+ * the additional data copy into the internal buffer and saves processing time.
+ * 
+ * This function handles only control requests with IN direction (device to host).
+ * If the request's wLength is zero, a status packet is sent instead of data.
+ * 
+ * @param[in] rhport        USB port number
+ * @param[in] p_request     Pointer to the setup request
+ * @param[in] data          Pointer to the response data to be sent to host
+ * @param[in] len           Length of the response data in bytes
+ * 
+ * @return true             If the operation was successful
+ * @return false            If the operation failed (invalid parameters or OUT direction)
+ */
 bool tud_audio_buffer_and_schedule_control_xfer(uint8_t rhport, tusb_control_request_t const * p_request, void* data, uint16_t len);
 
 //--------------------------------------------------------------------+
@@ -558,34 +970,174 @@ bool tud_audio_feedback_format_correction_cb(uint8_t func_id);
 void tud_audio_int_done_cb(uint8_t rhport);
 #endif
 
-// Invoked when audio set interface request received
+/**
+ * @brief Callback when audio set interface request is received
+ * 
+ * @details This callback is invoked when the host sends a Set Interface request
+ * to an audio interface. It is commonly used to handle audio streaming format changes
+ * or to start/stop audio streaming. The alternate setting value indicates the 
+ * specific format to be used, or 0 for no streaming.
+ * 
+ * @param[in] rhport      USB port number
+ * @param[in] p_request   Pointer to the setup request containing interface and alternate setting
+ * 
+ * @return true           If the request is accepted
+ * @return false          If the request is rejected, will cause a STALL response
+ */
 bool tud_audio_set_itf_cb(uint8_t rhport, tusb_control_request_t const * p_request);
 
-// Invoked when audio set interface request received which closes an EP
+/**
+ * @brief Callback when audio set interface request is received that closes an endpoint
+ * 
+ * @details This callback is invoked when the host sends a Set Interface request
+ * that would close an audio endpoint, typically when switching to alternate setting 0
+ * (no streaming). This gives the application a chance to perform any necessary cleanup
+ * or state changes when audio streaming is stopped.
+ * 
+ * @param[in] rhport      USB port number
+ * @param[in] p_request   Pointer to the setup request containing interface and alternate setting
+ * 
+ * @return true           If the request is accepted
+ * @return false          If the request is rejected, will cause a STALL response
+ */
 bool tud_audio_set_itf_close_EP_cb(uint8_t rhport, tusb_control_request_t const * p_request);
 
-// Invoked when audio class specific set request received for an EP
+/**
+ * @brief Callback when audio class specific set request is received for an endpoint
+ * 
+ * @details This callback is invoked when the host sends an audio class-specific
+ * control request targeted at an endpoint. These requests are used to configure
+ * various endpoint-specific audio parameters such as:
+ * - Sampling frequency
+ * - Pitch control
+ * - Data overrun/underrun control
+ * 
+ * @param[in] rhport      USB port number
+ * @param[in] p_request   Pointer to the setup request
+ * @param[in,out] pBuff   Buffer containing data for SET requests or to be filled for GET requests
+ * 
+ * @return true           If the request is handled successfully
+ * @return false          If the request is rejected, will cause a STALL response
+ */
 bool tud_audio_set_req_ep_cb(uint8_t rhport, tusb_control_request_t const * p_request, uint8_t *pBuff);
 
-// Invoked when audio class specific set request received for an interface
+/**
+ * @brief Callback when audio class specific set request is received for an interface
+ * 
+ * @details This callback is invoked when the host sends an audio class-specific
+ * control request targeted at an interface. These requests are used to configure
+ * various interface-specific audio parameters such as:
+ * - Volume control
+ * - Mute control
+ * - Tone control (bass, mid, treble)
+ * - Graphic equalizer
+ * - Automatic gain control
+ * - Delay control
+ * - Bass boost
+ * 
+ * @param[in] rhport      USB port number
+ * @param[in] p_request   Pointer to the setup request
+ * @param[in,out] pBuff   Buffer containing data for SET requests or to be filled for GET requests
+ * 
+ * @return true           If the request is handled successfully
+ * @return false          If the request is rejected, will cause a STALL response
+ */
 bool tud_audio_set_req_itf_cb(uint8_t rhport, tusb_control_request_t const * p_request, uint8_t *pBuff);
 
-// Invoked when audio class specific set request received for an entity
+/**
+ * @brief Callback when audio class specific set request is received for an entity
+ * 
+ * @details This callback is invoked when the host sends an audio class-specific
+ * control request targeted at an audio entity. Audio entities include feature units,
+ * mixers, selectors, clock sources, and other audio processing blocks defined in the
+ * USB Audio Class specification.
+ * 
+ * @param[in] rhport      USB port number
+ * @param[in] p_request   Pointer to the setup request
+ * @param[in,out] pBuff   Buffer containing data for SET requests
+ * 
+ * @return true           If the request is handled successfully
+ * @return false          If the request is rejected, will cause a STALL response
+ */
 bool tud_audio_set_req_entity_cb(uint8_t rhport, tusb_control_request_t const * p_request, uint8_t *pBuff);
 
-// Invoked when audio class specific get request received for an EP
+/**
+ * @brief Callback when audio class specific get request is received for an endpoint
+ * 
+ * @details This callback is invoked when the host sends an audio class-specific
+ * get request targeted at an endpoint. These requests are used to query
+ * various endpoint-specific audio parameters such as:
+ * - Sampling frequency
+ * - Pitch control
+ * - Data overrun/underrun control
+ * 
+ * @param[in] rhport      USB port number
+ * @param[in] p_request   Pointer to the setup request
+ * 
+ * @return true           If the request is handled successfully
+ * @return false          If the request is rejected, will cause a STALL response
+ */
 bool tud_audio_get_req_ep_cb(uint8_t rhport, tusb_control_request_t const * p_request);
 
-// Invoked when audio class specific get request received for an interface
+/**
+ * @brief Callback when audio class specific get request is received for an interface
+ * 
+ * @details This callback is invoked when the host sends an audio class-specific
+ * get request targeted at an interface. These requests are used to query
+ * various interface-specific audio parameters such as:
+ * - Volume control
+ * - Mute control
+ * - Tone control (bass, mid, treble)
+ * - Graphic equalizer
+ * - Automatic gain control
+ * - Delay control
+ * - Bass boost
+ * 
+ * @param[in] rhport      USB port number
+ * @param[in] p_request   Pointer to the setup request
+ * 
+ * @return true           If the request is handled successfully
+ * @return false          If the request is rejected, will cause a STALL response
+ */
 bool tud_audio_get_req_itf_cb(uint8_t rhport, tusb_control_request_t const * p_request);
 
-// Invoked when audio class specific get request received for an entity
+/**
+ * @brief Callback when audio class specific get request is received for an entity
+ * 
+ * @details This callback is invoked when the host sends an audio class-specific
+ * get request targeted at an audio entity. Audio entities include feature units,
+ * mixers, selectors, clock sources, and other audio processing blocks defined in the
+ * USB Audio Class specification.
+ * 
+ * @param[in] rhport      USB port number
+ * @param[in] p_request   Pointer to the setup request
+ * 
+ * @return true           If the request is handled successfully
+ * @return false          If the request is rejected, will cause a STALL response
+ */
 bool tud_audio_get_req_entity_cb(uint8_t rhport, tusb_control_request_t const * p_request);
 
 //--------------------------------------------------------------------+
 // Inline Functions
 //--------------------------------------------------------------------+
 
+/**
+ * @brief Check if the default audio function is mounted by the host
+ * 
+ * @details This function checks if the first audio function (function ID 0) has been 
+ * configured and mounted by the USB host. An audio function is considered 
+ * mounted when the host has completed device configuration and the interface 
+ * is ready for use.
+ * 
+ * This is a convenience wrapper around tud_audio_n_mounted(0).
+ * 
+ * The mounted state indicates that the device is properly enumerated and 
+ * the audio interface is ready to transfer data. Applications should check
+ * this before attempting to use audio functions.
+ * 
+ * @return true    If the default audio function is mounted and ready for use
+ * @return false   If the default audio function is not mounted
+ */
 static inline bool tud_audio_mounted(void)
 {
   return tud_audio_n_mounted(0);
@@ -705,12 +1257,152 @@ static inline bool tud_audio_fb_set(uint32_t feedback)
 //--------------------------------------------------------------------+
 // Internal Class Driver API
 //--------------------------------------------------------------------+
+
+/**
+ * @brief Initialize the Audio Device driver
+ * 
+ * @details This function initializes the internal state of the Audio Device driver.
+ * It is called during the USB device stack initialization and performs the following tasks:
+ * 
+ * - Clears the internal audio function structures
+ * - Sets up control buffers for each audio function
+ * - Initializes alternate interface settings
+ * - Configures FIFOs for audio data transfer (based on compile-time configuration)
+ * - Sets up any required linear buffers
+ */
 void     audiod_init           (void);
+
+/**
+ * @brief De-initialize the Audio Device driver
+ * 
+ * @details This function is intended to clean up resources used by the Audio Device driver
+ * when the USB device is disconnected or when the audio functions need to be reset.
+ * 
+ * When properly implemented, this function would be expected to:
+ * - Free any dynamically allocated resources
+ * - Close any open audio endpoints
+ * - Reset internal state variables
+ * - Potentially notify the application layer that audio is no longer available
+ * 
+ * @return bool  Currently always returns false indicating the operation is not implemented
+ */
 bool     audiod_deinit         (void);
+
+/**
+ * @brief Reset the Audio Device driver state
+ * 
+ * @details This function resets the internal state of the Audio Device driver
+ * when a USB bus reset occurs or when the device needs to return to a known state.
+ * It performs the following operations:
+ * 
+ * - Clears the audio function structures (up to ITF_MEM_RESET_SIZE bytes)
+ * - Resets all FIFOs associated with audio endpoints
+ * - Clears transmit and receive support FIFOs if enabled
+ * 
+ * @param[in] rhport  USB port number (currently unused in the function)
+ */
 void     audiod_reset          (uint8_t rhport);
+
+/**
+ * @brief Initialize an audio function when its interface descriptor is processed
+ * 
+ * @details This function is called by the USB stack when it encounters an Audio Class
+ * Control Interface descriptor during device enumeration. It initializes the audio
+ * function with the appropriate settings from the descriptor.
+ * 
+ * The function performs the following operations:
+ * - Verifies the interface is an Audio Class Control Interface
+ * - Verifies protocol version and alternate setting
+ * - Finds an available audio driver interface slot
+ * - Stores descriptor information and configures function parameters
+ * - Allocates and configures endpoints if necessary
+ * - Sets up audio streaming interfaces and their alternate settings
+ * - Initializes FIFOs for audio data transfer
+ * 
+ * @param[in] rhport      USB port number
+ * @param[in] itf_desc    Pointer to the interface descriptor being processed
+ * @param[in] max_len     Maximum length of the descriptor in bytes
+ * 
+ * @return uint16_t       The number of bytes processed from the descriptor,
+ *                        or 0 if an error occurred during processing
+ */
 uint16_t audiod_open           (uint8_t rhport, tusb_desc_interface_t const * itf_desc, uint16_t max_len);
+
+/**
+ * @brief Callback for handling control transfers to the Audio Class interface
+ * 
+ * @details This function is called by the USB device stack during control transfers
+ * targeted at the Audio Class interface. It handles both the SETUP and DATA stages
+ * of control transfers.
+ * 
+ * The function operates as follows:
+ * - For CONTROL_STAGE_SETUP: Calls audiod_control_request() to process the setup packet
+ * - For CONTROL_STAGE_DATA: Calls audiod_control_complete() to finalize the request
+ * - For other stages (ACK): Returns true to indicate successful completion
+ * 
+ * This callback is registered with the USB device stack and is invoked automatically
+ * when control transfers are directed to the Audio Class interface.
+ * 
+ * @param[in] rhport    USB port number
+ * @param[in] stage     Current stage of the control transfer (SETUP, DATA, or ACK)
+ * @param[in] request   Pointer to the control request structure
+ * 
+ * @return true         If the stage was processed successfully
+ * @return false        If an error occurred during processing
+ */
 bool     audiod_control_xfer_cb(uint8_t rhport, uint8_t stage, tusb_control_request_t const * request);
+
+/**
+ * @brief Callback for handling audio data transfers
+ * 
+ * @details This function is called by the USB device stack when a data transfer
+ * completes on an audio endpoint. It handles transfers for both IN (device to host)
+ * and OUT (host to device) endpoints, as well as interrupt endpoints.
+ * 
+ * The function operates as follows:
+ * - Searches for the audio function associated with the endpoint address
+ * - For interrupt endpoints: Calls tud_audio_int_done_cb() to notify the application
+ * - For IN endpoints (device to host):
+ *   - Handles isochronous transfers according to USB 2.0 specification
+ *   - Prepares the next packet for transmission
+ *   - Calls tud_audio_tx_done_pre_load_cb() to allow application processing
+ *   - Handles audio encoding if enabled
+ * - For OUT endpoints (host to device):
+ *   - Processes received audio data
+ *   - Calls tud_audio_rx_done_pre_read_cb() to allow application processing
+ *   - Handles audio decoding if enabled
+ *   - Prepares for the next reception
+ * 
+ * @param[in] rhport          USB port number
+ * @param[in] edpt_addr       Endpoint address
+ * @param[in] result          Result of the transfer (successful or failed)
+ * @param[in] xferred_bytes   Number of bytes transferred
+ * 
+ * @return true               If the callback was handled successfully
+ * @return false              If an error occurred during processing
+ */
 bool     audiod_xfer_cb        (uint8_t rhport, uint8_t edpt_addr, xfer_result_t result, uint32_t xferred_bytes);
+
+/**
+ * @brief Process Start of Frame (SOF) interrupt for audio feedback
+ * 
+ * @details This function is called by the USB device stack when a Start of Frame (SOF)
+ * interrupt is received. It is primarily used to calculate and update feedback values
+ * for isochronous audio endpoints that implement adaptive synchronization.
+ * 
+ * When both OUT endpoints and feedback endpoints are enabled, this function:
+ * - Iterates through all configured audio functions
+ * - For each function with a feedback endpoint configured (audio->ep_fb != 0):
+ *   - Calculates the appropriate interval for feedback updates based on speed
+ *   - Calls tud_audio_feedback_interval_isr() at the calculated intervals
+ * 
+ * The feedback mechanism is described in USB 2.0 specification section 5.12.4.2,
+ * allowing the device to communicate its actual sampling rate to the host for
+ * proper synchronization.
+ * 
+ * @param[in] rhport        USB port number
+ * @param[in] frame_count   Current USB frame number
+ */
 void     audiod_sof_isr        (uint8_t rhport, uint32_t frame_count);
 
 #ifdef __cplusplus
@@ -719,5 +1411,4 @@ void     audiod_sof_isr        (uint8_t rhport, uint32_t frame_count);
 
 #endif /* _TUSB_AUDIO_DEVICE_H_ */
 
-/** @} */
-/** @} */
+/** @}*/ /* End of AUDIO_DEVICE */

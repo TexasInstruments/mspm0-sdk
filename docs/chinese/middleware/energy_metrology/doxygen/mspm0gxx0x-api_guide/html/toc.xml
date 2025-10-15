@@ -39,6 +39,8 @@
         <topic label="crcPassCount" href="struct_a_d_s___instance.html#ab542bffc68423b7903ed12710f3a977e"/>
         <topic label="crcFailCount" href="struct_a_d_s___instance.html#af0cb43d1e1054d507cb6c639f00f4647"/>
         <topic label="errors" href="struct_a_d_s___instance.html#a7aedc7c88a02b700ffce1e2d0b761001"/>
+        <topic label="gain1" href="struct_a_d_s___instance.html#aef2119aaf0496905c20db18bcb3ae303"/>
+        <topic label="gain2" href="struct_a_d_s___instance.html#aafdacbf5b9b96c9b105c89a26f222944"/>
       </topic>
       <topic label="ADS131M02_CLOCK_ADDRESS_DATA" href="group___a_d_s131_m0x.html#ga9308db6344a0423ab6afd8cc99d5ac21"/>
       <topic label="ADS131M02_MODE_ADDRESS_DATA" href="group___a_d_s131_m0x.html#gad1a2b8601d01d2859a5610e314f40063"/>
@@ -1489,6 +1491,10 @@
       <topic label="GEN_GPIO_IN_PINI_02_PORT" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___m0_g3507___h_a_l.html#ga266fee814d882d0af58c7c88634a11ab"/>
       <topic label="GEN_GPIO_IN_PINI_03_PORT" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___m0_g3507___h_a_l.html#gabcf8ef9d0a73e7acb4a269ca5738c7f2"/>
       <topic label="GEN_GPIO_IN_PINI_04_PORT" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___m0_g3507___h_a_l.html#ga59b0964e2f3e1520813ba0cdfeb38019"/>
+      <topic label="GEN_GPIO_IN_PINI_05_PORT" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___m0_g3507___h_a_l.html#gae35be8fe53b67977f5b8308332d24b5a"/>
+      <topic label="GEN_GPIO_IN_PINI_06_PORT" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___m0_g3507___h_a_l.html#ga28ced9a5603671178b8576af79231bb2"/>
+      <topic label="GEN_GPIO_IN_PINI_07_PORT" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___m0_g3507___h_a_l.html#ga7f7b27b3702b940037db4dcf9bdb90aa"/>
+      <topic label="GEN_GPIO_IN_PINI_08_PORT" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___m0_g3507___h_a_l.html#gae5d4f0a37733b540ddba048a764076a8"/>
       <topic label="HAL_GPIOInstance" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___m0_g3507___h_a_l.html#ga23eed94bab6780b3f11ba9ab8d05f84a"/>
       <topic label="HAL_SPIInstance" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___m0_g3507___h_a_l.html#ga5eb849cd196a4fff81a5048f6c2484d0"/>
       <topic label="HAL_UARTInstance" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___m0_g3507___h_a_l.html#gabbfa45da7ea54806fa0ab46fa19e768f"/>
@@ -1506,6 +1512,9 @@
         <topic label="HAL_GPIO_IN_02" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___m0_g3507___h_a_l.html#ggac635f165de0baac53708e407f4cb55e1a12029c9ab80694ad0696f2dc28630523"/>
         <topic label="HAL_GPIO_IN_03" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___m0_g3507___h_a_l.html#ggac635f165de0baac53708e407f4cb55e1a877d28f12c77483067b20ad6684f0742"/>
         <topic label="HAL_GPIO_IN_04" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___m0_g3507___h_a_l.html#ggac635f165de0baac53708e407f4cb55e1abaaabebce8848d7ae02d3ece66f7ae22"/>
+        <topic label="HAL_GPIO_IN_05" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___m0_g3507___h_a_l.html#ggac635f165de0baac53708e407f4cb55e1a2651949a5ecafe062563e5b1769170c6"/>
+        <topic label="HAL_GPIO_IN_06" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___m0_g3507___h_a_l.html#ggac635f165de0baac53708e407f4cb55e1a78d14879b60a9ba8220ca769a7811a37"/>
+        <topic label="HAL_GPIO_IN_07" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___m0_g3507___h_a_l.html#ggac635f165de0baac53708e407f4cb55e1aed4ed6ba66a8b840a6da092a7fb150cf"/>
         <topic label="HAL_GPIO_IN_MAX" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___m0_g3507___h_a_l.html#ggac635f165de0baac53708e407f4cb55e1a59e6ad55e062a1d170c5666010c83c5e"/>
       </topic>
       <topic label="HAL_GPIO_OUT" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___m0_g3507___h_a_l.html#ga8e1967170bf4efd016e423bdbbba880b">
@@ -1858,6 +1867,7 @@
         <topic label="operatingMode" href="structmetrology_data.html#a8f23b3fded8b054d0e86070f841be6f1"/>
         <topic label="activePulse" href="structmetrology_data.html#a81d30245ad80cac3dd0d1d7be1fe860a"/>
         <topic label="reactivePulse" href="structmetrology_data.html#a9959ebf8ed9fa9334c54e94146a63be0"/>
+        <topic label="rogowskiSupportEnable" href="structmetrology_data.html#a22b06896db4c8b939a59e719b54d1395"/>
       </topic>
       <topic label="PI2" href="group___metrology.html#ga2750dfdda752269a036f487a4a34b849"/>
       <topic label="calInfo" href="group___metrology.html#ga4bce4a1aa5993e89a32dfd31e7a8fc72"/>
@@ -2178,6 +2188,8 @@
         <topic label="crcPassCount" href="struct_a_d_s___instance.html#ab542bffc68423b7903ed12710f3a977e"/>
         <topic label="crcFailCount" href="struct_a_d_s___instance.html#af0cb43d1e1054d507cb6c639f00f4647"/>
         <topic label="errors" href="struct_a_d_s___instance.html#a7aedc7c88a02b700ffce1e2d0b761001"/>
+        <topic label="gain1" href="struct_a_d_s___instance.html#aef2119aaf0496905c20db18bcb3ae303"/>
+        <topic label="gain2" href="struct_a_d_s___instance.html#aafdacbf5b9b96c9b105c89a26f222944"/>
       </topic>
       <topic label="AMC_channelData" href="struct_a_m_c__channel_data.html">
         <topic label="response" href="struct_a_m_c__channel_data.html#a4ded6e42cbc27b4bb687c41c87b90c6e"/>
@@ -2375,6 +2387,7 @@
         <topic label="operatingMode" href="structmetrology_data.html#a8f23b3fded8b054d0e86070f841be6f1"/>
         <topic label="activePulse" href="structmetrology_data.html#a81d30245ad80cac3dd0d1d7be1fe860a"/>
         <topic label="reactivePulse" href="structmetrology_data.html#a9959ebf8ed9fa9334c54e94146a63be0"/>
+        <topic label="rogowskiSupportEnable" href="structmetrology_data.html#a22b06896db4c8b939a59e719b54d1395"/>
       </topic>
       <topic label="neutralDPSet" href="structneutral_d_p_set.html">
         <topic label="currentSq" href="structneutral_d_p_set.html#ad6d14ca2820d8ba2e4d2c8a87894f5e1"/>
@@ -2540,6 +2553,7 @@
         <topic label="d" href="functions_d.html"/>
         <topic label="e" href="functions_e.html"/>
         <topic label="f" href="functions_f.html"/>
+        <topic label="g" href="functions_g.html"/>
         <topic label="i" href="functions_i.html"/>
         <topic label="l" href="functions_l.html"/>
         <topic label="m" href="functions_m.html"/>
@@ -2561,6 +2575,7 @@
         <topic label="d" href="functions_vars_d.html"/>
         <topic label="e" href="functions_vars_e.html"/>
         <topic label="f" href="functions_vars_f.html"/>
+        <topic label="g" href="functions_vars_g.html"/>
         <topic label="i" href="functions_vars_i.html"/>
         <topic label="l" href="functions_vars_l.html"/>
         <topic label="m" href="functions_vars_m.html"/>
@@ -3962,6 +3977,10 @@
         <topic label="GEN_GPIO_IN_PINI_02_PORT" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___m0_g3507___h_a_l.html#ga266fee814d882d0af58c7c88634a11ab"/>
         <topic label="GEN_GPIO_IN_PINI_03_PORT" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___m0_g3507___h_a_l.html#gabcf8ef9d0a73e7acb4a269ca5738c7f2"/>
         <topic label="GEN_GPIO_IN_PINI_04_PORT" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___m0_g3507___h_a_l.html#ga59b0964e2f3e1520813ba0cdfeb38019"/>
+        <topic label="GEN_GPIO_IN_PINI_05_PORT" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___m0_g3507___h_a_l.html#gae35be8fe53b67977f5b8308332d24b5a"/>
+        <topic label="GEN_GPIO_IN_PINI_06_PORT" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___m0_g3507___h_a_l.html#ga28ced9a5603671178b8576af79231bb2"/>
+        <topic label="GEN_GPIO_IN_PINI_07_PORT" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___m0_g3507___h_a_l.html#ga7f7b27b3702b940037db4dcf9bdb90aa"/>
+        <topic label="GEN_GPIO_IN_PINI_08_PORT" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___m0_g3507___h_a_l.html#gae5d4f0a37733b540ddba048a764076a8"/>
         <topic label="HAL_GPIOInstance" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___m0_g3507___h_a_l.html#ga23eed94bab6780b3f11ba9ab8d05f84a"/>
         <topic label="HAL_SPIInstance" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___m0_g3507___h_a_l.html#ga5eb849cd196a4fff81a5048f6c2484d0"/>
         <topic label="HAL_UARTInstance" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___m0_g3507___h_a_l.html#gabbfa45da7ea54806fa0ab46fa19e768f"/>
@@ -3979,6 +3998,9 @@
           <topic label="HAL_GPIO_IN_02" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___m0_g3507___h_a_l.html#ggac635f165de0baac53708e407f4cb55e1a12029c9ab80694ad0696f2dc28630523"/>
           <topic label="HAL_GPIO_IN_03" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___m0_g3507___h_a_l.html#ggac635f165de0baac53708e407f4cb55e1a877d28f12c77483067b20ad6684f0742"/>
           <topic label="HAL_GPIO_IN_04" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___m0_g3507___h_a_l.html#ggac635f165de0baac53708e407f4cb55e1abaaabebce8848d7ae02d3ece66f7ae22"/>
+          <topic label="HAL_GPIO_IN_05" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___m0_g3507___h_a_l.html#ggac635f165de0baac53708e407f4cb55e1a2651949a5ecafe062563e5b1769170c6"/>
+          <topic label="HAL_GPIO_IN_06" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___m0_g3507___h_a_l.html#ggac635f165de0baac53708e407f4cb55e1a78d14879b60a9ba8220ca769a7811a37"/>
+          <topic label="HAL_GPIO_IN_07" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___m0_g3507___h_a_l.html#ggac635f165de0baac53708e407f4cb55e1aed4ed6ba66a8b840a6da092a7fb150cf"/>
           <topic label="HAL_GPIO_IN_MAX" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___m0_g3507___h_a_l.html#ggac635f165de0baac53708e407f4cb55e1a59e6ad55e062a1d170c5666010c83c5e"/>
         </topic>
         <topic label="HAL_GPIO_OUT" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___m0_g3507___h_a_l.html#ga8e1967170bf4efd016e423bdbbba880b">

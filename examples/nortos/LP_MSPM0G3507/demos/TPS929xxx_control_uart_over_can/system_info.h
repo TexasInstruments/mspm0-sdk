@@ -34,6 +34,8 @@
 #define SYSTEM_INFO_H_
 
 #include <stdint.h>
+
+// Define which device to use
 #include "led_driver/TPS929240.h"
 
 #define FALSE (0x00)
@@ -54,6 +56,9 @@
 #define PROG_DEFAULT_EEPROM FALSE
 // Use external device address settings for EEPROM programming
 #define USE_REF_PIN_FOR_EEPROM_PROG FALSE
+
+// Choose whether to use PWM to control external DCDC depending on ADC voltage
+#define EXTERNAL_DC_CONTROL_PWM FALSE
 
 extern const uint16_t device_address[DEVICE_CNT];
 

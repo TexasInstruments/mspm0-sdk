@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0H321X Driver Library
-   &#160;<span id="projectnumber">2.06.00.05</span>
+   &#160;<span id="projectnumber">2.07.00.05</span>
    </div>
   </td>
  </tr>
@@ -1600,10 +1600,11 @@ false if peripheral wasn't reset </dd></dl>
 <p>Set GPIO pin's wakeup enable bit. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">pincmIndex</td><td>The PINCM register index that maps to the target GPIO pin. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pincmIndex</td><td>The PINCM register index that maps to the target GPIO pin.</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section note"><dt>Note</dt><dd>Before enabling wakeup, the wakeup compare value should be configured first in <a class="el" href="group___g_p_i_o.html#ga0f2d6988b06b367efc4e1e4f7caca9f5">DL_GPIO_setWakeupCompareValue</a>. </dd></dl>
 
 <p>References <a class="el" href="group___g_p_i_o.html#gga9103dc3316c3493251bc46cf4d139dcdaaf215f9396c747952be2fcf58ca14d3e">DL_GPIO_WAKEUP_ENABLE</a>.</p>
 

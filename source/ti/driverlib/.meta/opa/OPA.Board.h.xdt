@@ -69,8 +69,8 @@
 %   /* GPIO Definition  */
 %       let gpioStr = "GPIO_"+inst.$name;
 % /* figure out pin number and pinCMx */
-%       if (inst.pinIn0PosUsed){
 %       let in0PosPinName = "In0Pos"+"Pin";
+%       if (inst.pinIn0PosUsed && Common.isPinMuxable(inst,in0PosPinName)){
 %       let in0PosPackagePin = inst.peripheral[in0PosPinName].$solution.packagePinName;
 %       let in0PosPinCM = Common.getPinCM(in0PosPackagePin,inst,"IN0+");
 %       let in0PosGpioName = system.deviceData.devicePins[in0PosPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
@@ -92,8 +92,8 @@
 `in0PosFuncStr.padEnd(50, " ")+in0PosFuncStr2.padStart(30, " ")`
 % //#define GPIO_x_IOMUX_IN0POS_FUNC
 %}
-%       if (inst.pinIn1PosUsed){
 %       let in1PosPinName = "In1Pos"+"Pin";
+%       if (inst.pinIn1PosUsed && Common.isPinMuxable(inst,in1PosPinName)){
 %       let in1PosPackagePin = inst.peripheral[in1PosPinName].$solution.packagePinName;
 %       let in1PosPinCM = Common.getPinCM(in1PosPackagePin,inst,"IN1+");
 %       let in1PosGpioName = system.deviceData.devicePins[in1PosPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
@@ -115,8 +115,8 @@
 `in1PosFuncStr.padEnd(50, " ")+in1PosFuncStr2.padStart(30, " ")`
 % //#define GPIO_x_IOMUX_IN1POS_FUNC
 %}
-%       if (inst.pinIn0NegUsed){
 %       let in0NegPinName = "In0Neg"+"Pin";
+%       if (inst.pinIn0NegUsed && Common.isPinMuxable(inst,in0NegPinName)){
 %       let in0NegPackagePin = inst.peripheral[in0NegPinName].$solution.packagePinName;
 %       let in0NegPinCM = Common.getPinCM(in0NegPackagePin,inst,"IN0-");
 %       let in0NegGpioName = system.deviceData.devicePins[in0NegPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
@@ -138,8 +138,8 @@
 `in0NegFuncStr.padEnd(50, " ")+in0NegFuncStr2.padStart(30, " ")`
 % //#define GPIO_x_IOMUX_IN0NEG_FUNC
 %}
-%       if (inst.pinIn1NegUsed){
 %       let in1NegPinName = "In1Neg"+"Pin";
+%       if (inst.pinIn1NegUsed && Common.isPinMuxable(inst,in1NegPinName)){
 %       let in1NegPackagePin = inst.peripheral[in1NegPinName].$solution.packagePinName;
 %       let in1NegPinCM = Common.getPinCM(in1NegPackagePin,inst,"IN1-");
 %       let in1NegGpioName = system.deviceData.devicePins[in1NegPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
@@ -161,8 +161,8 @@
 `in1NegFuncStr.padEnd(50, " ")+in1NegFuncStr2.padStart(30, " ")`
 % //#define GPIO_x_IOMUX_IN1NEG_FUNC
 %}
-%       if (inst.pinOutUsed){
 %       let outPinName = "Out"+"Pin";
+%       if (inst.pinOutUsed && Common.isPinMuxable(inst,outPinName)){
 %       let outPackagePin = inst.peripheral[outPinName].$solution.packagePinName;
 %       let outPinCM = Common.getPinCM(outPackagePin,inst,"OUT");
 %       let outGpioName = system.deviceData.devicePins[outPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;

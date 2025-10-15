@@ -52,7 +52,7 @@
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>
-        <file path="../LP_MSPM0H3216/i2c_target_rw_multibyte_fifo_poll.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="LP_MSPM0H3216">
+        <file path="../i2c_target_rw_multibyte_fifo_poll.c" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
         <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
         </file>

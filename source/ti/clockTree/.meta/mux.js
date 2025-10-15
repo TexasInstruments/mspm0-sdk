@@ -30,6 +30,9 @@ function validate(inst, validation){
 				}
 			}
 		}
+		else if(clockTreeEn){
+        	validation.logInfo("USB Peripheral is not currently enabled", inst);
+		}
 	}
 }
 

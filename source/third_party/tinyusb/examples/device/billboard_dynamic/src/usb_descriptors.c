@@ -25,7 +25,7 @@
 
 #include "bsp/board_api.h"
 #include "tusb.h"
-#include "usb_descriptor.h"
+#include "usb_descriptors.h"
 
 /* 
  * A combination of interfaces must have a unique product id, since PC will save device driver after the first plug.
@@ -253,8 +253,6 @@ static uint16_t _desc_str[32 + 1];
 uint16_t const *tud_descriptor_string_cb(uint8_t index, uint16_t langid) {
   (void) langid;
   size_t chr_count;
-
-  // TU_LOG2("Henry Debug -> String descriptor callback for index: %x", index);
 
   switch ( index ) {
   case STRID_LANGID:

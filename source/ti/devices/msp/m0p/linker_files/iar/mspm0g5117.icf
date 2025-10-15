@@ -66,7 +66,7 @@ define symbol __ICFEDIT_region_DATA_start__ = 0x41D00000;
 define symbol __ICFEDIT_region_DATA_end__   = 0x41D01FFF;
 /*-Sizes-*/
 define symbol __ICFEDIT_size_proc_stack__ = 0x0000;
-define symbol __ICFEDIT_size_cstack__     = 0x400;
+define symbol __ICFEDIT_size_cstack__     = 0x800;
 define symbol __ICFEDIT_size_heap__       = 0x400;
 /**** End of ICF editor section. ###ICF###*/
 

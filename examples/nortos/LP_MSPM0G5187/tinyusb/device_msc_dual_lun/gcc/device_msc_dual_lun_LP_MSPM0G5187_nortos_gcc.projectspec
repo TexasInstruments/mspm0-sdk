@@ -150,14 +150,6 @@
         </file>
         <file path="../third_party/tinyusb/hw/bsp/mspm0/family.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/hw/bsp/mspm0">
         </file>
-        <file path="../third_party/tinyusb/hw/mcu/ti/mspm0/system_mspm0g511x.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/hw/mcu/ti/mspm0">
-        </file>
-        <file path="../third_party/tinyusb/hw/mcu/ti/mspm0/system_mspm0g511x.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/hw/mcu/ti/mspm0">
-        </file>
-        <file path="../third_party/tinyusb/hw/mcu/ti/mspm0/system_mspm0g518x.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/hw/mcu/ti/mspm0">
-        </file>
-        <file path="../third_party/tinyusb/hw/mcu/ti/mspm0/system_mspm0g518x.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/hw/mcu/ti/mspm0">
-        </file>
         <file path="../third_party/tinyusb/src/class/audio/audio.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/audio">
         </file>
         <file path="../third_party/tinyusb/src/class/audio/audio_device.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/audio">
@@ -322,21 +314,21 @@
         </file>
         <file path="../third_party/tinyusb/src/tusb_option.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src">
         </file>
-        <file path="../third_party/tinyusb/lib/embedded-cli/embedded_cli.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/lib/embedded-cli">
+        <file path="../third_party/tinyusb/lib/embedded-cli/embedded_cli.h" openOnCreation="false" excludeFromBuild="true" action="copy" targetDirectory="third_party/tinyusb/lib/embedded-cli">
         </file>
         <file path="../third_party/tinyusb/lib/fatfs/source/diskio.c" openOnCreation="false" excludeFromBuild="true" action="copy" targetDirectory="third_party/tinyusb/lib/fatfs/source">
         </file>
-        <file path="../third_party/tinyusb/lib/fatfs/source/diskio.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/lib/fatfs/source">
+        <file path="../third_party/tinyusb/lib/fatfs/source/diskio.h" openOnCreation="false" excludeFromBuild="true" action="copy" targetDirectory="third_party/tinyusb/lib/fatfs/source">
         </file>
-        <file path="../third_party/tinyusb/lib/fatfs/source/ff.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/lib/fatfs/source">
+        <file path="../third_party/tinyusb/lib/fatfs/source/ff.c" openOnCreation="false" excludeFromBuild="true" action="copy" targetDirectory="third_party/tinyusb/lib/fatfs/source">
         </file>
-        <file path="../third_party/tinyusb/lib/fatfs/source/ff.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/lib/fatfs/source">
+        <file path="../third_party/tinyusb/lib/fatfs/source/ff.h" openOnCreation="false" excludeFromBuild="true" action="copy" targetDirectory="third_party/tinyusb/lib/fatfs/source">
         </file>
-        <file path="../third_party/tinyusb/lib/fatfs/source/ffconf.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/lib/fatfs/source">
+        <file path="../third_party/tinyusb/lib/fatfs/source/ffconf.h" openOnCreation="false" excludeFromBuild="true" action="copy" targetDirectory="third_party/tinyusb/lib/fatfs/source">
         </file>
-        <file path="../third_party/tinyusb/lib/fatfs/source/ffsystem.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/lib/fatfs/source">
+        <file path="../third_party/tinyusb/lib/fatfs/source/ffsystem.c" openOnCreation="false" excludeFromBuild="true" action="copy" targetDirectory="third_party/tinyusb/lib/fatfs/source">
         </file>
-        <file path="../third_party/tinyusb/lib/fatfs/source/ffunicode.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/lib/fatfs/source">
+        <file path="../third_party/tinyusb/lib/fatfs/source/ffunicode.c" openOnCreation="false" excludeFromBuild="true" action="copy" targetDirectory="third_party/tinyusb/lib/fatfs/source">
         </file>
         <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
         </file>

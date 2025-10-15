@@ -229,7 +229,7 @@ typedef struct TU_ATTR_PACKED {
     bool cardIsInitialized;
 } SD_Card_t;
 
-SD_Card_t mspm0SdCard;
+extern SD_Card_t mspm0SdCard;
 
 uint8_t sendSdCardCommand(uint8_t cmd, uint32_t arg, uint8_t crc,
     uint8_t token, uint8_t* responseBuffer, uint32_t responseLength);

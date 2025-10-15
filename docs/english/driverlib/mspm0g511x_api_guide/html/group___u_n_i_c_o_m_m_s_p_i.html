@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0G511X Driver Library
-   &#160;<span id="projectnumber">2.06.00.05</span>
+   &#160;<span id="projectnumber">2.07.00.05</span>
    </div>
   </td>
  </tr>
@@ -515,9 +515,6 @@ Functions</h2></td></tr>
 <tr class="memitem:gaaf86bab556d03359b6ac5cc97d7d2206"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#gaaf86bab556d03359b6ac5cc97d7d2206">DL_SPI_receiveData16</a> (UNICOMM_Inst_Regs *unicomm)</td></tr>
 <tr class="memdesc:gaaf86bab556d03359b6ac5cc97d7d2206"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads 16-bit data from the RX FIFO.  <a href="#gaaf86bab556d03359b6ac5cc97d7d2206">More...</a><br /></td></tr>
 <tr class="separator:gaaf86bab556d03359b6ac5cc97d7d2206"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga4fe93be261ce5deb6fd29ae537e75e4f"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#ga4fe93be261ce5deb6fd29ae537e75e4f">DL_SPI_receiveData32</a> (UNICOMM_Inst_Regs *unicomm)</td></tr>
-<tr class="memdesc:ga4fe93be261ce5deb6fd29ae537e75e4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads 32-bit data from the RX FIFO.  <a href="#ga4fe93be261ce5deb6fd29ae537e75e4f">More...</a><br /></td></tr>
-<tr class="separator:ga4fe93be261ce5deb6fd29ae537e75e4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gad7d35e4a02c9992ffbdf902433382237"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#gad7d35e4a02c9992ffbdf902433382237">DL_SPI_enableInterrupt</a> (UNICOMM_Inst_Regs *unicomm, uint32_t interruptMask)</td></tr>
 <tr class="memdesc:gad7d35e4a02c9992ffbdf902433382237"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable SPI interrupts.  <a href="#gad7d35e4a02c9992ffbdf902433382237">More...</a><br /></td></tr>
 <tr class="separator:gad7d35e4a02c9992ffbdf902433382237"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -554,9 +551,6 @@ Functions</h2></td></tr>
 <tr class="memitem:gaba60833489ba62d5c55c43f39b662585"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#gaba60833489ba62d5c55c43f39b662585">DL_SPI_receiveDataBlocking16</a> (UNICOMM_Inst_Regs *unicomm)</td></tr>
 <tr class="memdesc:gaba60833489ba62d5c55c43f39b662585"><td class="mdescLeft">&#160;</td><td class="mdescRight">Blocks to ensure receive is ready before reading data.  <a href="#gaba60833489ba62d5c55c43f39b662585">More...</a><br /></td></tr>
 <tr class="separator:gaba60833489ba62d5c55c43f39b662585"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga732ab9137e520b2022a794af6cd0795e"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#ga732ab9137e520b2022a794af6cd0795e">DL_SPI_receiveDataBlocking32</a> (UNICOMM_Inst_Regs *unicomm)</td></tr>
-<tr class="memdesc:ga732ab9137e520b2022a794af6cd0795e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Blocks to ensure receive is ready before reading data.  <a href="#ga732ab9137e520b2022a794af6cd0795e">More...</a><br /></td></tr>
-<tr class="separator:ga732ab9137e520b2022a794af6cd0795e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5ab9f9b8aa78f2540df1275bf357f9f6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#ga5ab9f9b8aa78f2540df1275bf357f9f6">DL_SPI_transmitDataCheck8</a> (UNICOMM_Inst_Regs *unicomm, uint8_t data)</td></tr>
 <tr class="memdesc:ga5ab9f9b8aa78f2540df1275bf357f9f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks the TX FIFO before trying to transmit data.  <a href="#ga5ab9f9b8aa78f2540df1275bf357f9f6">More...</a><br /></td></tr>
 <tr class="separator:ga5ab9f9b8aa78f2540df1275bf357f9f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -572,18 +566,12 @@ Functions</h2></td></tr>
 <tr class="memitem:gad4eaa63f4fa765cb88e946e23a8f46dd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#gad4eaa63f4fa765cb88e946e23a8f46dd">DL_SPI_receiveDataCheck16</a> (UNICOMM_Inst_Regs *unicomm, uint16_t *buffer)</td></tr>
 <tr class="memdesc:gad4eaa63f4fa765cb88e946e23a8f46dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks the RX FIFO before trying to transmit data.  <a href="#gad4eaa63f4fa765cb88e946e23a8f46dd">More...</a><br /></td></tr>
 <tr class="separator:gad4eaa63f4fa765cb88e946e23a8f46dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8b4be838ed6765f797f73ad33f8dfe93"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#ga8b4be838ed6765f797f73ad33f8dfe93">DL_SPI_receiveDataCheck32</a> (UNICOMM_Inst_Regs *unicomm, uint32_t *buffer)</td></tr>
-<tr class="memdesc:ga8b4be838ed6765f797f73ad33f8dfe93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks the RX FIFO before trying to transmit data.  <a href="#ga8b4be838ed6765f797f73ad33f8dfe93">More...</a><br /></td></tr>
-<tr class="separator:ga8b4be838ed6765f797f73ad33f8dfe93"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa16d8510a515087e2d47da525e320e45"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#gaa16d8510a515087e2d47da525e320e45">DL_SPI_drainRXFIFO8</a> (UNICOMM_Inst_Regs *unicomm, uint8_t *buffer, uint32_t maxCount)</td></tr>
 <tr class="memdesc:gaa16d8510a515087e2d47da525e320e45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read all available data out of the RX FIFO using 8 bit access.  <a href="#gaa16d8510a515087e2d47da525e320e45">More...</a><br /></td></tr>
 <tr class="separator:gaa16d8510a515087e2d47da525e320e45"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga98f351d19e07c1d2d20f3910179f856a"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#ga98f351d19e07c1d2d20f3910179f856a">DL_SPI_drainRXFIFO16</a> (UNICOMM_Inst_Regs *unicomm, uint16_t *buffer, uint32_t maxCount)</td></tr>
 <tr class="memdesc:ga98f351d19e07c1d2d20f3910179f856a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read all available data out of the RX FIFO using 16 bit access.  <a href="#ga98f351d19e07c1d2d20f3910179f856a">More...</a><br /></td></tr>
 <tr class="separator:ga98f351d19e07c1d2d20f3910179f856a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gae610a2bb82c7289686de2f1eaf42aa03"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#gae610a2bb82c7289686de2f1eaf42aa03">DL_SPI_drainRXFIFO32</a> (UNICOMM_Inst_Regs *unicomm, uint32_t *buffer, uint32_t maxCount)</td></tr>
-<tr class="memdesc:gae610a2bb82c7289686de2f1eaf42aa03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read all available data out of the RX FIFO using 32 bit access.  <a href="#gae610a2bb82c7289686de2f1eaf42aa03">More...</a><br /></td></tr>
-<tr class="separator:gae610a2bb82c7289686de2f1eaf42aa03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gafc4e6291eac270113471579392a03e42"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#gafc4e6291eac270113471579392a03e42">DL_SPI_fillTXFIFO8</a> (UNICOMM_Inst_Regs *unicomm, uint8_t *buffer, uint32_t count)</td></tr>
 <tr class="memdesc:gafc4e6291eac270113471579392a03e42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fill the TX FIFO using 8 bit access.  <a href="#gafc4e6291eac270113471579392a03e42">More...</a><br /></td></tr>
 <tr class="separator:gafc4e6291eac270113471579392a03e42"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -3326,38 +3314,6 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga4fe93be261ce5deb6fd29ae537e75e4f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga4fe93be261ce5deb6fd29ae537e75e4f">&sect;&nbsp;</a></span>DL_SPI_receiveData32()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">__STATIC_INLINE uint32_t DL_SPI_receiveData32 </td>
-          <td>(</td>
-          <td class="paramtype">UNICOMM_Inst_Regs *&#160;</td>
-          <td class="paramname"><em>unicomm</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Reads 32-bit data from the RX FIFO. </p>
-<p>Reads the data from the RX FIFO without checking its status. Use if already sure the RX FIFO has data available. See related APIs for additional receive options.</p>
-<p>Can be used for any data transfers that are less than or equal to 32 bits.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">unicomm</td><td>pointer to the register overlay for the peripheral</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The data in the RX FIFO</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#ga732ab9137e520b2022a794af6cd0795e" title="Blocks to ensure receive is ready before reading data. ">DL_SPI_receiveDataBlocking32</a> </dd>
-<dd>
-<a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#ga8b4be838ed6765f797f73ad33f8dfe93" title="Checks the RX FIFO before trying to transmit data. ">DL_SPI_receiveDataCheck32</a> </dd></dl>
-
-</div>
-</div>
 <a id="gad7d35e4a02c9992ffbdf902433382237"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gad7d35e4a02c9992ffbdf902433382237">&sect;&nbsp;</a></span>DL_SPI_enableInterrupt()</h2>
 
@@ -3630,7 +3586,7 @@ false if peripheral wasn't reset </dd></dl>
   </dd>
 </dl>
 
-<p>References <a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#ga98f351d19e07c1d2d20f3910179f856a">DL_SPI_drainRXFIFO16()</a>, <a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#gae610a2bb82c7289686de2f1eaf42aa03">DL_SPI_drainRXFIFO32()</a>, <a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#gaa16d8510a515087e2d47da525e320e45">DL_SPI_drainRXFIFO8()</a>, <a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#ga7e0138ae1f932dfb0d538d7135449233">DL_SPI_fillTXFIFO16()</a>, <a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#gae9e94c8801a49193786ea9d810b2b099">DL_SPI_fillTXFIFO32()</a>, <a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#gafc4e6291eac270113471579392a03e42">DL_SPI_fillTXFIFO8()</a>, <a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#gaba60833489ba62d5c55c43f39b662585">DL_SPI_receiveDataBlocking16()</a>, <a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#ga732ab9137e520b2022a794af6cd0795e">DL_SPI_receiveDataBlocking32()</a>, <a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#gae657f32bdae24a372e5334f71d2d806a">DL_SPI_receiveDataBlocking8()</a>, <a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#gad4eaa63f4fa765cb88e946e23a8f46dd">DL_SPI_receiveDataCheck16()</a>, <a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#ga8b4be838ed6765f797f73ad33f8dfe93">DL_SPI_receiveDataCheck32()</a>, <a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#ga78bc67797b591041f1c4c21225f5e0c5">DL_SPI_receiveDataCheck8()</a>, <a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#gaae2f6d36b802fcb87123119f585f6a92">DL_SPI_transmitDataBlocking16()</a>, <a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#ga8dad44580886820cc135c94a478ec342">DL_SPI_transmitDataBlocking32()</a>, <a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#ga9cceab3b37b7e32f2d22a255cdb575f4">DL_SPI_transmitDataBlocking8()</a>, <a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#gae31d2a3a683ddd7946af0b0c7af4303d">DL_SPI_transmitDataCheck16()</a>, <a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#gae68323e72dcb295d91704e892df9aa8a">DL_SPI_transmitDataCheck32()</a>, and <a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#ga5ab9f9b8aa78f2540df1275bf357f9f6">DL_SPI_transmitDataCheck8()</a>.</p>
+<p>References <a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#ga98f351d19e07c1d2d20f3910179f856a">DL_SPI_drainRXFIFO16()</a>, <a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#gaa16d8510a515087e2d47da525e320e45">DL_SPI_drainRXFIFO8()</a>, <a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#ga7e0138ae1f932dfb0d538d7135449233">DL_SPI_fillTXFIFO16()</a>, <a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#gae9e94c8801a49193786ea9d810b2b099">DL_SPI_fillTXFIFO32()</a>, <a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#gafc4e6291eac270113471579392a03e42">DL_SPI_fillTXFIFO8()</a>, <a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#gaba60833489ba62d5c55c43f39b662585">DL_SPI_receiveDataBlocking16()</a>, <a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#gae657f32bdae24a372e5334f71d2d806a">DL_SPI_receiveDataBlocking8()</a>, <a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#gad4eaa63f4fa765cb88e946e23a8f46dd">DL_SPI_receiveDataCheck16()</a>, <a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#ga78bc67797b591041f1c4c21225f5e0c5">DL_SPI_receiveDataCheck8()</a>, <a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#gaae2f6d36b802fcb87123119f585f6a92">DL_SPI_transmitDataBlocking16()</a>, <a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#ga8dad44580886820cc135c94a478ec342">DL_SPI_transmitDataBlocking32()</a>, <a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#ga9cceab3b37b7e32f2d22a255cdb575f4">DL_SPI_transmitDataBlocking8()</a>, <a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#gae31d2a3a683ddd7946af0b0c7af4303d">DL_SPI_transmitDataCheck16()</a>, <a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#gae68323e72dcb295d91704e892df9aa8a">DL_SPI_transmitDataCheck32()</a>, and <a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#ga5ab9f9b8aa78f2540df1275bf357f9f6">DL_SPI_transmitDataCheck8()</a>.</p>
 
 </div>
 </div>
@@ -3829,40 +3785,6 @@ false if peripheral wasn't reset </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#ga1e9272584a58f80d633cb1f44b39c44c" title="Writes 16-bit data into the TX FIFO for transmit. ">DL_SPI_transmitData16</a> </dd>
 <dd>
 <a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#gae31d2a3a683ddd7946af0b0c7af4303d" title="Checks the TX FIFO before trying to transmit data. ">DL_SPI_transmitDataCheck16</a> </dd></dl>
-
-<p>Referenced by <a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#ga5bc01ffbdbd9aab598b77531168d1ea0">DL_SPI_clearInterruptStatus()</a>.</p>
-
-</div>
-</div>
-<a id="ga732ab9137e520b2022a794af6cd0795e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga732ab9137e520b2022a794af6cd0795e">&sect;&nbsp;</a></span>DL_SPI_receiveDataBlocking32()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint32_t DL_SPI_receiveDataBlocking32 </td>
-          <td>(</td>
-          <td class="paramtype">UNICOMM_Inst_Regs *&#160;</td>
-          <td class="paramname"><em>unicomm</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Blocks to ensure receive is ready before reading data. </p>
-<p>Reads the data from the RX FIFO after blocking to ensure the RX FIFO is not empty. Will wait indefinitely until there is data in the RX FIFO. See related APIs for additional receive options.</p>
-<p>Can be used for any data transfers that are less than or equal to 32 bits.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">unicomm</td><td>pointer to the register overlay for the peripheral</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The data in the RX FIFO</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#gae37937985040de05dada3216a179f19f" title="Writes 32-bit data into the TX FIFO for transmit. ">DL_SPI_transmitData32</a> </dd>
-<dd>
-<a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#gae68323e72dcb295d91704e892df9aa8a" title="Checks the TX FIFO before trying to transmit data. ">DL_SPI_transmitDataCheck32</a> </dd></dl>
 
 <p>Referenced by <a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#ga5bc01ffbdbd9aab598b77531168d1ea0">DL_SPI_clearInterruptStatus()</a>.</p>
 
@@ -4128,58 +4050,6 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga8b4be838ed6765f797f73ad33f8dfe93"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga8b4be838ed6765f797f73ad33f8dfe93">&sect;&nbsp;</a></span>DL_SPI_receiveDataCheck32()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool DL_SPI_receiveDataCheck32 </td>
-          <td>(</td>
-          <td class="paramtype">UNICOMM_Inst_Regs *&#160;</td>
-          <td class="paramname"><em>unicomm</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t *&#160;</td>
-          <td class="paramname"><em>buffer</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Checks the RX FIFO before trying to transmit data. </p>
-<p>Checks if the RX FIFO is already empty before trying to read new data from the FIFO. Exits immediately if empty rather than trying to block. See related APIs for additional receive options.</p>
-<p>Can be used for any data transfers that are less than or equal to 32 bits.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">unicomm</td><td>pointer to the register overlay for the peripheral </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">buffer</td><td>a buffer to write the received data into</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>If the receive occurred</dd></dl>
-<dl class="retval"><dt>Return values</dt><dd>
-  <table class="retval">
-    <tr><td class="paramname">true</td><td>if data was read from the RX FIFO </td></tr>
-    <tr><td class="paramname">false</td><td>if the RX FIFO was empty and data was not read</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#ga4fe93be261ce5deb6fd29ae537e75e4f" title="Reads 32-bit data from the RX FIFO. ">DL_SPI_receiveData32</a> </dd>
-<dd>
-<a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#ga732ab9137e520b2022a794af6cd0795e" title="Blocks to ensure receive is ready before reading data. ">DL_SPI_receiveDataBlocking32</a> </dd></dl>
-
-<p>Referenced by <a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#ga5bc01ffbdbd9aab598b77531168d1ea0">DL_SPI_clearInterruptStatus()</a>.</p>
-
-</div>
-</div>
 <a id="gaa16d8510a515087e2d47da525e320e45"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gaa16d8510a515087e2d47da525e320e45">&sect;&nbsp;</a></span>DL_SPI_drainRXFIFO8()</h2>
 
@@ -4269,53 +4139,6 @@ false if peripheral wasn't reset </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Number of halfwords read from the RX FIFO </dd></dl>
-
-<p>Referenced by <a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#ga5bc01ffbdbd9aab598b77531168d1ea0">DL_SPI_clearInterruptStatus()</a>.</p>
-
-</div>
-</div>
-<a id="gae610a2bb82c7289686de2f1eaf42aa03"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gae610a2bb82c7289686de2f1eaf42aa03">&sect;&nbsp;</a></span>DL_SPI_drainRXFIFO32()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint32_t DL_SPI_drainRXFIFO32 </td>
-          <td>(</td>
-          <td class="paramtype">UNICOMM_Inst_Regs *&#160;</td>
-          <td class="paramname"><em>unicomm</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t *&#160;</td>
-          <td class="paramname"><em>buffer</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>maxCount</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Read all available data out of the RX FIFO using 32 bit access. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">unicomm</td><td>Pointer to the register overlay for the peripheral </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">buffer</td><td>Buffer to write received data into </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">maxCount</td><td>Max number of words to read from the RX FIFO</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Number of words read from the RX FIFO </dd></dl>
 
 <p>Referenced by <a class="el" href="group___u_n_i_c_o_m_m_s_p_i.html#ga5bc01ffbdbd9aab598b77531168d1ea0">DL_SPI_clearInterruptStatus()</a>.</p>
 

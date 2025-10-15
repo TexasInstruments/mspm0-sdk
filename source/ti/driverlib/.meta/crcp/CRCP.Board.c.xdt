@@ -41,6 +41,8 @@
 
     /* shorthand names for some common references in template below */
     let inst = CRC.$static;
+
+    let CRCInstance = inst?.peripheral?.$solution?.peripheralName;
     if (inst.length == 0) return;
 
 
@@ -72,10 +74,10 @@
 % }
 %
 % function printReset(){
-    DL_CRCP_reset(CRCP0);
+    DL_CRCP_reset(`CRCInstance`);
 % }
 % function printPower(){
-    DL_CRCP_enablePower(CRCP0);
+    DL_CRCP_enablePower(`CRCInstance`);
 % }
 %
 % function printGPIO(){
@@ -88,20 +90,20 @@
 SYSCONFIG_WEAK void SYSCFG_DL_CRCP_init(void)
 {
 % if(inst.polynomial.slice(14) == "CUSTOM"){
-    DL_CRCP_setPolynomial(CRCP0, CUSTOM_POLY);
+    DL_CRCP_setPolynomial(`CRCInstance`, CUSTOM_POLY);
 % }
 % else{
-    DL_CRCP_setPolynomial(CRCP0, DL_CRCP_CRCPOLY_POLYNOMIAL_`inst.polynomial.slice(0,2)`_`inst.polynomial.slice(14)`);
+    DL_CRCP_setPolynomial(`CRCInstance`, DL_CRCP_CRCPOLY_POLYNOMIAL_`inst.polynomial.slice(0,2)`_`inst.polynomial.slice(14)`);
 % }
 % let byteswapVar;
 % byteswapVar = (inst.byteswap) ? "ENABLED" : "DISABLED";
-    DL_CRCP_init(CRCP0, DL_CRCP_POLYNOMIAL_SIZE_`inst.polynomial.slice(0,2)`, DL_CRCP_BIT_`inst.bitReverse`,
+    DL_CRCP_init(`CRCInstance`, DL_CRCP_POLYNOMIAL_SIZE_`inst.polynomial.slice(0,2)`, DL_CRCP_BIT_`inst.bitReverse`,
         DL_CRCP_INPUT_ENDIANESS_`inst.endianness`, DL_CRCP_OUTPUT_BYTESWAP_`byteswapVar`);
 
 % if(inst.polynomial.slice(0,2) === "32"){
-    DL_CRCP_setSeed32(CRCP0, CRCP_SEED);
+    DL_CRCP_setSeed32(`CRCInstance`, CRCP_SEED);
 %}else{
-    DL_CRCP_setSeed16(CRCP0, CRCP_SEED);
+    DL_CRCP_setSeed16(`CRCInstance`, CRCP_SEED);
 %}
 }
 %
