@@ -35,19 +35,13 @@
 
 /* Variables for ItoC_FIFO
  * ItoC_FIFO is used to temporarily store message from I2C to CAN */
-#define ItoC_FIFO_SIZE   (10)
-uint16_t ItoC_in = 0;
-uint16_t ItoC_out = 0;
-uint16_t ItoC_count = 0;
-Custom_Element ItoC_FIFO[ItoC_FIFO_SIZE];
+Custom_Element gItoC_FIFO[ItoC_FIFO_SIZE];
+Custom_FIFO gI2c2Can_FIFO = {0, 0, 0, gItoC_FIFO};
 
 /* Variables for C2I_FIFO
  * C2I_FIFO is used to temporarily store message from CAN to I2C */
-#define C2I_FIFO_SIZE   (10)
-uint16_t C2I_in = 0;
-uint16_t C2I_out = 0;
-uint16_t C2I_count = 0;
-Custom_Element C2I_FIFO[C2I_FIFO_SIZE];
+Custom_Element gC2I_FIFO[C2I_FIFO_SIZE];
+Custom_FIFO gCan2I2c_FIFO = {0, 0, 0, gC2I_FIFO};
 
 int main(void)
 {
@@ -68,32 +62,43 @@ int main(void)
 
     while (1) {
         /* Send received CAN message to I2C */
-        if(C2I_count>0 && gI2CTxflag == false)
+        if(gCan2I2c_FIFO.fifo_count>0 && gI2CTxflag == false)
         {
             /* Get gI2C_TX_Element from C2I_FIFO
              * Update indicator variable of C2I_FIFO */
-            gI2C_TX_Element = C2I_FIFO[C2I_out];
-            C2I_count--;
-            C2I_out++;
-            if(C2I_out >= C2I_FIFO_SIZE)C2I_out = 0;
+            gI2C_TX_Element = gCan2I2c_FIFO.fifo_pointer[gCan2I2c_FIFO.fifo_out];
+            gCan2I2c_FIFO.fifo_count--;
+            gCan2I2c_FIFO.fifo_out++;
+            if(gCan2I2c_FIFO.fifo_out >= C2I_FIFO_SIZE)gCan2I2c_FIFO.fifo_out = 0;
+#ifdef I2C_TRANSPARENT     /* I2C Transparent transmission */
             /* Convert message format */
-            processI2CTxMsg(gI2CTransmitGroup, &gI2C_TX_Element);
+            uint8_t i2cTargetAddress;
+            i2cTargetAddress = processI2CTxMsg_controller_transparent(gI2CTransmitGroup, &gI2C_TX_Element);
             /* Send messages via I2C */
             gI2CTxflag = true;
-            gTxLen = (7 + gI2CTransmitGroup[6]);
-            sendI2CTxMsg_controller(gI2CTransmitGroup);
+            gTxLen = (gI2C_TX_Element.dlc);
+            sendI2CTxMsg_controller(gI2CTransmitGroup, i2cTargetAddress);
+#else       /* I2C Protocol transmission */
+            /* Convert message format */
+            uint8_t i2cTargetAddress;
+            i2cTargetAddress = processI2CTxMsg_controller(gI2CTransmitGroup, &gI2C_TX_Element);
+            /* Send messages via I2C */
+            gI2CTxflag = true;
+            gTxLen = (3 + I2C_ID_LENGTH + gI2C_TX_Element.dlc);
+            sendI2CTxMsg_controller(gI2CTransmitGroup, i2cTargetAddress);
+#endif
         }
 
         /* Send received I2C message to CAN */
-        if(ItoC_count>0)
+        if(gI2c2Can_FIFO.fifo_count>0)
         {
             /* Get gCAN_TX_Element from ItoC_FIFO
              * Update indicator variable of I2C2C_FIFO */
-            gCAN_TX_Element = ItoC_FIFO[ItoC_out];
-            ItoC_count--;
-            ItoC_out++;
-            if(ItoC_out >= ItoC_FIFO_SIZE)
-                ItoC_out = 0;
+            gCAN_TX_Element = gI2c2Can_FIFO.fifo_pointer[gI2c2Can_FIFO.fifo_out];
+            gI2c2Can_FIFO.fifo_count--;
+            gI2c2Can_FIFO.fifo_out++;
+            if(gI2c2Can_FIFO.fifo_out >= ItoC_FIFO_SIZE)
+                gI2c2Can_FIFO.fifo_out = 0;
             /* Convert message format */
             processCANTxMsg(&txMsg0, &gCAN_TX_Element);
             /* Send messages via CAN */
@@ -109,8 +114,15 @@ void GROUP1_IRQHandler(void)
             /* If SW is low, send the read command */
             if (!DL_GPIO_readPins(GPIO_SWITCHES_PORT, GPIO_SWITCHES_USER_SWITCH_1_PIN))
             {
-                readI2CRxMsg_controller(I2C_TX_SIZE);
+#ifdef I2C_TRANSPARENT     /* I2C Transparent transmission */
+                /* Start I2C read, Use default I2C targer address*/
+                readI2CRxMsg_controller(I2C_TRANSPARENT_LENGTH, I2C_TARGET_ADDRESS);
                 DL_GPIO_togglePins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);
+#else       /* I2C Protocol transmission */
+                /* Start I2C read, Use default I2C targer address*/
+                readI2CRxMsg_controller(I2C_RX_SIZE, I2C_TARGET_ADDRESS);
+                DL_GPIO_togglePins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);
+#endif
             }
             break;
     }
@@ -126,23 +138,23 @@ void CANFD0_IRQHandler(void)
             DL_MCAN_clearIntrStatus(
                 CANFD0, gInterruptLine1Status, DL_MCAN_INTR_SRC_MCAN_LINE_1);
             processFlag = getCANRxMsg(&rxMsg);
-            if( C2I_count >= C2I_FIFO_SIZE)
+            if( gCan2I2c_FIFO.fifo_count >= C2I_FIFO_SIZE)
             {
                 /* When the CAN bus is overloaded, stop receiving messages */
                 processFlag = false;
                 /* Overload handle */
-                __BKPT(0);
+                //__BKPT(0);
             }
             if(processFlag == true)
             {
-                /* Convert the received message to gCAN_RX_Element */
+                /*Convert the received message to gCAN_RX_Element */
                 processCANRxMsg(&rxMsg, &gCAN_RX_Element);
                 /* Store gCAN_RX_Element into C2S_FIFO
                  * Update indicator variable of C2S_FIFO */
-                C2I_FIFO[C2I_in] = gCAN_RX_Element;
-                C2I_count++;
-                C2I_in++;
-                if(C2I_in >= C2I_FIFO_SIZE)C2I_in = 0;
+                gCan2I2c_FIFO.fifo_pointer[gCan2I2c_FIFO.fifo_in] = gCAN_RX_Element;
+                gCan2I2c_FIFO.fifo_count++;
+                gCan2I2c_FIFO.fifo_in++;
+                if(gCan2I2c_FIFO.fifo_in >= C2I_FIFO_SIZE)gCan2I2c_FIFO.fifo_in = 0;
             }
             break;
         default:
@@ -153,38 +165,40 @@ void I2C_INST_IRQHandler(void)
 {
     bool processFlag;
     switch (DL_I2C_getPendingInterrupt(I2C_INST)) {
-        case DL_I2C_IIDX_CONTROLLER_RX_DONE:
-            break;
-        case DL_I2C_IIDX_CONTROLLER_TX_DONE:
-            DL_I2C_disableInterrupt(
-                I2C_INST, DL_I2C_INTERRUPT_CONTROLLER_TXFIFO_TRIGGER);
-            gI2CTxflag = false;
-            break;
         case DL_I2C_IIDX_CONTROLLER_RXFIFO_TRIGGER:
-            /* Receive all bytes from target */
+#ifdef I2C_TRANSPARENT     /* I2C Transparent transmission */
+            /* Store received data in buffer */
+            while (DL_I2C_isControllerRXFIFOEmpty(I2C_INST) != true)
+            {
+                getI2CRxMsg_controller_transparent(gI2CReceiveGroup);
+            }
+#else       /* I2C Protocol transmission */
+            /* Store received data in buffer */
             while (DL_I2C_isControllerRXFIFOEmpty(I2C_INST) != true)
             {
                 processFlag = getI2CRxMsg_controller(gI2CReceiveGroup);
-                if(ItoC_count >= ItoC_FIFO_SIZE)
+                if(gI2c2Can_FIFO.fifo_count >= ItoC_FIFO_SIZE)
                 {
                     /* When the I2C is overloaded, stop receiving messages */
                     processFlag = false;
-                    /* Overload handle */
-                    __BKPT(0);
+                    /* Overload handle*/
+                    //__BKPT(0);
                 }
                 if(processFlag == true)
                 {
-                    /* Convert the received message to gI2C_RX_Element */
-                    processI2CRxMsg(gI2CReceiveGroup, &gI2C_RX_Element);
+                    /*Convert the received message to gI2C_RX_Element */
+                    processI2CRxMsg_controller(gI2CReceiveGroup, &gI2C_RX_Element, I2C_TARGET_ADDRESS);
                     /* Store gI2C_RX_Element into ItoC_FIFO
                      * Update indicator variable of ItoC_FIFO */
-                    ItoC_FIFO[ItoC_in] = gI2C_RX_Element;
-                    ItoC_count++;
-                    ItoC_in++;
-                    if(ItoC_in >= ItoC_FIFO_SIZE)
-                        ItoC_in = 0;
+                    gI2c2Can_FIFO.fifo_pointer[gI2c2Can_FIFO.fifo_in] = gI2C_RX_Element;
+                    gI2c2Can_FIFO.fifo_count++;
+                    gI2c2Can_FIFO.fifo_in++;
+                    if(gI2c2Can_FIFO.fifo_in >= ItoC_FIFO_SIZE)
+                        gI2c2Can_FIFO.fifo_in = 0;
+                    processFlag = false;
                 }
             }
+#endif
             break;
         case DL_I2C_IIDX_CONTROLLER_TXFIFO_TRIGGER:
             /* Fill TX FIFO with next bytes to send */
@@ -194,6 +208,47 @@ void I2C_INST_IRQHandler(void)
             }
             break;
         case DL_I2C_IIDX_CONTROLLER_NACK:
+            break;
+        case DL_I2C_IIDX_CONTROLLER_TX_DONE:
+            break;
+        case DL_I2C_IIDX_CONTROLLER_RX_DONE:
+            break;
+        case DL_I2C_IIDX_CONTROLLER_STOP:
+            if(gI2CTxflag == true)
+            {
+                /* For Tx done, clear gI2CTxflag*/
+                DL_I2C_disableInterrupt(
+                    I2C_INST, DL_I2C_INTERRUPT_CONTROLLER_TXFIFO_TRIGGER);
+                gI2CTxflag = false;
+            }
+            else
+            {
+#ifdef I2C_TRANSPARENT     /* I2C Transparent transmission */
+                /* For Transparent Rx done, receive the message */
+                processFlag = true;
+                if(gI2c2Can_FIFO.fifo_count >= ItoC_FIFO_SIZE)
+                {
+                    /* When the I2C is overloaded, stop receiving messages */
+                    processFlag = false;
+                    /* Overload handle*/
+                    //__BKPT(0);
+                }
+                if(processFlag == true)
+                {
+                    /*Convert the received message to gI2C_RX_Element */
+                    processI2CRxMsg_controller_transparent(gI2CReceiveGroup, &gI2C_RX_Element, I2C_TARGET_ADDRESS);
+                    /* Store gI2C_RX_Element into ItoC_FIFO
+                     * Update indicator variable of ItoC_FIFO */
+                    gI2c2Can_FIFO.fifo_pointer[gI2c2Can_FIFO.fifo_in] = gI2C_RX_Element;
+                    gI2c2Can_FIFO.fifo_count++;
+                    gI2c2Can_FIFO.fifo_in++;
+                    if(gI2c2Can_FIFO.fifo_in >= ItoC_FIFO_SIZE)
+                        gI2c2Can_FIFO.fifo_in = 0;
+                    processFlag = false;
+                    gGetI2cRxMsg_Count = 0;
+                }
+#endif
+            }
             break;
         default:
             break;

@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deploying Machine Learning Models on TI MSPM0 Microcontrollers Using CLI Tools &mdash; MSPM0 EdgeAI User Guide 1.1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Deploying Machine Learning Models on TI MSPM0 Microcontrollers Using EdgeAI Studio GUI Tools" href="EdgeAI_Deployment_Guide_EdgeAI_Studio.html" />
+    <link rel="prev" title="MSPM0 EdgeAI User Guide" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> MSPM0 EdgeAI User Guide
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Deploying Machine Learning Models on TI MSPM0 Microcontrollers Using CLI Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#table-of-contents">Table of Contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">1. Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#who-this-document-is-for">1.1 Who This Document is For</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#target-hardware">1.2 Target Hardware</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cli-based-machine-learning-workflow">1.3 CLI-based Machine Learning Workflow</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#machine-learning-framework">Machine Learning Framework</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quantization">Quantization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#example-dataset-and-deep-learning-model">Example Dataset and Deep Learning Model</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#environment-setup-and-installation">2. Environment Setup and Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#required-software-tools">2.1 Required Software Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tool-installation-and-configuration">2.2 Tool Installation and Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#train-your-own-model-simple-native-pytorch-quantization">3. Train Your Own Model(Simple Native Pytorch Quantization)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#model-configuration-with-pytorch-quantization">3.1 Model Configuration with PyTorch Quantization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#compiling-trained-models-with-ti-s-neural-network-compiler-for-mcus">3.2 Compiling Trained Models with TI’s Neural Network Compiler for MCUs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#train-your-own-model-using-edgeai-studio-cli-tinyml-tensorlab">4. Train Your Own Model(Using EdgeAI Studio CLI: tinyml-tensorlab)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tinyml-tensorlab">4.1 tinyml-tensorlab</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#keeping-up-to-date">Keeping up to date</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#example-run">4.2 Example Run</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#section-1-common">Section 1: Common</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#section-2-dataset">Section 2: Dataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#section-3-data-processing-and-feature-extraction">Section 3: Data Processing and Feature Extraction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#section-4-training">Section 4: Training</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#section-5-testing">Section 5: Testing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#section-6-compilation">Section 6: Compilation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#executing-the-workflow">4.3 Executing the Workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#bring-your-own-model">5. Bring Your Own Model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installation-instructions">5.1 Installation Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-quantization-wrappers-for-your-pytorch-model">5.2 Using Quantization Wrappers for your PyTorch model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#arm-devices-with-hardware-based-ti-npu-acceleration-tinputinymlqatfxmodule-tinputinymlptqfxmodule">1. ARM devices with Hardware based TI NPU acceleration (TINPUTinyMLQATFxModule / TINPUTinyMLPTQFxModule)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arm-mcus-without-using-hardware-based-ti-npu-acceleration-generictinymlqatfxmodule-generictinymlptqfxmodule">2. ARM MCUs without using Hardware based TI NPU acceleration (GenericTinyMLQATFxModule / GenericTinyMLPTQFxModule)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#evaluate-your-model-before-running-on-device">Evaluate your Model before running on device</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#wrappers-provided">Wrappers Provided</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#options-present-in-tinymlquantfxbasemodule">Options present in TinyMLQuantFxBaseModule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#argument-descriptions">Argument Descriptions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tips-notes">Tips &amp; Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#examples-for-training-and-quantization">5.3 Examples for Training and Quantization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#compilation">5.4 Compilation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#bring-your-own-dataset">6. Bring Your Own Dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dataset-format">6.1 Dataset format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#notes">Notes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#datafile-format">6.2 Datafile format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dataset-splitting">6.3 Dataset Splitting</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#dataset-split-amongst-files">6.3.1 Dataset split “amongst_files”</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dataset-split-within-files">6.3.2 Dataset split “within_files”</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#deploying-compiled-models-into-an-mcu-application">7. Deploying Compiled Models into an MCU Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#summary">8. Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#references">9. References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="EdgeAI_Deployment_Guide_EdgeAI_Studio.html">Deploying Machine Learning Models on TI MSPM0 Microcontrollers Using EdgeAI Studio GUI Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="EdgeAI_Feature_Extraction_Library.html">Feature Extraction User Guide for EdgeAI Applications on MSPM0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="EdgeAI_Software_Overview.html">Edge AI Software Solution for MSPM0 Devices</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MSPM0 EdgeAI User Guide</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Deploying Machine Learning Models on TI MSPM0 Microcontrollers Using CLI Tools</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="deploying-machine-learning-models-on-ti-mspm0-microcontrollers-using-cli-tools">
+<h1>Deploying Machine Learning Models on TI MSPM0 Microcontrollers Using CLI Tools<a class="headerlink" href="#deploying-machine-learning-models-on-ti-mspm0-microcontrollers-using-cli-tools" title="Permalink to this heading">¶</a></h1>
+<p>This guide provides a step-by-step overview of how to easily deploy machine learning models on TI’s MSPM0 microcontrollers using TI’s advanced Command Line Interface (CLI) tools. With TI’s neural network compiler (TI-NNC) for microcontrollers, getting your model deployed onto affordable MCUs is a snap.</p>
+<section id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="#introduction">Introduction</a></p></li>
+<li><p><a class="reference external" href="#environment-setup-and-installation">Environment Setup and Installation</a></p></li>
+<li><p><a class="reference external" href="#train-your-own-model-simple-native-pytorch-quantization">Train Your Own Model(Simple Native Pytorch Quantization)</a></p></li>
+<li><p><a class="reference external" href="#train-your-own-model-using-edgeai-studio-cli-tinyml-tensorlab">Train Your Own Model(Using EdgeAI Studio CLI: tinyml-tensorlab)</a></p></li>
+<li><p><a class="reference external" href="#bring-your-own-model">Bring Your Own Model</a></p></li>
+<li><p><a class="reference external" href="#bring-your-own-dataset">Bring Your Own Dataset</a></p></li>
+<li><p><a class="reference external" href="#deploying-compiled-models-into-an-mcu-application">Deploying Compiled Models into an MCU Application</a></p></li>
+<li><p><a class="reference external" href="#summary">Summary</a></p></li>
+<li><p><a class="reference external" href="#references">References</a></p></li>
+</ol>
+</section>
+<section id="introduction">
+<h2>1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>Machine learning on MSPM0 devices enables intelligent edge computing applications with minimal power consumption. The MSPM0 microcontroller family from Texas Instruments combines ultra-low-power operation with processing capabilities suitable for running inference on machine learning models.</p>
+<p>This guide provides a simple workflow for getting your deep learning model up and running on TI’s MSPM0 microcontrollers with minimal modifications. The steps covered include:</p>
+<ol class="arabic simple">
+<li><p>Complete grounds-up walkthrough of tool installation and environment setup</p></li>
+<li><p>Model training with quantization in PyTorch (using industry-standard, PyTorch native QDQ quantization tools)</p></li>
+<li><p>Trained model export to the industry-standard open neural network exchange (*.onnx) format</p></li>
+<li><p>Compilation of the trained model to an executable Cortex-M0+ object code library (<a href="#id1"><span class="problematic" id="id2">*</span></a>.h, <a href="#id3"><span class="problematic" id="id4">*</span></a>.a) that can run on an MSPM0 microcontroller using TI’s neural network compiler for MCUs</p></li>
+<li><p>Integration of the executable library containing the trained model into a software project for an MSPM0 microcontroller</p></li>
+</ol>
+<section id="who-this-document-is-for">
+<h3>1.1 Who This Document is For<a class="headerlink" href="#who-this-document-is-for" title="Permalink to this heading">¶</a></h3>
+<p>This document is focused on developers seeking to quantize, compile, and deploy machine learning models to affordable microcontrollers with the goal of being able to run inferences at the edge. It focuses on industry standard and TI provided command line tools, and is intended to be used by developers which are reasonably comfortable working with machine learning models but need guidance on how to leverage TI’s tools to efficiently quantize and compile models for TI MSPM0 MCUs and integrate the models into an embedded software application.</p>
+<p>This document does not go into detail on front-end aspects of the machine learning workflow, such as data gathering and model design. If you have your own trained model and wish to deploy it, this document will provide all of the information you need to get started quickly.</p>
+</section>
+<section id="target-hardware">
+<h3>1.2 Target Hardware<a class="headerlink" href="#target-hardware" title="Permalink to this heading">¶</a></h3>
+<p>This guide targets deployment of models onto TI’s MSPM0 microcontrollers which are based on the Arm Cortex-M0+ CPU core. Variants are available in this family with 24, 32, and 80MHz CPU performance. In the example discussed in this guide, the MSPM0G5187 microcontroller will be used to execute the inference with the trained model. The MSPM0G5187 microcontroller includes an 80MHz Arm CPU, 128kB of flash memory, 32kB of SRAM memory and TI NPU hardware accelerator, and is available on the easy-to-use <a class="reference external" href="https://www.ti.com/tool/LP-MSPM0G5187">LP-MSPM0G5187</a> TI Launchpad hardware development kit.</p>
+</section>
+<section id="cli-based-machine-learning-workflow">
+<h3>1.3 CLI-based Machine Learning Workflow<a class="headerlink" href="#cli-based-machine-learning-workflow" title="Permalink to this heading">¶</a></h3>
+<p>Efficient machine learning deployment is possible through the use of command line interface (CLI) tools, particularly when a machine learning model has been selected or designed already, and sufficient data for training has been gathered and tagged. The six steps required to take a machine learning project from start to finish are shown in the figure below, from data gathering through to compilation and deployment.</p>
+<p><img alt="Machine Learning Workflow" src="../_images/ml_workflow.png" /> <em>Figure 1: Machine Learning Workflow</em></p>
+<p>This document will focus on TI’s tools for quantization, compilation, and deployment.</p>
+<p><em>Table 1 Workflow Steps and Associated Tools</em></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Workflow Step</p></th>
+<th class="head"><p>Industry Tools</p></th>
+<th class="head"><p>TI Provided Tools</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Quantization</p></td>
+<td><p>PyTorch native quantization</p></td>
+<td><p>Quantization aware training (QAT) module</p></td>
+</tr>
+<tr class="row-odd"><td><p>Compilation</p></td>
+<td></td>
+<td><p>TI Neural Network Compiler for MCUs, based on Apache TVM TI Arm Clang C/C++ Compiler</p></td>
+</tr>
+<tr class="row-even"><td><p>Deployment</p></td>
+<td></td>
+<td><p>TI Code Composer Studio IDE MSPM0-SDK</p></td>
+</tr>
+</tbody>
+</table>
+<section id="machine-learning-framework">
+<h4>Machine Learning Framework<a class="headerlink" href="#machine-learning-framework" title="Permalink to this heading">¶</a></h4>
+<p>Texas Instruments supports the use of PyTorch as the machine learning framework for model definition and training. PyTorch is a widely used machine learning framework with many available models and excellent online documentation. For more information including tutorials, visit <a class="reference external" href="https://pytorch.org/">https://pytorch.org/</a>. This guide will focus on PyTorch for training and quantization.</p>
+</section>
+<section id="quantization">
+<h4>Quantization<a class="headerlink" href="#quantization" title="Permalink to this heading">¶</a></h4>
+<p>Machine learning models are often developed and trained using floating point data types, typically single precision 32-bit floating point data. While this is ideal during training, it is not ideal for deployment onto constrained microcontrollers which need to perform inference at the edge with the minimum flash and SRAM utilization, the lowest latency, and the lowest possible power consumption. Many machine learning models do not require 32-bit floating point precision to achieve excellent inference accuracy. This guide will demonstrate how to adapt a 32-bit floating point machine learning model for deployment in 8-bit integer format. This reduces memory size to approximately 1/4 the size of the 32-bit floating point model, and also reduces latency and power consumption. PyTorch includes tools for quantizing models from 32-bit floating point down to 8-bit integer arithmetic. In this guide, the QDQ quantization approach will be demonstrated to reduce the memory footprint, latency, and
+power of the deployed model. The techniques demonstrated here may be easily applied to other models as well.</p>
+</section>
+<section id="example-dataset-and-deep-learning-model">
+<h4>Example Dataset and Deep Learning Model<a class="headerlink" href="#example-dataset-and-deep-learning-model" title="Permalink to this heading">¶</a></h4>
+<p>To demonstrate the process of deploying a deep learning model, this guide leverages the classical deep learning problem of classifying hand written digits using a convolutional neural network, or CNN. This guide will use the MNIST digit recognition data set available directly within the PyTorch Torchvision package for training. The data set consists of 28 x 28 pixel grayscale images of hand written digits. The data set includes 60,000 images intended for use in training, and 10,000 additional images intended for use in testing (independent from training), tagged into 10 classes (representing the numerical digits 0 to 9). This guide will deploy a model derived from the LeNet-5 model, which employs several CNN layers and several fully connected layers, for inference.</p>
+</section>
+</section>
+</section>
+<section id="environment-setup-and-installation">
+<h2>2. Environment Setup and Installation<a class="headerlink" href="#environment-setup-and-installation" title="Permalink to this heading">¶</a></h2>
+<p>Getting started with model deployment from the command line interface (CLI) is easier than you think. This section will explain the process for installing all of the tools required to train a deep learning model and get it up and running on a MSPM0 MCU.</p>
+<section id="required-software-tools">
+<h3>2.1 Required Software Tools<a class="headerlink" href="#required-software-tools" title="Permalink to this heading">¶</a></h3>
+<p>The table below lists all of the tools used in this guide. Windows and Linux environments are equally supported. Step by step setup instructions are also provided below. Versions for the tools are defined where relevant, with a disposition of “required” (implies it is mandatory to use the stated version of the tool), “minimum” (implies that this is the minimum required version), or “tested with” which implies that this workflow was evaluated with these versions but it is expected that other versions (especially newer versions) may work without issue as well.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tool</p></th>
+<th class="head"><p>Tool Version</p></th>
+<th class="head"><p>Purpose</p></th>
+<th class="head"><p>Where to obtain</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Command line interface</p></td>
+<td><p>Windows: PowerShell or Linux: Bash</p></td>
+<td><p>Serves as the primary interface to execute tools like Python and TI’s neural network compiler</p></td>
+<td><p>Usually installed by default on your desktop or notebook computer</p></td>
+</tr>
+<tr class="row-odd"><td><p>Python</p></td>
+<td><p>3.10 (required)</p></td>
+<td><p>Interpreter for running model training</p></td>
+<td><p><a class="reference external" href="https://www.python.org/downloads/release/python-31011/">Link</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Python PIP</p></td>
+<td><p>24.3.1 (tested with)</p></td>
+<td><p>Used for installing additional required Python packages</p></td>
+<td><p>Included by default in Python 3.10</p></td>
+</tr>
+<tr class="row-odd"><td><p>PyTorch</p></td>
+<td><p>2.7.1 (tested with)</p></td>
+<td><p>Deep learning framework for defining and training models based around tensors</p></td>
+<td><p>Installed via Python PIP</p></td>
+</tr>
+<tr class="row-even"><td><p>ONNX</p></td>
+<td><p>1.18.0 (tested with)</p></td>
+<td><p>Export of trained model for transfer from PyTorch to neural network compiler</p></td>
+<td><p>Installed via Python PIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>TI Neural Network Compiler for MCUs</p></td>
+<td><p>2.0.0 RC4 (minimum)</p></td>
+<td><p>Compilation of ONNX trained model into an executable library</p></td>
+<td><p>Installed via Python PIP, supplied by TI</p></td>
+</tr>
+<tr class="row-even"><td><p>TI MSPM0-SDK</p></td>
+<td><p>2.08.00.xx(minimum)</p></td>
+<td><p>Software development kit for TI MSPM0 MCUs</p></td>
+<td><p>Available at <a class="reference external" href="https://www.ti.com/tool/MSPM0-SDK">SDK Link</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>TI Code Composer Studio IDE</p></td>
+<td><p>20.x.x (tested with)</p></td>
+<td><p>Integrated development environment for MSPM0 MCUs</p></td>
+<td><p>Available at <a class="reference external" href="https://www.ti.com/tool/CCSTUDIO">CCS Link</a></p></td>
+</tr>
+<tr class="row-even"><td><p>TI EdgeAI studio CLI tools (tinyml-tensorlab)</p></td>
+<td><p>r1.2 (minimum)</p></td>
+<td><p>TI provided CLI tools for developing ML models on TI MCUs</p></td>
+<td><p>Available at <a class="reference external" href="https://github.com/TexasInstruments/tinyml-tensorlab">tinyml-tensorlab github</a></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="tool-installation-and-configuration">
+<h3>2.2 Tool Installation and Configuration<a class="headerlink" href="#tool-installation-and-configuration" title="Permalink to this heading">¶</a></h3>
+<p>Follow the steps below to install the tools and configure your environment. Guidance for Microsoft Windows vs. Linux is provided where applicable.</p>
+<ol class="arabic simple">
+<li><p><strong>Install Python 3.10</strong></p></li>
+</ol>
+<p>The first step in environment setup is to install Python- specifically, Python version 3.10.xx. Python installers for version 3.10.11 may be obtained from Python.org for Linux and Windows. Once installed, it’s useful to ensure that the newly installed version 3.10 is also in the environment PATH. If you install Python on Windows with the Python installer GUI, it may present you with the option to place Python into your PATH automatically. If you already have Python 3.10 installed, no action is needed here. To confirm that Python is installed correctly, open a PowerShell terminal (Windows) or a bash shell (Linux) and run the following command.</p>
+<p>Windows (PowerShell):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PS</span><span class="o">&gt;</span> <span class="n">python</span> <span class="o">--</span><span class="n">version</span>
+<span class="n">Python</span> <span class="mf">3.10.11</span>
+</pre></div>
+</div>
+<p>Linux (Bash):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python --version
+Python 3.10.11
+</pre></div>
+</div>
+<p>If Python 3.10 is installed and available on your PATH, you should see the above output. In the Windows case, it’s assumed that the only installed Python version on the PATH is version 3.10. If this is not the case, you need to place version 3.10 into your PATH. In the Linux case, version 3.10 is explicitly specified as it is possible that the underlying Linux distribution has a symlink from python to the OS-specific default Python version.</p>
+<ol class="arabic simple" start="2">
+<li><p><strong>Configure Python Virtual Environment (venv)</strong></p></li>
+</ol>
+<p>PyTorch work is best done inside of a virtual environment in a container for a particular Python version and set of corresponding Python packages. First, create a directory to use for storing your virtual environment and machine learning models, and change into it. Then, create a venv for use and activate it as shown (in this example, the venv name ti-ml-venv will be used).</p>
+<p>Windows (PowerShell):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PS</span> <span class="o">&gt;</span> <span class="n">mkdir</span> <span class="n">ti</span><span class="o">-</span><span class="n">ml</span><span class="o">-</span><span class="n">sandbox</span>
+<span class="n">PS</span> <span class="o">&gt;</span> <span class="n">cd</span> <span class="n">ti</span><span class="o">-</span><span class="n">ml</span><span class="o">-</span><span class="n">sandbox</span>
+<span class="n">PS</span> <span class="o">&gt;</span> <span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">ti</span><span class="o">-</span><span class="n">ml</span><span class="o">-</span><span class="n">venv</span>
+<span class="n">PS</span> <span class="o">&gt;</span> <span class="o">.</span>\<span class="n">ti</span><span class="o">-</span><span class="n">ml</span><span class="o">-</span><span class="n">venv</span>\<span class="n">Scripts</span>\<span class="n">Activate</span><span class="o">.</span><span class="n">ps1</span>
+<span class="p">(</span><span class="n">ti</span><span class="o">-</span><span class="n">ml</span><span class="o">-</span><span class="n">venv</span><span class="p">)</span> <span class="n">PS</span> <span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Linux (Bash):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir ti-ml-sandbox
+$ cd ti-ml-sandbox
+$ python3.10 -m venv ti-ml-venv
+$ source ti-ml-venv/bin/activate
+(ti-ml-venv) $
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p><strong>Install PyTorch and ONNX</strong></p></li>
+</ol>
+<p>From within the virtual environment (ti-ml-venv), execute a Python PIP installation command to install PyTorch and Torchvision packages. PyTorch is the ML framework, and Torchvision provides the MNIST data set that will be trained on in this guide. The Python ONNX package is used for managing exportation of trained models for subsequent compilation.</p>
+<p>Windows (PowerShell):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">ti</span><span class="o">-</span><span class="n">ml</span><span class="o">-</span><span class="n">venv</span><span class="p">)</span> <span class="n">PS</span> <span class="o">&gt;</span> <span class="n">pip3</span> <span class="n">install</span> <span class="n">torch</span> <span class="n">torchvision</span> <span class="n">onnx</span>
+</pre></div>
+</div>
+<p>Linux (Bash):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(ti-ml-venv) $ pip3 install torch torchvision onnx
+</pre></div>
+</div>
+<p>For more information on installing PyTorch for your hardware, review the detailed information at <a class="reference external" href="https://pytorch.org/get-started/locally/">pytorch.org</a>.</p>
+<ol class="arabic simple" start="4">
+<li><p><strong>Install the TI Neural Network Compiler (NNC) for MCUs</strong></p></li>
+</ol>
+<p>TI provides an advanced neural network compiler (NNC) for MCUs, available as a Python wheel package for easy installation into the Python virtual environment. Install the TI NNC using the steps shown below. Note that it is important to remain within the Python virtual environment (venv) when executing this step.</p>
+<p>Windows (PowerShell)/ Linux:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">ti</span><span class="o">-</span><span class="n">ml</span><span class="o">-</span><span class="n">venv</span><span class="p">)</span> <span class="n">PS</span> <span class="o">&gt;</span> <span class="n">pip3</span> <span class="n">install</span> <span class="o">--</span><span class="n">extra</span><span class="o">-</span><span class="n">index</span><span class="o">-</span><span class="n">url</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">software</span><span class="o">-</span><span class="n">dl</span><span class="o">.</span><span class="n">ti</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">mctools</span><span class="o">/</span><span class="n">esd</span><span class="o">/</span><span class="n">tvm</span><span class="o">/</span><span class="n">mcu</span> <span class="n">ti_mcu_nnc</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p><strong>Install the TI MSPM0-SDK</strong></p></li>
+</ol>
+<p>Obtain the MSPM0-SDK from TI.com (for Linux or Windows) and run the respective installer, following the instructions provided: <a class="reference external" href="https://www.ti.com/tool/MSPM0-SDK#downloads">MSPM0-SDK</a> Alternately, the MSPM0-SDK is also available as a Git repository hosted on <a class="reference external" href="https://github.com/TexasInstruments/mspm0-sdk">GitHub</a> and may be cloned to your machine as shown below:</p>
+<p>Linux (Bash):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/
+$ mkdir ti
+$ cd ti
+$ git clone https://github.com/TexasInstruments/mspm0-sdk.git
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p><strong>Install TI Code Composer Studio IDE</strong></p></li>
+</ol>
+<p>Obtain Code Composer Studio from TI.com (for Linux or Windows) and run the respective installer, following the instructions provided: <a class="reference external" href="https://www.ti.com/tool/CCSTUDIO#downloads">TI CCS</a> Code Composer Studio includes both the integrated development environment (editor, debugger) but also the TI Arm Clang C/C++ compiler, which will be used for model compilation together with the TI Neural Network Compiler for MCUs installed in Step 4.</p>
+<p>When you are done working in the Python virtual environment (ti-ml-venv) created in Step 2, you can exit the venv and return back to the shell by simply running the command “deactivate” from within the venv.</p>
+</section>
+</section>
+<section id="train-your-own-model-simple-native-pytorch-quantization">
+<h2>3. Train Your Own Model(Simple Native Pytorch Quantization)<a class="headerlink" href="#train-your-own-model-simple-native-pytorch-quantization" title="Permalink to this heading">¶</a></h2>
+<p>With an installed and configured environment, it’s possible to begin the training process. In this section, an overview of the LeNet-5 model will be provided. First, the model will be presented without quantization. Then, quantization to 8-bit integer data size will be added. The process of modifying the model definition for quantization will be shown and can be applied to other models.</p>
+<p><strong>LeNet-5 Model (Float32)</strong></p>
+<p>The customized LeNet-5 model that will be used as a reference for quantization is given below. In this stage, quantization is not yet applied to the model and the model is configured for Float32.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
+
+<span class="k">class</span> <span class="nc">TILeNet5_Model</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bn0</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bn1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">relu1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bn2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">relu2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pool1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dropout1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dropout2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">9216</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">relu3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bn0</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bn1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bn2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu3</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">x</span>
+</pre></div>
+</div>
+<section id="model-configuration-with-pytorch-quantization">
+<h3>3.1 Model Configuration with PyTorch Quantization<a class="headerlink" href="#model-configuration-with-pytorch-quantization" title="Permalink to this heading">¶</a></h3>
+<p>PyTorch natively supports QDQ quantization to 8-bit integer data size. The process of modifying the model definition for quantization is given in this section, and can be applied to other models.</p>
+<p><strong>Applying PyTorch Native Quantization</strong></p>
+<p>In a PyTorch model, the process for enabling quantization on a model is straightforward. Within the model class itself, 4 additional lines must be added: instantiation of quantization stubs in the constructor, and application of the quantization stubs within the forward() function of the model. The PyTorch quantization module must also be brought in from torch.ao.</p>
+<p><strong>Instantiating Stubs in the Model Constructor</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">torch.ao</span> <span class="kn">import</span> <span class="n">quantization</span>
+
+<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">quant</span> <span class="o">=</span> <span class="n">quantization</span><span class="o">.</span><span class="n">QuantStub</span><span class="p">()</span>
+    <span class="c1"># ... Rest of model definition</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">dequant</span> <span class="o">=</span> <span class="n">quantization</span><span class="o">.</span><span class="n">DeQuantStub</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Calling Quantization Functions in the Model Forward() Pass</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">torch.ao</span> <span class="kn">import</span> <span class="n">quantization</span>
+
+<span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">quant</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="c1"># ... Rest of model forward pass</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dequant</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>LeNet-5 Model: QDQ Quantization to Int8</strong></p>
+<p>Below is the complete model with PyTorch native QDQ quantization inserted.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
+<span class="kn">from</span> <span class="nn">torch.ao</span> <span class="kn">import</span> <span class="n">quantization</span>
+
+<span class="k">class</span> <span class="nc">TILeNet5_Model_QDQ</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">quant</span> <span class="o">=</span> <span class="n">quantization</span><span class="o">.</span><span class="n">QuantStub</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bn0</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bn1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">relu1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bn2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">relu2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pool1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dropout1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dropout2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">9216</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">relu3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dequant</span> <span class="o">=</span> <span class="n">quantization</span><span class="o">.</span><span class="n">DeQuantStub</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">quant</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bn0</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bn1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bn2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu3</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dequant</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">x</span>
+</pre></div>
+</div>
+<p>These are all of the changes required to the model. Additional changes to the post training export process are required for the ONNX output to correctly inherit the quantization properties.</p>
+<p><strong>Modifying the Model Export Process to be Quantization Aware</strong></p>
+<p>In order to properly export a quantized model to ONNX format for subsequent compilation, it is necessary to modify the export process to be quantization aware. The additions include obtaining the quantization configuration (qconfig), preparing the model for quantization, and obtaining the Int8 quantized model.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">modelInst</span> <span class="o">=</span> <span class="n">TILeNet5_Model_QDQ</span><span class="p">()</span> <span class="c1"># Instantiate model</span>
+<span class="c1"># Perform your training / testing loop here!</span>
+<span class="n">modelInst</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span> <span class="c1"># Move model to evaluation mode after training/testing</span>
+
+<span class="n">inData</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">modelInst</span><span class="o">.</span><span class="n">qconfig</span> <span class="o">=</span> <span class="n">quantization</span><span class="o">.</span><span class="n">get_default_qconfig</span><span class="p">(</span><span class="s1">&#39;x86&#39;</span><span class="p">)</span>
+<span class="n">modelPrepared</span> <span class="o">=</span> <span class="n">quantization</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="n">modelInst</span><span class="p">)</span>
+<span class="n">modelPrepared</span><span class="p">(</span><span class="n">inData</span><span class="p">)</span>
+<span class="n">modelInt8</span> <span class="o">=</span> <span class="n">quantization</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="n">modelPrepared</span><span class="p">)</span>
+<span class="n">modelInt8</span><span class="p">(</span><span class="n">inData</span><span class="p">)</span>
+
+<span class="c1"># Export the Int8 quantized model to ONNX format</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">onnx</span><span class="o">.</span><span class="n">export</span><span class="p">(</span><span class="n">modelInt8</span><span class="p">,</span> <span class="n">inData</span><span class="p">,</span> <span class="s2">&quot;trained_model.onnx&quot;</span><span class="p">,</span> <span class="n">input_names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;input&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>The last step of the export sequence above is the call to the PyTorch ONNX export utility, which saves the trained model into *.onnx format, needed for the TI Neural Network Compiler to accept the trained model as input.</p>
+<p><strong>Additional Documentation</strong></p>
+<p>For more information on quantization within PyTorch, please refer to the detailed documentation available from the PyTorch project.</p>
+</section>
+<section id="compiling-trained-models-with-ti-s-neural-network-compiler-for-mcus">
+<h3>3.2 Compiling Trained Models with TI’s Neural Network Compiler for MCUs<a class="headerlink" href="#compiling-trained-models-with-ti-s-neural-network-compiler-for-mcus" title="Permalink to this heading">¶</a></h3>
+<p>Once the training process has generated a *.onnx output file, the next step in deployment is to compile the model to an object code library and API header for inclusion into an MCU software application. For this step, the TI Neural Network Compiler for MCUs must be installed in the Python virtual environment, and the trained model ONNX file must be available.</p>
+<p><strong>Calling the TI Neural Network Compiler for MCUs</strong></p>
+<p>TI’s Neural Network Compiler may be called from the command line inside the Python virtual environment. Several critical command line flags must be set for proper compilation: Primary compilation command: tmvc compile Typical parameters for compiling to MSPM0 for execution on the Arm Cortex-M0+ CPU include the following:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--target=&quot;c,</span> <span class="pre">ti-npu</span> <span class="pre">type=soft&quot;</span></code> run layers with an optimized software implementation on a host processor or use <code class="docutils literal notranslate"><span class="pre">--target=&quot;c,</span> <span class="pre">ti-npu&quot;</span></code> run layers on an NPU (if exists on the target MCU device).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--target-c-mcpu=cortex-m0plus</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--cross-compiler=&quot;&lt;TI</span> <span class="pre">Arm</span> <span class="pre">Clang</span> <span class="pre">Root&gt;/bin/tiarmclang&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--cross-compiler-options=&quot;-Os</span> <span class="pre">-mcpu=cortex-m0plus</span> <span class="pre">-march=thumbv6</span> <span class="pre">-mtune=cortex-m0plus</span> <span class="pre">-mthumb</span> <span class="pre">-mfloat-abi=soft</span> <span class="pre">-Wno-return-type&quot;</span></code></p></li>
+</ul>
+<p>To understand the various compiler options in greater detail please refer to the <a class="reference external" href="https://software-dl.ti.com/mctools/nnc/mcu/users_guide/compiling.html">Compilation Explained Page of TI NNC User Guide</a>.</p>
+<p><strong>Example call to compiler</strong></p>
+<p>Below is an example call to the compiler for an input ONNX (replace .onnx with your ONNX filename before executing).</p>
+<p>Windows (PowerShell):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>PS<span class="w"> </span>&gt;<span class="w"> </span>tvmc<span class="w"> </span>compile<span class="w"> </span>--target<span class="o">=</span><span class="s2">&quot;c, ti-npu type=soft&quot;</span><span class="w"> </span>--target-c-mcpu<span class="o">=</span>cortex-m0plus<span class="w"> </span>.<span class="se">\&lt;</span>MODEL_FILE_NAME&gt;.onnx<span class="w"> </span>-o<span class="w"> </span>.<span class="se">\a</span>rtifacts<span class="se">\m</span>odel.a<span class="w"> </span>--cross-compiler<span class="o">=</span><span class="s2">&quot;&lt;TI_COMPILER_INSTALL&gt;\bin\tiarmclang.exe&quot;</span><span class="w"> </span>--cross-compiler-options<span class="o">=</span><span class="s2">&quot;-Os -mcpu=cortex-m0plus -march=thumbv6m -mtune=cortex-m0plus -mthumb -mfloat-abi=soft -Wno-return-type&quot;</span>
+</pre></div>
+</div>
+<p>Linux (Bash):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>tvmc<span class="w"> </span>compile<span class="w"> </span>--target<span class="o">=</span><span class="s2">&quot;c, ti-npu type=soft&quot;</span><span class="w"> </span>--target-c-mcpu<span class="o">=</span>cortex-m0plus<span class="w"> </span>./&lt;MODEL_FILE_NAME&gt;.onnx<span class="w"> </span>-o<span class="w"> </span>./artifacts/model.a<span class="w"> </span>--cross-compiler<span class="o">=</span><span class="s2">&quot;&lt;TI_COMPILER_INSTALL&gt;/bin/tiarmclang&quot;</span><span class="w"> </span>--cross-compiler-options<span class="o">=</span><span class="s2">&quot;-Os -mcpu=cortex-m0plus -march=thumbv6m -mtune=cortex-m0plus -mthumb -mfloat-abi=soft -Wno-return-type&quot;</span>
+</pre></div>
+</div>
+<p>In the above example calls to the neural network compiler (tvmc compile), the path to your local installation of the TI Arm Clang C/C++ compiler must be passed in place of ‘TI_COMPILER_INSTALL’. If you have installed Code Composer Studio to its default location, the compiler is available here:</p>
+<ul class="simple">
+<li><p>CCSv20.03, Windows: C:/ti/ccs2020/ccs/tools/compiler/ti-cgt-armllvm_4.0.3.LTS</p></li>
+<li><p>CCSv20.03, Linux: ~/ti/ccs2020/ccs/tools/compiler/ti-cgt-armllvm_4.0.3.LTS</p></li>
+</ul>
+<p><strong>Outputs</strong></p>
+<p>Once the TI Neural Network Compiler runs to completion, two critical files are generated in the artifacts directory where the compilation was executed:</p>
+<ul class="simple">
+<li><p>Model API (interface) file: <strong>tvmgen_default.h</strong></p></li>
+<li><p>Model pre-compiled object library file: <strong>model.a</strong></p></li>
+</ul>
+<p>These files are the outputs which are taken into the MSPM0 software development project for inclusion in the application software build.</p>
+<p><strong>Learning More about TI’s Neural Network Compiler for MCUs</strong></p>
+<p>For a complete detailed description of TI’s neural network compiler for MCUs, including additional configuration options and guidelines for use, visit the <a class="reference external" href="https://software-dl.ti.com/mctools/nnc/mcu/users_guide/">TI NNC for MCUs User’s Guide</a>.</p>
+</section>
+</section>
+<section id="train-your-own-model-using-edgeai-studio-cli-tinyml-tensorlab">
+<h2>4. Train Your Own Model(Using EdgeAI Studio CLI: tinyml-tensorlab)<a class="headerlink" href="#train-your-own-model-using-edgeai-studio-cli-tinyml-tensorlab" title="Permalink to this heading">¶</a></h2>
+<p>The Tiny ML Tensorlab repository is meant to be as a starting point to install and explore TI’s AI offering for MCUs. It helps to install all the required repositories to get started. Currently, it can handle Time series Classification, Regression and Anomaly Detection tasks.</p>
+<p>Once you clone this repository, you will find the following repositories present within the tinyml-tensorlab directory:</p>
+<section id="tinyml-tensorlab">
+<h3>4.1 tinyml-tensorlab<a class="headerlink" href="#tinyml-tensorlab" title="Permalink to this heading">¶</a></h3>
+<p>The Tiny ML Tensorlab repository available on <a class="reference external" href="https://github.com/TexasInstruments/tinyml-tensorlab/">GitHub</a> is meant to be as a starting point to install and explore TI’s AI offering for MCUs. It helps to install all the required repositories to get started. Currently, it can handle Image Classification, Time series Classification, Regression and Anomaly Detection tasks.</p>
+<p>Once you clone this repository, you will find the following repositories present within the tinyml-tensorlab directory:</p>
+<ul class="simple">
+<li><p>tinyml-modelmaker: Based on user configuration (yaml files), stitches a flow with relevant scripts to call from tinyverse. This stitches the scripts into a flow of data loading/training/compilation <strong>This is your home repo. Most of your work will be taking place from this directory.</strong></p></li>
+<li><p>tinyml-tinyverse: Individual scripts to load data, do preprocessing, AI training, compilation(using NNC/TVM)</p></li>
+<li><p>tinyml-modeloptimization: Model optimization toolkit that is necessary for quantization for 2bit/4bit/8bit weights in QAT(Quantization Aware Training)/PTQ(Post Training Quantization) flows for TI devices with or without NPU. As a customer developing models/flows, it is highly likely that you would not have to edit files in this repo.</p></li>
+</ul>
+<p><strong>Python Environment</strong></p>
+<ul class="simple">
+<li><p><strong>Note</strong>: Irrespective of being a <code class="docutils literal notranslate"><span class="pre">Linux</span></code> or a <code class="docutils literal notranslate"><span class="pre">Windows</span></code> user, it is ideal to use virtual environments on Python rather than operating without one.</p>
+<ul>
+<li><p>For <code class="docutils literal notranslate"><span class="pre">Linux</span></code> we are using <code class="docutils literal notranslate"><span class="pre">Pyenv</span></code> as a Python version management system.</p></li>
+<li><p>For <code class="docutils literal notranslate"><span class="pre">Windows</span></code> we show below using pyenv-win and also using Python’s native <code class="docutils literal notranslate"><span class="pre">venv</span></code></p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Linux OS</strong></p>
+<p><strong>Using Pyenv-Linux (Recommended)</strong></p>
+<ul class="simple">
+<li><p>Follow <a class="reference external" href="https://github.com/pyenv/pyenv?tab=readme-ov-file#a-getting-pyenv">https://github.com/pyenv/pyenv?tab=readme-ov-file#a-getting-pyenv</a> to install pyenv</p></li>
+<li><p>Use Python 3.10.xx</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pyenv</span> <span class="pre">local</span> <span class="pre">&lt;python_version&gt;</span></code> is recommended. The version given will be used whenever python is called from within this folder.</p></li>
+</ul>
+<p><strong>Windows OS</strong></p>
+<p><strong>Using Pyenv-Win (Recommended)</strong></p>
+<ul class="simple">
+<li><p>Follow steps 1-5 from here using any Python3.10.xx: <a class="reference external" href="https://github.com/pyenv-win/pyenv-win?tab=readme-ov-file#quick-start">https://github.com/pyenv-win/pyenv-win?tab=readme-ov-file#quick-start</a></p></li>
+<li><p>Instead of step 6, <code class="docutils literal notranslate"><span class="pre">pyenv</span> <span class="pre">local</span> <span class="pre">&lt;python_version&gt;</span></code> is recommended. The version given will be used whenever python is called from within this folder.</p></li>
+</ul>
+<p><strong>Using Python venv</strong></p>
+<ul class="simple">
+<li><p>Install Python3.10 from <a class="reference external" href="https://www.python.org/downloads/">https://www.python.org/downloads/</a></p></li>
+</ul>
+<div class="highlight-commandline notranslate"><div class="highlight"><pre><span></span>python -m venv py310
+.\py310\Scripts\activate
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>NOTE: MSPM0 Customers:</strong></p></li>
+<li><p>Please download and install <a class="reference external" href="https://www.ti.com/tool/download/ARM-CGT-CLANG">TI Arm Codegen Tools (TI Arm CGT Clang)</a></p>
+<ul>
+<li><p>Please set the installed path in your terminal:</p></li>
+<li><p>Linux: <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">MSPM0_C2000_CG_ROOT=&quot;/path/to/ti-cgt-armllvm_4.0.3.LTS&quot;</span></code></p></li>
+<li><p>Windows: <code class="docutils literal notranslate"><span class="pre">$env:MSPM0_C2000_CG_ROOT=&quot;C:\path\to\wherever\present\ti-cgt-armllvm_4.0.3.LTS&quot;</span></code></p></li>
+</ul>
+</li>
+</ul>
+<section id="installation">
+<h4>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">¶</a></h4>
+<p>In the following sections we explain how to setup tensorlab.</p>
+<p><strong>Linux OS</strong></p>
+<p>Steps to set up the repositories</p>
+<ol class="arabic simple">
+<li><p>Clone this repository</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">tinyml-tensorlab/tinyml-modelmaker</span></code></p></li>
+<li><p>Execute: <code class="docutils literal notranslate"><span class="pre">./setup_all.sh</span></code></p></li>
+<li><p>Run the following (to install local repositories, ideal for developers): <code class="docutils literal notranslate"><span class="pre">bash</span>&#160;&#160; <span class="pre">cd</span> <span class="pre">../tinyml-tinyverse</span>&#160;&#160; <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">.</span>&#160;&#160; <span class="pre">cd</span> <span class="pre">tinyml-modeloptimization/torchmodelopt</span>&#160;&#160; <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">.</span>&#160;&#160; <span class="pre">cd</span> <span class="pre">../tinyml-modelmaker</span></code></p></li>
+<li><p>Now you’re ready to go! <code class="docutils literal notranslate"><span class="pre">bash</span>&#160;&#160; <span class="pre">run_tinyml_modelmaker.sh</span> <span class="pre">examples/dc_arc_fault/config_dsk.yaml</span></code></p></li>
+</ol>
+<p><strong>Windows OS</strong></p>
+<p>This repository can be used from native Windows terminal directly.</p>
+<ul>
+<li><p>Although we use Pyenv for Python version management on Linux, the same offering for Windows isn’t so stable. So even the native venv is good enough.</p>
+<ul class="simple">
+<li><p><strong>It is highly recommended to use PowerShell instead of cmd.exe/Command Terminal</strong></p></li>
+<li><p>If you prefer to use Windows Subsystem for Linux, then a <a class="reference external" href="https://github.com/TexasInstruments/tinyml-tensorlab/blob/main/tinyml-modelmaker/docs/Windows_Subsytem_for_Linux.md">user guide</a> to use this toolchain Windows Subsystem for Linux has been provided.</p></li>
+</ul>
+</li>
+<li><p>Step 1.1: Clone this repository from GitHub</p></li>
+<li><p>Step 1.2: Let us ready up the dependencies</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd </span><span class="n">tinyml-tensorlab</span>
+<span class="n">python</span> <span class="n">-m</span> <span class="n">ensurepip</span> <span class="p">-</span><span class="n">-upgrade</span>
+<span class="n">python</span> <span class="n">-m</span> <span class="n">pip</span> <span class="n">install</span> <span class="p">-</span><span class="n">-no-input</span> <span class="p">-</span><span class="n">-upgrade</span> <span class="n">pip</span> <span class="n">setuptools</span> <span class="n">wheel</span>
+</pre></div>
+</div>
+</li>
+<li><p>Step 1.3: Install Tiny ML Modelmaker</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="s2">&quot;--global&quot;</span> <span class="n">core</span><span class="p">.</span><span class="n">longpaths</span> <span class="n">true</span>
+<span class="nb">cd </span><span class="p">.\</span><span class="n">tinyml-modelmaker</span>
+<span class="n">python</span> <span class="n">-m</span> <span class="n">pip</span> <span class="n">install</span> <span class="p">-</span><span class="n">-editable</span> <span class="p">.</span> <span class="c"># --use-pep517</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Tiny ML Modelmaker, by default installs Tiny ML Tinyverse and Tiny ML ModelOptimization repositories as a python package. If you intend to use this repository as is, then it is enough.</p></li>
+<li><p>However, if you intend to create models and play with the quantization varieties, then it is better to separately clone</p></li>
+</ul>
+</li>
+<li><p>Step 1.4: Installing tinyverse</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd </span><span class="p">..\</span><span class="n">tinyml-tinyverse</span>
+<span class="n">python</span> <span class="n">-m</span> <span class="n">pip</span> <span class="n">install</span> <span class="p">-</span><span class="n">-editable</span> <span class="p">.</span>
+</pre></div>
+</div>
+</li>
+<li><p>Step 1.5: Installing model optimization toolkit</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd </span><span class="p">..\</span><span class="n">tinyml-modeloptimization</span><span class="p">\</span><span class="n">torchmodelopt</span>
+<span class="n">python</span> <span class="n">-m</span> <span class="n">pip</span> <span class="n">install</span> <span class="p">-</span><span class="n">-editable</span> <span class="p">.</span>
+</pre></div>
+</div>
+</li>
+<li><p>We can run it now!</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd </span><span class="p">..\..\</span><span class="n">tinyml-modelmaker</span>
+<span class="n">python</span> <span class="p">.\</span><span class="n">tinyml_modelmaker</span><span class="p">\</span><span class="n">run_tinyml_modelmaker</span><span class="p">.</span><span class="n">py</span> <span class="p">.\</span><span class="n">examples</span><span class="p">\</span><span class="n">dc_arc_fault</span><span class="p">\</span><span class="n">config_dsk</span><span class="p">.</span><span class="n">yaml</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="keeping-up-to-date">
+<h4>Keeping up to date<a class="headerlink" href="#keeping-up-to-date" title="Permalink to this heading">¶</a></h4>
+<p>Since these repositories are undergoing a massive feature addition stage, it is recommended to keep your codes up to date by running the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git_pull_all</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="example-run">
+<h3>4.2 Example Run<a class="headerlink" href="#example-run" title="Permalink to this heading">¶</a></h3>
+<p>To illustrate the tinyml-tensorlab workflow, let’s walk through an example using the MNIST Image Classification task. The configuration file for this example is located at:</p>
+<p>tinyml-modelmaker/examples/MNIST_image_classification/config_image_classification_mnist.yaml</p>
+<p>This YAML file defines all stages of the pipeline — from dataset setup and feature extraction to model training and compilation. The key sections are described below:</p>
+<section id="section-1-common">
+<h4>Section 1: Common<a class="headerlink" href="#section-1-common" title="Permalink to this heading">¶</a></h4>
+<p>These options are about the overall run</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">common</span><span class="p">:</span>
+<span class="w">   </span><span class="nt">target_module</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;vision&#39;</span><span class="w">             </span><span class="c1"># timeseries and vision modules are currently supported, more modules to come soon.</span>
+<span class="w">   </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;image_classification&#39;</span><span class="w">                  </span><span class="c1"># vision-&gt;image_classification| timeseries-&gt;arc_fault/motor_fault</span>
+<span class="w">   </span><span class="nt">target_device</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;MSPM0G5187&#39;</span><span class="w">        </span><span class="c1">#Target TI Device</span>
+<span class="w">   </span><span class="nt">run_name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;{date-time}/{model_name}&#39;</span><span class="w">    </span><span class="c1"># Run directory name is based on this, you can provide your own name, recommended to keep as is</span>
+</pre></div>
+</div>
+</section>
+<section id="section-2-dataset">
+<h4>Section 2: Dataset<a class="headerlink" href="#section-2-dataset" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">dataset</span><span class="p">:</span><span class="w">                                    </span><span class="c1"># Enable/disable dataset loading</span>
+<span class="w">   </span><span class="nt">enable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span><span class="w">                            </span><span class="c1"># True to enable dataset loading, else will directly start from training step</span>
+<span class="w">   </span><span class="nt">dataset_name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;mnist_image_classification&#39;</span><span class="w">     </span><span class="c1"># You can give any name you want, for folder naming purpose</span>
+<span class="w">   </span><span class="nt">input_data_path</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;https://software-dl.ti.com/C2000/esd/mcu_ai/01_02_00/datasets/mnist_classes.zip&#39;</span><span class="w">  </span><span class="c1"># Can be a url/local folder location to a .zip file or a normal directory</span>
+</pre></div>
+</div>
+</section>
+<section id="section-3-data-processing-and-feature-extraction">
+<h4>Section 3: Data Processing and Feature Extraction<a class="headerlink" href="#section-3-data-processing-and-feature-extraction" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">data_processing_feature_extraction</span><span class="p">:</span>
+<span class="w">   </span><span class="nt">feature_extraction_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Mnist_Default</span><span class="w">  </span><span class="c1">#A default preset which sets the below image_height, image_width, image_num_channel, image_mean and image_scale to the values commented below</span>
+<span class="w">   </span><span class="c1"># image_height: 28 ##Image dimension(Height)</span>
+<span class="w">   </span><span class="c1"># image_width: 28  ##Image dimension(Width)</span>
+<span class="w">   </span><span class="c1"># image_num_channel: 1 ##Number of channels( RGB=3, Greyscale=1) present in the image</span>
+<span class="w">   </span><span class="c1"># image_mean: 0.1307 ##Average pixel intensity of dataset computed per channel</span>
+<span class="w">   </span><span class="c1"># image_scale: 0.3081 ##Standard deviation of pixel intensities per channel</span>
+<span class="w">   </span><span class="c1"># variables: 1</span>
+</pre></div>
+</div>
+</section>
+<section id="section-4-training">
+<h4>Section 4: Training<a class="headerlink" href="#section-4-training" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">training</span><span class="p">:</span>
+<span class="w">   </span><span class="nt">enable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span><span class="w">                            </span><span class="c1"># Enable/disable training</span>
+<span class="w">   </span><span class="nt">model_name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Lenet5&#39;</span><span class="w"> </span><span class="c1"># refer to tinyml-tinyverse\tinyml_tinyverse\common\models\generic_image_models.py for exact model architecture</span>
+<span class="w">   </span><span class="nt">batch_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">64</span><span class="w">                      </span><span class="c1"># Batch size to train</span>
+<span class="w">   </span><span class="nt">training_epochs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">14</span><span class="w">                    </span><span class="c1"># Number of epochs to run training</span>
+<span class="w">   </span><span class="nt">quantization</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span><span class="w">             </span><span class="c1"># 0-&gt;no quantization(simple fp32 training)| 1-&gt;quantized models that can run on CPU| 2-&gt;TI NPU Aware quantization</span>
+<span class="w">   </span><span class="nt">num_gpus</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w">                             </span><span class="c1"># 0 -&gt; use CPU training. 1 -&gt; Use GPU training (System needs to have GPU)</span>
+<span class="w">   </span><span class="nt">learning_rate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.1</span>
+</pre></div>
+</div>
+</section>
+<section id="section-5-testing">
+<h4>Section 5: Testing<a class="headerlink" href="#section-5-testing" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">testing</span><span class="p">:</span>
+<span class="w">   </span><span class="nt">enable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span><span class="w">                            </span><span class="c1"># Enable/disable testing</span>
+</pre></div>
+</div>
+</section>
+<section id="section-6-compilation">
+<h4>Section 6: Compilation<a class="headerlink" href="#section-6-compilation" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">compilation</span><span class="p">:</span><span class="w">  </span><span class="c1"># To enable/disable compilation</span>
+<span class="w">   </span><span class="nt">enable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span><span class="w">                            </span><span class="c1"># Enable/disable compilation of onnx model-&gt; device runnable libraries</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="executing-the-workflow">
+<h3>4.3 Executing the Workflow<a class="headerlink" href="#executing-the-workflow" title="Permalink to this heading">¶</a></h3>
+<p>Once the YAML is configured, execute the command below to start the full training → quantization → compilation pipeline:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./run_tinyml_modelmaker.sh<span class="w"> </span>./examples/MNIST_image_classification/config_image_classification_mnist.yaml
+</pre></div>
+</div>
+<p>At the end of the run, both the trained model and compiled artifacts (for deployment on MSPM0 devices) will be generated.</p>
+</section>
+</section>
+<section id="bring-your-own-model">
+<h2>5. Bring Your Own Model<a class="headerlink" href="#bring-your-own-model" title="Permalink to this heading">¶</a></h2>
+<p>Model optimization toolkit that is necessary for quantization for 2bit/4bit/8bit weights in QAT(Quantization Aware Training)/PTQ(Post Training Quantization) flows for TI devices with or without NPU. The following package provides wrappers for models running on TI-NPU (HW Accelerator) or CPU. The wrappers for TI-NPU starts from TINPU whereas for CPU starts from GENERIC.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/TexasInstruments/tinyml-tensorlab/tree/main/tinyml-modeloptimization">Tiny ML TorchModelOpt</a> - Tools and utilities to help the development of embedded Models in <a class="reference external" href="https://pytorch.org">Pytorch</a> - we call these <strong>model optimization tools</strong>.</p></li>
+<li><p>This repository helps you to quantize (with Quantization Aware Training - QAT or Post Training Quantization - PTQ) your model to formats that can run optimally on TI’s MCUs</p></li>
+</ul>
+<section id="installation-instructions">
+<h3>5.1 Installation Instructions<a class="headerlink" href="#installation-instructions" title="Permalink to this heading">¶</a></h3>
+<p>If you want to use the repository as it is, i.e a Python package, then you can simply install this as a pip installable package:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>git+https://github.com/TexasInstruments/tinyml-tensorlab.git@r1.2#subdirectory<span class="o">=</span>tinyml-modeloptimization/torchmodelopt
+</pre></div>
+</div>
+<p>To setup the repository for development, this python package and the dependencies can be installed by using the setup file.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>tinyml-modeloptimization/torchmodelopt
+./setup.sh
+</pre></div>
+</div>
+</section>
+<section id="using-quantization-wrappers-for-your-pytorch-model">
+<h3>5.2 Using Quantization Wrappers for your PyTorch model<a class="headerlink" href="#using-quantization-wrappers-for-your-pytorch-model" title="Permalink to this heading">¶</a></h3>
+<p>This repository helps you to quantize your model to formats that can run optimally on TI’s MCUs</p>
+<p><strong>Note</strong>: Please consult the device and SDK documentation to understand whether Hardware based TI NPU acceleration is supported in that device.</p>
+<section id="arm-devices-with-hardware-based-ti-npu-acceleration-tinputinymlqatfxmodule-tinputinymlptqfxmodule">
+<h4>1. ARM devices with Hardware based TI NPU acceleration (TINPUTinyMLQATFxModule / TINPUTinyMLPTQFxModule)<a class="headerlink" href="#arm-devices-with-hardware-based-ti-npu-acceleration-tinputinymlqatfxmodule-tinputinymlptqfxmodule" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>TINPUTinyMLQATFxModule / TINPUTinyMLPTQFxModule is a PyTorch module that incorporates the constraints of TI NPU Hardware accelerator. We call this a wrapper as it wraps your PyTorch module and induces the constraints of the hardware.</p></li>
+<li><p>It can be imported as follows. from tinyml_torchmodelopt.quantization import TINPUTinyMLQATFxModule</p></li>
+</ul>
+<p>The following is a sample usage of how to incorporate this module.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tinyml_torchmodelopt.quantization</span> <span class="kn">import</span> <span class="n">TINPUTinyMLQATFxModule</span><span class="p">,</span> <span class="n">TINPUTinyMLPTQFxModule</span>
+
+<span class="c1"># create your model here:</span>
+<span class="n">model</span> <span class="o">=</span> <span class="o">...</span>
+
+<span class="c1"># load your pretrained checkpoint/weights here or run your usual floating-point training</span>
+<span class="n">pretrained_data</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">pretrained_path</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">pretrained_data</span><span class="p">)</span>
+
+<span class="c1"># wrap your model in TINPUTinyMLQATFxModule / TINPUTinyMLPTQFxModule</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">TINPUTinyMLQATFxModule</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">total_epochs</span><span class="o">=</span><span class="n">epochs</span><span class="p">)</span>
+<span class="c1"># model = TINPUTinyMLPTQFxModule(model, total_epochs=epochs)</span>
+
+<span class="c1"># train the wrapped model in your training loop here with loss, backward, optimizer, etc.</span>
+<span class="c1"># your usual training loop</span>
+<span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
+   <span class="k">for</span> <span class="n">images</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">my_dataset_train</span><span class="p">:</span>
+      <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">images</span><span class="p">)</span>
+      <span class="c1"># loss, backward(), optimizer step, etc comes here as usual in training</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+
+<span class="c1"># convert the model to operate with integer operations (instead of QDQ FakeQuantize operations)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">convert</span><span class="p">()</span>
+
+<span class="c1"># create a dummy input - this is required for onnx export - will change depending on your model.</span>
+<span class="n">dummy_input</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">256</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># export the quantized model to onnx format</span>
+<span class="n">model</span><span class="o">.</span><span class="n">export</span><span class="p">(</span><span class="n">dummy_input</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span><span class="s1">&#39;model_int8.onnx&#39;</span><span class="p">),</span> <span class="n">input_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;input&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+<section id="arm-mcus-without-using-hardware-based-ti-npu-acceleration-generictinymlqatfxmodule-generictinymlptqfxmodule">
+<h4>2. ARM MCUs without using Hardware based TI NPU acceleration (GenericTinyMLQATFxModule / GenericTinyMLPTQFxModule)<a class="headerlink" href="#arm-mcus-without-using-hardware-based-ti-npu-acceleration-generictinymlqatfxmodule-generictinymlptqfxmodule" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>GenericTinyMLQATFxModule / GenericTinyMLPTQFxModule is a PyTorch module that incorporates the constraints of typical INT8 quantization in PyTorch. This makes use of the PyTorch quantization APIs, but makes it easy to do QAT with minimal code changes. For more details of <a class="reference external" href="https://pytorch.org/docs/stable/quantization.html">PyTorch quantization, see its documentation</a></p></li>
+<li><p>The wrapper module can be imported as follows. from tinyml_torchmodelopt.quantization import GenericTinyMLQATFxModule</p></li>
+</ul>
+<p>The following is a sample usage of how to incorporate this module.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tinyml_torchmodelopt.quantization</span> <span class="kn">import</span> <span class="n">GenericTinyMLQATFxModule</span><span class="p">,</span> <span class="n">GenericTinyMLPTQFxModule</span>
+
+<span class="c1"># create your model here:</span>
+<span class="n">model</span> <span class="o">=</span> <span class="o">...</span>
+
+<span class="c1"># load your pretrained checkpoint/weights here or run your usual floating-point training</span>
+<span class="n">pretrained_data</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">pretrained_path</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">pretrained_data</span><span class="p">)</span>
+
+<span class="c1"># wrap your model in GenericTinyMLQATFxModule / GenericTinyMLPTQFxModule</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">GenericTinyMLQATFxModule</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">total_epochs</span><span class="o">=</span><span class="n">epochs</span><span class="p">)</span>
+<span class="c1"># model = GenericTinyMLPTQFxModule(model, total_epochs=epochs)</span>
+
+<span class="c1"># train the wrapped model in your training loop here with loss, backward, optimizer, etc.</span>
+<span class="c1"># your usual training loop</span>
+<span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
+   <span class="k">for</span> <span class="n">images</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">my_dataset_train</span><span class="p">:</span>
+      <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">images</span><span class="p">)</span>
+      <span class="c1"># loss, backward(), optimizer step, etc comes here as usual in training</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+
+<span class="c1"># convert the model to operate with integer operations (instead of QDQ FakeQuantize operations)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">convert</span><span class="p">()</span>
+
+<span class="c1"># create a dummy input - this is required for onnx export - will change depending on your model.</span>
+<span class="n">dummy_input</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">256</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># export the quantized model to onnx format</span>
+<span class="n">model</span><span class="o">.</span><span class="n">export</span><span class="p">(</span><span class="n">dummy_input</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span><span class="s1">&#39;model_int8.onnx&#39;</span><span class="p">),</span> <span class="n">input_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;input&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+<section id="evaluate-your-model-before-running-on-device">
+<h4>Evaluate your Model before running on device<a class="headerlink" href="#evaluate-your-model-before-running-on-device" title="Permalink to this heading">¶</a></h4>
+<p>You can now use <code class="docutils literal notranslate"><span class="pre">model</span></code> for evaluation before compiling and running on device</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">onnxruntime</span> <span class="k">as</span> <span class="nn">ort</span>
+
+<span class="n">model_name</span> <span class="o">=</span> <span class="s1">&#39;model_int8.onnx&#39;</span>
+<span class="n">example_input</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">256</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="n">ort_session_options</span> <span class="o">=</span> <span class="n">ort</span><span class="o">.</span><span class="n">SessionOptions</span><span class="p">()</span>
+<span class="n">ort_session_options</span><span class="o">.</span><span class="n">graph_optimization_level</span> <span class="o">=</span> <span class="n">ort</span><span class="o">.</span><span class="n">GraphOptimizationLevel</span><span class="o">.</span><span class="n">ORT_ENABLE_EXTENDED</span>
+
+<span class="n">ort_session</span> <span class="o">=</span> <span class="n">ort</span><span class="o">.</span><span class="n">InferenceSession</span><span class="p">(</span><span class="n">model_name</span><span class="p">,</span> <span class="n">ort_session_options</span><span class="p">)</span>
+<span class="n">prediction</span> <span class="o">=</span> <span class="n">ort_session</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="p">{</span><span class="n">INPUT_NAME</span><span class="p">:</span> <span class="n">example_input</span><span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">prediction</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="wrappers-provided">
+<h4>Wrappers Provided<a class="headerlink" href="#wrappers-provided" title="Permalink to this heading">¶</a></h4>
+<section id="base-wrapper-for-native-pytorch-quantization">
+<h5>Base Wrapper for Native PyTorch Quantization<a class="headerlink" href="#base-wrapper-for-native-pytorch-quantization" title="Permalink to this heading">¶</a></h5>
+<ul class="simple">
+<li><p><strong>TinyMLQuantFxBaseModule</strong></p>
+<ul>
+<li><p>Base class for Generic and TINPU wrappers</p></li>
+<li><p>Model is present in ONNX Format</p></li>
+<li><p>Quantized according to <strong>is_qat</strong> option</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="generic-wrappers-for-cpu-quantization">
+<h5>GENERIC Wrappers for CPU Quantization<a class="headerlink" href="#generic-wrappers-for-cpu-quantization" title="Permalink to this heading">¶</a></h5>
+<ul class="simple">
+<li><p><strong>GenericTinyMLQATFxModule</strong> &amp; <strong>GenericTinyMLPTQFxModule</strong></p>
+<ul>
+<li><p>Runs on CPU</p></li>
+<li><p>Model is present in ONNX QDQ Format</p></li>
+<li><p>Quantized according to QAT/PTQ</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="tinpu-wrappers-for-npu-quantization">
+<h5>TINPU Wrappers for NPU Quantization<a class="headerlink" href="#tinpu-wrappers-for-npu-quantization" title="Permalink to this heading">¶</a></h5>
+<ul class="simple">
+<li><p><strong>TINPUTinyMLQATFxModule</strong> &amp; <strong>TINPUTinyMLPTQFxModule</strong></p>
+<ul>
+<li><p>Runs on NPU</p></li>
+<li><p>Model is present in ONNX TINPU Format</p></li>
+<li><p>Quantized according to QAT/PTQ</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="options-present-in-tinymlquantfxbasemodule">
+<h4>Options present in TinyMLQuantFxBaseModule<a class="headerlink" href="#options-present-in-tinymlquantfxbasemodule" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ti_model</span> <span class="o">=</span> <span class="n">TinyMLQuantFxBaseModule</span><span class="p">(</span><span class="n">model</span><span class="p">,</span>
+                                  <span class="n">qconfig_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                  <span class="n">example_inputs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                  <span class="n">is_qat</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                  <span class="n">backend</span><span class="o">=</span><span class="s2">&quot;qnnpack&quot;</span><span class="p">,</span>
+                                  <span class="n">total_epochs</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                                  <span class="n">num_batch_norm_update_epochs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                  <span class="n">num_observer_update_epochs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                  <span class="n">prepare_qdq</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                  <span class="n">bias_calibration_factor</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+                                  <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                  <span class="n">float_ops</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="argument-descriptions">
+<h4>Argument Descriptions<a class="headerlink" href="#argument-descriptions" title="Permalink to this heading">¶</a></h4>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Argument</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>model</strong></p></td>
+<td><p>torch.nn.Module</p></td>
+<td><p>Model</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>qconfig_type</strong></p></td>
+<td><p>QConfigMapping/QConfig</p></td>
+<td><p>QConfig configurations for model quantization</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>example_inputs</strong></p></td>
+<td><p>torch.Tensor</p></td>
+<td><p>Example input with batch size 1</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>is_qat</strong></p></td>
+<td><p>bool</p></td>
+<td><p>Toggle for PTQ / QAT</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>backend</strong></p></td>
+<td><p>str</p></td>
+<td><p>Backend used to run model</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>total_epochs</strong></p></td>
+<td><p>int</p></td>
+<td><p>Total number of quantized training epochs</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>num_batch_norm_update_epochs</strong></p></td>
+<td><p>bool/int</p></td>
+<td><p>Whether freezing BatchNorm allowed or not, if yes, then provide number of epochs after freezing happens</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>num_observer_update_epochs</strong></p></td>
+<td><p>bool/int</p></td>
+<td><p>Whether freezing observers allowed or not, if yes, then provide number of epochs after freezing happens</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>prepare_qdq</strong></p></td>
+<td><p>bool</p></td>
+<td><p>Extract the pytorch qdq model</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>bias_calibration_factor</strong></p></td>
+<td><p>float</p></td>
+<td><p>Use bias calibration</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>verbose</strong></p></td>
+<td><p>bool</p></td>
+<td><p>Enable or disable verbose statements</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>float_ops</strong></p></td>
+<td><p>bool</p></td>
+<td><p>Enable float bias for Conv and Linear layers, increases accuracy and inference time</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="tips-notes">
+<h4>Tips &amp; Notes<a class="headerlink" href="#tips-notes" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>num_batch_norm_update_epochs</strong></p>
+<ul>
+<li><p>None: Freezes the BatchNorm in middle of epoch</p></li>
+<li><p>False: Doesn’t freeze the BatchNorm which will overfit the model</p></li>
+<li><p>int (epoch): Best to set the value between half to three-quarters of total epochs</p></li>
+</ul>
+</li>
+<li><p><strong>float_ops</strong></p>
+<ul>
+<li><p>If enabled the addition will have float bias which increases the accuracy</p></li>
+<li><p>This disables the BNORM to happen on TINPU HW</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="examples-for-training-and-quantization">
+<h3>5.3 Examples for Training and Quantization<a class="headerlink" href="#examples-for-training-and-quantization" title="Permalink to this heading">¶</a></h3>
+<p>Detailed examples for using this Quantization wrapper is present at <a class="reference external" href="https://github.com/TexasInstruments/tinyml-tensorlab/tree/main/tinyml-modeloptimization/torchmodelopt/examples">examples</a>. Simple to advanced examples are provided. You can select the example based on what you are looking for, we even provide an example for MNIST Classification that you can refer to.</p>
+</section>
+<section id="compilation">
+<h3>5.4 Compilation<a class="headerlink" href="#compilation" title="Permalink to this heading">¶</a></h3>
+<p>Refer to Section <a class="reference external" href="##compiling-trained-models-with-ti-s-neural-network-compiler-for-mcus">Compiling Trained Models with TI’s Neural Network Compiler for MCU</a> of this user guide for a detailed explanation of the model compilation workflow to generate the artifacts for the ONNX generated in the previous section using the Quantization Wrapper.</p>
+</section>
+</section>
+<section id="bring-your-own-dataset">
+<h2>6. Bring Your Own Dataset<a class="headerlink" href="#bring-your-own-dataset" title="Permalink to this heading">¶</a></h2>
+<section id="dataset-format">
+<h3>6.1 Dataset format<a class="headerlink" href="#dataset-format" title="Permalink to this heading">¶</a></h3>
+<p>The prepared dataset should have the following structure for it to be consumed by the Modelmaker.</p>
+<pre>
+dataset_name/
+     |
+     |--classes/
+     |     |-- class1/                        # all the files corresponding to the class1 should be in this folder
+     |     |-- class2/                        # all the files corresponding to the class2 should be in this folder
+     |     |-- and_so_on/
+     |     |-- classN/                        # You can have as many classes as you want
+     |
+     |--annotations/
+           |--file_list.txt                   # List of all the files in the dataset
+           |--instances_train_list.txt        # List of all the files in the train set (subset of file_list.txt)
+           |--instances_val_list.txt          # List of all the files in the validation set (subset of file_list.txt)
+           |--instances_test_list.txt         # List of all the files in the test set (subset of file_list.txt)
+</pre><ul class="simple">
+<li><p><em>annotations</em> folder is <strong>optional</strong>. If the folder is not provided, the Modelmaker tool automatically generates one.</p></li>
+<li><p><em>classes</em> folder is mandatory.</p></li>
+<li><p>Look at the example dataset <a class="reference external" href="https://software-dl.ti.com/C2000/esd/mcu_ai/01_02_00/datasets/arc_fault_classification_dsk.zip">Arc Fault Classification</a> to understand further.</p></li>
+</ul>
+</section>
+<section id="notes">
+<h3>Notes<a class="headerlink" href="#notes" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Modelmaker accepts the dataset path through the <code class="docutils literal notranslate"><span class="pre">input_data_path</span></code> argument in the <code class="docutils literal notranslate"><span class="pre">config_*.yaml</span></code> file.</p></li>
+<li><p>The dataset path can be a <strong>URL</strong> or a <strong>local path</strong>.</p></li>
+<li><p>The dataset path can be a <strong>zip file</strong> or a <strong>directory</strong>.</p></li>
+<li><p>If it is a zip file, it will be extracted and the path to the extracted folder will be used.</p></li>
+<li><p>The zipped file should contain the <code class="docutils literal notranslate"><span class="pre">classes</span></code> directory immediately inside it. (Don’t mess with the hierarchy by adding a level e.g <code class="docutils literal notranslate"><span class="pre">dataset_name</span></code>)</p></li>
+<li><p>If it is a directory, you should give the path until <code class="docutils literal notranslate"><span class="pre">dataset_name/</span></code>. Modelmaker searches for the <code class="docutils literal notranslate"><span class="pre">classes</span></code> directory in this path.</p></li>
+<li><p>In the config file, provide the name of the dataset (dataset_name in this example) in the field <code class="docutils literal notranslate"><span class="pre">dataset_name</span></code> and provide the <strong>local path</strong> or <strong>URL</strong> in the field <code class="docutils literal notranslate"><span class="pre">input_data_path</span></code>.</p></li>
+<li><p>Then the ModelMaker tool can be invoked with the config file. (Refer to Section 4.2 of this user guide to understand the config yaml in greater detail)</p></li>
+</ul>
+</section>
+<section id="datafile-format">
+<h3>6.2 Datafile format<a class="headerlink" href="#datafile-format" title="Permalink to this heading">¶</a></h3>
+<p>There are two accepted formats for how the file can look in the dataset:</p>
+<ul>
+<li><p><strong>Headerless format</strong>: There is <strong>no header row</strong> and <strong>no index column</strong> in the file.</p>
+<ul>
+<li><p>This is usually suitable for single column files (where only one variable is measured) like the <a class="reference external" href="https://software-dl.ti.com/C2000/esd/mcu_ai/01_02_00/datasets/arc_fault_classification_dsk.zip">Arc Fault Classification</a> dataset.</p>
+<pre>
+  2078
+  2136
+  2117
+  2077
+  2029
+  1989
+  2056
+  </pre></li>
+</ul>
+</li>
+<li><p><strong>Headered format</strong>: There is a header row and an index column in the file.</p>
+<ul class="simple">
+<li><p>This can be used for single variable of measurement (like current) or multiple variables (e.g x,y,z axes of vibration sensors)</p></li>
+<li><p>Example for single variable of measurement</p></li>
+</ul>
+<pre>
+  Time(sec),I(amp)
+  -0.7969984,7.84
+  -0.7969952,7.76
+  -0.796992,7.76
+  -0.7969888,7.76
+  -0.7969856,7.76
+  -0.7969824,7.84
+  -0.7969792,7.84
+  </pre><ul class="simple">
+<li><p>Example for multiple variables of measurement</p></li>
+</ul>
+<pre>
+  Time,Vibx,Viby,Vibz
+  19393,-2753,-558,64376
+  19394,-2551,-468,63910
+  19395,-424,-427,64032
+  19396,1429,-763,64132
+  19397,1236,-974,64065
+  19398,-903,-547,64242
+  19399,-1512,-467,63919
+  </pre></li>
+<li><p>As you have seen in the headered format, there are columns named different variations of “time” (<code class="docutils literal notranslate"><span class="pre">Time(sec)</span></code>, <code class="docutils literal notranslate"><span class="pre">Time</span></code>)</p></li>
+<li><p>As far as a column has any instance of the text ‘time’ (case insensitive, E.g <code class="docutils literal notranslate"><span class="pre">Timestamp</span></code>, <code class="docutils literal notranslate"><span class="pre">TIME</span></code>, <code class="docutils literal notranslate"><span class="pre">TIME</span> <span class="pre">(microsec)</span></code>), <em>this column is always dropped</em>.</p></li>
+<li><p>So if a column is useful, header should not contain ‘time’ in the file.</p></li>
+</ul>
+<p>To maintain consistency with the MNIST example, refer to this guide for detailed steps on how a TensorLab-compatible dataset was generated from the TorchVision MNIST dataset. <a class="reference external" href="https://github.com/TexasInstruments/tinyml-tensorlab/tree/main/tinyml-modelmaker/examples">MNIST Image Classification Readme</a>.</p>
+</section>
+<section id="dataset-splitting">
+<h3>6.3 Dataset Splitting<a class="headerlink" href="#dataset-splitting" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>The dataset can be split into train, validation and test sets.</p></li>
+<li><p>The default dataset splitting is 60% train, 30% validation and 10% test.</p></li>
+<li><p>The train set is used for training the model.</p></li>
+<li><p>The validation set is used for evaluating the model.</p></li>
+<li><p>The test set is used for testing the model</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">annotation</span></code> directory provides the way dataset needs to be split</p></li>
+<li><p>If the user already provides this dataset, then Modelmaker consumes the provided dataset and splits it into train, validation and test sets as it is</p></li>
+<li><p>If the user does not provide this dataset, then Modelmaker will split the dataset into train, validation and test sets automatically</p></li>
+<li><p>This split can be done in two ways based on <code class="docutils literal notranslate"><span class="pre">dataset</span></code> section in the config file - split_type: <code class="docutils literal notranslate"><span class="pre">within_files</span></code> or split_type: <code class="docutils literal notranslate"><span class="pre">amongst_files</span></code> –&gt; default</p></li>
+</ul>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">dataset</span><span class="p">:</span>
+<span class="w">    </span><span class="c1"># enable/disable dataset loading</span>
+<span class="w">    </span><span class="nt">enable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span><span class="w"> </span><span class="c1">#False</span>
+<span class="w">    </span><span class="nt">split_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">within_files</span><span class="w">  </span><span class="c1"># amongst_files --&gt; default</span>
+<span class="w">    </span><span class="nt">split_factor</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.6</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.3</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.1</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="c1"># This is the default split, for train: val: test</span>
+</pre></div>
+</div>
+<section id="dataset-split-amongst-files">
+<h4>6.3.1 Dataset split “amongst_files”<a class="headerlink" href="#dataset-split-amongst-files" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Say you have <strong>10</strong> files (and each file has <strong>100</strong> lines)</p></li>
+<li><p>This will be split into “6” train files: “3” val files: “1” test file by Modelmaker</p></li>
+<li><p>each file will still have <strong>100</strong> lines</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">annotations</span></code> directory and all the files under it will be created automatically</p></li>
+</ul>
+</section>
+<section id="dataset-split-within-files">
+<h4>6.3.2 Dataset split “within_files”<a class="headerlink" href="#dataset-split-within-files" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Say you have <em>10</em> files (and each file has <strong>100</strong> lines)</p></li>
+<li><p>This will be split into the same “10” train files: “10” val files: “10” test file by Modelmaker</p></li>
+<li><p>However train files will have the first “60” lines, val files will have “30” lines and test files will have the last “10” lines</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">annotations</span></code> directory and all the files under it will be created automatically</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="deploying-compiled-models-into-an-mcu-application">
+<h2>7. Deploying Compiled Models into an MCU Application<a class="headerlink" href="#deploying-compiled-models-into-an-mcu-application" title="Permalink to this heading">¶</a></h2>
+<p>Once a compiled model is available, the model is ready to be integrated into an MCU application for deployment to the target MCU hardware.</p>
+<p><strong>Starting an Embedded Software Project for MSPM0</strong></p>
+<p>To get started with deployment of the compiled model, an embedded software project is needed to place the compiled library into. If you already have a software project in development and only want to add the compiled model, then there is no need to import a code example. However, if you do not have a project yet, you can start from an empty project and then add the compiled ML model into the project for testing.</p>
+<p>To get started with an empty project, the required tools are the MSPM0-SDK (software development kit) and an IDE with a C/C++ compiler like TI’s Code Composer Studio IDE, which will be used for this workflow.</p>
+<p>For instructions on how to get started in Code Composer Studio with an MSPM0 code example, follow the simple instructions in the MSPM0-SDK Quick Start Guides on TI.com. Using these instructions, import an empty example project for the MSPM0 device you are targeting, or for the MSPM0G3507 device (which is the target hardware for this example). The empty example for the LP-MSPM0G3507 may be found here:</p>
+<ul class="simple">
+<li><p>Empty example online</p></li>
+<li><p>Empty example location within the MSPM0-SDK: <strong>“SDK_INSTALL_PATH/examples/nortos/LP_MSPM0G3507/driverlib/empty”</strong></p></li>
+</ul>
+<p>Once you have an empty example (or your own software project) building successfully, the project is ready for integration of the compiled model.</p>
+<p><strong>Adding the Trained Model</strong></p>
+<p>Within Code Composer Studio, create an additional folder in the project structure to hold the compiled model’s files. The specific name of this folder is not critical, this example uses the name <code class="docutils literal notranslate"><span class="pre">artifacts</span></code> for the folder. Then, copy the model.a and the tvmgen_default.h files from the <code class="docutils literal notranslate"><span class="pre">artifacts</span></code> folder in the directory where the neural network compilation was performed, and paste them into the <code class="docutils literal notranslate"><span class="pre">model</span></code> directory which was created in the Code Composer Studio project.</p>
+<p>Add the <code class="docutils literal notranslate"><span class="pre">model</span></code> directory to the include path of the Code Composer Studio project so that the build picks up the path for tvmgen_default.h.</p>
+<p>Within the application code where the inference is to be run, include the TVM header for access to the function call needed to run the inference.</p>
+<p><strong>Set Up Inputs and Outputs</strong></p>
+<p>Create the input map and output map data. The MNIST data set has a 28 x 28 input geometry. There are 10 output classes (digits 0-9). Floating point data types are used for the input and output maps, even though the internal execution of the model can be quantized to Int8.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">float</span><span class="w"> </span><span class="n">input_map</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">28</span><span class="p">][</span><span class="mi">28</span><span class="p">];</span>
+<span class="kt">float</span><span class="w"> </span><span class="n">output_map</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">10</span><span class="p">];</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">tvmgen_default_inputs</span><span class="w"> </span><span class="n">tvm_input_map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">input_map</span><span class="p">[</span><span class="mi">0</span><span class="p">]};</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">tvmgen_default_outputs</span><span class="w"> </span><span class="n">tvm_output_map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">output_map</span><span class="p">[</span><span class="mi">0</span><span class="p">]};</span>
+</pre></div>
+</div>
+<p><strong>Add Call to Run the Inference</strong></p>
+<p>Once the input / output data is configured, add the function call for running the inference. After this call, the output_map array will be populated with the results of the inference.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">tvmgen_default_run</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tvm_input_map</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">tvm_output_map</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Simple Main Routine</strong></p>
+<p>A modified main.c from the DriverLib empty example for the LP-MSPM0G3507 with the above elements included is shown below for reference</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* main.c */</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;ti_msp_dl_config.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;tvmgen_default.h&quot;</span>
+
+<span class="cm">/* Fill this map with the input data before running an inference */</span>
+<span class="kt">float</span><span class="w"> </span><span class="n">input_map</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">28</span><span class="p">][</span><span class="mi">28</span><span class="p">];</span>
+
+<span class="cm">/* Read this map after the inference to process the results */</span>
+<span class="kt">float</span><span class="w"> </span><span class="n">output_map</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">10</span><span class="p">];</span>
+
+<span class="cm">/* These structures format the input correctly for the ML library */</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">tvmgen_default_inputs</span><span class="w"> </span><span class="n">tvm_input_map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">input_map</span><span class="p">[</span><span class="mi">0</span><span class="p">]};</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">tvmgen_default_outputs</span><span class="w"> </span><span class="n">tvm_output_map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">output_map</span><span class="p">[</span><span class="mi">0</span><span class="p">]};</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">   </span><span class="n">SYSCFG_DL_init</span><span class="p">();</span>
+
+<span class="w">   </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">   </span><span class="p">{</span>
+<span class="w">      </span><span class="n">tvmgen_default_run</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tvm_input_map</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">tvm_output_map</span><span class="p">);</span>
+<span class="w">      </span><span class="n">NOP</span><span class="p">();</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>NOTE: The above example main.c demonstrates a software-only implementation (executed on the host processor) — applicable when the compiler flag is set to “c, ti-npu type=soft”. If instead you compile with the flag “c, ti-npu”, refer to the <a class="reference external" href="https://software-dl.ti.com/mctools/nnc/mcu/users_guide/infering.html#running-model-on-hardware-npu-accelerator-ti-npu">NPU Inference Guide</a> for instructions on integrating and executing the generated artifacts for hardware-accelerated inference on the TI NPU.</p>
+<p><strong>Application Statistics</strong></p>
+<p>Without quantization, a Float32 model would require &gt;200kB of flash memory (beyond the size of the MSPM0G3507 on-chip flash). With PyTorch QDQ quantization, the Int8 model consumes less than half of the available flash memory, while still achieving accuracy within 1 percentage point of the Float32 model.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Quantization</p></th>
+<th class="head"><p>Flash Size</p></th>
+<th class="head"><p>Latency</p></th>
+<th class="head"><p>Accuracy</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>None (Float32)</p></td>
+<td><p>236.6kB</p></td>
+<td><p>n/a</p></td>
+<td><p>99%</p></td>
+</tr>
+<tr class="row-odd"><td><p>QDQ (Int8)</p></td>
+<td><p>50.8kB</p></td>
+<td><p>298ms</p></td>
+<td><p>98.9%</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="summary">
+<h2>8. Summary<a class="headerlink" href="#summary" title="Permalink to this heading">¶</a></h2>
+<p>With the information presented in this document, it’s possible to configure a Python virtual environment for machine learning work, modify a model for Int8 quantization, train the model, compile the model for MSPM0 MCU deployment, and integrate the compiled artifacts into a simple code example for the MSPM0 from the MSPM0-SDK. For more information on Edge AI / machine learning with TI microcontrollers and microprocessors, visit <a class="reference external" href="http://www.ti.com/edgeai">TI EdgeAI Page</a> today.</p>
+</section>
+<section id="references">
+<h2>9. References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://pytorch.org/docs/stable/index.html">PyTorch Documentation</a></p></li>
+<li><p><a class="reference external" href="https://onnx.ai/">ONNX Format Specification</a></p></li>
+<li><p><a class="reference external" href="https://software-dl.ti.com/mctools/nnc/mcu/users_guide/">TI Neural Network Compiler for MCUs – User Guide</a></p></li>
+<li><p><a class="reference external" href="https://www.ti.com/tool/MSPM0-SDK">MSPM0 SDK – Quick Start Guide</a></p></li>
+<li><p><a class="reference external" href="https://www.ti.com/tool/CCSTUDIO">TI Code Composer Studio</a></p></li>
+<li><p><a class="reference external" href="https://github.com/TexasInstruments/tinyml-tensorlab">tinyml-tensorlab - TI’s MCU AI Toolchain</a></p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="MSPM0 EdgeAI User Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="EdgeAI_Deployment_Guide_EdgeAI_Studio.html" class="btn btn-neutral float-right" title="Deploying Machine Learning Models on TI MSPM0 Microcontrollers Using EdgeAI Studio GUI Tools" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">1995-2023, Texas Instruments Incorporated. All rights reserved</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

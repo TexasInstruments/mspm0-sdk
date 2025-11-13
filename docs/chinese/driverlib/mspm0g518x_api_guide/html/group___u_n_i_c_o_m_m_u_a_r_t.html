@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0G518X Driver Library
-   &#160;<span id="projectnumber">2.07.00.05</span>
+   &#160;<span id="projectnumber">2.08.00.03</span>
    </div>
   </td>
  </tr>
@@ -517,6 +517,12 @@ Functions</h2></td></tr>
 <tr class="memitem:gaa5f427c3902090ca931b43fa30aa9608"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___u_n_i_c_o_m_m_u_a_r_t.html#gaa5f427c3902090ca931b43fa30aa9608">DL_UART_disableSendIdlePattern</a> (UNICOMM_Inst_Regs *unicomm)</td></tr>
 <tr class="memdesc:gaa5f427c3902090ca931b43fa30aa9608"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable send idle pattern.  <a href="#gaa5f427c3902090ca931b43fa30aa9608">More...</a><br /></td></tr>
 <tr class="separator:gaa5f427c3902090ca931b43fa30aa9608"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga25c4a3d6fc9921c10a6e9cb85ebe33fe"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___u_n_i_c_o_m_m_u_a_r_t.html#ga25c4a3d6fc9921c10a6e9cb85ebe33fe">DL_UART_suspendExternalCommunication</a> (UNICOMM_Inst_Regs *unicomm)</td></tr>
+<tr class="memdesc:ga25c4a3d6fc9921c10a6e9cb85ebe33fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Suspend external communication.  <a href="#ga25c4a3d6fc9921c10a6e9cb85ebe33fe">More...</a><br /></td></tr>
+<tr class="separator:ga25c4a3d6fc9921c10a6e9cb85ebe33fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1daa137ac45c45eb2cf1816646e51f76"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___u_n_i_c_o_m_m_u_a_r_t.html#ga1daa137ac45c45eb2cf1816646e51f76">DL_UART_resumeExternalCommunication</a> (UNICOMM_Inst_Regs *unicomm)</td></tr>
+<tr class="memdesc:ga1daa137ac45c45eb2cf1816646e51f76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resume external communication.  <a href="#ga1daa137ac45c45eb2cf1816646e51f76">More...</a><br /></td></tr>
+<tr class="separator:ga1daa137ac45c45eb2cf1816646e51f76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga561d2b99587d41ae87d37ecd2bb5ea7a"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___u_n_i_c_o_m_m_u_a_r_t.html#ga561d2b99587d41ae87d37ecd2bb5ea7a">DL_UART_isSendIdlePatternEnabled</a> (UNICOMM_Inst_Regs *unicomm)</td></tr>
 <tr class="memdesc:ga561d2b99587d41ae87d37ecd2bb5ea7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if send idle pattern is enabled.  <a href="#ga561d2b99587d41ae87d37ecd2bb5ea7a">More...</a><br /></td></tr>
 <tr class="separator:ga561d2b99587d41ae87d37ecd2bb5ea7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -3014,6 +3020,60 @@ DL_UART_setTXDPin </dd></dl>
 </div><div class="memdoc">
 
 <p>Disable send idle pattern. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">unicomm</td><td>Pointer to the register overlay for the peripheral </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga25c4a3d6fc9921c10a6e9cb85ebe33fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga25c4a3d6fc9921c10a6e9cb85ebe33fe">&sect;&nbsp;</a></span>DL_UART_suspendExternalCommunication()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__STATIC_INLINE void DL_UART_suspendExternalCommunication </td>
+          <td>(</td>
+          <td class="paramtype">UNICOMM_Inst_Regs *&#160;</td>
+          <td class="paramname"><em>unicomm</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Suspend external communication. </p>
+<p>When bit enabled, external communication is suspended.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">unicomm</td><td>Pointer to the register overlay for the peripheral </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga1daa137ac45c45eb2cf1816646e51f76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1daa137ac45c45eb2cf1816646e51f76">&sect;&nbsp;</a></span>DL_UART_resumeExternalCommunication()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__STATIC_INLINE void DL_UART_resumeExternalCommunication </td>
+          <td>(</td>
+          <td class="paramtype">UNICOMM_Inst_Regs *&#160;</td>
+          <td class="paramname"><em>unicomm</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Resume external communication. </p>
+<p>When bit disabled, external communication is resumed.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">unicomm</td><td>Pointer to the register overlay for the peripheral </td></tr>

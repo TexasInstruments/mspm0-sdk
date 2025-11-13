@@ -50,6 +50,7 @@ SYSCONFIG_WEAK void SYSCFG_DL_init(void)
     SYSCFG_DL_GPIO_init();
     /* Module-Specific Initializations*/
     SYSCFG_DL_SYSCTL_init();
+    SYSCFG_DL_TIMER_UART_init();
     SYSCFG_DL_UART_0_init();
     SYSCFG_DL_MCAN0_init();
     SYSCFG_DL_SYSCTL_CLK_init();
@@ -61,11 +62,13 @@ SYSCONFIG_WEAK void SYSCFG_DL_initPower(void)
 {
     DL_GPIO_reset(GPIOA);
     DL_GPIO_reset(GPIOB);
+    DL_TimerG_reset(TIMER_UART_INST);
     DL_UART_Main_reset(UART_0_INST);
     DL_MCAN_reset(MCAN0_INST);
 
     DL_GPIO_enablePower(GPIOA);
     DL_GPIO_enablePower(GPIOB);
+    DL_TimerG_enablePower(TIMER_UART_INST);
     DL_UART_Main_enablePower(UART_0_INST);
     DL_MCAN_enablePower(MCAN0_INST);
     delay_cycles(POWER_STARTUP_DELAY);
@@ -126,6 +129,45 @@ SYSCONFIG_WEAK void SYSCFG_DL_SYSCTL_CLK_init(void) {
 	}
 }
 
+
+
+
+/*
+ * Timer clock configuration to be sourced by LFCLK /  (32768 Hz)
+ * timerClkFreq = (timerClkSrc / (timerClkDivRatio * (timerClkPrescale + 1)))
+ *   32768 Hz = 32768 Hz / (1 * (0 + 1))
+ */
+static const DL_TimerG_ClockConfig gTIMER_UARTClockConfig = {
+    .clockSel    = DL_TIMER_CLOCK_LFCLK,
+    .divideRatio = DL_TIMER_CLOCK_DIVIDE_1,
+    .prescale    = 0U,
+};
+
+/*
+ * Timer load value (where the counter starts from) is calculated as (timerPeriod * timerClockFreq) - 1
+ * TIMER_UART_INST_LOAD_VALUE = (0 ms * 32768 Hz) - 1
+ */
+static const DL_TimerG_TimerConfig gTIMER_UARTTimerConfig = {
+    .period     = TIMER_UART_INST_LOAD_VALUE,
+    .timerMode  = DL_TIMER_TIMER_MODE_ONE_SHOT,
+    .startTimer = DL_TIMER_STOP,
+};
+
+SYSCONFIG_WEAK void SYSCFG_DL_TIMER_UART_init(void) {
+
+    DL_TimerG_setClockConfig(TIMER_UART_INST,
+        (DL_TimerG_ClockConfig *) &gTIMER_UARTClockConfig);
+
+    DL_TimerG_initTimerMode(TIMER_UART_INST,
+        (DL_TimerG_TimerConfig *) &gTIMER_UARTTimerConfig);
+    DL_TimerG_enableInterrupt(TIMER_UART_INST , DL_TIMERG_INTERRUPT_ZERO_EVENT);
+    DL_TimerG_enableClock(TIMER_UART_INST);
+
+
+
+
+
+}
 
 
 static const DL_UART_Main_ClockConfig gUART_0ClockConfig = {
@@ -201,8 +243,8 @@ static const DL_MCAN_ConfigParams gMCAN0ConfigParams={
     .timeoutCntEnable  = false,
     .filterConfig.rrfs = true,
     .filterConfig.rrfe = true,
-    .filterConfig.anfe = 1,
-    .filterConfig.anfs = 1,
+    .filterConfig.anfe = 0,
+    .filterConfig.anfs = 0,
 };
 
 static const DL_MCAN_MsgRAMConfigParams gMCAN0MsgRAMConfigParams ={

@@ -40,6 +40,7 @@
 /* get Common /ti/driverlib utility functions */
 let Common = system.getScript("/ti/driverlib/Common.js");
 let EVENT = system.getScript("/ti/driverlib/EVENT.syscfg.js");
+let CaptTimerCommon = system.getScript("/ti/driverlib/capture/CaptTimer.common.js");
 
 
 
@@ -190,27 +191,12 @@ function getRepeatCntOptions(inst)
 }
 
 /* ========= dynamic Changes ========== */
-function getDisabledOptionsInterrupts(inst,ui)
-{
-    let disabled = [];
-
-    if((Common.hasTimerA()) && !isFourCCCapable(inst))
-    {
-        disabled.push({ name: "CC2_DN", displayName: "Channel 2 compare down event", reason: "Not supported by Timer instance"});
-        disabled.push({ name: "CC2_UP", displayName: "Channel 2 compare up event",   reason: "Not supported by Timer instance"});
-        disabled.push({ name: "CC3_DN", displayName: "Channel 3 compare down event", reason: "Not supported by Timer instance"});
-        disabled.push({ name: "CC3_UP", displayName: "Channel 3 compare up event",   reason: "Not supported by Timer instance"});
-    }
-
-    return disabled;
-}
-
 function getDisabledOptionsEvents(inst,ui)
 {
 
     let disabled = [];
 
-    if((Common.hasTimerA()) && !isFourCCCapable(inst))
+    if((Common.hasTimerA()) && !CaptTimerCommon.isFourCCCapable(inst))
     {
         disabled.push({ name: "CC2_DN_EVENT", displayName: "Channel 2 compare down event", reason: "Not supported by Timer instance"});
         disabled.push({ name: "CC2_UP_EVENT", displayName: "Channel 2 compare up event",   reason: "Not supported by Timer instance"});
@@ -225,7 +211,7 @@ function getDisabledEvents(inst)
 {
     let allOptions = EventOptions;
 
-    if(!isFourCCCapable(inst)) {
+    if(!CaptTimerCommon.isFourCCCapable(inst)) {
         allOptions = allOptions.filter( (el) => !el.name.match("CC2|3") );
     }
 
@@ -233,17 +219,6 @@ function getDisabledEvents(inst)
 }
 
 /* ==================== Helper Funtions ================================== */
-
-// Returns true if the device is TIMA0 and thus has four capture compare channels
-function isFourCCCapable(inst)
-{
-    try{
-        return (inst.peripheral.$solution.peripheralName.match(/TIMA0|TIMG14/) != null);
-    }catch (e) {
-        return false;
-    }
-}
-
 function isHighResolutionCapable(inst)
 {
     try{
@@ -1241,7 +1216,7 @@ custom capture mode.\n`,
                             options: ccIndexOptions,
                             getDisabledOptions:(inst) => {
                                 let disabledOptions = [];
-                                if((Common.hasTimerA()) && !isFourCCCapable(inst)){
+                                if((Common.hasTimerA()) && !CaptTimerCommon.isFourCCCapable(inst)){
                                     disabledOptions.push(ccIndexOptions[2]);
                                     disabledOptions.push(ccIndexOptions[3]);
                                     return _.map(disabledOptions, o => ({name: o.name, reason: "Only valid for TIMA0"}) );
@@ -1312,7 +1287,7 @@ be set to zero.`,
                             options: ccIndexOptionsZero,
                             getDisabledOptions:(inst) => {
                                 let disabledOptions = [];
-                                if((Common.hasTimerA()) && !isFourCCCapable(inst)){
+                                if((Common.hasTimerA()) && !CaptTimerCommon.isFourCCCapable(inst)){
                                     disabledOptions.push(ccIndexOptionsZero[3]);
                                     disabledOptions.push(ccIndexOptionsZero[4]);
                                     return _.map(disabledOptions, o => ({name: o.name, reason: "Only valid for TIMA0"}) );
@@ -1748,7 +1723,7 @@ be set to zero.`,
                     options: InterruptOptions,
                     minSelections: 0,
                     onChange: onChangeInterrupts,
-                    getDisabledOptions: getDisabledOptionsInterrupts,
+                    getDisabledOptions: CaptTimerCommon.getDisabledOptionsInterrupts,
                 },
                 {
                     name: "interruptPriority",

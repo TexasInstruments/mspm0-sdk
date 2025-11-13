@@ -1453,8 +1453,11 @@ let config = [
             },
             {
                 name        : "asmEnable",
-                displayName : "Enable Normal CAN Operation",
-                description : 'Enable Normal CAN Operation',
+                displayName : "Restricted Operation Mode",
+                description : 'Restricted Operation Mode',
+                longDescription: `
+Enabling this option will make the Restricted Operation Mode active.
+Disabling this option will keep Normal CAN operation mode.`,
                 hidden      : true,
                 default     : false,
             },

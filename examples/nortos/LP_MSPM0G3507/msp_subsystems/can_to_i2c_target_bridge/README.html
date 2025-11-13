@@ -49,7 +49,7 @@
 <tr class="odd">
 <td>GPIOB</td>
 <td>PB20</td>
-<td>Standard Output with internal pull-up</td>
+<td>Standard Input with internal pull-up</td>
 </tr>
 <tr class="even">
 <td>GPIOB</td>
@@ -67,13 +67,13 @@
 <td>HFXOUT</td>
 </tr>
 <tr class="odd">
-<td>I2C1</td>
-<td>PB3</td>
+<td>I2C0</td>
+<td>PA0</td>
 <td>I2C Serial Data line (SDA)</td>
 </tr>
 <tr class="even">
-<td>I2C1</td>
-<td>PB2</td>
+<td>I2C0</td>
+<td>PA1</td>
 <td>I2C Serial Clock line (SCL)</td>
 </tr>
 <tr class="odd">
@@ -145,18 +145,18 @@
 <td><ul><li>PA6 is used for HFXT functionality by default in Launchpad<br><ul><li><code>Y2</code> crystal is soldered and connected by default</ul><br><li>PA6 can be connected to J28_5<br><ul><li><code>R17</code> is not soldered soldered by default<br><li>Solder <code>R17</code> to connect pin to J28_5</ul></td>
 </tr>
 <tr class="odd">
-<td>PB3</td>
-<td>I2C1</td>
+<td>PA0</td>
+<td>I2C0</td>
 <td>SDA</td>
-<td>J1_10</td>
-<td><ul><li>PB3 can be connected to an on-board pull-up resistor<br><ul><li><code>R60</code> is not soldered by default<br><li>Solder <code>R60</code> to use on-board pull-up</ul></ul></td>
+<td>J27_9</td>
+<td><ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li><code>J19 1:2</code> Use 3.3V pull-up<br><li><code>J19 2:3</code> Use 5V pull-up</ul><br><li>PA0 can be connected to LED1<br><ul><li><code>J4 OFF</code> Disconnect from LED1</ul></ul></td>
 </tr>
 <tr class="even">
-<td>PB2</td>
-<td>I2C1</td>
+<td>PA1</td>
+<td>I2C0</td>
 <td>SCL</td>
-<td>J1_9</td>
-<td><ul><li>PB2 can be connected to an on-board pull-up resistor<br><ul><li><code>R59</code> is not soldered by default<br><li>Solder <code>R59</code> to use on-board pull-up</ul></ul></td>
+<td>J28_9</td>
+<td><ul><li>PA1 is 5V tolerant open-drain so it requires pull-up<br><ul><li><code>J20 1:2</code> Use 3.3V pull-up<br><li><code>J20 2:3</code> Use 5V pull-up</ul></ul></td>
 </tr>
 <tr class="odd">
 <td>PA13</td>
@@ -195,18 +195,21 @@
 <p>SysConfig allows developers to easily configure unused pins by selecting <strong>Board</strong>→<strong>Configure Unused Pins</strong>.</p>
 <p>For more information about jumper configuration to achieve low-power using the MSPM0 LaunchPad, please visit the <a href="https://www.ti.com/lit/slau873">LP-MSPM0G3507 User’s Guide</a>.</p>
 <h2 id="example-usage">Example Usage</h2>
-<p>Connect the CAN_RX and CAN_TX to TCAN1042DEVM pins as described in TCAN Evaluation Module User’s Guide and monitor and receive CAN-FD packages using can-to-i2c-controller bridge project or using a CAN Bus Analyzer tool of your choice.</p>
+<p>Connect the CAN_RX and CAN_TX to TCAN1042DEVM pins as described in TCAN Evaluation Module User’s Guide and monitor and receive CAN-FD packages using another can-to-any bridge project or using a CAN Bus Analyzer tool of your choice.</p>
 <p>Connect SDA and SCL between I2C Controller and Target.</p>
 <p>It should be noted that I2C is a communication method that I2C controller control the transmit and receive. In general, I2C target cannot initiate communication. For I2C target-to-controller communication, I2C target will pull down the IO when messages need to be sent. I2C controller will initiate I2C read command in IO interrupt when IO is detected low.</p>
 <p>Compile, load and run the example.</p>
 <p>CANFD Transmissions to the device will be passed on through I2C target.<br />
 I2C Transmissions to the device will be passed on through CANFD at 250k/2M speed.</p>
-<p>For I2C, the example is configured as I2C target. For CANFD, the example has the following Nominal and Data Rate frequencies configured:</p>
+<p>For I2C, the example is configured with I2C target. For CANFD, the example has the following Nominal and Data Rate frequencies configured:</p>
 <ul>
 <li>Nominal Bit Rate (250 kbps)</li>
 <li>Data Bit Rate (2 Mbps)</li>
 </ul>
-<p>This example specifies the I2C message format. When receiving the message from I2C, the message format is &lt; 55 AA ID1 ID2 ID3 ID4 Length Data1 Data2 …&gt;. Users can send data via I2C as the same format. 55 AA is the header. ID area is 4 bytes. Length area is 1 byte, indicating the data length.</p>
+<p>The example in this article supports both transparent transmission(default) and protocol transmission. User can switch it in user_define.h</p>
+<p>For transparent transmission, I2C stop interrupt is used to detect one message. Data from I2C is filled into the data area of CAN (same in reverse). CAN ID is the default value.</p>
+<p>For protocol transmission, this example specifies the I2C message format. Users can also modify the format according to application requirements. When receiving the message from I2C, the message format is &lt; 55 AA ID1 ID2 ID3 ID4 Length Data1 Data2 …&gt;. Users can send data through the I2C as the same format. 55 AA is the header. ID area is four bytes. Length area is one byte, which indicates the data length.</p>
+<p>For more information about how to use this example to develop the bridge application as needed, please visit the <a href="https://www.ti.com/lit/pdf/slaaen6">Bridge Design between CAN and I2C with MSPM0 MCUs</a>.</p>
 <!-- Close div from before_body_template.html -->
 </div>
 <footer id="tiFooter">

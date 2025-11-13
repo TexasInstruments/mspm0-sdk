@@ -151,8 +151,8 @@ SYSCONFIG_WEAK void SYSCFG_DL_I2C_init(void) {
 
     /* Configure Controller Mode */
     DL_I2C_resetControllerTransfer(I2C_INST);
-    /* Set frequency to 400000 Hz*/
-    DL_I2C_setTimerPeriod(I2C_INST, 7);
+    /* Set frequency to 100000 Hz*/
+    DL_I2C_setTimerPeriod(I2C_INST, 31);
     DL_I2C_setControllerTXFIFOThreshold(I2C_INST, DL_I2C_TX_FIFO_LEVEL_BYTES_1);
     DL_I2C_setControllerRXFIFOThreshold(I2C_INST, DL_I2C_RX_FIFO_LEVEL_BYTES_1);
     DL_I2C_enableControllerClockStretching(I2C_INST);
@@ -163,6 +163,7 @@ SYSCONFIG_WEAK void SYSCFG_DL_I2C_init(void) {
                            DL_I2C_INTERRUPT_CONTROLLER_NACK |
                            DL_I2C_INTERRUPT_CONTROLLER_RXFIFO_TRIGGER |
                            DL_I2C_INTERRUPT_CONTROLLER_RX_DONE |
+                           DL_I2C_INTERRUPT_CONTROLLER_STOP |
                            DL_I2C_INTERRUPT_CONTROLLER_TX_DONE);
 
 
@@ -208,8 +209,8 @@ static const DL_MCAN_ConfigParams gMCAN0ConfigParams={
     .timeoutCntEnable  = false,
     .filterConfig.rrfs = true,
     .filterConfig.rrfe = true,
-    .filterConfig.anfe = 1,
-    .filterConfig.anfs = 1,
+    .filterConfig.anfe = 0,
+    .filterConfig.anfs = 0,
 };
 
 static const DL_MCAN_MsgRAMConfigParams gMCAN0MsgRAMConfigParams ={

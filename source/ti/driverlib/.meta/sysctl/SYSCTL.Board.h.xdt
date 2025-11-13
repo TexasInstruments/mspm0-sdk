@@ -41,6 +41,9 @@
 
     /* get ti/drivers common utility functions */
     let Common = system.getScript("/ti/driverlib/Common.js");
+    let { ClockSignals } = system.getScript("/ti/driverlib/sysctl/SYSCTLMSPM0Clocks.js");
+    let ClockOptions = system.getScript("/ti/driverlib/sysctl/SYSCTLMSPM0options.js");
+
 
     // since sysctl is static we don't use the inst variable
     let stat = SYSCTL.$static;
@@ -66,7 +69,29 @@
 %   } else {
 %   /* This is one possible way to do GPIO defines. Good if you need to find out PINCM */
 %       let gpioStr = "GPIO"
-% if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0L111X()){
+%%{
+    //  FCC_IN Defines
+%%}
+% if(stat.fccTrigSrc == "FCC_IN" && stat.enableFCC){
+%       let fccInPinName = "fccIn"+"Pin";
+%       let fccInPackagePin = stat.peripheral[fccInPinName].$solution.packagePinName;
+%       let fccInPinCM = Common.getPinCM(fccInPackagePin,stat,"FCC_IN");
+%       let fccInGpioName = system.deviceData.devicePins[fccInPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
+%       let fccInPort = Common.getGPIOPortMultiPad(fccInPackagePin,stat,"FCC_IN");
+%       let fccInGpioPin = Common.getGPIONumberMultiPad(fccInPackagePin,stat,"FCC_IN");
+% let fccInPortStr = "#define "+gpioStr+"_FCC_IN_PORT";
+`fccInPortStr.padEnd(40," ")+fccInPort.padStart(40, " ")`
+% let fccInPinStr = "#define "+gpioStr+"_FCC_IN_PIN";
+% let fccInPinStr2 = "DL_GPIO_PIN_"+fccInGpioPin;
+`fccInPinStr.padEnd(40," ")+fccInPinStr2.padStart(40," ")`
+% let fccInIOmuxStr = "#define "+gpioStr+"_FCC_IN_IOMUX";
+% let fccInIOmuxStr2 = "(IOMUX_PINCM"+fccInPinCM.toString()+")";
+`fccInIOmuxStr.padEnd(40," ")+fccInIOmuxStr2.padStart(40," ")`
+% let fccInFuncStr = "#define "+gpioStr+"_FCC_IN_IOMUX_FUNC";
+% let fccInFuncStr2 = "IOMUX_PINCM"+fccInPinCM+"_PF_"+"SYSCTL_FCC_IN";
+`fccInFuncStr.padEnd(40, " ")+fccInFuncStr2.padStart(40, " ")`
+% }
+% if(ClockSignals.includes("LFXT")){
 %    if(stat.LFCLKSource === "LFXT"){
 % /* figure out pin number and pinCMx */
 % /* LFXIN pins */
@@ -96,8 +121,10 @@
 % let lfxOutIOmuxStr = "#define "+gpioStr+"_LFXOUT_IOMUX";
 % let lfxOutIOmuxStr2 = "(IOMUX_PINCM"+lfxOutPinCM.toString()+")";
 `lfxOutIOmuxStr.padEnd(40," ")+lfxOutIOmuxStr2.padStart(40," ")`
+%   }
 % }
-% else if(stat.LFCLKSource === "LFCLK_IN"){
+% if(((ClockOptions.LFCLKSource).map(x=>x.name)).includes("LFCLK_IN")){
+%   if(stat.LFCLKSource === "LFCLK_IN"){
 % /* LFCLK IN pins */
 %       let lfclkInPinName = "lfclkIn"+"Pin";
 %       let lfclkInPackagePin = stat.peripheral[lfclkInPinName].$solution.packagePinName;
@@ -116,9 +143,9 @@
 % let lfclkInFuncStr = "#define "+gpioStr+"_LFCLKIN_IOMUX_FUNC";
 % let lfclkInFuncStr2 = "IOMUX_PINCM"+lfclkInPinCM+"_PF_"+"SYSCTL_LFCLKIN";
 `lfclkInFuncStr.padEnd(40, " ")+lfclkInFuncStr2.padStart(40, " ")`
+%   }
 %}
-%}
-% if(Common.isDeviceM0G()){
+% if(ClockSignals.includes("HFXT")){
 % /* HFXOUT pins */
 % if(stat.useHFCLK && stat.HFCLKSource === "HFXT"){
 %       let hfxInPinName = "hfxIn"+"Pin";
@@ -148,7 +175,9 @@
 % let hfxOutIOmuxStr2 = "(IOMUX_PINCM"+hfxOutPinCM.toString()+")";
 `hfxOutIOmuxStr.padEnd(40," ")+hfxOutIOmuxStr2.padStart(40," ")`
 % }
-% else if(stat.useHFCLK && stat.HFCLKSource === "HFCLK_IN"){
+% }
+% if(((ClockOptions.HFCLKSource).map(x=>x.name)).includes("HFCLK_IN")){
+%   if(stat.useHFCLK && stat.HFCLKSource === "HFCLK_IN"){
 % /* HFCLK IN pins */
 %       let hfclkInPinName = "hfclkIn"+"Pin";
 %       let hfclkInPackagePin = stat.peripheral[hfclkInPinName].$solution.packagePinName;

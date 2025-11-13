@@ -40,6 +40,7 @@
 /* get Common /ti/driverlib utility functions */
 let Common = system.getScript("/ti/driverlib/Common.js");
 let EVENT = system.getScript("/ti/driverlib/EVENT.syscfg.js");
+let CompTimerCommon = system.getScript("/ti/driverlib/compare/CompTimer.common.js");
 
 
 
@@ -204,26 +205,9 @@ function getRepeatCntOptions(inst)
 }
 
 /* ========= dynamic Changes ========== */
-function getDisabledOptionsInterrupts(inst,ui)
-{
-    let isFourCC = isFourCCCapable(inst);
-
-    let disabled = [];
-
-    if(isFourCC)
-    {
-        disabled.push({ name: "CC2_DN", displayName: "Channel 2 compare down event", reason: "Not supported by Timer instance"});
-        disabled.push({ name: "CC2_UP", displayName: "Channel 2 compare up event",   reason: "Not supported by Timer instance"});
-        disabled.push({ name: "CC3_DN", displayName: "Channel 3 compare down event", reason: "Not supported by Timer instance"});
-        disabled.push({ name: "CC3_UP", displayName: "Channel 3 compare up event",   reason: "Not supported by Timer instance"});
-    }
-
-    return disabled;
-}
-
 function getDisabledOptionsEvents(inst,ui)
 {
-    let isFourCC = isFourCCCapable(inst);
+    let isFourCC = CompTimerCommon.isFourCCCapable(inst);
 
     let disabled = [];
 
@@ -242,7 +226,7 @@ function getDisabledEvents(inst)
 {
     let allOptions = EventOptions;
 
-    if(isFourCCCapable(inst)) {
+    if(CompTimerCommon.isFourCCCapable(inst)) {
         allOptions = allOptions.filter( (el) => !el.name.match("CC2|3") );
     }
 
@@ -250,16 +234,6 @@ function getDisabledEvents(inst)
 }
 
 /* ==================== Helper Funtions ================================== */
-
-function isFourCCCapable(inst)
-{
-    try{
-        return (inst.peripheral.$solution.peripheralName.match(/TIMA0|TIMG14/) == null);
-    }catch (e) {
-        return false;
-    }
-}
-
 function isHighResolutionCapable(inst)
 {
     try{
@@ -1075,7 +1049,7 @@ custom capture mode.`,
                 options: InterruptOptions,
                 minSelections: 0,
                 onChange: onChangeInterrupts,
-                getDisabledOptions: getDisabledOptionsInterrupts,
+                getDisabledOptions: CompTimerCommon.getDisabledOptionsInterrupts,
             },
             {
                 name: "interruptPriority",

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectSpec>
+    <applicability>
+        <when>
+            <context
+                deviceFamily="ARM"
+                deviceId="MSPM0G3507"
+            />
+        </when>
+    </applicability>
+
+    <project
+        title="sensorless-foc_DRV8323RS_LP_MSPM0G3507_nortos_ticlang"
+        name="sensorless-foc_DRV8323RS_LP_MSPM0G3507_nortos_ticlang"
+        configurations="Debug"
+        toolChain="TICLANG"
+        connection="TIXDS110_Connection.xml"
+        device="MSPM0G3507"
+        ignoreDefaultDeviceSettings="true"
+        ignoreDefaultCCSSettings="true"
+        products="MSPM0-SDK;sysconfig"
+        compilerBuildOptions="
+            -I${PROJECT_ROOT}
+            -I${ORIG_PROJ_ROOT_DIR}
+            -I${ORIG_PROJ_SOURCE_DIR}
+            -I${PROJECT_ROOT}/modules/IQmath/include
+            -I${PROJECT_ROOT}/modules/hal/controllerInterface/include
+            -I${PROJECT_ROOT}/modules/hal/commInterface/uart_comm/include
+            -I${PROJECT_ROOT}/modules/motorControlLib/include
+            -I${PROJECT_ROOT}/modules/hal/gateDriverInterface/gateDriverLib/DRV8323/include
+            -I${PROJECT_ROOT}/modules/hal/gateDriverInterface/include
+            -I${PROJECT_ROOT}/modules/appLib/appInterface/include
+            -I${PROJECT_ROOT}/modules/appLib/configTables/include
+            -I${PROJECT_ROOT}/${ConfigName}
+            -D__MSPM0G3507__
+            -DGLOBAL_IQ=27
+            -D_IQ_MPY_MATHACL_INLINE
+            -O2
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/Core/Include
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -gdwarf-3
+            -mcpu=cortex-m0plus
+            -march=thumbv6m
+            -mfloat-abi=soft
+            -mthumb
+            -DDRV8323
+        "
+        linkerBuildOptions="
+            -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/motor_control_pmsm_foc/lib/ticlang/m0p/FOC_Lib.lib
+            -L${PROJECT_BUILD_DIR}/syscfg
+            -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/ticlang/m0p/mspm0g1x0x_g3x0x/driverlib.a
+            -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/iqmath/lib/ticlang/m0p/rts/mspm0g1x0x_g3x0x/iqmath.a
+            -Wl,--rom_model
+            -Wl,--warn_sections
+            -L${CG_TOOL_ROOT}/lib
+            -llibc.a
+        "
+        enableSysConfigTool="true"
+        sysConfigBuildOptions="
+            --product ${COM_TI_MSPM0_SDK_INSTALL_DIR}/.metadata/product.json
+            --compiler ticlang
+        "
+        sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
+        description="sensorless foc example code">
+        
+        <pathVariable name="ORIG_PROJ_ROOT_DIR" path="../" scope="project"/>
+        <pathVariable name="ORIG_PROJ_SOURCE_DIR" path="../../../../../../source/ti/motor_control_pmsm_foc" scope="project"/>
+
+        <property name="buildProfile" value="release"/>
+        <property name="isHybrid" value="true"/>
+        <file path="ORIG_PROJ_ROOT_DIR/README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="./mspm0g3507.cmd" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="./startup_mspm0g350x_ticlang.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ticlang">
+        </file>
+        <file path="ORIG_PROJ_ROOT_DIR/MSPM0G3507_DRV8323.syscfg" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="ORIG_PROJ_ROOT_DIR/main.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="ORIG_PROJ_ROOT_DIR/main.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="ORIG_PROJ_ROOT_DIR/ISR.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="ORIG_PROJ_ROOT_DIR/ISR.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="ORIG_PROJ_SOURCE_DIR/sensorless_modules/appLib" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules">
+        </file>
+        <file path="ORIG_PROJ_SOURCE_DIR/common_modules/IQmath" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules">
+        </file>
+        <file path="ORIG_PROJ_SOURCE_DIR/common_modules/motorControlLib" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules">
+        </file>
+        <file path="ORIG_PROJ_SOURCE_DIR/common_modules/hal/LP_MSPM0Gx5xx/commInterface" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/hal">
+        </file>
+        <file path="ORIG_PROJ_SOURCE_DIR/sensorless_modules/hal/LP_MSPM0Gx5xx/controllerInterface" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/hal">
+        </file>
+        <file path="ORIG_PROJ_SOURCE_DIR/common_modules/hal/LP_MSPM0Gx5xx/gateDriverInterface/LP_MSPM0G3507/include/gateDriver.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/hal/gateDriverInterface/include">
+        </file>
+        <file path="ORIG_PROJ_SOURCE_DIR/common_modules/hal/LP_MSPM0Gx5xx/gateDriverInterface/gateDriverLib/DRV8323" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/hal/gateDriverInterface/gateDriverLib">
+        </file>
+        <file path="ORIG_PROJ_SOURCE_DIR/common_modules/hal/LP_MSPM0Gx5xx/gateDriverInterface/LP_MSPM0G3507/source/drv8323_focHalInterface.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/hal/gateDriverInterface/source">
+        </file>
+    </project>
+</projectSpec>

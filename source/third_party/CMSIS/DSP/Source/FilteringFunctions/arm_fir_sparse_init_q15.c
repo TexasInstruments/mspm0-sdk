@@ -3,13 +3,13 @@
  * Title:        arm_fir_sparse_init_q15.c
  * Description:  Q15 sparse FIR filter initialization function
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
- * Target Processor: Cortex-M cores
+ * Target Processor: Cortex-M and Cortex-A cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-#include "arm_math.h"
+#include "dsp/filtering_functions.h"
 
 /**
   @ingroup groupFilters
@@ -46,7 +46,6 @@
   @param[in]     pTapDelay  points to the array of offset times
   @param[in]     maxDelay   maximum offset time supported
   @param[in]     blockSize  number of samples that will be processed per block
-  @return        none
 
   @par           Details
                    <code>pCoeffs</code> holds the filter coefficients and has length <code>numTaps</code>.
@@ -57,7 +56,7 @@
                    number of words processed by <code>arm_fir_sparse_q15()</code> function.
  */
 
-void arm_fir_sparse_init_q15(
+ARM_DSP_ATTRIBUTE void arm_fir_sparse_init_q15(
         arm_fir_sparse_instance_q15 * S,
         uint16_t numTaps,
   const q15_t * pCoeffs,

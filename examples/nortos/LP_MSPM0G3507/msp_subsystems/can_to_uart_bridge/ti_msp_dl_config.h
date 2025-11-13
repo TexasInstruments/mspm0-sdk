@@ -82,6 +82,14 @@ extern "C" {
 
 
 
+/* Defines for TIMER_UART */
+#define TIMER_UART_INST                                                  (TIMG0)
+#define TIMER_UART_INST_IRQHandler                              TIMG0_IRQHandler
+#define TIMER_UART_INST_INT_IRQN                                (TIMG0_INT_IRQn)
+#define TIMER_UART_INST_LOAD_VALUE                                          (0U)
+
+
+
 /* Defines for UART_0 */
 #define UART_0_INST                                                        UART0
 #define UART_0_INST_FREQUENCY                                           32000000
@@ -172,6 +180,7 @@ void SYSCFG_DL_initPower(void);
 void SYSCFG_DL_GPIO_init(void);
 void SYSCFG_DL_SYSCTL_init(void);
 void SYSCFG_DL_SYSCTL_CLK_init(void);
+void SYSCFG_DL_TIMER_UART_init(void);
 void SYSCFG_DL_UART_0_init(void);
 
 void SYSCFG_DL_MCAN0_init(void);

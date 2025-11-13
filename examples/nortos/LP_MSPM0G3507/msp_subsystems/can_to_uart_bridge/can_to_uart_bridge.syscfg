@@ -15,6 +15,8 @@ const GPIO1  = GPIO.addInstance();
 const MCAN   = scripting.addModule("/ti/driverlib/MCAN", {}, false);
 const MCAN1  = MCAN.addInstance();
 const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const TIMER  = scripting.addModule("/ti/driverlib/TIMER", {}, false);
+const TIMER1 = TIMER.addInstance();
 const UART   = scripting.addModule("/ti/driverlib/UART", {}, false);
 const UART1  = UART.addInstance();
 
@@ -27,11 +29,14 @@ mux4.inputSelect = "EXHFMUX_XTAL";
 const pinFunction3     = system.clockTree["HFCLKEXT"];
 pinFunction3.inputFreq = 40;
 
-const pinFunction4        = system.clockTree["HFXT"];
-pinFunction4.enable       = true;
-pinFunction4.HFXTStartup  = 10;
-pinFunction4.HFCLKMonitor = true;
-pinFunction4.inputFreq    = 40;
+const pinFunction4                        = system.clockTree["HFXT"];
+pinFunction4.enable                       = true;
+pinFunction4.HFXTStartup                  = 10;
+pinFunction4.HFCLKMonitor                 = true;
+pinFunction4.inputFreq                    = 40;
+pinFunction4.peripheral.$assign           = "SYSCTL";
+pinFunction4.peripheral.hfxInPin.$assign  = "PA5";
+pinFunction4.peripheral.hfxOutPin.$assign = "PA6";
 
 Board.peripheral.$assign          = "DEBUGSS";
 Board.peripheral.swclkPin.$assign = "PA20";
@@ -55,8 +60,6 @@ MCAN1.tdcEnable                = true;
 MCAN1.additionalCoreConfig     = true;
 MCAN1.rrfe                     = true;
 MCAN1.rrfs                     = true;
-MCAN1.anfe                     = "1";
-MCAN1.anfs                     = "1";
 MCAN1.txEventFIFOWaterMark     = 0;
 MCAN1.interruptLine            = ["DL_MCAN_INTR_LINE_NUM_1"];
 MCAN1.interruptLine1Flag       = ["DL_MCAN_INTR_MASK_ALL"];
@@ -91,6 +94,11 @@ SYSCTL.HFCLKMonitor          = true;
 SYSCTL.HFXTStartup           = 10;
 SYSCTL.forceDefaultClkConfig = true;
 SYSCTL.clockTreeEn           = true;
+
+TIMER1.$name              = "TIMER_UART";
+TIMER1.timerClkSrc        = "LFCLK";
+TIMER1.interrupts         = ["ZERO"];
+TIMER1.peripheral.$assign = "TIMG0";
 
 UART1.$name                    = "UART_0";
 UART1.enabledInterrupts        = ["RX","TX"];

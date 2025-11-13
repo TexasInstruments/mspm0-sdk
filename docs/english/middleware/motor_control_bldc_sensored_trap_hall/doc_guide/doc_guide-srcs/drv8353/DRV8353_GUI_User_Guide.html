@@ -22,7 +22,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="DRV8353RHEVM Hardware User Guide" href="DRV8353_Hardware_User_Guide.html" />
-    <link rel="prev" title="DRV8329AEVM Hardware User Guide" href="../drv8329/LP_MSPM0L1306/DRV8329_Hardware_User_Guide.html" /> 
+    <link rel="prev" title="DRV8329AEVM Hardware User Guide" href="../drv8329/LP_MSPM0L2117/DRV8329_Hardware_User_Guide.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -68,6 +68,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../drv8329/LP_MSPM0H3216/DRV8329_Hardware_User_Guide.html">DRV8329AEVM Hardware User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../drv8329/LP_MSPM0L1306/DRV8329_GUI_User_Guide.html">DRV8329 GUI User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../drv8329/LP_MSPM0L1306/DRV8329_Hardware_User_Guide.html">DRV8329AEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8329/LP_MSPM0L2117/DRV8329_GUI_User_Guide.html">DRV8329 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8329/LP_MSPM0L2117/DRV8329_Hardware_User_Guide.html">DRV8329AEVM Hardware User Guide</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">DRV8353 GUI User Guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#overview">1. Overview</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#getting-started-with-gui">1.1 Getting Started with GUI</a></li>
@@ -138,14 +140,14 @@
 <h2>2. Using the GUI<a class="headerlink" href="#using-the-gui" title="Permalink to this heading">¶</a></h2>
 <p>The GUI will automatically program the LaunchPad with the necessary firmware. If everything is successful the bottom left corner of the GUI should say “Hardware connected”.</p>
 <figure class="align-default">
-<img alt="" src="../../_images/Hardware_connected11.png" />
+<img alt="" src="../../_images/Hardware_connected12.png" />
 </figure>
 </section>
 <section id="gui-window">
 <h2>3. GUI Window<a class="headerlink" href="#gui-window" title="Permalink to this heading">¶</a></h2>
 <p>In the GUI window user can find various controls like nSleep (ENABLE), Direction control, dutycycle, PWM frequency, deadband, and acceleration rate. Various faults are also indicated using LEDs.</p>
 <figure class="align-default">
-<img alt="" src="../../_images/GUI_window11.png" />
+<img alt="" src="../../_images/GUI_window12.png" />
 </figure>
 <section id="motor-control">
 <h3>3.1 Motor Control<a class="headerlink" href="#motor-control" title="Permalink to this heading">¶</a></h3>
@@ -192,7 +194,7 @@
 <h3>3.2 Motor Braking<a class="headerlink" href="#motor-braking" title="Permalink to this heading">¶</a></h3>
 <p>The motor can be stopped from GUI without turning off the DRV by using stop button. The motor stops spinning with brake type selected.</p>
 <figure class="align-default">
-<img alt="" src="../../_images/Braking11.png" />
+<img alt="" src="../../_images/Braking12.png" />
 </figure>
 <table class="docutils align-default">
 <thead>
@@ -217,7 +219,7 @@
 <h3>3.3 Current setting<a class="headerlink" href="#current-setting" title="Permalink to this heading">¶</a></h3>
 <p>The DRV8353 integrates three low side current sense amplifiers for current measurements. It has features like programmable gain and setting external references. Changing the CSA Gain will automatically update the DRV register.</p>
 <figure class="align-default">
-<img alt="" src="../../_images/current_settings11.png" />
+<img alt="" src="../../_images/current_settings12.png" />
 </figure>
 <table class="docutils align-default">
 <thead>
@@ -242,7 +244,7 @@
 <h3>3.4 Fault Status<a class="headerlink" href="#fault-status" title="Permalink to this heading">¶</a></h3>
 <p>The firmware continuously monitors the motor parameters like voltage and current. The user can set the limits for voltage and current from GUI. When any of the faults occur the corresponding LED glows.</p>
 <figure class="align-default">
-<img alt="" src="../../_images/Faults11.png" />
+<img alt="" src="../../_images/Faults12.png" />
 </figure>
 <table class="docutils align-default">
 <thead>
@@ -275,7 +277,7 @@
 <h3>3.5 ADC Reference Setting<a class="headerlink" href="#adc-reference-setting" title="Permalink to this heading">¶</a></h3>
 <p>The user can use 3 different ADC references, it can be changed from GUI.</p>
 <figure class="align-default">
-<img alt="" src="../../_images/ADC_reference_settings11.png" />
+<img alt="" src="../../_images/ADC_reference_settings12.png" />
 </figure>
 <table class="docutils align-default">
 <thead>
@@ -304,7 +306,7 @@
 <section id="voltage-and-current-monitoring">
 <h3>3.6 Voltage and Current Monitoring<a class="headerlink" href="#voltage-and-current-monitoring" title="Permalink to this heading">¶</a></h3>
 <figure class="align-default">
-<img alt="" src="../../_images/motor_parameters11.png" />
+<img alt="" src="../../_images/motor_parameters12.png" />
 </figure>
 <figure class="align-default">
 <img alt="" src="../../_images/voltage_graph5.png" />
@@ -315,7 +317,7 @@
 <h3>3.7 Speed Monitoring<a class="headerlink" href="#speed-monitoring" title="Permalink to this heading">¶</a></h3>
 <p>When the motor starts spinning the user can see the motor speed displayed in RPM. The user needs to input the number of poles in the motor used. The user must enter even number of poles failing which the speed calculation go wrong.</p>
 <figure class="align-default">
-<img alt="" src="../../_images/speed11.png" />
+<img alt="" src="../../_images/speed12.png" />
 </figure>
 </section>
 </section>
@@ -325,7 +327,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../drv8329/LP_MSPM0L1306/DRV8329_Hardware_User_Guide.html" class="btn btn-neutral float-left" title="DRV8329AEVM Hardware User Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../drv8329/LP_MSPM0L2117/DRV8329_Hardware_User_Guide.html" class="btn btn-neutral float-left" title="DRV8329AEVM Hardware User Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="DRV8353_Hardware_User_Guide.html" class="btn btn-neutral float-right" title="DRV8353RHEVM Hardware User Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

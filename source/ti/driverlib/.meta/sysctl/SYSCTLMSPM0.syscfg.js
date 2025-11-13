@@ -347,20 +347,22 @@ function validateSYSCTL(inst, validation)
     }
     if(inst.MCLKSource === "HSCLK"){
         /* Wait state validation */
-        /* Validate wait states with frequency ranges */
-        if(inst.waitState == "0"){
-            if(inst.MCLK_Freq > 24000000){
-                validation.logError("Exceeded maximum frequency for selected wait state", inst, ["waitState","MCLK_Freq_unit"]);
+        if((Options.WaitStates).length>0){
+            /* Validate wait states with frequency ranges */
+            if(inst.waitState == "0"){
+                if(inst.MCLK_Freq > 24000000){
+                    validation.logError("Exceeded maximum frequency for selected wait state", inst, ["waitState","MCLK_Freq_unit"]);
+                }
             }
-        }
-        else if(inst.waitState == "1"){
-            if(inst.MCLK_Freq > 48000000){
-                validation.logError("Exceeded maximum frequency for selected wait state", inst, ["waitState","MCLK_Freq_unit"]);
+            else if(inst.waitState == "1"){
+                if(inst.MCLK_Freq > 48000000){
+                    validation.logError("Exceeded maximum frequency for selected wait state", inst, ["waitState","MCLK_Freq_unit"]);
+                }
             }
-        }
-        else if(inst.waitState == "2"){
-            if(inst.MCLK_Freq > 80000000){
-                validation.logError("Exceeded maximum frequency for selected wait state", inst, ["waitState","MCLK_Freq_unit"]);
+            else if(inst.waitState == "2"){
+                if(inst.MCLK_Freq > 80000000){
+                    validation.logError("Exceeded maximum frequency for selected wait state", inst, ["waitState","MCLK_Freq_unit"]);
+                }
             }
         }
     }
@@ -680,7 +682,9 @@ function onChangeClockTree(inst, ui){
         // ui.UDIV.readOnly                    = inst.clockTreeEn;
 
         ui.validateClkStatus.readOnly       = (inst.LFCLKSource == "LFXT") || (inst.useHFCLK_Manual && inst.HFCLKSource == "HFXT");
-        ui.waitState.hidden = !inst.clockTreeEn && !(inst.MCLKSource == "HSCLK");
+        if((Options.WaitStates).length>0){
+            ui.waitState.hidden = !inst.clockTreeEn && !(inst.MCLKSource == "HSCLK");
+        }
         if(ClockSignals.includes("CANCLK")){
             ui.CANCLKSource.readOnly                 = inst.clockTreeEn;
         }
@@ -845,8 +849,7 @@ INT_GROUP0:
             options: Common.InterruptPriorityOptions
         }
     ];
-    if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0L111X() || Common.isDeviceM0C() ||
-       Common.isDeviceFamily_PARENT_MSPM0H321X()) {
+    if((Options.WaitStates).length>0) {
         flashConfig.push(
             //DL_SYSCTL_setFlashWaitState()
             {
@@ -1190,12 +1193,12 @@ To get started:
             longDescription: "",
             collapsed: false,
             config: [
-                // TODO: [3/8 (H) - work in progress drivers SysCtl behavior]
+                // DEPRECATED - to be removed
                 {
                     name: "driversEn",
                     displayName: "Use TI Drivers Configuration",
                     default: false,
-                    onChange: onChangeUseDrivers,
+                    // onChange: onChangeUseDrivers,
                     hidden: true,
                 },
                 // DL_SYSCTL_setPowerPolicy[...]
@@ -1434,7 +1437,9 @@ The default behavior for some system error conditions can be configured.
                                 if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceM0C() || Common.isDeviceFamily_PARENT_MSPM0H321X()){
                                     ui.HSCLKSource.hidden = !(inst.MCLKSource == "HSCLK");
                                     /* Wait configuration available only when MCLK source is HSCLK */
-                                    ui.waitState.hidden = !inst.clockTreeEn && !(inst.MCLKSource == "HSCLK");
+                                    if((Options.WaitStates).length>0){
+                                        ui.waitState.hidden = !inst.clockTreeEn && !(inst.MCLKSource == "HSCLK");
+                                    }
                                 }
                                 /* MDIV disabled when MCLK Source is HSCLK or LFCLK */
                                 if(["HSCLK","LFCLK"].includes(inst.MCLKSource)){

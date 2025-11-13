@@ -135,6 +135,44 @@ DRV8889-Q1 Hardware User Guide
 
    Controlling VREF With a PWM Resource in DRV8889-Q1EVM
 
+2.4 LP-MSPM0L2117
+~~~~~~~~~~~~~~~~~
+
++----------------------------+--------------+-----------------+----------------+
+| Connection                 | MSPM0L2117   | DRV8889-Q1EVM   | Jumper Notes   |
++============================+==============+=================+================+
+| Fault Input                | PA10         | nFAULT          |                |
++----------------------------+--------------+-----------------+----------------+
+| Current reference output   | PB14\*\*     | VREF            |                |
++----------------------------+--------------+-----------------+----------------+
+| Chip Select                | PA13         | nSCS            |                |
++----------------------------+--------------+-----------------+----------------+
+| Logic level for SDO        | 5V           | VSDO            |                |
++----------------------------+--------------+-----------------+----------------+
+| Serial data output         | PA8          | SDO             |                |
++----------------------------+--------------+-----------------+----------------+
+| Serial data input          | PA16         | SDI             |                |
++----------------------------+--------------+-----------------+----------------+
+| Serial clock input         | PA17         | SCLK            |                |
++----------------------------+--------------+-----------------+----------------+
+| Step input                 | PA12         | STEP            |                |
++----------------------------+--------------+-----------------+----------------+
+| Direction input            | PA11         | DIR             |                |
++----------------------------+--------------+-----------------+----------------+
+| Disable output             | PA14         | DRVOFF          |                |
++----------------------------+--------------+-----------------+----------------+
+| Sleep mode input           | PA15         | nSLEEP          |                |
++----------------------------+--------------+-----------------+----------------+
+| Common Ground              | GND          | GND             |                |
++----------------------------+--------------+-----------------+----------------+
+
+\*\*In LP\_MSPM0L2117 the VREF voltage is generated using a PWM signal thus will require an RC network in the connection from PA25 to VREF as shown below, Refer to DRV8889-Q1 datasheet for more details.
+
+.. figure:: images/DRV8889-Q1EVM-VREF_with_PWM_resource.png
+   :alt: Controlling VREF With a PWM Resource in DRV8889-Q1EVM
+
+   Controlling VREF With a PWM Resource in DRV8889-Q1EVM
+
 3. Connect the A phases of the motor to AOUT1, AOUT2 and the B phases to BOUT1 and BOUT2 of the motor connector terminal block on the DRV8889-Q1EVM. If the phases of the motor are color coded, look into the motor datasheet to find the phases.
 
 4. Set the power supply voltage to desired voltage (less than 45V) and turn the power supply outputs off. Connect the positive and negative of the power supply to VM and PGND/GND of the power connector terminal block to the DRV8889-Q1EVM. Do not turn the power on yet. See the connection below.

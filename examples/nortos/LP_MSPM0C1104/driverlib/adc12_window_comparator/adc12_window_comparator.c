@@ -41,11 +41,11 @@ int main(void)
 
     SYSCFG_DL_init();
 
-    /* Get calibrated ADC offset - workaround for ADC_ERR_06 */
+    /* Get calibrated ADC offset - workaround for ADC_ERR_09 */
     gADCOffset =
         DL_ADC12_getADCOffsetCalibration(ADC12_0_ADCMEM_0_REF_VOLTAGE_V);
 
-    /* Apply calibrated ADC offset - workaround for ADC_ERR_06 */
+    /* Apply calibrated ADC offset - workaround for ADC_ERR_09 */
     adcRaw = (int16_t) ADC12_0_WIN_COMP_LOW_THLD_VAL - gADCOffset;
     if (adcRaw < 0) {
         adcRaw = 0;

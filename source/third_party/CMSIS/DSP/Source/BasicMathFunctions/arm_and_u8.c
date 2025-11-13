@@ -3,13 +3,13 @@
  * Title:        arm_and_u8.c
  * Description:  uint8_t bitwise AND
  *
- * $Date:        14 November 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
- * Target Processor: Cortex-M cores
+ * Target Processor: Cortex-M and Cortex-A cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-#include "arm_math.h"
+#include "dsp/basic_math_functions.h"
 
 /**
   @ingroup groupMath
@@ -44,10 +44,9 @@
   @param[in]     pSrcB      points to input vector B
   @param[out]    pDst       points to output vector
   @param[in]     blockSize  number of samples in each vector
-  @return        none
  */
 
-void arm_and_u8(
+ARM_DSP_ATTRIBUTE void arm_and_u8(
     const uint8_t * pSrcA,
     const uint8_t * pSrcB,
           uint8_t * pDst,
@@ -56,7 +55,7 @@ void arm_and_u8(
     uint32_t blkCnt;      /* Loop counter */
 
 #if defined(ARM_MATH_MVEI) && !defined(ARM_MATH_AUTOVECTORIZE)
-    q7x16_t vecSrcA, vecSrcB;
+    uint8x16_t vecSrcA, vecSrcB;
 
     /* Compute 16 outputs at a time */
     blkCnt = blockSize >> 4;

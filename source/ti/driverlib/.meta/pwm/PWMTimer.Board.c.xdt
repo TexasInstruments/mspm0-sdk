@@ -40,6 +40,7 @@
     let content = args[1];
 
     let Common = system.getScript("/ti/driverlib/Common.js");
+    let PWMCommon = system.getScript("/ti/driverlib/pwm/PWM.common.js");
 
     /* shorthand names for some common references in template below */
     let instances = PWM.$instances;
@@ -324,14 +325,16 @@ SYSCONFIG_WEAK void SYSCFG_DL_`inst.$name`_init(void) {
     /* Interrupt generation */
     let interArgs = "";
     let interFct = "";
+    let disabledPWMInterrupts = (PWMCommon.getDisabledEvents(inst)).map(x=>x.name);
     for (let inter of inst.interrupts) {
+        if (disabledPWMInterrupts.includes(inter)) continue;
         if(inter.match("FAULT_EVENT")){
             interArgs += "DL_TIMERA_INTERRUPT_FAULT_EVENT |\n\t\t";
         }else{
             interArgs += "DL_TIMER_INTERRUPT_"+inter+" |\n\t\t";
         }
     }
-    if(inst.interrupts.length > 0){
+    if(interArgs.length > 0){
         interArgs = interArgs.slice(0,-5); // remove last OR and whitespace
         interFct = "DL_"+flavorCat+"_enableInterrupt("+inst.$name+"_INST , "+interArgs+");\n";
     } else {

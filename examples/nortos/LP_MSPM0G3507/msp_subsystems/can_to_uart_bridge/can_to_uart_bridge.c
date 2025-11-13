@@ -29,25 +29,18 @@
  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
 #include "ti_msp_dl_config.h"
 #include "user_define.h"
 
-/* Variables for U2C_FIFO
- * U2C_FIFO is used to temporarily store message from UART to CAN */
-#define U2C_FIFO_SIZE   (10)
-uint16_t U2C_in = 0;
-uint16_t U2C_out = 0;
-uint16_t U2C_count = 0;
-Custom_Element U2C_FIFO[U2C_FIFO_SIZE];
-
 /* Variables for C2U_FIFO
  * C2U_FIFO is used to temporarily store message from CAN to UART */
-#define C2U_FIFO_SIZE   (10)
-uint16_t C2U_in = 0;
-uint16_t C2U_out = 0;
-uint16_t C2U_count = 0;
-Custom_Element C2U_FIFO[C2U_FIFO_SIZE];
+Custom_Element gC2U_FIFO[C2U_FIFO_SIZE];
+Custom_FIFO gCan2Uart_FIFO = {0, 0, 0, gC2U_FIFO};
+
+/* Variables for U2C_FIFO
+ * U2C_FIFO is used to temporarily store message from UART to CAN */
+Custom_Element gU2C_FIFO[U2C_FIFO_SIZE];
+Custom_FIFO gUart2Can_FIFO = {0, 0, 0, gU2C_FIFO};
 
 int main(void)
 {
@@ -58,38 +51,48 @@ int main(void)
     /* Enable Interrupts */
     NVIC_ClearPendingIRQ(CANFD0_INT_IRQn);
     NVIC_ClearPendingIRQ(UART_0_INST_INT_IRQN);
+    NVIC_ClearPendingIRQ(TIMER_UART_INST_INT_IRQN);
     NVIC_EnableIRQ(CANFD0_INT_IRQn);
     NVIC_EnableIRQ(UART_0_INST_INT_IRQN);
+    NVIC_EnableIRQ(TIMER_UART_INST_INT_IRQN);
 
     while (DL_MCAN_OPERATION_MODE_NORMAL != DL_MCAN_getOpMode(CANFD0))
         ;
 
     while (1) {
         /* Send received CAN message to UART */
-        if(C2U_count>0 && gUartTxflag == false)
+        if(gCan2Uart_FIFO.fifo_count>0 && gUartTxflag == false)
         {
             /* Get gUART_TX_Element from C2U_FIFO
              * Update indicator variable of C2U_FIFO */
-            gUART_TX_Element = C2U_FIFO[C2U_out];
-            C2U_count--;
-            C2U_out++;
-            if(C2U_out >= C2U_FIFO_SIZE)C2U_out = 0;
+            gUART_TX_Element = gCan2Uart_FIFO.fifo_pointer[gCan2Uart_FIFO.fifo_out];
+            gCan2Uart_FIFO.fifo_count--;
+            gCan2Uart_FIFO.fifo_out++;
+            if(gCan2Uart_FIFO.fifo_out >= C2U_FIFO_SIZE)gCan2Uart_FIFO.fifo_out = 0;
+#ifdef UART_TRANSPARENT     /* UART Transparent transmission */
+            /* Convert message format */
+            processUartTxMsg_transparent(gUartTransmitGroup, &gUART_TX_Element);
+            /* Send messages via UART */
+            gUartTxflag = true;
+            sendUartTxMsg(UART_0_INST, gUartTransmitGroup, (gUART_TX_Element.dlc));
+#else       /* UART Protocol transmission */
             /* Convert message format */
             processUartTxMsg(gUartTransmitGroup, &gUART_TX_Element);
             /* Send messages via UART */
             gUartTxflag = true;
-            sendUartTxMsg(gUartTransmitGroup, (7 + gUartTransmitGroup[6]));
+            sendUartTxMsg(UART_0_INST, gUartTransmitGroup, (3 + UART_ID_LENGTH + gUART_TX_Element.dlc));
+#endif
         }
 
         /* Send received UART message to CAN */
-        if(U2C_count>0)
+        if(gUart2Can_FIFO.fifo_count>0)
         {
-            /* Get gCAN_RX_Element from C2U_FIFO
+            /* Get gCAN_TX_Element from U2C_FIFO
              * Update indicator variable of U2C_FIFO */
-            gCAN_TX_Element = U2C_FIFO[U2C_out];
-            U2C_count--;
-            U2C_out++;
-            if(U2C_out >= U2C_FIFO_SIZE)U2C_out = 0;
+            gCAN_TX_Element = gUart2Can_FIFO.fifo_pointer[gUart2Can_FIFO.fifo_out];
+            gUart2Can_FIFO.fifo_count--;
+            gUart2Can_FIFO.fifo_out++;
+            if(gUart2Can_FIFO.fifo_out >= U2C_FIFO_SIZE)gUart2Can_FIFO.fifo_out = 0;
             /* Convert message format */
             processCANTxMsg(&txMsg0, &gCAN_TX_Element);
             /* Send messages via CAN */
@@ -108,12 +111,12 @@ void CANFD0_IRQHandler(void)
             DL_MCAN_clearIntrStatus(
                 CANFD0, gInterruptLine1Status, DL_MCAN_INTR_SRC_MCAN_LINE_1);
             processFlag = getCANRxMsg(&rxMsg);
-            if( C2U_count >= C2U_FIFO_SIZE)
+            if( gCan2Uart_FIFO.fifo_count >= C2U_FIFO_SIZE)
             {
                 /* When the CAN bus is overloaded, stop receiving messages */
                 processFlag = false;
                 /* Overload handle */
-                __BKPT(0);
+                //__BKPT(0);
             }
             if(processFlag == true)
             {
@@ -121,10 +124,10 @@ void CANFD0_IRQHandler(void)
                 processCANRxMsg(&rxMsg, &gCAN_RX_Element);
                 /* Store gCAN_RX_Element into C2U_FIFO
                  * Update indicator variable of C2U_FIFO */
-                C2U_FIFO[C2U_in] = gCAN_RX_Element;
-                C2U_count++;
-                C2U_in++;
-                if(C2U_in >= C2U_FIFO_SIZE)C2U_in = 0;
+                gCan2Uart_FIFO.fifo_pointer[gCan2Uart_FIFO.fifo_in] = gCAN_RX_Element;
+                gCan2Uart_FIFO.fifo_count++;
+                gCan2Uart_FIFO.fifo_in++;
+                if(gCan2Uart_FIFO.fifo_in >= C2U_FIFO_SIZE)gCan2Uart_FIFO.fifo_in = 0;
             }
             break;
         default:
@@ -132,19 +135,26 @@ void CANFD0_IRQHandler(void)
     }
 }
 
+
 void UART_0_INST_IRQHandler(void)
 {
-    bool processFlag;
+    bool processFlag = false;
     switch (DL_UART_Main_getPendingInterrupt(UART_0_INST)) {
         case DL_UART_MAIN_IIDX_RX:
+#ifdef UART_TRANSPARENT     /* UART Transparent transmission */
+            getUartRxMsg_transparent(UART_0_INST, gUartReceiveGroup);
+            /*Enable Timer to detect timeout issue */
+            DL_Timer_setLoadValue(TIMER_UART_INST, UART_TIMEOUT);
+            DL_Timer_startCounter(TIMER_UART_INST);
+#else       /* UART Protocol transmission */
             /* Returns true when the UART group is fully received */
-            processFlag = getUartRxMsg(gUartReceiveGroup);
-            if( U2C_count >= U2C_FIFO_SIZE)
+            processFlag = getUartRxMsg(UART_0_INST, gUartReceiveGroup);
+            if( gUart2Can_FIFO.fifo_count >= U2C_FIFO_SIZE)
             {
                 /* When the UART is overloaded, stop receiving messages */
                 processFlag = false;
                 /* Overload handle */
-                __BKPT(0);
+                //__BKPT(0);
             }
             if(processFlag == true)
             {
@@ -152,18 +162,59 @@ void UART_0_INST_IRQHandler(void)
                 processUartRxMsg(gUartReceiveGroup, &gUART_RX_Element);
                 /* Store gUART_RX_Element into U2C_FIFO
                  * Update indicator variable of U2C_FIFO */
-                U2C_FIFO[U2C_in] = gUART_RX_Element;
-                U2C_count++;
-                U2C_in++;
-                if(U2C_in >= U2C_FIFO_SIZE)U2C_in = 0;
+                gUart2Can_FIFO.fifo_pointer[gUart2Can_FIFO.fifo_in] = gUART_RX_Element;
+                gUart2Can_FIFO.fifo_count++;
+                gUart2Can_FIFO.fifo_in++;
+                if(gUart2Can_FIFO.fifo_in >= U2C_FIFO_SIZE)gUart2Can_FIFO.fifo_in = 0;
+                processFlag = false;
             }
+#endif
             break;
         case DL_UART_MAIN_IIDX_TX:
             /* Put the transmit message into UART FIFO */
             if(gUartTxflag == true)
             {
-                sendUartTxMsg(gUartTransmitGroup, (7 + gUartTransmitGroup[6]));
+#ifdef UART_TRANSPARENT     /* UART Transparent transmission */
+                sendUartTxMsg(UART_0_INST, gUartTransmitGroup, (gUART_TX_Element.dlc));
+#else           /* UART Protocol transmission */
+                sendUartTxMsg(UART_0_INST, gUartTransmitGroup, (3 + UART_ID_LENGTH + gUART_TX_Element.dlc));
+#endif
             }
+            break;
+        default:
+            break;
+    }
+}
+
+void TIMER_UART_INST_IRQHandler(void)
+{
+    bool processFlag;
+    switch (DL_Timer_getPendingInterrupt(TIMER_UART_INST)) {
+        case DL_TIMER_IIDX_ZERO:
+#ifdef UART_TRANSPARENT     /* UART Transparent transmission */
+            /*Timeout to trigger receiving one UART packet*/
+            processFlag = true;
+            if( gUart2Can_FIFO.fifo_count >= U2C_FIFO_SIZE)
+            {
+                /* When the UART is overloaded, stop receiving messages */
+                processFlag = false;
+                /* Overload handle */
+                //__BKPT(0);
+            }
+            if(processFlag == true) //Timeout to trigger receiving one UART packet
+            {
+                /* Convert the received message to gUART_RX_Element */
+                processUartRxMsg_transparent(gUartReceiveGroup, &gUART_RX_Element);
+                /* Store gUART_RX_Element into U2C_FIFO
+                 * Update indicator variable of U2C_FIFO */
+                gUart2Can_FIFO.fifo_pointer[gUart2Can_FIFO.fifo_in] = gUART_RX_Element;
+                gUart2Can_FIFO.fifo_count++;
+                gUart2Can_FIFO.fifo_in++;
+                if(gUart2Can_FIFO.fifo_in >= U2C_FIFO_SIZE)gUart2Can_FIFO.fifo_in = 0;
+                processFlag = false;
+                gGetUartRxMsg_Count = 0;
+            }
+#endif
             break;
         default:
             break;

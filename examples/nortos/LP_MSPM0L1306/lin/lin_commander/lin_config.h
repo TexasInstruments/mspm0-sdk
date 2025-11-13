@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021, Texas Instruments Incorporated
+ * Copyright (c) 2023, Texas Instruments Incorporated - http://www.ti.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -119,7 +119,20 @@ typedef struct {
     uint16_t posEdge;
 } LIN_Sync_Bits;
 
+#if defined(__MSPM0_HAS_UART_EXTD__)
+
 void LIN_Commander_receiveMessage(UART_Regs *uart, uint8_t rxByte, uint8_t *,
     LIN_table_record_t *messageTable);
 void LIN_Commander_transmitMessage(UART_Regs *uart, uint8_t tableIndex,
     uint8_t *buffer, LIN_table_record_t *messageTable);
+
+#endif
+
+#if defined(__MCU_HAS_UNICOMMUART__)
+
+void LIN_Commander_receiveMessage(UNICOMM_Inst_Regs *unicomm, uint8_t rxByte, uint8_t *,
+    LIN_table_record_t *messageTable);
+void LIN_Commander_transmitMessage(UNICOMM_Inst_Regs *unicomm, uint8_t tableIndex,
+    uint8_t *buffer, LIN_table_record_t *messageTable);
+
+#endif    

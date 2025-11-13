@@ -1,0 +1,155 @@
+Feature Extraction User Guide for EdgeAI Applications on MSPM0
+==============================================================
+
+Introduction
+------------
+
+Feature extraction is a critical component of many EdgeAI applications, particularly for audio and vibration signal processing. The feature extraction module provides efficient signal processing functions optimized for embedded systems, leveraging ARM libraries for optimal performance.
+
+.. figure:: images/feature_extraction_pipeline.png
+   :alt: Feature Extraction Pipeline Overview
+
+   Feature Extraction Pipeline Overview
+
+Available Feature Extraction Functions
+--------------------------------------
+
+The module supports the following feature extraction techniques:
+
+1. Real Fast Fourier Transform (RFFT)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Converts time-domain signals to frequency domain representation.
+
+.. figure:: images/rfft_transformation.png
+   :alt: RFFT Transformation
+
+   RFFT Transformation
+
+-  **Functionality**: Transforms raw input data into frequency components
+-  **Configuration**: Enable with ``FE_RFFT`` define
+-  **Use case**: Frequency analysis of audio or vibration signals
+
+2. Magnitude Scaling
+~~~~~~~~~~~~~~~~~~~~
+
+Scales magnitude values for better numerical representation.
+
+.. figure:: images/magnitude_scaling.png
+   :alt: Magnitude Scaling
+
+   Magnitude Scaling
+
+-  **Functionality**: Applies scaling to prevent overflow/underflow
+-  **Configuration**: Enable with ``FE_COMPLEX_MAG_SCALE`` define and set ``FE_COMPLEX_MAG_SCALE_FACTOR``
+-  **Use case**: Normalizing signal magnitude to appropriate range for subsequent processing
+
+3. Complex Magnitude Calculation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Calculates the magnitude of complex numbers resulting from FFT.
+
+.. figure:: images/complex_magnitude.png
+   :alt: Complex Magnitude Calculation
+
+   Complex Magnitude Calculation
+
+-  **Functionality**: Computes absolute values from complex FFT output
+-  **Configuration**: Enable with ``FE_MAG`` define
+-  **Use case**: Extracting power spectrum information
+
+4. DC Component Removal
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Removes DC offset from the signal.
+
+.. figure:: images/dc_removal.png
+   :alt: DC Component Removal
+
+   DC Component Removal
+
+-  **Functionality**: Excludes the first component (DC) from processing
+-  **Configuration**: Enable with ``FE_DC_REM`` define
+-  **Use case**: Eliminating signal bias for improved feature accuracy
+
+5. Bin Calculation
+~~~~~~~~~~~~~~~~~~
+
+Groups frequency components into bins for dimensionality reduction.
+
+.. figure:: images/bin_calculation.png
+   :alt: Bin Calculation
+
+   Bin Calculation
+
+-  **Functionality**: Averages frequency components within defined bins
+-  **Configuration**: Enable with ``FE_BIN`` define
+-  **Optional normalization**: Enable with ``FE_BIN_NORMALIZE`` define
+-  **Use case**: Reducing feature dimension while preserving spectral characteristics
+
+Configuration Parameters
+------------------------
+
+The following parameters can be configured:
+
+-  ``FE_FRAME_SIZE``: Size of input frame for processing
+-  ``FE_FEATURE_SIZE_PER_FRAME``: Number of features to extract per frame
+-  ``FE_BIN_SIZE``: Size of each frequency bin
+-  ``FE_BIN_NORMALIZE``: When defined, normalizes bin values by dividing by bin size
+
+Usage Example
+-------------
+
+1. **Initialize the feature extraction module:**
+
+   ::
+
+        FE_init();
+
+2. **Process input data to extract features:**
+
+   ::
+
+        q15_t rawInput[FE_FRAME_SIZE];
+        q15_t extractedFeatures[FE_FEATURE_SIZE_PER_FRAME];
+
+        // Fill rawInput with signal data
+
+        FE_process(rawInput, extractedFeatures);
+
+3. **Use extracted features for inference or further processing**
+
+Processing Pipeline
+-------------------
+
+.. figure:: images/processing_pipeline.png
+   :alt: Complete Processing Pipeline
+
+   Complete Processing Pipeline
+
+The feature extraction module implements a flexible pipeline:
+
+1. Raw input data is copied to a scratch buffer
+2. If ``FE_RFFT`` is defined, FFT is performed
+3. If ``FE_COMPLEX_MAG_SCALE`` is defined, scaling is applied
+4. If ``FE_DC_REM`` is defined, DC component is removed
+5. If ``FE_MAG`` is defined, complex magnitude is calculated
+6. If ``FE_BIN`` is defined, bin calculation is performed
+7. Final features are copied to the output buffer
+
+Performance Considerations
+--------------------------
+
+-  The module uses ARM optimized libraries for efficient computation
+-  Buffer swapping is used to minimize memory copies
+-  Configuration parameters should be adjusted based on available memory and computational resources
+-  Bin calculation can significantly reduce feature dimension, saving memory and computation in subsequent processing
+
+Best Practices
+--------------
+
+-  Select appropriate frame size based on your application requirements
+-  Configure bin size to balance feature resolution and dimensionality
+-  Consider enabling normalization for consistent feature scaling
+-  Remove DC component when analyzing AC signals
+-  Use appropriate scaling factors to prevent numerical issues

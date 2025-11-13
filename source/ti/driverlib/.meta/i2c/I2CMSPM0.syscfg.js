@@ -192,8 +192,8 @@ Multiple interrupt events can be selected. The application can read the
 interrupt status or index to detect which flag triggered the interrupt.\n
 I2C Controller mode must be enabled to configure interrupts`,
                 default: [],
-                options: getControllerIntOptions,
-                getDisabledOptions: getControllerDisabledIntOptions,
+                options: I2CCommon.getControllerIntOptions,
+                getDisabledOptions: I2CCommon.getControllerDisabledIntOptions,
                 onChange    : onChangeintController
             },
             {
@@ -206,8 +206,8 @@ interrupt status or index to detect which flag triggered the interrupt.\n
 I2C Target mode must be enabled to configure interrupts`,
                 hidden: false,
                 default: [],
-                options: getTargetIntOptions,
-                getDisabledOptions: getTargetDisabledIntOptions,
+                options: I2CCommon.getTargetIntOptions,
+                getDisabledOptions: I2CCommon.getTargetDisabledIntOptions,
                 onChange    : onChangeintTarget
             },
             {
@@ -220,8 +220,8 @@ interrupt status or index to detect which flag triggered the interrupt.\n
 Timeouts must be enabled to configure interrupts`,
                 hidden: false,
                 default: [],
-                options: getGenericIntOptions,
-                getDisabledOptions: getGenericDisabledIntOptions,
+                options: I2CCommon.getGenericIntOptions,
+                getDisabledOptions: I2CCommon.getGenericDisabledIntOptions,
                 onChange    : onChangeintGeneric
             },
             {
@@ -512,128 +512,6 @@ function onChangeintGeneric(inst, ui)
     I2CCommon.onChangeintGeneric(inst,ui);
 }
 
-/* Functions to get Options for Interrupts */
-function getGenericIntOptions(inst)
-{
-    let allOptions = [
-        { name: "TIMEOUT_A", displayName: "Timeout A Event" , description: "Interrupt index for I2C Timeout A Event"},
-        { name: "TIMEOUT_B", displayName: "Timeout B Event" , description: "Interrupt index for I2C Timeout B Event"},
-    ];
-
-    return allOptions;
-}
-
-function getGenericDisabledIntOptions(inst)
-{
-    let disabledInts = [];
-    if(!inst.enableTimeoutA){
-        disabledInts.push({ name: "TIMEOUT_A", displayName: "Timeout A Event" , reason: "Timeout A is disabled"});
-    }
-    if(!inst.enableTimeoutB){
-        disabledInts.push({ name: "TIMEOUT_B", displayName: "Timeout B Event" , reason: "Timeout B is disabled"});
-    }
-    return disabledInts;
-}
-
-function getControllerIntOptions(inst)
-{
-    let allOptions = [
-        { name: "RX_DONE", displayName: "RX Done", description: "Controller receive transaction completed interrupt" },
-        { name: "TX_DONE", displayName: "TX Done", description: "Controller transmit transaction completed interrupt" },
-        { name: "RXFIFO_TRIGGER", displayName: "RX FIFO trigger" , description: "Controller receive FIFO trigger. Trigger when RX FIFO contains >= defined bytes"},
-        { name: "TXFIFO_TRIGGER", displayName: "TX FIFO trigger" , description: "Controller transmit FIFO trigger. Trigger when Transmit FIFO contains <= defined bytes"},
-        { name: "RXFIFO_FULL", displayName: "RX FIFO Full" , description: "Controller RXFIFO full event. This interrupt is set if an RX FIFO is full"},
-        { name: "TXFIFO_EMPTY", displayName: "TX FIFO Empty" , description: "Controller transmit FIFO empty interrupt. This interrupt is set if all data in the Transmit FIFO have been shifted out and the transmit goes into idle mode."},
-        { name: "NACK", displayName: "Addr/Data NACK" , description: "Address/Data NACK interrupt"},
-        { name: "START", displayName: "Start detection" , description: "Controller START detection interrupt"},
-        { name: "STOP", displayName: "Stop detection" , description: "Controller STOP detection interrupt"},
-        { name: "ARBITRATION_LOST", displayName: "Arbitration lost" , description: "Controller arbitration lost interrupt"},
-        { name: "EVENT1_DMA_DONE", displayName: "DMA Event 1" , description: "Controller DMA done signal from event 1"},
-        { name: "EVENT2_DMA_DONE", displayName: "DMA Event 2" , description: "Controller DMA done signal from event 2"},
-    ];
-
-    return allOptions;
-}
-
-function getControllerDisabledIntOptions(inst)
-{
-    let allOptions = [
-        { name: "RX_DONE", displayName: "RX Done", reason: "Controller mode is disabled"},
-        { name: "TX_DONE", displayName: "TX Done", reason: "Controller mode is disabled"},
-        { name: "RXFIFO_TRIGGER", displayName: "RX FIFO trigger" , reason: "Controller mode is disabled"},
-        { name: "TXFIFO_TRIGGER", displayName: "TX FIFO trigger" , reason: "Controller mode is disabled"},
-        { name: "RXFIFO_FULL", displayName: "RX FIFO Full" , reason: "Controller mode is disabled"},
-        { name: "TXFIFO_EMPTY", displayName: "TX FIFO Empty" , reason: "Controller mode is disabled"},
-        { name: "NACK", displayName: "Addr/Data NACK" , reason: "Controller mode is disabled"},
-        { name: "START", displayName: "Start detection" , reason: "Controller mode is disabled"},
-        { name: "STOP", displayName: "Stop detection" , reason: "Controller mode is disabled"},
-        { name: "ARBITRATION_LOST", displayName: "Arbitration lost" , reason: "Controller mode is disabled"},
-        { name: "EVENT1_DMA_DONE", displayName: "DMA Event 1" , reason: "Controller mode is disabled"},
-        { name: "EVENT2_DMA_DONE", displayName: "DMA Event 2" , reason: "Controller mode is disabled"},
-    ];
-
-    if (inst.basicEnableController == true)
-    {
-        return [];
-    }
-    else
-    {
-        return allOptions;
-    }
-}
-
-function getTargetIntOptions(inst)
-{
-    let allOptions = [
-        { name: "RX_DONE", displayName: "RX Done", description: "Target receive transaction completed interrupt" },
-        { name: "TX_DONE", displayName: "TX Done", description: "Target transmit transaction completed interrupt" },
-        { name: "RXFIFO_TRIGGER", displayName: "RX FIFO trigger" , description: "Target receive FIFO trigger. Trigger when RX FIFO contains >= defined bytes"},
-        { name: "TXFIFO_TRIGGER", displayName: "TX FIFO trigger" , description: "Target transmit FIFO trigger. Trigger when Transmit FIFO contains <= defined bytes"},
-        { name: "RXFIFO_FULL", displayName: "RX FIFO Full" , description: "Target RXFIFO full event. This interrupt is set if an RX FIFO is full"},
-        { name: "TXFIFO_EMPTY", displayName: "TX FIFO Empty" , description: "Target transmit FIFO empty interrupt. This interrupt is set if all data in the Transmit FIFO have been shifted out and the transmit goes into idle mode."},
-        { name: "START", displayName: "Start detection" , description: "Target START detection interrupt"},
-        { name: "STOP", displayName: "Stop detection" , description: "Target STOP detection interrupt"},
-        { name: "GENERAL_CALL", displayName: "General call" , description: "General call interrupt"},
-        { name: "EVENT1_DMA_DONE", displayName: "DMA Event 1" , description: "Target DMA done signal from event 1"},
-        { name: "EVENT2_DMA_DONE", displayName: "DMA Event 2" , description: "Target DMA done signal from event 2"},
-        { name: "ARBITRATION_LOST", displayName: "Target Arbitration Lost Event" , description: "Interrupt index for I2C Target arbitration lost event"},
-        { name: "TXFIFO_UNDERFLOW", displayName: "TX FIFO Underflow" , description: "Interrupt index for I2C Target TX FIFO underflow event"},
-        { name: "RXFIFO_OVERFLOW", displayName: "RX FIFO Overflow" , description: "Interrupt index for I2C Target RX FIFO overflow event"},
-        { name: "INTERRUPT_OVERFLOW ", displayName: "Interrupt Overflow" , description: "Interrupt index for I2C interrupt overflow event"},
-    ];
-
-    return allOptions;
-}
-
-function getTargetDisabledIntOptions(inst)
-{
-    let allOptions = [
-        { name: "RX_DONE", displayName: "RX Done", reason: "Target mode is disabled"},
-        { name: "TX_DONE", displayName: "TX Done", reason: "Target mode is disabled"},
-        { name: "RXFIFO_TRIGGER", displayName: "RX FIFO trigger" , reason: "Target mode is disabled"},
-        { name: "TXFIFO_TRIGGER", displayName: "TX FIFO trigger" , reason: "Target mode is disabled"},
-        { name: "RXFIFO_FULL", displayName: "RX FIFO Full" , reason: "Target mode is disabled"},
-        { name: "TXFIFO_EMPTY", displayName: "TX FIFO Empty" , reason: "Target mode is disabled"},
-        { name: "START", displayName: "Start detection" , reason: "Target mode is disabled"},
-        { name: "STOP", displayName: "Stop detection" , reason: "Target mode is disabled"},
-        { name: "GENERAL_CALL", displayName: "General call" , reason: "Target mode is disabled"},
-        { name: "EVENT1_DMA_DONE", displayName: "DMA Event 1" , reason: "Target mode is disabled"},
-        { name: "EVENT2_DMA_DONE", displayName: "DMA Event 2" , reason: "Target mode is disabled"},
-        { name: "ARBITRATION_LOST", displayName: "Target Arbitration Lost Event" , reason: "Target mode is disabled"},
-        { name: "TXFIFO_UNDERFLOW", displayName: "TX FIFO Underflow" , reason: "Target mode is disabled"},
-        { name: "RXFIFO_OVERFLOW", displayName: "RX FIFO Overflow" , reason: "Target mode is disabled"},
-        { name: "INTERRUPT_OVERFLOW ", displayName: "Interrupt Overflow" , reason: "Target mode is disabled"},
-    ];
-
-    if (inst.basicEnableTarget == true)
-    {
-        return [];
-    }
-    else
-    {
-        return allOptions;
-    }
-}
 
 /*
  *  ======== validate ========

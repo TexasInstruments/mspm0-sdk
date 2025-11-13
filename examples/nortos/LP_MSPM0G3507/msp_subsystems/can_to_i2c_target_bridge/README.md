@@ -8,12 +8,12 @@ on one interface and receive/send the information on the other interface.
 
 | Peripheral | Pin | Function |
 | --- | --- | --- |
-| GPIOB | PB20 | Standard Output with internal pull-up |
+| GPIOB | PB20 | Standard Input with internal pull-up |
 | GPIOB | PB26 | Standard Output |
 | SYSCTL | PA5 | HFXIN |
 | SYSCTL | PA6 | HFXOUT |
-| I2C1 | PB3 | I2C Serial Data line (SDA) |
-| I2C1 | PB2 | I2C Serial Clock line (SCL) |
+| I2C0 | PA0 | I2C Serial Data line (SDA) |
+| I2C0 | PA1 | I2C Serial Clock line (SCL) |
 | EVENT |  |  |
 | CANFD0 | PA13 | RX Pin |
 | CANFD0 | PA12 | TX Pin |
@@ -30,8 +30,8 @@ Visit [LP_MSPM0G3507](https://www.ti.com/tool/LP-MSPM0G3507) for LaunchPad infor
 | PB26 | GPIOB | PB26 | J27_8 | <ul><li>PB26 can be connected to LED2 Red<br><ul><li>`J6 ON` Connect to LED2 Red<br><li>`J6 OFF` Disconnect from LED2 Red</ul></ul> |
 | PA5 | SYSCTL | HFXIN | J28_4 | <ul><li>PA5 is used for HFXT functionality by default in Launchpad<br><ul><li>`Y2` crystal is soldered and connected by default</ul><br><li>PA5 can be connected to J28_4<br><ul><li>`R15` is not soldered soldered by default<br><li>Solder `R15` to connect pin to J28_4</ul> |
 | PA6 | SYSCTL | HFXOUT | J28_5 | <ul><li>PA6 is used for HFXT functionality by default in Launchpad<br><ul><li>`Y2` crystal is soldered and connected by default</ul><br><li>PA6 can be connected to J28_5<br><ul><li>`R17` is not soldered soldered by default<br><li>Solder `R17` to connect pin to J28_5</ul> |
-| PB3 | I2C1 | SDA | J1_10 | <ul><li>PB3 can be connected to an on-board pull-up resistor<br><ul><li>`R60` is not soldered by default<br><li>Solder `R60` to use on-board pull-up</ul></ul> |
-| PB2 | I2C1 | SCL | J1_9 | <ul><li>PB2 can be connected to an on-board pull-up resistor<br><ul><li>`R59` is not soldered by default<br><li>Solder `R59` to use on-board pull-up</ul></ul> |
+| PA0 | I2C0 | SDA | J27_9 | <ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li>`J19 1:2` Use 3.3V pull-up<br><li>`J19 2:3` Use 5V pull-up</ul><br><li>PA0 can be connected to LED1<br><ul><li>`J4 OFF` Disconnect from LED1</ul></ul> |
+| PA1 | I2C0 | SCL | J28_9 | <ul><li>PA1 is 5V tolerant open-drain so it requires pull-up<br><ul><li>`J20 1:2` Use 3.3V pull-up<br><li>`J20 2:3` Use 5V pull-up</ul></ul> |
 | PA13 | CANFD0 | CANRX | J4_32/J26_3 | <ul><li>PA13 can be connected to CAN/LIN connector in addition to boosterpack connector:<br><ul><li>To use on J26 CAN/LIN connector:<br>  `R65` is populated by default and connects pin to `J26_3`</ul></ul> |
 | PA12 | CANFD0 | CANTX | J4_32/J26_1 | <ul><li>PA12 can be connected to CAN/LIN connector in addition to boosterpack connector:<br><ul><li>To use on J26 CAN/LIN connector:<br>  `R64` is populated by default and connects pin to `J26_1`</ul></ul> |
 | PA20 | DEBUGSS | SWCLK | N/A | <ul><li>PA20 is used by SWD during debugging<br><ul><li>`J101 15:16 ON` Connect to XDS-110 SWCLK while debugging<br><li>`J101 15:16 OFF` Disconnect from XDS-110 SWCLK if using pin in application</ul></ul> |
@@ -55,7 +55,7 @@ MSPM0 LaunchPad, please visit the [LP-MSPM0G3507 User's Guide](https://www.ti.co
 ## Example Usage
 Connect the CAN_RX and CAN_TX to TCAN1042DEVM pins as described in TCAN
 Evaluation Module User's Guide and monitor and receive CAN-FD packages using
-can-to-i2c-controller bridge project or using a CAN Bus Analyzer tool of your
+another can-to-any bridge project or using a CAN Bus Analyzer tool of your
 choice.
 
 Connect SDA and SCL between I2C Controller and Target.
@@ -70,13 +70,23 @@ Compile, load and run the example.
 CANFD Transmissions to the device will be passed on through I2C target.  
 I2C Transmissions to the device will be passed on through CANFD at 250k/2M speed.
 
-For I2C, the example is configured as I2C target.
+For I2C, the example is configured with I2C target.
 For CANFD, the example has the following Nominal and Data Rate frequencies configured:
 - Nominal Bit Rate (250 kbps)
 - Data Bit Rate    (2 Mbps)
 
-This example specifies the I2C message format.
-When receiving the message from I2C, the message format is 
-< 55 AA ID1 ID2 ID3 ID4 Length Data1 Data2 ...>. 
-Users can send data via I2C as the same format. 
-55 AA is the header. ID area is 4 bytes. Length area is 1 byte, indicating the data length.
+The example in this article supports both transparent transmission(default) and protocol transmission. 
+User can switch it in user_define.h
+
+For transparent transmission, I2C stop interrupt is used to detect one message. 
+Data from I2C is filled into the data area of CAN (same in reverse). CAN ID is the default value.
+
+For protocol transmission, this example specifies the I2C message format. 
+Users can also modify the format according to application requirements. 
+When receiving the message from I2C, the message format is < 55 AA ID1 ID2 ID3 ID4 Length Data1 Data2 ...>. 
+Users can send data through the I2C as the same format. 55 AA is the header. ID area is four bytes. 
+Length area is one byte, which indicates the data length.
+
+For more information about how to use this example to develop the bridge application as needed, 
+please visit the [Bridge Design between CAN and I2C with MSPM0 MCUs](https://www.ti.com/lit/pdf/slaaen6).
+

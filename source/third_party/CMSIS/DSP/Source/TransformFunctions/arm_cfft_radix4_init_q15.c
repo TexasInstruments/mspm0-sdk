@@ -3,13 +3,13 @@
  * Title:        arm_cfft_radix4_init_q15.c
  * Description:  Radix-4 Decimation in Frequency Q15 FFT & IFFT initialization function
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
- * Target Processor: Cortex-M cores
+ * Target Processor: Cortex-M and Cortex-A cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -26,16 +26,12 @@
  * limitations under the License.
  */
 
-#include "arm_math.h"
+#include "dsp/transform_functions.h"
 #include "arm_common_tables.h"
 
-/**
-  @ingroup groupTransforms
- */
-
 
 /**
-  @addtogroup ComplexFFT
+  @addtogroup ComplexFFTDeprecated
   @{
  */
 
@@ -67,14 +63,17 @@
                    This Function also initializes Twiddle factor table pointer and Bit reversal table pointer.
  */
 
-arm_status arm_cfft_radix4_init_q15(
+ARM_DSP_ATTRIBUTE arm_status arm_cfft_radix4_init_q15(
   arm_cfft_radix4_instance_q15 * S,
   uint16_t fftLen,
   uint8_t ifftFlag,
   uint8_t bitReverseFlag)
 {
   /*  Initialise the default arm status */
-  arm_status status = ARM_MATH_SUCCESS;
+  arm_status status = ARM_MATH_ARGUMENT_ERROR;
+
+  /*  Initialise the default arm status */
+  status = ARM_MATH_SUCCESS;
   /*  Initialise the FFT length */
   S->fftLen = fftLen;
   /*  Initialise the Twiddle coefficient pointer */
@@ -141,5 +140,5 @@ arm_status arm_cfft_radix4_init_q15(
 }
 
 /**
-  @} end of ComplexFFT group
+  @} end of ComplexFFTDeprecated group
  */

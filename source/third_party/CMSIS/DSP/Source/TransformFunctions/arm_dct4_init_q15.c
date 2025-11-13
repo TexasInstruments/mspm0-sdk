@@ -3,13 +3,13 @@
  * Title:        arm_dct4_init_q15.c
  * Description:  Initialization function of DCT-4 & IDCT4 Q15
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
- * Target Processor: Cortex-M cores
+ * Target Processor: Cortex-M and Cortex-A cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -26,20 +26,25 @@
  * limitations under the License.
  */
 
-#include "arm_math.h"
+#include "dsp/transform_functions.h"
 #include "arm_common_tables.h"
 
 /**
-  @ingroup groupTransforms
+ * @defgroup DCT4Q15 DCT4 Q15
+ */
+
+/**
+  @ingroup DCT4_IDCT4
  */
 
  /**
-  @addtogroup DCT4_IDCT4
+  @addtogroup DCT4Q15
   @{
  */
 
 /**
   @brief         Initialization function for the Q15 DCT4/IDCT4.
+  @deprecated    Do not use this function. It will be removed in future versions.
   @param[in,out] S         points to an instance of Q15 DCT4/IDCT4 structure
   @param[in]     S_RFFT    points to an instance of Q15 RFFT/RIFFT structure
   @param[in]     S_CFFT    points to an instance of Q15 CFFT/CIFFT structure
@@ -54,10 +59,15 @@
                    The normalizing factor is <code>sqrt(2/N)</code>, which depends on the size of transform <code>N</code>.
                    Normalizing factors in 1.15 format are mentioned in the table below for different DCT sizes:
 
-                   \image html dct4NormalizingQ15Table.gif
+| DCT Size  | Normalizing factor value (hexadecimal)  | 
+| --------: | ---------------------------------------:| 
+| 2048      | 0x400                                   | 
+| 512       | 0x800                                   | 
+| 128       | 0x1000                                  | 
+
  */
 
-arm_status arm_dct4_init_q15(
+ARM_DSP_ATTRIBUTE arm_status arm_dct4_init_q15(
   arm_dct4_instance_q15 * S,
   arm_rfft_instance_q15 * S_RFFT,
   arm_cfft_radix4_instance_q15 * S_CFFT,
@@ -85,34 +95,26 @@ arm_status arm_dct4_init_q15(
 
   switch (N)
   {
-  #if !defined(ARM_DSP_CONFIG_TABLES) || defined(ARM_ALL_FFT_TABLES) || defined(ARM_TABLE_DCT4_Q15_8192)
     /* Initialize the table modifier values */
   case 8192U:
     S->pTwiddle = WeightsQ15_8192;
     S->pCosFactor = cos_factorsQ15_8192;
     break;
-  #endif
 
-  #if !defined(ARM_DSP_CONFIG_TABLES) || defined(ARM_ALL_FFT_TABLES) || defined(ARM_TABLE_DCT4_Q15_2048)
   case 2048U:
     S->pTwiddle = WeightsQ15_2048;
     S->pCosFactor = cos_factorsQ15_2048;
     break;
-  #endif
 
-  #if !defined(ARM_DSP_CONFIG_TABLES) || defined(ARM_ALL_FFT_TABLES) || defined(ARM_TABLE_DCT4_Q15_512)
   case 512U:
     S->pTwiddle = WeightsQ15_512;
     S->pCosFactor = cos_factorsQ15_512;
     break;
-  #endif 
 
-  #if !defined(ARM_DSP_CONFIG_TABLES) || defined(ARM_ALL_FFT_TABLES) || defined(ARM_TABLE_DCT4_Q15_128)
   case 128U:
     S->pTwiddle = WeightsQ15_128;
     S->pCosFactor = cos_factorsQ15_128;
     break;
-  #endif 
 
   default:
     status = ARM_MATH_ARGUMENT_ERROR;
@@ -126,5 +128,5 @@ arm_status arm_dct4_init_q15(
 }
 
 /**
-  @} end of DCT4_IDCT4 group
+  @} end of DCT4Q15 group
  */

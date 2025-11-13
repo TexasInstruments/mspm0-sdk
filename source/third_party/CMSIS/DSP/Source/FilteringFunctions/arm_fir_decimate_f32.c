@@ -3,13 +3,13 @@
  * Title:        arm_fir_decimate_f32.c
  * Description:  FIR decimation for floating-point sequences
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
- * Target Processor: Cortex-M cores
+ * Target Processor: Cortex-M and Cortex-A cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-#include "arm_math.h"
+#include "dsp/filtering_functions.h"
 
 /**
   @ingroup groupFilters
@@ -121,14 +121,13 @@
   @param[in]     S         points to an instance of the floating-point FIR decimator structure
   @param[in]     pSrc      points to the block of input data
   @param[out]    pDst      points to the block of output data
-  @param[in]     blockSize number of samples to process
-  @return        none
+  @param[in]     blockSize number of input samples to process
  */
 #if defined(ARM_MATH_MVEF) && !defined(ARM_MATH_AUTOVECTORIZE)
 
 #include "arm_helium_utils.h"
 
-void arm_fir_decimate_f32(
+ARM_DSP_ATTRIBUTE void arm_fir_decimate_f32(
   const arm_fir_decimate_instance_f32 * S,
   const float32_t * pSrc,
   float32_t * pDst,
@@ -142,7 +141,7 @@ void arm_fir_decimate_f32(
     uint32_t  i, tapCnt, blkCnt, outBlockSize = blockSize / S->M;   /* Loop counters */
     uint32_t  blkCntN4;
     const float32_t *px0, *px1, *px2, *px3;
-    f32x4_t accv, acc0v, acc1v, acc2v, acc3v;
+    f32x4_t accv = { 0 }, acc0v, acc1v, acc2v, acc3v;
     f32x4_t x0v, x1v, x2v, x3v;
     f32x4_t c0v;
 
@@ -374,7 +373,7 @@ void arm_fir_decimate_f32(
 }
 #else
 #if defined(ARM_MATH_NEON)
-void arm_fir_decimate_f32(
+ARM_DSP_ATTRIBUTE void arm_fir_decimate_f32(
   const arm_fir_decimate_instance_f32 * S,
   const float32_t * pSrc,
   float32_t * pDst,
@@ -618,7 +617,7 @@ void arm_fir_decimate_f32(
   }
 }
 #else
-void arm_fir_decimate_f32(
+ARM_DSP_ATTRIBUTE void arm_fir_decimate_f32(
   const arm_fir_decimate_instance_f32 * S,
   const float32_t * pSrc,
         float32_t * pDst,

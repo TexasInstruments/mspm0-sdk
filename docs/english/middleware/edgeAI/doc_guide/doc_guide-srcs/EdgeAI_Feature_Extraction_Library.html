@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feature Extraction User Guide for EdgeAI Applications on MSPM0 &mdash; MSPM0 EdgeAI User Guide 1.1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Edge AI Software Solution for MSPM0 Devices" href="EdgeAI_Software_Overview.html" />
+    <link rel="prev" title="Deploying Machine Learning Models on TI MSPM0 Microcontrollers Using EdgeAI Studio GUI Tools" href="EdgeAI_Deployment_Guide_EdgeAI_Studio.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> MSPM0 EdgeAI User Guide
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="EdgeAI_Deployment_Guide_CLI.html">Deploying Machine Learning Models on TI MSPM0 Microcontrollers Using CLI Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="EdgeAI_Deployment_Guide_EdgeAI_Studio.html">Deploying Machine Learning Models on TI MSPM0 Microcontrollers Using EdgeAI Studio GUI Tools</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Feature Extraction User Guide for EdgeAI Applications on MSPM0</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#available-feature-extraction-functions">Available Feature Extraction Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#real-fast-fourier-transform-rfft">1. Real Fast Fourier Transform (RFFT)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#magnitude-scaling">2. Magnitude Scaling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#complex-magnitude-calculation">3. Complex Magnitude Calculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dc-component-removal">4. DC Component Removal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bin-calculation">5. Bin Calculation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-parameters">Configuration Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#usage-example">Usage Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#processing-pipeline">Processing Pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#performance-considerations">Performance Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#best-practices">Best Practices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="EdgeAI_Software_Overview.html">Edge AI Software Solution for MSPM0 Devices</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MSPM0 EdgeAI User Guide</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Feature Extraction User Guide for EdgeAI Applications on MSPM0</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="feature-extraction-user-guide-for-edgeai-applications-on-mspm0">
+<h1>Feature Extraction User Guide for EdgeAI Applications on MSPM0<a class="headerlink" href="#feature-extraction-user-guide-for-edgeai-applications-on-mspm0" title="Permalink to this heading">¶</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>Feature extraction is a critical component of many EdgeAI applications, particularly for audio and vibration signal processing. The feature extraction module provides efficient signal processing functions optimized for embedded systems, leveraging ARM libraries for optimal performance.</p>
+<figure class="align-default" id="id1">
+<img alt="Feature Extraction Pipeline Overview" src="../_images/feature_extraction_pipeline.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 16 </span><span class="caption-text">Feature Extraction Pipeline Overview</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="available-feature-extraction-functions">
+<h2>Available Feature Extraction Functions<a class="headerlink" href="#available-feature-extraction-functions" title="Permalink to this heading">¶</a></h2>
+<p>The module supports the following feature extraction techniques:</p>
+<section id="real-fast-fourier-transform-rfft">
+<h3>1. Real Fast Fourier Transform (RFFT)<a class="headerlink" href="#real-fast-fourier-transform-rfft" title="Permalink to this heading">¶</a></h3>
+<p>Converts time-domain signals to frequency domain representation.</p>
+<figure class="align-default" id="id2">
+<img alt="RFFT Transformation" src="../_images/rfft_transformation.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 17 </span><span class="caption-text">RFFT Transformation</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p><strong>Functionality</strong>: Transforms raw input data into frequency components</p></li>
+<li><p><strong>Configuration</strong>: Enable with <code class="docutils literal notranslate"><span class="pre">FE_RFFT</span></code> define</p></li>
+<li><p><strong>Use case</strong>: Frequency analysis of audio or vibration signals</p></li>
+</ul>
+</section>
+<section id="magnitude-scaling">
+<h3>2. Magnitude Scaling<a class="headerlink" href="#magnitude-scaling" title="Permalink to this heading">¶</a></h3>
+<p>Scales magnitude values for better numerical representation.</p>
+<figure class="align-default" id="id3">
+<img alt="Magnitude Scaling" src="../_images/magnitude_scaling.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 18 </span><span class="caption-text">Magnitude Scaling</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p><strong>Functionality</strong>: Applies scaling to prevent overflow/underflow</p></li>
+<li><p><strong>Configuration</strong>: Enable with <code class="docutils literal notranslate"><span class="pre">FE_COMPLEX_MAG_SCALE</span></code> define and set <code class="docutils literal notranslate"><span class="pre">FE_COMPLEX_MAG_SCALE_FACTOR</span></code></p></li>
+<li><p><strong>Use case</strong>: Normalizing signal magnitude to appropriate range for subsequent processing</p></li>
+</ul>
+</section>
+<section id="complex-magnitude-calculation">
+<h3>3. Complex Magnitude Calculation<a class="headerlink" href="#complex-magnitude-calculation" title="Permalink to this heading">¶</a></h3>
+<p>Calculates the magnitude of complex numbers resulting from FFT.</p>
+<figure class="align-default" id="id4">
+<img alt="Complex Magnitude Calculation" src="../_images/complex_magnitude.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 19 </span><span class="caption-text">Complex Magnitude Calculation</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p><strong>Functionality</strong>: Computes absolute values from complex FFT output</p></li>
+<li><p><strong>Configuration</strong>: Enable with <code class="docutils literal notranslate"><span class="pre">FE_MAG</span></code> define</p></li>
+<li><p><strong>Use case</strong>: Extracting power spectrum information</p></li>
+</ul>
+</section>
+<section id="dc-component-removal">
+<h3>4. DC Component Removal<a class="headerlink" href="#dc-component-removal" title="Permalink to this heading">¶</a></h3>
+<p>Removes DC offset from the signal.</p>
+<figure class="align-default" id="id5">
+<img alt="DC Component Removal" src="../_images/dc_removal.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 20 </span><span class="caption-text">DC Component Removal</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p><strong>Functionality</strong>: Excludes the first component (DC) from processing</p></li>
+<li><p><strong>Configuration</strong>: Enable with <code class="docutils literal notranslate"><span class="pre">FE_DC_REM</span></code> define</p></li>
+<li><p><strong>Use case</strong>: Eliminating signal bias for improved feature accuracy</p></li>
+</ul>
+</section>
+<section id="bin-calculation">
+<h3>5. Bin Calculation<a class="headerlink" href="#bin-calculation" title="Permalink to this heading">¶</a></h3>
+<p>Groups frequency components into bins for dimensionality reduction.</p>
+<figure class="align-default" id="id6">
+<img alt="Bin Calculation" src="../_images/bin_calculation.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 21 </span><span class="caption-text">Bin Calculation</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p><strong>Functionality</strong>: Averages frequency components within defined bins</p></li>
+<li><p><strong>Configuration</strong>: Enable with <code class="docutils literal notranslate"><span class="pre">FE_BIN</span></code> define</p></li>
+<li><p><strong>Optional normalization</strong>: Enable with <code class="docutils literal notranslate"><span class="pre">FE_BIN_NORMALIZE</span></code> define</p></li>
+<li><p><strong>Use case</strong>: Reducing feature dimension while preserving spectral characteristics</p></li>
+</ul>
+</section>
+</section>
+<section id="configuration-parameters">
+<h2>Configuration Parameters<a class="headerlink" href="#configuration-parameters" title="Permalink to this heading">¶</a></h2>
+<p>The following parameters can be configured:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">FE_FRAME_SIZE</span></code>: Size of input frame for processing</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FE_FEATURE_SIZE_PER_FRAME</span></code>: Number of features to extract per frame</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FE_BIN_SIZE</span></code>: Size of each frequency bin</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FE_BIN_NORMALIZE</span></code>: When defined, normalizes bin values by dividing by bin size</p></li>
+</ul>
+</section>
+<section id="usage-example">
+<h2>Usage Example<a class="headerlink" href="#usage-example" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic">
+<li><p><strong>Initialize the feature extraction module:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FE_init</span><span class="p">();</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Process input data to extract features:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">q15_t</span> <span class="n">rawInput</span><span class="p">[</span><span class="n">FE_FRAME_SIZE</span><span class="p">];</span>
+<span class="n">q15_t</span> <span class="n">extractedFeatures</span><span class="p">[</span><span class="n">FE_FEATURE_SIZE_PER_FRAME</span><span class="p">];</span>
+
+<span class="o">//</span> <span class="n">Fill</span> <span class="n">rawInput</span> <span class="k">with</span> <span class="n">signal</span> <span class="n">data</span>
+
+<span class="n">FE_process</span><span class="p">(</span><span class="n">rawInput</span><span class="p">,</span> <span class="n">extractedFeatures</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Use extracted features for inference or further processing</strong></p></li>
+</ol>
+</section>
+<section id="processing-pipeline">
+<h2>Processing Pipeline<a class="headerlink" href="#processing-pipeline" title="Permalink to this heading">¶</a></h2>
+<figure class="align-default" id="id7">
+<img alt="Complete Processing Pipeline" src="../_images/processing_pipeline.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 22 </span><span class="caption-text">Complete Processing Pipeline</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>The feature extraction module implements a flexible pipeline:</p>
+<ol class="arabic simple">
+<li><p>Raw input data is copied to a scratch buffer</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">FE_RFFT</span></code> is defined, FFT is performed</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">FE_COMPLEX_MAG_SCALE</span></code> is defined, scaling is applied</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">FE_DC_REM</span></code> is defined, DC component is removed</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">FE_MAG</span></code> is defined, complex magnitude is calculated</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">FE_BIN</span></code> is defined, bin calculation is performed</p></li>
+<li><p>Final features are copied to the output buffer</p></li>
+</ol>
+</section>
+<section id="performance-considerations">
+<h2>Performance Considerations<a class="headerlink" href="#performance-considerations" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>The module uses ARM optimized libraries for efficient computation</p></li>
+<li><p>Buffer swapping is used to minimize memory copies</p></li>
+<li><p>Configuration parameters should be adjusted based on available memory and computational resources</p></li>
+<li><p>Bin calculation can significantly reduce feature dimension, saving memory and computation in subsequent processing</p></li>
+</ul>
+</section>
+<section id="best-practices">
+<h2>Best Practices<a class="headerlink" href="#best-practices" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Select appropriate frame size based on your application requirements</p></li>
+<li><p>Configure bin size to balance feature resolution and dimensionality</p></li>
+<li><p>Consider enabling normalization for consistent feature scaling</p></li>
+<li><p>Remove DC component when analyzing AC signals</p></li>
+<li><p>Use appropriate scaling factors to prevent numerical issues</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="EdgeAI_Deployment_Guide_EdgeAI_Studio.html" class="btn btn-neutral float-left" title="Deploying Machine Learning Models on TI MSPM0 Microcontrollers Using EdgeAI Studio GUI Tools" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="EdgeAI_Software_Overview.html" class="btn btn-neutral float-right" title="Edge AI Software Solution for MSPM0 Devices" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">1995-2023, Texas Instruments Incorporated. All rights reserved</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -3,13 +3,13 @@
  * Title:        arm_dct4_init_f32.c
  * Description:  Initialization function of DCT-4 & IDCT4 F32
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
- * Target Processor: Cortex-M cores
+ * Target Processor: Cortex-M and Cortex-A cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -26,20 +26,25 @@
  * limitations under the License.
  */
 
-#include "arm_math.h"
+#include "dsp/transform_functions.h"
 #include "arm_common_tables.h"
 
 /**
-  @ingroup groupTransforms
+ * @defgroup DCT4F32 DCT4 F32
+ */
+
+/**
+  @ingroup DCT4_IDCT4
  */
 
  /**
-  @addtogroup DCT4_IDCT4
+  @addtogroup DCT4F32
   @{
  */
 
 /**
   @brief         Initialization function for the floating-point DCT4/IDCT4.
+  @deprecated    Do not use this function. It is using a deprecated version of the RFFT.
   @param[in,out] S          points to an instance of floating-point DCT4/IDCT4 structure
   @param[in]     S_RFFT     points to an instance of floating-point RFFT/RIFFT structure
   @param[in]     S_CFFT     points to an instance of floating-point CFFT/CIFFT structure
@@ -54,10 +59,16 @@
                    The normalizing factor is <code>sqrt(2/N)</code>, which depends on the size of transform <code>N</code>.
                    Floating-point normalizing factors are mentioned in the table below for different DCT sizes:
 
-                   \image html dct4NormalizingF32Table.gif
+ 
+| DCT Size  | Normalizing factor value  | 
+| --------: | ------------------------: | 
+| 2048      | 0.03125                   | 
+| 512       | 0.0625                    | 
+| 128       | 0.125                     | 
+
  */
 
-arm_status arm_dct4_init_f32(
+ARM_DSP_ATTRIBUTE arm_status arm_dct4_init_f32(
   arm_dct4_instance_f32 * S,
   arm_rfft_instance_f32 * S_RFFT,
   arm_cfft_radix4_instance_f32 * S_CFFT,
@@ -86,34 +97,26 @@ arm_status arm_dct4_init_f32(
 
   switch (N)
   {
-  #if !defined(ARM_DSP_CONFIG_TABLES) || defined(ARM_ALL_FFT_TABLES) || defined(ARM_TABLE_DCT4_F32_8192)
     /* Initialize the table modifier values */
   case 8192U:
     S->pTwiddle = Weights_8192;
     S->pCosFactor = cos_factors_8192;
     break;
-  #endif
 
-  #if !defined(ARM_DSP_CONFIG_TABLES) || defined(ARM_ALL_FFT_TABLES) || defined(ARM_TABLE_DCT4_F32_2048)
   case 2048U:
     S->pTwiddle = Weights_2048;
     S->pCosFactor = cos_factors_2048;
     break;
-  #endif
 
-  #if !defined(ARM_DSP_CONFIG_TABLES) || defined(ARM_ALL_FFT_TABLES) || defined(ARM_TABLE_DCT4_F32_512)
   case 512U:
     S->pTwiddle = Weights_512;
     S->pCosFactor = cos_factors_512;
     break;
-  #endif
 
-  #if !defined(ARM_DSP_CONFIG_TABLES) || defined(ARM_ALL_FFT_TABLES) || defined(ARM_TABLE_DCT4_F32_128)
   case 128U:
     S->pTwiddle = Weights_128;
     S->pCosFactor = cos_factors_128;
     break;
-  #endif
   default:
     status = ARM_MATH_ARGUMENT_ERROR;
   }
@@ -126,5 +129,5 @@ arm_status arm_dct4_init_f32(
 }
 
 /**
-  @} end of DCT4_IDCT4 group
+  @} end of DCT4F32 group
  */

@@ -3,11 +3,13 @@
  * Title:        arm_svm_linear_predict_f32.c
  * Description:  SVM Linear Classifier
  *
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: Cortex-M and Cortex-A cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -24,13 +26,13 @@
  * limitations under the License.
  */
 
-#include "arm_math.h"
+#include "dsp/svm_functions.h"
 #include <limits.h>
 #include <math.h>
 
 
 /**
- * @addtogroup groupSVM
+ * @addtogroup linearsvm
  * @{
  */
 
@@ -40,14 +42,13 @@
  * @param[in]    S          Pointer to an instance of the linear SVM structure.
  * @param[in]    in         Pointer to input vector
  * @param[out]   pResult    Decision value
- * @return none.
  *
  */
 #if defined(ARM_MATH_MVEF) && !defined(ARM_MATH_AUTOVECTORIZE)
 
 #include "arm_helium_utils.h"
 
-void arm_svm_linear_predict_f32(
+ARM_DSP_ATTRIBUTE void arm_svm_linear_predict_f32(
     const arm_svm_linear_instance_f32 *S,
     const float32_t * in,
     int32_t * pResult)
@@ -142,10 +143,13 @@ void arm_svm_linear_predict_f32(
         /*
          * Sum the partial parts
          */
-        sum += *pDualCoef++ * vecAddAcrossF32Mve(acc0);
-        sum += *pDualCoef++ * vecAddAcrossF32Mve(acc1);
-        sum += *pDualCoef++ * vecAddAcrossF32Mve(acc2);
-        sum += *pDualCoef++ * vecAddAcrossF32Mve(acc3);
+
+        acc0 = vmulq_n_f32(acc0,*pDualCoef++);
+        acc0 = vfmaq_n_f32(acc0,acc1,*pDualCoef++);
+        acc0 = vfmaq_n_f32(acc0,acc2,*pDualCoef++);
+        acc0 = vfmaq_n_f32(acc0,acc3,*pDualCoef++);
+
+        sum += vecAddAcrossF32Mve(acc0);
 
         pSrcA += numCols * 4;
         /*
@@ -212,8 +216,11 @@ void arm_svm_linear_predict_f32(
         /*
          * Sum the partial parts
          */
-        sum += *pDualCoef++ * vecAddAcrossF32Mve(acc0);
-        sum += *pDualCoef++ * vecAddAcrossF32Mve(acc1);
+        acc0 = vmulq_n_f32(acc0,*pDualCoef++);
+        acc0 = vfmaq_n_f32(acc0,acc1,*pDualCoef++);
+
+        sum += vecAddAcrossF32Mve(acc0);
+
 
         pSrcA += numCols * 2;
         row -= 2;
@@ -275,7 +282,7 @@ void arm_svm_linear_predict_f32(
 
 #else
 #if defined(ARM_MATH_NEON)
-void arm_svm_linear_predict_f32(
+ARM_DSP_ATTRIBUTE void arm_svm_linear_predict_f32(
     const arm_svm_linear_instance_f32 *S,
     const float32_t * in,
     int32_t * pResult)
@@ -424,7 +431,7 @@ void arm_svm_linear_predict_f32(
     *pResult=S->classes[STEP(sum)];
 }
 #else
-void arm_svm_linear_predict_f32(
+ARM_DSP_ATTRIBUTE void arm_svm_linear_predict_f32(
     const arm_svm_linear_instance_f32 *S,
     const float32_t * in,
     int32_t * pResult)
@@ -449,5 +456,5 @@ void arm_svm_linear_predict_f32(
 #endif /* defined(ARM_MATH_MVEF) && !defined(ARM_MATH_AUTOVECTORIZE) */
 
 /**
- * @} end of groupSVM group
+ * @} end of linearsvm group
  */

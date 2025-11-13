@@ -114,5 +114,5 @@ INPUT("ti/battery_gauge/lib/gcc/m0p/`Common.getDeviceFamily().toLowerCase()`/gau
 INPUT("ti/driverlib/lib/gcc/m0p/`Common.getDeviceFamily().toLowerCase()`/driverlib.a")
 % }
 % if(migration_inst.genLibNPU && Common.hasNPU()){
-INPUT("ti/npu/lib/ticlang/m0p/npu.a")
+INPUT("ti/edgeAI/lib/ticlang/m0p/npu.a")
 % }

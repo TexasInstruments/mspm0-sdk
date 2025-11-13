@@ -3,13 +3,13 @@
  * Title:        arm_correlate_q31.c
  * Description:  Correlation of Q31 sequences
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
- * Target Processor: Cortex-M cores
+ * Target Processor: Cortex-M and Cortex-A cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-#include "arm_math.h"
+#include "dsp/filtering_functions.h"
 
 /**
   @ingroup groupFilters
@@ -44,7 +44,6 @@
   @param[in]     pSrcB      points to the second input sequence
   @param[in]     srcBLen    length of the second input sequence
   @param[out]    pDst       points to the location where the output result is written.  Length 2 * max(srcALen, srcBLen) - 1.
-  @return        none
 
   @par           Scaling and Overflow Behavior
                    The function is implemented using an internal 64-bit accumulator.
@@ -59,10 +58,10 @@
   @remark
                    Refer to \ref arm_correlate_fast_q31() for a faster but less precise implementation of this function.
  */
-#if defined(ARM_MATH_MVEI)
+#if defined(ARM_MATH_MVEI) && !defined(ARM_MATH_AUTOVECTORIZE)
 #include "arm_helium_utils.h"
 #include "arm_vec_filtering.h"
-void arm_correlate_q31(
+ARM_DSP_ATTRIBUTE void arm_correlate_q31(
   const q31_t * pSrcA,
         uint32_t srcALen,
   const q31_t * pSrcB,
@@ -220,7 +219,7 @@ void arm_correlate_q31(
         pA++;
     }
 
-    for (i = block3 - 1; i >= 0; i -= 2)
+    for (i = block3 - 1; i > 0; i -= 2)
     {
 
         uint32_t  count = (i + 1);
@@ -256,7 +255,7 @@ void arm_correlate_q31(
     }
 }
 #else
-void arm_correlate_q31(
+ARM_DSP_ATTRIBUTE void arm_correlate_q31(
   const q31_t * pSrcA,
         uint32_t srcALen,
   const q31_t * pSrcB,
@@ -858,7 +857,7 @@ void arm_correlate_q31(
       if (((i - j) < srcBLen) && (j < srcALen))
       {
         /* z[i] += x[i-j] * y[j] */
-        sum += ((q63_t) pIn1[j] * pIn2[-((int32_t) i - j)]);
+        sum += ((q63_t) pIn1[j] * pIn2[-((int32_t) i - (int32_t) j)]);
       }
     }
 

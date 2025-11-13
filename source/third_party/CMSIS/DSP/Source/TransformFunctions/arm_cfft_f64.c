@@ -3,13 +3,13 @@
  * Title:        arm_cfft_f64.c
  * Description:  Combined Radix Decimation in Frequency CFFT Double Precision Floating point processing function
  *
- * $Date:        29. November 2019
- * $Revision:    V1.0.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
- * Target Processor: Cortex-M cores
+ * Target Processor: Cortex-M and Cortex-A cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-#include "arm_math.h"
+#include "dsp/transform_functions.h"
 #include "arm_common_tables.h"
 
 
@@ -41,10 +41,6 @@ extern void arm_bitreversal_64(
   const uint16_t   bitRevLen,
   const uint16_t * pBitRevTable);
 
-/**
-* @} end of ComplexFFT group
-*/
-
 /* ----------------------------------------------------------------------
  * Internal helper function used by the FFTs
  * ---------------------------------------------------------------------- */
@@ -55,10 +51,9 @@ extern void arm_bitreversal_64(
 * @param[in]      fftLen           length of the FFT.
 * @param[in]      *pCoef           points to the twiddle coefficient buffer.
 * @param[in]      twidCoefModifier twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table.
-* @return none.
 */
 
-void arm_radix4_butterfly_f64(
+ARM_DSP_ATTRIBUTE void arm_radix4_butterfly_f64(
         float64_t * pSrc,
         uint16_t fftLen,
   const float64_t * pCoef,
@@ -189,10 +184,9 @@ void arm_radix4_butterfly_f64(
 * @param[in]      fftLen           length of the FFT.
 * @param[in]      *pCoef           points to the twiddle coefficient buffer.
 * @param[in]      twidCoefModifier twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table.
-* @return none.
 */
 
-void arm_cfft_radix4by2_f64(
+static void arm_cfft_radix4by2_f64(
     float64_t * pSrc,
     uint32_t fftLen,
     const float64_t * pCoef)
@@ -240,7 +234,7 @@ void arm_cfft_radix4by2_f64(
 }
 
 /**
-  @addtogroup ComplexFFT
+  @addtogroup ComplexFFTF64
   @{
  */
 
@@ -254,10 +248,9 @@ void arm_cfft_radix4by2_f64(
   @param[in]     bitReverseFlag flag that enables / disables bit reversal of output
                    - value = 0: disables bit reversal of output
                    - value = 1: enables bit reversal of output
-  @return        none
  */
 
-void arm_cfft_f64(
+ARM_DSP_ATTRIBUTE void arm_cfft_f64(
   const arm_cfft_instance_f64 * S,
         float64_t * p1,
         uint8_t ifftFlag,
@@ -314,5 +307,5 @@ void arm_cfft_f64(
 }
 
 /**
-  @} end of ComplexFFT group
+  @} end of ComplexFFTF64 group
  */

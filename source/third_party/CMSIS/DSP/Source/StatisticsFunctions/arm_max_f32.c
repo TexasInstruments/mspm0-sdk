@@ -3,13 +3,13 @@
  * Title:        arm_max_f32.c
  * Description:  Maximum value of a floating-point vector
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: Cortex-M and Cortex-A cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-#include "arm_math.h"
+#include "dsp/statistics_functions.h"
 #if (defined(ARM_MATH_NEON) || defined(ARM_MATH_MVEF)) && !defined(ARM_MATH_AUTOVECTORIZE)
 #include <limits.h>
 #endif
@@ -54,11 +54,10 @@
   @param[in]     blockSize  number of samples in input vector
   @param[out]    pResult    maximum value returned here
   @param[out]    pIndex     index of maximum value returned here
-  @return        none
  */
 
 #if defined(ARM_MATH_MVEF) && !defined(ARM_MATH_AUTOVECTORIZE)
-void arm_max_f32(
+ARM_DSP_ATTRIBUTE void arm_max_f32(
   const float32_t * pSrc,
   uint32_t blockSize,
   float32_t * pResult,
@@ -143,7 +142,7 @@ void arm_max_f32(
 
 #else
 #if defined(ARM_MATH_NEON) && !defined(ARM_MATH_AUTOVECTORIZE)
-void arm_max_f32(
+ARM_DSP_ATTRIBUTE void arm_max_f32(
   const float32_t * pSrc,
   uint32_t blockSize,
   float32_t * pResult,
@@ -165,7 +164,7 @@ void arm_max_f32(
   uint32x4_t countV;
   uint32x2_t countV2;
 
-  maxIdx = vdupq_n_u32(ULONG_MAX);
+  maxIdx = vdupq_n_u32(UINT_MAX);
   delta = vdupq_n_u32(4);
   index = vld1q_u32(indexInit);
   countV = vld1q_u32(countVInit);
@@ -260,7 +259,7 @@ void arm_max_f32(
   *pIndex = outIndex;
 }
 #else
-void arm_max_f32(
+ARM_DSP_ATTRIBUTE void arm_max_f32(
   const float32_t * pSrc,
         uint32_t blockSize,
         float32_t * pResult,

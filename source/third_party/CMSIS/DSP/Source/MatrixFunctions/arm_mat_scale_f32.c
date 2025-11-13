@@ -3,13 +3,13 @@
  * Title:        arm_mat_scale_f32.c
  * Description:  Multiplies a floating-point matrix by a scalar
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
- * Target Processor: Cortex-M cores
+ * Target Processor: Cortex-M and Cortex-A cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-#include "arm_math.h"
+#include "dsp/matrix_functions.h"
 
 /**
   @ingroup groupMatrix
@@ -37,7 +37,22 @@
 
   Multiplies a matrix by a scalar.  This is accomplished by multiplying each element in the
   matrix by the scalar.  For example:
-  \image html MatrixScale.gif "Matrix Scaling of a 3 x 3 matrix"
+
+  @par Matrix Scaling of a 3 x 3 matrix 
+
+  \f[
+  \begin{pmatrix}
+  a_{1,1} & a_{1,2} & a_{1,3} \\
+  a_{2,1} & a_{2,2} & a_{2,3} \\
+  a_{3,1} & a_{3,2} & a_{3,3} \\
+  \end{pmatrix}
+  * K = 
+  \begin{pmatrix}
+   K a_{1,1} & K a_{1,2} & K a_{1,3} \\
+   K a_{2,1} & K a_{2,2} & K a_{2,3} \\
+   K a_{3,1} & K a_{3,2} & K a_{3,3} \\
+  \end{pmatrix}
+  \f]
 
   The function checks to make sure that the input and output matrices are of the same size.
 
@@ -65,7 +80,7 @@
                    - \ref ARM_MATH_SIZE_MISMATCH : Matrix size check failed
  */
 #if defined(ARM_MATH_MVEF) && !defined(ARM_MATH_AUTOVECTORIZE)
-arm_status arm_mat_scale_f32(
+ARM_DSP_ATTRIBUTE arm_status arm_mat_scale_f32(
   const arm_matrix_instance_f32 * pSrc,
   float32_t scale,
   arm_matrix_instance_f32 * pDst)
@@ -134,7 +149,7 @@ arm_status arm_mat_scale_f32(
 }
 #else
 #if defined(ARM_MATH_NEON_EXPERIMENTAL)
-arm_status arm_mat_scale_f32(
+ARM_DSP_ATTRIBUTE arm_status arm_mat_scale_f32(
   const arm_matrix_instance_f32 * pSrc,
   float32_t scale,
   arm_matrix_instance_f32 * pDst)
@@ -204,7 +219,7 @@ arm_status arm_mat_scale_f32(
   return (status);
 }
 #else
-arm_status arm_mat_scale_f32(
+ARM_DSP_ATTRIBUTE arm_status arm_mat_scale_f32(
   const arm_matrix_instance_f32 * pSrc,
         float32_t                 scale,
         arm_matrix_instance_f32 * pDst)

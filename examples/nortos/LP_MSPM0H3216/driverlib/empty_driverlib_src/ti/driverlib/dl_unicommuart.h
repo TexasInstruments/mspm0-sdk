@@ -152,8 +152,6 @@ extern "C" {
 #define DL_UART_EXTEND_DMA_INTERRUPT_RX_TIMEOUT         DL_UART_DMA_INTERRUPT_RX_TIMEOUT
 /*! Redirects to @ref DL_UART_DMA_INTERRUPT_TX */
 #define DL_UART_EXTEND_DMA_INTERRUPT_TX                 DL_UART_DMA_INTERRUPT_TX
-/*! Redirects to @ref DL_UART_ERROR_OVERRUN */
-#define DL_UART_EXTEND_ERROR_OVERRUN                    DL_UART_ERROR_OVERRUN
 /*! Redirects to @ref DL_UART_ERROR_BREAK */
 #define DL_UART_EXTEND_ERROR_BREAK                      DL_UART_ERROR_BREAK
 /*! Redirects to @ref DL_UART_ERROR_PARITY */
@@ -632,8 +630,6 @@ extern "C" {
 #define DL_UART_MAIN_DMA_INTERRUPT_RX_TIMEOUT           DL_UART_DMA_INTERRUPT_RX_TIMEOUT
 /*! Redirects to @ref DL_UART_DMA_INTERRUPT_TX */
 #define DL_UART_MAIN_DMA_INTERRUPT_TX                   DL_UART_DMA_INTERRUPT_TX
-/*! Redirects to @ref DL_UART_ERROR_OVERRUN */
-#define DL_UART_MAIN_ERROR_OVERRUN                      DL_UART_ERROR_OVERRUN
 /*! Redirects to @ref DL_UART_ERROR_BREAK */
 #define DL_UART_MAIN_ERROR_BREAK                        DL_UART_ERROR_BREAK
 /*! Redirects to @ref DL_UART_ERROR_PARITY */
@@ -1112,9 +1108,9 @@ typedef enum {
  *  @{
  */
 /*!
- * @brief Overrun error ocurred
+ * @brief Noise error occurred
  */
-#define DL_UART_ERROR_OVERRUN                          (UNICOMMUART_RXDATA_OVRERR_SET)
+#define DL_UART_ERROR_NOISE                            (UNICOMMUART_RXDATA_NERR_SET)
 
 /*!
  * @brief Break error ocurred
@@ -2342,6 +2338,32 @@ __STATIC_INLINE void DL_UART_enableSendIdlePattern(UNICOMM_Inst_Regs *unicomm)
 __STATIC_INLINE void DL_UART_disableSendIdlePattern(UNICOMM_Inst_Regs *unicomm)
 {
     unicomm->uart->LCRH &= ~(UNICOMMUART_LCRH_SENDIDLE_MASK);
+}
+
+/**
+ *  @brief      Suspend external communication
+ *
+ *  When bit enabled, external communication is suspended.
+ *
+ *  @param[in]  unicomm   Pointer to the register overlay for the peripheral
+ */
+__STATIC_INLINE void DL_UART_suspendExternalCommunication(
+    UNICOMM_Inst_Regs *unicomm)
+{
+    unicomm->uart->LCRH |= UNICOMMUART_LCRH_SUSPEND_ENABLE;
+}
+
+/**
+ *  @brief      Resume external communication
+ *
+ *  When bit disabled, external communication is resumed.
+ *
+ *  @param[in]  unicomm   Pointer to the register overlay for the peripheral
+ */
+__STATIC_INLINE void DL_UART_resumeExternalCommunication(
+    UNICOMM_Inst_Regs *unicomm)
+{
+    unicomm->uart->LCRH &= ~(UNICOMMUART_LCRH_SUSPEND_MASK);
 }
 
 /**

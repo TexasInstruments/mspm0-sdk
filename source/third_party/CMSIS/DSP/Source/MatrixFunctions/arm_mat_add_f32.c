@@ -3,13 +3,13 @@
  * Title:        arm_mat_add_f32.c
  * Description:  Floating-point matrix addition
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
- * Target Processor: Cortex-M cores
+ * Target Processor: Cortex-M and Cortex-A cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-#include "arm_math.h"
+#include "dsp/matrix_functions.h"
 
 /**
   @ingroup groupMatrix
@@ -36,7 +36,27 @@
   @defgroup MatrixAdd Matrix Addition
 
   Adds two matrices.
-  \image html MatrixAddition.gif "Addition of two 3 x 3 matrices"
+  @par Addition of two 3 x 3 matrices
+
+  \f[
+  \begin{pmatrix}
+   a_{1,1} & a_{1,2} & a_{1,3} \\
+   a_{2,1} & a_{2,2} & a_{2,3} \\
+   a_{3,1} & a_{3,2} & a_{3,3} \\
+  \end{pmatrix}
+  +
+  \begin{pmatrix}
+   b_{1,1} & b_{1,2} & b_{1,3} \\
+   b_{2,1} & b_{2,2} & b_{2,3} \\
+   b_{3,1} & b_{3,2} & b_{3,3} \\
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+   a_{1,1}+b_{1,1} & a_{1,2}+b_{1,2} & a_{1,3}+b_{1,3} \\
+   a_{2,1}+b_{2,1} & a_{2,2}+b_{2,2} & a_{2,3}+b_{2,3} \\
+   a_{3,1}+b_{3,1} & a_{3,2}+b_{3,2} & a_{3,3}+b_{3,3} \\
+  \end{pmatrix}
+  \f]
 
   The functions check to make sure that
   <code>pSrcA</code>, <code>pSrcB</code>, and <code>pDst</code> have the same
@@ -60,7 +80,7 @@
  */
 
 #if defined(ARM_MATH_MVEF) && !defined(ARM_MATH_AUTOVECTORIZE)
-arm_status arm_mat_add_f32(
+ARM_DSP_ATTRIBUTE arm_status arm_mat_add_f32(
   const arm_matrix_instance_f32 * pSrcA,
   const arm_matrix_instance_f32 * pSrcB,
   arm_matrix_instance_f32 * pDst)
@@ -68,7 +88,7 @@ arm_status arm_mat_add_f32(
     arm_status status;  
     uint32_t  numSamples;       /* total number of elements in the matrix  */
     float32_t *pDataA, *pDataB, *pDataDst;
-    f32x4_t vecA, vecB, vecDst;
+    f32x4_t vecA, vecB, vecDst = { 0 };
     float32_t const *pSrcAVec;
     float32_t const *pSrcBVec;
     uint32_t  blkCnt;           /* loop counters */
@@ -138,7 +158,7 @@ So no blocking is used for taking into account cache effects.
 For big matrix, there exist better libraries for Neon.
 
 */
-arm_status arm_mat_add_f32(
+ARM_DSP_ATTRIBUTE arm_status arm_mat_add_f32(
   const arm_matrix_instance_f32 * pSrcA,
   const arm_matrix_instance_f32 * pSrcB,
   arm_matrix_instance_f32 * pDst)
@@ -214,7 +234,7 @@ arm_status arm_mat_add_f32(
   return (status);
 }
 #else
-arm_status arm_mat_add_f32(
+ARM_DSP_ATTRIBUTE arm_status arm_mat_add_f32(
   const arm_matrix_instance_f32 * pSrcA,
   const arm_matrix_instance_f32 * pSrcB,
         arm_matrix_instance_f32 * pDst)

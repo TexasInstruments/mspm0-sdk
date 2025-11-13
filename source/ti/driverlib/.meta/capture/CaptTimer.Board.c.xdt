@@ -40,6 +40,7 @@
     let content = args[1];
 
     let Common = system.getScript("/ti/driverlib/Common.js");
+    let CaptTimerCommon = system.getScript("/ti/driverlib/capture/CaptTimer.common.js");
 
     /* shorthand names for some common references in template below */
     let instances = CAPTURE.$instances;
@@ -303,10 +304,12 @@ SYSCONFIG_WEAK void SYSCFG_DL_`inst.$name`_init(void) {
 %
 %    /* Interrupt generation */
 %    let interArgs = "";
+%    let disabledCaptTimerInterrupts = (CaptTimerCommon.getDisabledOptionsInterrupts(inst)).map(x=>x.name);
 %    for (let inter of inst.interrupts) {
+%        if (disabledCaptTimerInterrupts.includes(inter)) continue;
 %        interArgs += "DL_TIMER"+(flavor.replace(/[0-9]/g,'')).slice(3)+"_INTERRUPT_"+inter+"_EVENT |\n\t\t";
 %    }
-%    if(inst.interrupts.length > 0){
+%    if(interArgs.length > 0){
 %        interArgs = interArgs.slice(0,-5); // remove last OR and whitespace
 %        let interFct = "DL_"+flavorCat+"_enableInterrupt("+inst.$name+"_INST , "+interArgs+");\n";
     `interFct`

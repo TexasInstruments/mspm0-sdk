@@ -1,0 +1,105 @@
+<toc label="MSPM0Gxx0xEdgeAIAPIDocument" topic="index.html">
+  <topic label="Feature Extraction Library" href="index.html"/>
+  <topic label="Data Structures" href="annotated.html">
+    <topic label="Data Structures" href="annotated.html">
+      <topic label="BufferInfo" href="struct_buffer_info.html">
+        <topic label="_Alignas" href="struct_buffer_info.html#a4446fedef85f189c4114076c20b3cd55"/>
+        <topic label="ptr" href="struct_buffer_info.html#af36e6182c24508d0b5b9f228016b3534"/>
+        <topic label="len" href="struct_buffer_info.html#a0d41fe464e9eb7cd5bcf0460c54b85fa"/>
+      </topic>
+      <topic label="UART_Instance" href="struct_u_a_r_t___instance.html">
+        <topic label="txMsg" href="struct_u_a_r_t___instance.html#a14dc9f8568a0ee1d49886357bab22f56"/>
+        <topic label="rxMsg" href="struct_u_a_r_t___instance.html#ac15e555998be0aec432eaaca20bb7b31"/>
+        <topic label="dataLen" href="struct_u_a_r_t___instance.html#a6760c17949e8534a7f416bfe3af62abd"/>
+        <topic label="isCrc" href="struct_u_a_r_t___instance.html#a688ceaea98ecaf4d26270f9009eae75b"/>
+        <topic label="TxStatus" href="struct_u_a_r_t___instance.html#a515dafa7619635ced3189f068d48beb8"/>
+        <topic label="RxStatus" href="struct_u_a_r_t___instance.html#a88a4195d9cfb6b6b17e32cd4cdf68e4c"/>
+        <topic label="error" href="struct_u_a_r_t___instance.html#aec8fb0e1bf6c8d1f10c4c291df561e30"/>
+      </topic>
+    </topic>
+    <topic label="Data Fields" href="functions.html">
+      <topic label="All" href="functions.html"/>
+      <topic label="Functions" href="functions_func.html"/>
+      <topic label="Variables" href="functions_vars.html"/>
+    </topic>
+  </topic>
+  <topic label="Files">
+    <topic label="File List" href="files.html">
+      <topic label="dap_core.h" href="dap__core_8h_source.html"/>
+      <topic label="feature_extract.h" href="feature__extract_8h_source.html"/>
+      <topic label="npu.c" href="npu_8c.html">
+        <topic label="NPU_setInstrMem" href="npu_8c.html#ab89aef8b6e30408e292a963f0e2fc011"/>
+        <topic label="NPU_setParamMem" href="npu_8c.html#a422991da913ce329f26dd2dfd6f1640e"/>
+        <topic label="NPU_getAccReg" href="npu_8c.html#a7fd018eb323d3186a9e4e676422b4cbd"/>
+        <topic label="NPU_getCtlReg" href="npu_8c.html#abaee13e346de3d356f713935249cdfb8"/>
+      </topic>
+      <topic label="npu.h" href="npu_8h.html">
+        <topic label="NPU_setInstrMem" href="npu_8h.html#ab89aef8b6e30408e292a963f0e2fc011"/>
+        <topic label="NPU_setParamMem" href="npu_8h.html#a422991da913ce329f26dd2dfd6f1640e"/>
+        <topic label="NPU_getAccReg" href="npu_8h.html#a7fd018eb323d3186a9e4e676422b4cbd"/>
+        <topic label="NPU_getCtlReg" href="npu_8h.html#abaee13e346de3d356f713935249cdfb8"/>
+      </topic>
+      <topic label="uart_comm_target.h" href="uart__comm__target_8h.html">
+        <topic label="BufferInfo" href="struct_buffer_info.html">
+          <topic label="_Alignas" href="struct_buffer_info.html#a4446fedef85f189c4114076c20b3cd55"/>
+          <topic label="ptr" href="struct_buffer_info.html#af36e6182c24508d0b5b9f228016b3534"/>
+          <topic label="len" href="struct_buffer_info.html#a0d41fe464e9eb7cd5bcf0460c54b85fa"/>
+        </topic>
+        <topic label="UART_Instance" href="struct_u_a_r_t___instance.html">
+          <topic label="txMsg" href="struct_u_a_r_t___instance.html#a14dc9f8568a0ee1d49886357bab22f56"/>
+          <topic label="rxMsg" href="struct_u_a_r_t___instance.html#ac15e555998be0aec432eaaca20bb7b31"/>
+          <topic label="dataLen" href="struct_u_a_r_t___instance.html#a6760c17949e8534a7f416bfe3af62abd"/>
+          <topic label="isCrc" href="struct_u_a_r_t___instance.html#a688ceaea98ecaf4d26270f9009eae75b"/>
+          <topic label="TxStatus" href="struct_u_a_r_t___instance.html#a515dafa7619635ced3189f068d48beb8"/>
+          <topic label="RxStatus" href="struct_u_a_r_t___instance.html#a88a4195d9cfb6b6b17e32cd4cdf68e4c"/>
+          <topic label="error" href="struct_u_a_r_t___instance.html#aec8fb0e1bf6c8d1f10c4c291df561e30"/>
+        </topic>
+        <topic label="START_IDX" href="uart__comm__target_8h.html#af31379b5434dd0f1dfff9e469684dd6f"/>
+        <topic label="START_BYTE_SIZE" href="uart__comm__target_8h.html#a50e823bd9b2beeab68543393eebe1028"/>
+        <topic label="FRAME_START_BYTE" href="uart__comm__target_8h.html#ad9819c28ac5abdc130130a759517f40d"/>
+        <topic label="PREAMBLE_BYTE_SIZE" href="uart__comm__target_8h.html#ac14aa88b0c98647895788a4a50e3a53a"/>
+        <topic label="CMD_IDX" href="uart__comm__target_8h.html#a513aab3e3835c83d0db3a5ab5c1ac50b"/>
+        <topic label="CMD_SIZE" href="uart__comm__target_8h.html#a46d8c74b5360b1df7727d0ee6de59df2"/>
+        <topic label="HEADER_SIZE" href="uart__comm__target_8h.html#a49999be01380f41cc0d0f1f1406fb277"/>
+        <topic label="LEN_IDX" href="uart__comm__target_8h.html#a20de465bb4e98d7d9efacb2da1904183"/>
+        <topic label="MAX_LEN_IDX" href="uart__comm__target_8h.html#a34425a7ef595f9cf70ab575679e1f5e8"/>
+        <topic label="PAYLOAD_IDX" href="uart__comm__target_8h.html#a97a7dbc59edcd96148a0a0196e720cf2"/>
+        <topic label="END_OFFSET" href="uart__comm__target_8h.html#a48942c7427156052e2b1b901e85a9f77"/>
+        <topic label="FRAME_END_BYTE" href="uart__comm__target_8h.html#ae9d254d170527b7d9e94b4da2a196724"/>
+        <topic label="END_BYTE_SIZE" href="uart__comm__target_8h.html#a83d5feffae324698881bc41151a2065e"/>
+        <topic label="TRAILER_SIZE" href="uart__comm__target_8h.html#ae32c854642cd312f2d2247bea999e244"/>
+        <topic label="PACKET_FIXED_PART_SIZE" href="uart__comm__target_8h.html#a43315aace3f84b7f075cb021848773c0"/>
+        <topic label="DMA_RX_TRANSFER_SIZE" href="uart__comm__target_8h.html#aa03eb1875b435b776df8615f90a156f8"/>
+        <topic label="MAX_BUFFER_SIZE" href="uart__comm__target_8h.html#ad4d796b98c583d49e83adabd74a63bf6"/>
+        <topic label="CRC_INIT_VALUE" href="uart__comm__target_8h.html#a85f92b413d0c10cbf0f3e28361eaae3e"/>
+        <topic label="UART_Status" href="uart__comm__target_8h.html#a778bbef5f4b52a5651552136715f53c4">
+          <topic label="UART_STATUS_IDLE" href="uart__comm__target_8h.html#a778bbef5f4b52a5651552136715f53c4a79ebec8408b7a8279567fbfbfc1a3f99"/>
+          <topic label="UART_STATUS_RX_BUFFERING" href="uart__comm__target_8h.html#a778bbef5f4b52a5651552136715f53c4aec5b1811ed18c5065224e381833d9f39"/>
+          <topic label="UART_STATUS_PROCESS_FRAME" href="uart__comm__target_8h.html#a778bbef5f4b52a5651552136715f53c4a1a50a930d80f7f48f537dfbae758fac7"/>
+          <topic label="UART_STATUS_TX_TRANSMITTING" href="uart__comm__target_8h.html#a778bbef5f4b52a5651552136715f53c4a9f4851acd106af09e58ea590a774f2ac"/>
+        </topic>
+        <topic label="ErrorType" href="uart__comm__target_8h.html#ab0df38968e4f03a3f1f6d6df0f31f45a">
+          <topic label="ERROR_TYPE_NONE" href="uart__comm__target_8h.html#ab0df38968e4f03a3f1f6d6df0f31f45aa73988b437c062954d7c37a4c2542f3b0"/>
+          <topic label="ERROR_TYPE_MISMATCH_START_BYTE" href="uart__comm__target_8h.html#ab0df38968e4f03a3f1f6d6df0f31f45aa6b2f5da9facf9f8c4297d2d5fc379423"/>
+          <topic label="ERROR_TYPE_MISMATCH_END_BYTE" href="uart__comm__target_8h.html#ab0df38968e4f03a3f1f6d6df0f31f45aa4e58482b870f8745e5246f2573d5d203"/>
+          <topic label="ERROR_TYPE_MISMATCH_CRC" href="uart__comm__target_8h.html#ab0df38968e4f03a3f1f6d6df0f31f45aadbaaab146f6d3541e8eedd0299ca4150"/>
+        </topic>
+        <topic label="UART_init" href="uart__comm__target_8h.html#af21454d8c68ca267a189fdd0524cd9de"/>
+        <topic label="UART_checkForCommand" href="uart__comm__target_8h.html#abac7d05b78930afcec50fe26803feeb9"/>
+        <topic label="DMA_RX_init" href="uart__comm__target_8h.html#a5ff9f546dea92b6ed6be5c4df5472aeb"/>
+        <topic label="UART_clearBuffer" href="uart__comm__target_8h.html#a50704eb405543d649b54a53c0f984375"/>
+        <topic label="UART_sendBuffer" href="uart__comm__target_8h.html#aa18073db11d6cef92eda63174bd220c2"/>
+        <topic label="CRC_calc8" href="uart__comm__target_8h.html#ae459ce34d23c787f8798a07a14f73cec"/>
+        <topic label="UART_reSync" href="uart__comm__target_8h.html#aed50e0c5aea5a9677d0439abed11f686"/>
+      </topic>
+    </topic>
+    <topic label="Globals" href="globals.html">
+      <topic label="All" href="globals.html"/>
+      <topic label="Functions" href="globals_func.html"/>
+      <topic label="Enumerations" href="globals_enum.html"/>
+      <topic label="Enumerator" href="globals_eval.html"/>
+      <topic label="Macros" href="globals_defs.html"/>
+    </topic>
+  </topic>
+  <topic label="Disclaimer" href="_disclaimer.html"/>
+</toc>

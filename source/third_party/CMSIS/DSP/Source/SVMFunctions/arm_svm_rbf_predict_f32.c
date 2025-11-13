@@ -3,11 +3,13 @@
  * Title:        arm_svm_rbf_predict_f32.c
  * Description:  SVM Radial Basis Function Classifier
  *
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: Cortex-M and Cortex-A cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -24,13 +26,13 @@
  * limitations under the License.
  */
 
-#include "arm_math.h"
+#include "dsp/svm_functions.h"
 #include <limits.h>
 #include <math.h>
 
 
 /**
- * @addtogroup groupSVM
+ * @addtogroup rbfsvm
  * @{
  */
 
@@ -40,7 +42,6 @@
  * @param[in]    S         Pointer to an instance of the rbf SVM structure.
  * @param[in]    in        Pointer to input vector
  * @param[out]   pResult   decision value
- * @return none.
  *
  */
 
@@ -49,7 +50,7 @@
 #include "arm_helium_utils.h"
 #include "arm_vec_math.h"
 
-void arm_svm_rbf_predict_f32(
+ARM_DSP_ATTRIBUTE void arm_svm_rbf_predict_f32(
     const arm_svm_rbf_instance_f32 *S,
     const float32_t * in,
     int32_t * pResult)
@@ -319,7 +320,7 @@ void arm_svm_rbf_predict_f32(
 
 #include "NEMath.h"
 
-void arm_svm_rbf_predict_f32(
+ARM_DSP_ATTRIBUTE void arm_svm_rbf_predict_f32(
     const arm_svm_rbf_instance_f32 *S,
     const float32_t * in,
     int32_t * pResult)
@@ -411,10 +412,10 @@ void arm_svm_rbf_predict_f32(
         blkCnt = S->vectorDimension & 3;
         while (blkCnt > 0U)
         {
-            dotV = vsetq_lane_f32(vgetq_lane_f32(dotV,0) + SQ(*pIn - *pSupporta), dotV,0);
-            dotV = vsetq_lane_f32(vgetq_lane_f32(dotV,1) + SQ(*pIn - *pSupportb), dotV,1);
-            dotV = vsetq_lane_f32(vgetq_lane_f32(dotV,2) + SQ(*pIn - *pSupportc), dotV,2);
-            dotV = vsetq_lane_f32(vgetq_lane_f32(dotV,3) + SQ(*pIn - *pSupportd), dotV,3);
+            dotV = vsetq_lane_f32(vgetq_lane_f32(dotV,0) + ARM_SQ(*pIn - *pSupporta), dotV,0);
+            dotV = vsetq_lane_f32(vgetq_lane_f32(dotV,1) + ARM_SQ(*pIn - *pSupportb), dotV,1);
+            dotV = vsetq_lane_f32(vgetq_lane_f32(dotV,2) + ARM_SQ(*pIn - *pSupportc), dotV,2);
+            dotV = vsetq_lane_f32(vgetq_lane_f32(dotV,3) + ARM_SQ(*pIn - *pSupportd), dotV,3);
 
             pSupporta++;
             pSupportb++;
@@ -476,7 +477,7 @@ void arm_svm_rbf_predict_f32(
         while (blkCnt > 0U)
         {
 
-            dot = dot + SQ(*pIn - *pSupport);
+            dot = dot + ARM_SQ(*pIn - *pSupport);
             pIn++;
             pSupport++;
 
@@ -490,7 +491,7 @@ void arm_svm_rbf_predict_f32(
     *pResult=S->classes[STEP(sum)];
 }
 #else
-void arm_svm_rbf_predict_f32(
+ARM_DSP_ATTRIBUTE void arm_svm_rbf_predict_f32(
     const arm_svm_rbf_instance_f32 *S,
     const float32_t * in,
     int32_t * pResult)
@@ -505,7 +506,7 @@ void arm_svm_rbf_predict_f32(
         dot=0;
         for(j=0; j < S->vectorDimension; j++)
         {
-            dot = dot + SQ(in[j] - *pSupport);
+            dot = dot + ARM_SQ(in[j] - *pSupport);
             pSupport++;
         }
         sum += S->dualCoefficients[i] * expf(-S->gamma * dot);
@@ -517,5 +518,5 @@ void arm_svm_rbf_predict_f32(
 #endif /* defined(ARM_MATH_MVEF) && !defined(ARM_MATH_AUTOVECTORIZE) */
 
 /**
- * @} end of groupSVM group
+ * @} end of rbfsvm group
  */

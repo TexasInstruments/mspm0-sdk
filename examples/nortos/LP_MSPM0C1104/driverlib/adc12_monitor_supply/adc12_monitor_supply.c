@@ -61,7 +61,7 @@ int main(void)
     uint16_t adcResult;
     SYSCFG_DL_init();
 
-    /* Get calibrated ADC offset - workaround for ADC_ERR_06 */
+    /* Get calibrated ADC offset - workaround for ADC_ERR_09 */
     gADCOffset = DL_ADC12_getADCOffsetCalibration(ADC12_REF_VOLTAGE);
 
     NVIC_EnableIRQ(ADC12_0_INST_INT_IRQN);
@@ -79,7 +79,7 @@ int main(void)
         /* Result in integer for efficient processing */
         adcResult = DL_ADC12_getMemResult(ADC12_0_INST, DL_ADC12_MEM_IDX_0);
 
-        /* Apply calibrated ADC offset - workaround for ADC_ERR_06 */
+        /* Apply calibrated ADC offset - workaround for ADC_ERR_09 */
         int16_t adcRaw = (int16_t) adcResult + gADCOffset;
         if (adcRaw < 0) {
             adcRaw = 0;

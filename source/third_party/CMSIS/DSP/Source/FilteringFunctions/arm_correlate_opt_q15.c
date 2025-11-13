@@ -3,13 +3,13 @@
  * Title:        arm_correlate_opt_q15.c
  * Description:  Correlation of Q15 sequences
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
- * Target Processor: Cortex-M cores
+ * Target Processor: Cortex-M and Cortex-A cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-#include "arm_math.h"
+#include "dsp/filtering_functions.h"
 
 /**
   @ingroup groupFilters
@@ -45,7 +45,6 @@
   @param[in]     srcBLen    length of the second input sequence
   @param[out]    pDst       points to the location where the output result is written.  Length 2 * max(srcALen, srcBLen) - 1.
   @param[in]     pScratch   points to scratch buffer of size max(srcALen, srcBLen) + 2*min(srcALen, srcBLen) - 2.
-  @return        none
 
   @par           Scaling and Overflow Behavior
                    The function is implemented using a 64-bit internal accumulator.
@@ -58,7 +57,7 @@
                    Refer to \ref arm_correlate_fast_q15() for a faster but less precise version of this function.
  */
 
-void arm_correlate_opt_q15(
+ARM_DSP_ATTRIBUTE void arm_correlate_opt_q15(
   const q15_t * pSrcA,
         uint32_t srcALen,
   const q15_t * pSrcB,
@@ -192,7 +191,7 @@ void arm_correlate_opt_q15(
       y1 = read_q15x2_ia ((q15_t **) &pIn2);
       y2 = read_q15x2_ia ((q15_t **) &pIn2);
 
-      /* multiply and accumlate */
+      /* multiply and accumulate */
       acc0 = __SMLALD(x1, y1, acc0);
       acc2 = __SMLALD(x2, y1, acc2);
 
@@ -203,13 +202,13 @@ void arm_correlate_opt_q15(
       x3 = __PKHBT(x1, x2, 0);
 #endif
 
-      /* multiply and accumlate */
+      /* multiply and accumulate */
       acc1 = __SMLALDX(x3, y1, acc1);
 
       /* Read next two samples from scratch1 buffer */
       x1 = read_q15x2_ia (&pScr1);
 
-      /* multiply and accumlate */
+      /* multiply and accumulate */
       acc0 = __SMLALD(x2, y2, acc0);
       acc2 = __SMLALD(x1, y2, acc2);
 
@@ -245,7 +244,7 @@ void arm_correlate_opt_q15(
 
     while (tapCnt > 0U)
     {
-      /* accumlate the results */
+      /* accumulate the results */
       acc0 += (*pScr1++ * *pIn2);
       acc1 += (*pScr1++ * *pIn2);
       acc2 += (*pScr1++ * *pIn2);
@@ -314,7 +313,7 @@ void arm_correlate_opt_q15(
     /* apply same above for remaining samples of smaller length sequence */
     while (tapCnt > 0U)
     {
-      /* accumlate the results */
+      /* accumulate the results */
       acc0 += (*pScr1++ * *pIn2++);
 
       /* Decrement loop counter */

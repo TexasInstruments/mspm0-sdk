@@ -3,13 +3,13 @@
  * Title:        arm_cos_q15.c
  * Description:  Fast cosine calculation for Q15 values
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
- * Target Processor: Cortex-M cores
+ * Target Processor: Cortex-M and Cortex-A cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-#include "arm_math.h"
+#include "dsp/fast_math_functions.h"
 #include "arm_common_tables.h"
 
 /**
@@ -46,7 +46,7 @@
   The Q15 input value is in the range [0 +0.9999] and is mapped to a radian value in the range [0 2*PI).
  */
 
-q15_t arm_cos_q15(
+ARM_DSP_ATTRIBUTE q15_t arm_cos_q15(
   q15_t x)
 {
   q15_t cosVal;                                  /* Temporary input, output variables */

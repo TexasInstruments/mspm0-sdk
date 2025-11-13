@@ -192,7 +192,10 @@
 <li>Nominal Bit Rate (250 kbps)</li>
 <li>Data Bit Rate (2 Mbps)</li>
 </ul>
-<p>This example specifies the UART message format. When receiving the message from UART, the message format is &lt; 55 AA ID1 ID2 ID3 ID4 Length Data1 Data2 …&gt;. Users can send data to the CAN bus from the terminal by entering data as the same format. 55 AA is the header. ID area is 4 bytes. Length area is 1 byte, indicating the data length.</p>
+<p>The example in this article supports both transparent transmission(default) and protocol transmission. User can switch it in user_define.h</p>
+<p>For transparent transmission, a configurable timeout is used for UART to detect one message. Data from UART is filled into the data area of CAN (same in reverse). CAN ID is the default value.</p>
+<p>For protocol transmission, this example specifies the UART message format. Users can also modify the format according to application requirements. When receiving the message from UART, the message format is &lt; 55 AA ID1 ID2 ID3 ID4 Length Data1 Data2 …&gt;. Users can send data to the CAN bus from the terminal by entering data in the same format. 55 AA is the header. ID area is four bytes. The length area is one byte, which indicates the data length.</p>
+<p>For more information about how to use this example to develop the bridge application as needed, please visit the <a href="https://www.ti.com/lit/pdf/slaaen4">Bridge Design between CAN and UART with MSPM0 MCUs</a>.</p>
 <!-- Close div from before_body_template.html -->
 </div>
 <footer id="tiFooter">

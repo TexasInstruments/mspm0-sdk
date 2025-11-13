@@ -3,13 +3,13 @@
  * Title:        arm_lms_q31.c
  * Description:  Processing function for the Q31 LMS filter
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
- * Target Processor: Cortex-M cores
+ * Target Processor: Cortex-M and Cortex-A cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-#include "arm_math.h"
+#include "dsp/filtering_functions.h"
 
 /**
   @ingroup groupFilters
@@ -45,7 +45,6 @@
   @param[out]    pOut      points to the block of output data.
   @param[out]    pErr      points to the block of error data.
   @param[in]     blockSize number of samples to process.
-  @return        none
 
   @par           Scaling and Overflow Behavior
                    The function is implemented using an internal 64-bit accumulator.
@@ -63,7 +62,7 @@
                    the updation of filter cofficients are saturted.
  */
 
-void arm_lms_q31(
+ARM_DSP_ATTRIBUTE void arm_lms_q31(
   const arm_lms_instance_q31 * S,
   const q31_t * pSrc,
         q31_t * pRef,

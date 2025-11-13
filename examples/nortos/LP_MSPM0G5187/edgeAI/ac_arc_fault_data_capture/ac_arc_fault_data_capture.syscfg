@@ -1,0 +1,112 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+//@cliArgs --device "MSPM0G518X" --package "LQFP-64(PM)" --part "Default"
+//@v2CliArgs --device "MSPM0G5187" --package "LQFP-64(PM)"
+// @cliArgs --board /ti/boards/LP_MSPM0G5187 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const ADC12  = scripting.addModule("/ti/driverlib/ADC12", {}, false);
+const ADC121 = ADC12.addInstance();
+const Board  = scripting.addModule("/ti/driverlib/Board");
+const CRCP   = scripting.addModule("/ti/driverlib/CRCP");
+const DMA    = scripting.addModule("/ti/driverlib/DMA");
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const TIMER  = scripting.addModule("/ti/driverlib/TIMER", {}, false);
+const TIMER1 = TIMER.addInstance();
+const UART   = scripting.addModule("/ti/driverlib/UART", {}, false);
+const UART1  = UART.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+const divider7       = system.clockTree["PLL_PDIV"];
+divider7.divideValue = 2;
+
+const divider9       = system.clockTree["UDIV"];
+divider9.divideValue = 2;
+
+const multiplier2         = system.clockTree["PLL_QDIV"];
+multiplier2.multiplyValue = 5;
+
+const mux7       = system.clockTree["HSCLKMUX"];
+mux7.inputSelect = "HSCLKMUX_SYSPLL2X";
+
+const pinFunction4     = system.clockTree["HFXT"];
+pinFunction4.enable    = true;
+pinFunction4.inputFreq = 40;
+
+ADC121.$name                      = "ADC12_0";
+ADC121.sampClkSrc                 = "DL_ADC12_CLOCK_ULPCLK";
+ADC121.sampClkDiv                 = "DL_ADC12_CLOCK_DIVIDE_8";
+ADC121.samplingOperationMode      = "sequence";
+ADC121.endAdd                     = 2;
+ADC121.repeatMode                 = true;
+ADC121.trigSrc                    = "DL_ADC12_TRIG_SRC_EVENT";
+ADC121.powerDownMode              = "DL_ADC12_POWER_DOWN_MODE_MANUAL";
+ADC121.adcMem1chansel             = "DL_ADC12_INPUT_CHAN_2";
+ADC121.adcMem2chansel             = "DL_ADC12_INPUT_CHAN_3";
+ADC121.adcMem0chansel             = "DL_ADC12_INPUT_CHAN_4";
+ADC121.subChanID                  = 1;
+ADC121.sampleTime0                = "0.5 us";
+ADC121.adcMem0avgen               = true;
+ADC121.hwNumerator                = "DL_ADC12_HW_AVG_NUM_ACC_4";
+ADC121.sampleTime1                = "0.5 us";
+ADC121.adcMem1avgen               = true;
+ADC121.adcMem2avgen               = true;
+ADC121.enabledADCMems             = [0,1];
+ADC121.enabledInterrupts          = ["DL_ADC12_INTERRUPT_MEM1_RESULT_LOADED"];
+ADC121.peripheral.$assign         = "ADC0";
+ADC121.peripheral.adcPin4.$assign = "PB25";
+ADC121.peripheral.adcPin2.$assign = "PA25";
+
+Board.peripheral.swclkPin.$assign = "PA20";
+
+CRCP.polynomial         = "16_POLYNOMIAL_CCIT_ZERO";
+CRCP.peripheral.$assign = "CRCP0";
+
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn           = true;
+SYSCTL.validateClkStatus     = true;
+SYSCTL.useHFCLK_Manual       = true;
+SYSCTL.HFCLKSource           = "HFXT";
+
+TIMER1.$name                       = "TIMER_0";
+TIMER1.timerClkPrescale            = 9;
+TIMER1.timerMode                   = "PERIODIC";
+TIMER1.timerClkDiv                 = 2;
+TIMER1.event1PublisherChannel      = 1;
+TIMER1.event1ControllerInterruptEn = ["ZERO_EVENT"];
+TIMER1.timerPeriod                 = "9.35 us";
+TIMER1.timerStartTimer             = true;
+TIMER1.peripheral.$assign          = "TIMG0";
+
+UART1.enabledDMATXTriggers              = "DL_UART_DMA_INTERRUPT_TX";
+UART1.enabledDMARXTriggers              = "DL_UART_DMA_INTERRUPT_RX";
+UART1.enableFIFO                        = true;
+UART1.rxFifoThreshold                   = "DL_UART_RX_FIFO_LEVEL_ONE_ENTRY";
+UART1.txFifoThreshold                   = "DL_UART_TX_FIFO_LEVEL_3_4_EMPTY";
+UART1.ovsRate                           = "3";
+UART1.$name                             = "UART_DAP";
+UART1.targetBaudRate                    = 115200;
+UART1.peripheral.$assign                = "UC0";
+UART1.peripheral.rxPin.$assign          = "PA11";
+UART1.peripheral.txPin.$assign          = "PA10";
+UART1.DMA_CHANNEL_TX.$name              = "DMA_CH1";
+UART1.DMA_CHANNEL_TX.addressMode        = "b2f";
+UART1.DMA_CHANNEL_TX.srcLength          = "BYTE";
+UART1.DMA_CHANNEL_TX.dstLength          = "BYTE";
+UART1.DMA_CHANNEL_TX.enableInterrupt    = true;
+UART1.DMA_CHANNEL_TX.peripheral.$assign = "DMA_CH1";
+UART1.DMA_CHANNEL_RX.earlyIntThresh     = "64";
+UART1.DMA_CHANNEL_RX.$name              = "DMA_CH0";
+UART1.DMA_CHANNEL_RX.addressMode        = "f2b";
+UART1.DMA_CHANNEL_RX.srcLength          = "BYTE";
+UART1.DMA_CHANNEL_RX.dstLength          = "BYTE";
+UART1.DMA_CHANNEL_RX.peripheral.$assign = "DMA_CH0";
+scripting.suppress("A higher oversampling rate is possible given the target baud rate and UART clock source frequency\\.                 It is recommended to pick a higher oversampling rate to improve tolerance to clock deviation\\.", UART1, "ovsRate");
+
+

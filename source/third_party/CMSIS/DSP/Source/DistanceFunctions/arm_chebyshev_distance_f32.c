@@ -4,11 +4,13 @@
  * Title:        arm_chebyshev_distance_f32.c
  * Description:  Chebyshev distance between two vectors
  *
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
- * Target Processor: Cortex-M cores
+ * Target Processor: Cortex-M and Cortex-A cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -25,13 +27,13 @@
  * limitations under the License.
  */
 
-#include "arm_math.h"
+#include "dsp/distance_functions.h"
 #include <limits.h>
 #include <math.h>
 
 
 /**
-  @addtogroup FloatDist
+  @addtogroup Chebyshev
   @{
  */
 
@@ -50,7 +52,7 @@
 #include "arm_helium_utils.h"
 #include "arm_vec_math.h"
 
-float32_t arm_chebyshev_distance_f32(const float32_t *pA,const float32_t *pB, uint32_t blockSize)
+ARM_DSP_ATTRIBUTE float32_t arm_chebyshev_distance_f32(const float32_t *pA,const float32_t *pB, uint32_t blockSize)
 {
     uint32_t        blkCnt;     /* loop counters */
     f32x4_t         vecA, vecB;
@@ -101,7 +103,7 @@ float32_t arm_chebyshev_distance_f32(const float32_t *pA,const float32_t *pB, ui
 
 #include "NEMath.h"
 
-float32_t arm_chebyshev_distance_f32(const float32_t *pA,const float32_t *pB, uint32_t blockSize)
+ARM_DSP_ATTRIBUTE float32_t arm_chebyshev_distance_f32(const float32_t *pA,const float32_t *pB, uint32_t blockSize)
 {
    float32_t diff=0.0f, maxVal=0.0f, tmpA, tmpB;
    uint32_t blkCnt;
@@ -178,7 +180,7 @@ float32_t arm_chebyshev_distance_f32(const float32_t *pA,const float32_t *pB, ui
 }
 
 #else
-float32_t arm_chebyshev_distance_f32(const float32_t *pA,const float32_t *pB, uint32_t blockSize)
+ARM_DSP_ATTRIBUTE float32_t arm_chebyshev_distance_f32(const float32_t *pA,const float32_t *pB, uint32_t blockSize)
 {
    float32_t diff=0.0f,  maxVal,tmpA, tmpB;
 
@@ -207,5 +209,5 @@ float32_t arm_chebyshev_distance_f32(const float32_t *pA,const float32_t *pB, ui
 
 
 /**
- * @} end of FloatDist group
+ * @} end of Chebyshev group
  */

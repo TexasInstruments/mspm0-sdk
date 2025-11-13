@@ -3,13 +3,13 @@
  * Title:        arm_heap_sort_f32.c
  * Description:  Floating point heap sort
  *
- * $Date:        2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: Cortex-M and Cortex-A cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-#include "arm_math.h"
+#include "dsp/support_functions.h"
 #include "arm_sorting.h"
 
 
@@ -81,7 +81,7 @@ static void arm_heapify(float32_t * pSrc, uint32_t n, uint32_t i, uint8_t dir)
    * @par          It's an in-place algorithm. In order to obtain an out-of-place
    *               function, a memcpy of the source vector is performed.
    */
-void arm_heap_sort_f32(
+ARM_DSP_ATTRIBUTE void arm_heap_sort_f32(
   const arm_sort_instance_f32 * S, 
         float32_t * pSrc, 
         float32_t * pDst, 

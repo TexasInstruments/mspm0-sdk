@@ -3,13 +3,13 @@
  * Title:        arm_rfft_f32.c
  * Description:  RFFT & RIFFT Floating point process function
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
- * Target Processor: Cortex-M cores
+ * Target Processor: Cortex-M and Cortex-A cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-#include "arm_math.h"
+#include "dsp/transform_functions.h"
 
 /* ----------------------------------------------------------------------
  * Internal functions prototypes
@@ -51,7 +51,7 @@ extern void arm_bitreversal_f32(
         uint16_t bitRevFactor,
   const uint16_t * pBitRevTab);
 
-void arm_split_rfft_f32(
+ARM_DSP_ATTRIBUTE void arm_split_rfft_f32(
         float32_t * pSrc,
         uint32_t fftLen,
   const float32_t * pATable,
@@ -59,7 +59,7 @@ void arm_split_rfft_f32(
         float32_t * pDst,
         uint32_t modifier);
 
-void arm_split_rifft_f32(
+ARM_DSP_ATTRIBUTE void arm_split_rifft_f32(
         float32_t * pSrc,
         uint32_t fftLen,
   const float32_t * pATable,
@@ -67,12 +67,10 @@ void arm_split_rifft_f32(
         float32_t * pDst,
         uint32_t modifier);
 
-/**
-  @ingroup groupTransforms
- */
+
 
 /**
-  @addtogroup RealFFT
+  @addtogroup DeprecatedRealFFT
   @{
  */
 
@@ -84,10 +82,10 @@ void arm_split_rifft_f32(
   @param[in]     S    points to an instance of the floating-point RFFT/RIFFT structure
   @param[in]     pSrc points to the input buffer
   @param[out]    pDst points to the output buffer
-  @return        none
+
  */
 
-void arm_rfft_f32(
+ARM_DSP_ATTRIBUTE void arm_rfft_f32(
   const arm_rfft_instance_f32 * S,
         float32_t * pSrc,
         float32_t * pDst)
@@ -130,7 +128,7 @@ void arm_rfft_f32(
 }
 
 /**
-  @} end of RealFFT group
+  @} end of DeprecatedRealFFT group
  */
 
 /**
@@ -141,10 +139,9 @@ void arm_rfft_f32(
   @param[in]     pBTable   points to twiddle Coef B buffer
   @param[out]    pDst      points to output buffer
   @param[in]     modifier  twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table
-  @return        none
  */
 
-void arm_split_rfft_f32(
+ARM_DSP_ATTRIBUTE void arm_split_rfft_f32(
         float32_t * pSrc,
         uint32_t fftLen,
   const float32_t * pATable,
@@ -237,10 +234,9 @@ void arm_split_rfft_f32(
   @param[in]     pBTable   points to twiddle Coef B buffer
   @param[out]    pDst      points to output buffer
   @param[in]     modifier  twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table
-  @return        none
  */
 
-void arm_split_rifft_f32(
+ARM_DSP_ATTRIBUTE void arm_split_rifft_f32(
         float32_t * pSrc,
         uint32_t fftLen,
   const float32_t * pATable,

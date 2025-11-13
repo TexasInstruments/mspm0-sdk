@@ -106,7 +106,7 @@ int main(void)
     DL_I2CC_startTransfer(I2C_INST, I2C_TARGET_ADDRESS, DL_I2CC_DIRECTION_TX,
         I2C_TX_PACKET_SIZE);
 
-    /* Workaround for errata UNICOMM_I2C_ERR_11 */
+    /* Workaround for errata UNICOMMI2CC_ERR_01 */
     delay_cycles(gDelayCycles);
 
     /* Poll until the Controller writes all bytes */

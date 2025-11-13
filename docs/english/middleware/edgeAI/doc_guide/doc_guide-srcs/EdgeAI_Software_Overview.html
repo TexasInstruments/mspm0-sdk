@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edge AI Software Solution for MSPM0 Devices &mdash; MSPM0 EdgeAI User Guide 1.1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Feature Extraction User Guide for EdgeAI Applications on MSPM0" href="EdgeAI_Feature_Extraction_Library.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> MSPM0 EdgeAI User Guide
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="EdgeAI_Deployment_Guide_CLI.html">Deploying Machine Learning Models on TI MSPM0 Microcontrollers Using CLI Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="EdgeAI_Deployment_Guide_EdgeAI_Studio.html">Deploying Machine Learning Models on TI MSPM0 Microcontrollers Using EdgeAI Studio GUI Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="EdgeAI_Feature_Extraction_Library.html">Feature Extraction User Guide for EdgeAI Applications on MSPM0</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Edge AI Software Solution for MSPM0 Devices</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#software-components-in-sdk">Software Components in SDK</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#feature-extraction-library">1. Feature Extraction Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#neural-processing-unit-npu-driver">2. Neural Processing Unit (NPU) Driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#device-agent-protocol-optional">3. Device Agent Protocol (Optional)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">4. Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#basic-examples">Basic Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#advanced-examples">Advanced Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#npu-accelerated-variants">NPU-Accelerated Variants</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#data-collection-and-visualization">Data Collection and Visualization</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#hardware-support">Hardware Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#development-environment">Development Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#development-workflow">Development Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#performance-considerations">Performance Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MSPM0 EdgeAI User Guide</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Edge AI Software Solution for MSPM0 Devices</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="edge-ai-software-solution-for-mspm0-devices">
+<h1>Edge AI Software Solution for MSPM0 Devices<a class="headerlink" href="#edge-ai-software-solution-for-mspm0-devices" title="Permalink to this heading">¶</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
+<p>The Edge AI Software solution for MSPM0 devices is a comprehensive framework designed to enable artificial intelligence capabilities on Texas Instruments’ MSPM0 microcontroller units. This solution empowers developers to implement machine learning models directly on resource-constrained MSPM0 devices, enabling real-time inference at the edge with minimal power consumption.</p>
+</section>
+<section id="software-components-in-sdk">
+<h2>Software Components in SDK<a class="headerlink" href="#software-components-in-sdk" title="Permalink to this heading">¶</a></h2>
+<p>The Edge AI software solution consists of the following key components:</p>
+<section id="feature-extraction-library">
+<h3>1. Feature Extraction Library<a class="headerlink" href="#feature-extraction-library" title="Permalink to this heading">¶</a></h3>
+<p>The Feature Extraction module provides capabilities to process raw sensor data and extract meaningful features that can be used as inputs to machine learning models. This component supports:</p>
+<ul class="simple">
+<li><p>Signal processing functions</p></li>
+<li><p>Time-domain feature extraction</p></li>
+<li><p>Frequency-domain transformations (FFT)</p></li>
+<li><p>Statistical feature calculations</p></li>
+</ul>
+<p>The feature extraction library leverages ARM CMSIS-DSP functions for efficient signal processing operations on MSPM0 devices.</p>
+</section>
+<section id="neural-processing-unit-npu-driver">
+<h3>2. Neural Processing Unit (NPU) Driver<a class="headerlink" href="#neural-processing-unit-npu-driver" title="Permalink to this heading">¶</a></h3>
+<p>The NPU component provides hardware acceleration for neural network inference by interfacing with the MSPM0’s Neural Processing Unit. This driver:</p>
+<ul class="simple">
+<li><p>Handles instruction memory management</p></li>
+<li><p>Manages parameter memory</p></li>
+<li><p>Provides control interfaces for NPU operations</p></li>
+<li><p>Optimizes execution of neural network operations</p></li>
+</ul>
+<p>The NPU driver is designed to be called by compiled neural network libraries built using TI’s Neural Network Compiler (NNC) for MCUs. Note the NPU driver is only applicable for MSP devices with NPU.</p>
+</section>
+<section id="device-agent-protocol-optional">
+<h3>3. Device Agent Protocol (Optional)<a class="headerlink" href="#device-agent-protocol-optional" title="Permalink to this heading">¶</a></h3>
+<p>Communication interfaces for device management and data exchange between the MSPM0 device and Model Composer GUI. This is needed for the data capture and live preview features of the Model Composer. The communication interface is implemented using UART and is configurable for different data formats and baud rates.</p>
+</section>
+<section id="examples">
+<h3>4. Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h3>
+<p>The solution includes a variety of example applications demonstrating Edge AI capabilities:</p>
+<section id="basic-examples">
+<h4>Basic Examples<a class="headerlink" href="#basic-examples" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Hello World AI</strong>: Simple classification of waveform types (sine, sawtooth, square)</p></li>
+<li><p><strong>Empty NPU AI</strong>: Template project for creating NPU-accelerated AI applications</p></li>
+<li><p><strong>Waveform Classifier AI</strong>: Classification of different waveform patterns</p></li>
+</ul>
+</section>
+<section id="advanced-examples">
+<h4>Advanced Examples<a class="headerlink" href="#advanced-examples" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Character Recognition</strong>: Basic OCR capabilities</p></li>
+<li><p><strong>Motor Fault AI</strong>: Detection of motor faults through vibration analysis</p></li>
+<li><p><strong>AC Arc Fault Detection</strong>: Safety-critical application for electrical systems</p></li>
+</ul>
+</section>
+<section id="npu-accelerated-variants">
+<h4>NPU-Accelerated Variants<a class="headerlink" href="#npu-accelerated-variants" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Hello World AI NPU</strong>: NPU-accelerated version of the hello world example</p></li>
+<li><p><strong>Character Recognition NPU</strong>: NPU-accelerated optical character recognition</p></li>
+<li><p><strong>Motor Fault AI NPU</strong>: NPU-accelerated motor fault detection</p></li>
+<li><p><strong>Waveform Classifier AI NPU</strong>: NPU-accelerated waveform classification</p></li>
+</ul>
+</section>
+<section id="data-collection-and-visualization">
+<h4>Data Collection and Visualization<a class="headerlink" href="#data-collection-and-visualization" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>AC Arc Fault Data Capture</strong>: Tools for capturing arc fault data for training</p></li>
+<li><p><strong>Motor Fault AI Data Capture</strong>: Utilities for collecting motor vibration data</p></li>
+<li><p><strong>Motor Fault AI Live Preview</strong>: Real-time visualization of motor fault detection</p></li>
+<li><p><strong>Time Series Data Capture</strong>: General-purpose time series data collection</p></li>
+<li><p><strong>Time Series Live Preview</strong>: Visualization tools for time series analysis</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="hardware-support">
+<h2>Hardware Support<a class="headerlink" href="#hardware-support" title="Permalink to this heading">¶</a></h2>
+<p>The Edge AI software solution is designed for MSPM0 microcontroller units, currently supporting:</p>
+<ul class="simple">
+<li><p>MSPM0G3507 LaunchPad development kit</p></li>
+<li><p>MSPM0G5187 LaunchPad development kit</p></li>
+</ul>
+</section>
+<section id="development-environment">
+<h2>Development Environment<a class="headerlink" href="#development-environment" title="Permalink to this heading">¶</a></h2>
+<p>The solution is designed to be used with:</p>
+<ul class="simple">
+<li><p>Code Composer Studio (CCS)</p></li>
+<li><p>TI MSPM0 SDK</p></li>
+<li><p>ARM CMSIS-DSP library</p></li>
+<li><p>CLI Tools (Pytorch based framework to train and develop AI/ML Models)</p></li>
+<li><p>Model Composer (EdgeAI Studio GUI which enables accelerated development by enabling data capture)</p></li>
+</ul>
+</section>
+<section id="development-workflow">
+<h2>Development Workflow<a class="headerlink" href="#development-workflow" title="Permalink to this heading">¶</a></h2>
+<p>The Edge AI software solution supports the following workflow:</p>
+<ol class="arabic simple">
+<li><p><strong>Data Collection</strong>: Use data capture examples to collect sensor data from your application</p></li>
+<li><p><strong>Model Training</strong>: Train models using collected data on a desktop environment</p></li>
+<li><p><strong>Model Deployment</strong>: Deploy trained models to MSPM0 devices using the provided framework</p></li>
+<li><p><strong>Performance Optimization</strong>: Use NPU-accelerated variants for improved performance</p></li>
+<li><p><strong>Inference Visualization</strong>: Leverage live preview tools to visualize the inference results on the GUI in real time</p></li>
+</ol>
+</section>
+<section id="performance-considerations">
+<h2>Performance Considerations<a class="headerlink" href="#performance-considerations" title="Permalink to this heading">¶</a></h2>
+<p>When implementing Edge AI applications on MSPM0 devices, consider:</p>
+<ol class="arabic simple">
+<li><p><strong>Memory Constraints</strong>: Optimize models to fit within the limited RAM and flash memory</p></li>
+<li><p><strong>Processing Power</strong>: Balance model complexity with real-time requirements</p></li>
+<li><p><strong>Energy Efficiency</strong>: Leverage low-power modes when inference is not needed</p></li>
+<li><p><strong>NPU Acceleration</strong>: Use NPU-optimized versions for computationally intensive models</p></li>
+<li><p><strong>Real-time Requirements</strong>: Consider sampling rates and processing latency for your application</p></li>
+</ol>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">¶</a></h2>
+<p>The Edge AI Software solution for MSPM0 devices enables developers to bring machine learning capabilities to ultra-low-power edge devices. By leveraging efficient feature extraction, optimized inference engines, and optional NPU acceleration, developers can create intelligent embedded systems for a wide range of applications while maintaining the power efficiency expected from MSPM0 microcontrollers.</p>
+<p>The comprehensive set of examples provides a foundation for rapid development and exploration of Edge AI capabilities, from basic waveform classification to advanced use cases like motor fault detection and character recognition, with dedicated tools for both standard CPU execution and NPU-accelerated performance.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="EdgeAI_Feature_Extraction_Library.html" class="btn btn-neutral float-left" title="Feature Extraction User Guide for EdgeAI Applications on MSPM0" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">1995-2023, Texas Instruments Incorporated. All rights reserved</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

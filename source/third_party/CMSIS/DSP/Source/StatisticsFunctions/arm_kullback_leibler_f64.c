@@ -3,11 +3,13 @@
  * Title:        arm_logsumexp_f64.c
  * Description:  LogSumExp
  *
+ * $Date:        10 August 2022
+ * $Revision:    V1.9.1
  *
  * Target Processor: Cortex-M and Cortex-A cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2020 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -24,12 +26,12 @@
  * limitations under the License.
  */
 
-#include "arm_math.h"
+#include "dsp/statistics_functions.h"
 #include <limits.h>
 #include <math.h>
 
 /**
- * @addtogroup groupStats
+ * @addtogroup Kullback-Leibler
  * @{
  */
 
@@ -43,7 +45,8 @@
  *
  */
 
-float64_t arm_kullback_leibler_f64(const float64_t * pSrcA, const float64_t * pSrcB, uint32_t blockSize)
+
+ARM_DSP_ATTRIBUTE float64_t arm_kullback_leibler_f64(const float64_t * pSrcA, const float64_t * pSrcB, uint32_t blockSize)
 {
     const float64_t *pInA, *pInB;
     uint32_t blkCnt;
@@ -53,7 +56,7 @@ float64_t arm_kullback_leibler_f64(const float64_t * pSrcA, const float64_t * pS
     pInB = pSrcB;
     blkCnt = blockSize;
 
-    accum = 0.0f;
+    accum = 0.0;
 
     while(blkCnt > 0)
     {
@@ -67,7 +70,6 @@ float64_t arm_kullback_leibler_f64(const float64_t * pSrcA, const float64_t * pS
 
     return(-accum);
 }
-
 /**
- * @} end of groupStats group
+ * @} end of Kullback-Leibler group
  */

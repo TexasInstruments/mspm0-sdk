@@ -44,7 +44,7 @@ int main(void)
 {
     SYSCFG_DL_init();
 
-    /* Get calibrated ADC offset - workaround for ADC_ERR_06 */
+    /* Get calibrated ADC offset - workaround for ADC_ERR_09 */
     gADCOffset =
         DL_ADC12_getADCOffsetCalibration(ADC12_0_ADCMEM_0_REF_VOLTAGE_V);
 
@@ -68,7 +68,7 @@ int main(void)
         __WFE();
     }
 
-    /* Apply calibrated ADC offset - workaround for ADC_ERR_06 */
+    /* Apply calibrated ADC offset - workaround for ADC_ERR_09 */
     int16_t adcRaw;
     for (int i = 0; i < ADC_SAMPLE_SIZE; i++) {
         adcRaw = (int16_t) gADCSamples[i];

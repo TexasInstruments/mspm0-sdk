@@ -163,6 +163,11 @@ extern "C" {
  */
 #define DL_I2CT_STATUS_RECEIVE_REQUEST                (UNICOMMI2CT_SR_RREQ_MASK)
 
+/*!
+ * @brief I2CT ACK override enabled
+ */
+#define DL_I2CT_STATUS_ACK_OVERRIDE_ENABLED         (UNICOMMI2CT_SR_ACKOEN_MASK)
+
 /** @}*/
 
 /** @addtogroup DL_I2CT_INTERRUPT

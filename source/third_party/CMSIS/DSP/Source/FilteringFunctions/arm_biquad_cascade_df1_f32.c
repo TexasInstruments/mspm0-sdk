@@ -3,13 +3,13 @@
  * Title:        arm_biquad_cascade_df1_f32.c
  * Description:  Processing function for the floating-point Biquad cascade DirectFormI(DF1) filter
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
- * Target Processor: Cortex-M cores
+ * Target Processor: Cortex-M and Cortex-A cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-#include "arm_math.h"
+#include "dsp/filtering_functions.h"
 
 /**
   @ingroup groupFilters
@@ -159,12 +159,11 @@
   @param[in]     pSrc      points to the block of input data
   @param[out]    pDst      points to the block of output data
   @param[in]     blockSize  number of samples to process
-  @return        none
  */
 
 #if defined(ARM_MATH_MVEF) && !defined(ARM_MATH_AUTOVECTORIZE)
 #include "arm_helium_utils.h"
-void arm_biquad_cascade_df1_f32(
+ARM_DSP_ATTRIBUTE void arm_biquad_cascade_df1_f32(
   const arm_biquad_casd_df1_inst_f32 * S,
   const float32_t * pSrc,
   float32_t * pDst,
@@ -176,7 +175,7 @@ void arm_biquad_cascade_df1_f32(
     const float32_t *pCoeffs = S->pCoeffs;    /*  coefficient pointer       */
     float32_t Xn1, Xn2, Yn1, Yn2;       /*  Filter pState variables   */
     float32_t lastX, lastY;             /*  X,Y history for tail handling */
-    float32_t X0, X1, X2, X3;           /*  temporary input           */
+    float32_t X0, X1, X2, X3 = 0;       /*  temporary input           */
     f32x4_t coeffs;
     f32x4_t accVec;                   /* accumultor vector */
     uint32_t  sample, stage = S->numStages; /*  loop counters             */
@@ -341,7 +340,7 @@ void arm_biquad_cascade_df1_f32(
 }
 #else
 #if defined(ARM_MATH_NEON)  && !defined(ARM_MATH_AUTOVECTORIZE)
-void arm_biquad_cascade_df1_f32(
+ARM_DSP_ATTRIBUTE void arm_biquad_cascade_df1_f32(
   const arm_biquad_casd_df1_inst_f32 * S,
   const float32_t * pSrc,
   float32_t * pDst,
@@ -503,7 +502,7 @@ void arm_biquad_cascade_df1_f32(
 }
 
 #else
-void arm_biquad_cascade_df1_f32(
+ARM_DSP_ATTRIBUTE void arm_biquad_cascade_df1_f32(
   const arm_biquad_casd_df1_inst_f32 * S,
   const float32_t * pSrc,
         float32_t * pDst,

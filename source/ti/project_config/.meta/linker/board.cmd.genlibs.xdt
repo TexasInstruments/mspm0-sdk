@@ -114,5 +114,5 @@ let migration_inst = MigrationController.$static;
 -l"ti/driverlib/lib/ticlang/m0p/`Common.getDeviceFamily().toLowerCase()`/driverlib.a"
 % }
 % if(migration_inst.genLibNPU && Common.hasNPU()){
--l"ti/npu/lib/ticlang/m0p/npu.a"
+-l"ti/edgeAI/lib/ticlang/m0p/npu.a"
 % }

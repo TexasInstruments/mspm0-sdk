@@ -79,7 +79,7 @@
 %           let prefix = _.trimEnd(inst.$name, "EXT");
 %           let string = prefix + "IN"
 %           if(prefix == "FCC") { string = "FCC_IN"; }
-%           if(prefix == "HFCLK" || prefix == "LFCLK") {
+%           if(prefix == "HFCLK" || prefix == "LFCLK" || prefix == "FCC") {
     DL_GPIO_initPeripheralInputFunction(GPIO_`string`_IOMUX, GPIO_`string`_IOMUX_FUNC);
 %}
 %           else {

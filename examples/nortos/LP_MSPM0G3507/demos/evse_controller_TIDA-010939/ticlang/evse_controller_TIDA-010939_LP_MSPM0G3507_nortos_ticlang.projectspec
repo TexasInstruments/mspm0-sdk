@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectSpec>
+    <applicability>
+        <when>
+            <context
+                deviceFamily="ARM"
+                deviceId="MSPM0G3507"
+            />
+        </when>
+    </applicability>
+
+    <project
+        title="evse_controller_TIDA-010939"
+        name="evse_controller_TIDA-010939_LP_MSPM0G3507_nortos_ticlang"
+        configurations="Debug"
+        toolChain="TICLANG"
+        connection="TIXDS110_Connection.xml"
+        device="MSPM0G3507"
+        ignoreDefaultDeviceSettings="true"
+        ignoreDefaultCCSSettings="true"
+        products="MSPM0-SDK;sysconfig"
+        compilerBuildOptions="
+            -I${PROJECT_ROOT}
+            -I${PROJECT_ROOT}/${ConfigName}
+            -O2
+            @device.opt
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/Core/Include
+            -Iexamples/demos/evse_controller_TIDA-010939/includes
+            -Iexamples/demos/evse_controller_TIDA-010939/modules
+            -Iexamples/demos/evse_controller_TIDA-010939/pb/nanopb
+            -Iexamples/demos/evse_controller_TIDA-010939/pb/protobuf
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -gdwarf-3
+            -mcpu=cortex-m0plus
+            -march=thumbv6m
+            -mfloat-abi=soft
+            -mthumb
+        "
+        linkerBuildOptions="
+            -ldevice.cmd.genlibs
+            -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -L${PROJECT_ROOT}
+            -L${PROJECT_BUILD_DIR}/syscfg
+            -Wl,--rom_model
+            -Wl,--warn_sections
+            -L${CG_TOOL_ROOT}/lib
+            -llibc.a
+        "
+        sysConfigBuildOptions="
+            --output .
+            --product ${COM_TI_MSPM0_SDK_INSTALL_DIR}/.metadata/product.json
+            --compiler ticlang
+        "
+        sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
+        description="This reference design demonstrates the MSPM0 as an Electric Vehicle Supply Equipment (EVSE) front-end controller which acts as the central communication module for the EV charging process">
+
+        <property name="buildProfile" value="release"/>
+        <property name="isHybrid" value="true"/>
+        <file path="../modules/Adc.cpp" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules">
+        </file>
+        <file path="../modules/Adc.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules">
+        </file>
+        <file path="../modules/ControlMode.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules">
+        </file>
+        <file path="../modules/ControlPilot.cpp" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules">
+        </file>
+        <file path="../modules/ControlPilot.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules">
+        </file>
+        <file path="../modules/ControlPilot_HAL.cpp" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules">
+        </file>
+        <file path="../modules/ControlPilot_HAL.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules">
+        </file>
+        <file path="../modules/DataTypes.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules">
+        </file>
+        <file path="../modules/FirmwareUpdater.cpp" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules">
+        </file>
+        <file path="../modules/FirmwareUpdater.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules">
+        </file>
+        <file path="../modules/Gpio.cpp" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules">
+        </file>
+        <file path="../modules/Gpio.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules">
+        </file>
+        <file path="../modules/MgmtLink.cpp" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules">
+        </file>
+        <file path="../modules/MgmtLink.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules">
+        </file>
+        <file path="../modules/PlugLock.cpp" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules">
+        </file>
+        <file path="../modules/PlugLock.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules">
+        </file>
+        <file path="../modules/PowerSwitch.cpp" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules">
+        </file>
+        <file path="../modules/PowerSwitch.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules">
+        </file>
+        <file path="../modules/Rcd.cpp" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules">
+        </file>
+        <file path="../modules/Rcd.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules">
+        </file>
+        <file path="../modules/RemoteControlRX.cpp" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules">
+        </file>
+        <file path="../modules/RemoteControlRX.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules">
+        </file>
+        <file path="../modules/RemoteControlTX.cpp" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules">
+        </file>
+        <file path="../modules/RemoteControlTX.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules">
+        </file>
+        <file path="../pb/nanopb/pb.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="pb/nanopb">
+        </file>
+        <file path="../pb/nanopb/pb_common.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="pb/nanopb">
+        </file>
+        <file path="../pb/nanopb/pb_common.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="pb/nanopb">
+        </file>
+        <file path="../pb/nanopb/pb_decode.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="pb/nanopb">
+        </file>
+        <file path="../pb/nanopb/pb_decode.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="pb/nanopb">
+        </file>
+        <file path="../pb/nanopb/pb_encode.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="pb/nanopb">
+        </file>
+        <file path="../pb/nanopb/pb_encode.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="pb/nanopb">
+        </file>
+        <file path="../pb/protobuf/tida010939.pb.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="pb/protobuf">
+        </file>
+        <file path="../pb/protobuf/tida010939.pb.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="pb/protobuf">
+        </file>
+        <file path="../main.cpp" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../includes/EVConfig.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="includes">
+        </file>
+        <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../README.html" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../TIDA-010939.syscfg" openOnCreation="true" excludeFromBuild="false" action="copy">
+        </file>
+    </project>
+</projectSpec>

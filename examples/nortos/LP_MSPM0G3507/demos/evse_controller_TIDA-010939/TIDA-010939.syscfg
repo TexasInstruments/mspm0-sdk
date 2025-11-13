@@ -1,0 +1,393 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+//@cliArgs --device "MSPM0G350X" --package "LQFP-64(PM)" --part "Default"
+//@v2CliArgs --device "MSPM0G3507" --package "LQFP-64(PM)"
+// @cliArgs --board /ti/boards/LP_MSPM0G3507 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const ADC12         = scripting.addModule("/ti/driverlib/ADC12", {}, false);
+const ADC121        = ADC12.addInstance();
+const ADC122        = ADC12.addInstance();
+const Board         = scripting.addModule("/ti/driverlib/Board");
+const CRC           = scripting.addModule("/ti/driverlib/CRC");
+const GPIO          = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1         = GPIO.addInstance();
+const GPIO2         = GPIO.addInstance();
+const GPIO3         = GPIO.addInstance();
+const GPIO4         = GPIO.addInstance();
+const GPIO5         = GPIO.addInstance();
+const GPIO6         = GPIO.addInstance();
+const GPIO7         = GPIO.addInstance();
+const GPIO8         = GPIO.addInstance();
+const GPIO9         = GPIO.addInstance();
+const GPIO10        = GPIO.addInstance();
+const GPIO11        = GPIO.addInstance();
+const GPIO12        = GPIO.addInstance();
+const GPIO13        = GPIO.addInstance();
+const GPIO14        = GPIO.addInstance();
+const GPIO15        = GPIO.addInstance();
+const GPIO16        = GPIO.addInstance();
+const GPIO17        = GPIO.addInstance();
+const GPIO18        = GPIO.addInstance();
+const GPIO19        = GPIO.addInstance();
+const GPIO20        = GPIO.addInstance();
+const GPIO21        = GPIO.addInstance();
+const GPIO22        = GPIO.addInstance();
+const GPIO23        = GPIO.addInstance();
+const GPIO24        = GPIO.addInstance();
+const GPIO25        = GPIO.addInstance();
+const I2C           = scripting.addModule("/ti/driverlib/I2C", {}, false);
+const I2C1          = I2C.addInstance();
+const MATHACL       = scripting.addModule("/ti/driverlib/MATHACL");
+const PWM           = scripting.addModule("/ti/driverlib/PWM", {}, false);
+const PWM1          = PWM.addInstance();
+const PWM2          = PWM.addInstance();
+const PWM3          = PWM.addInstance();
+const SYSCTL        = scripting.addModule("/ti/driverlib/SYSCTL");
+const SYSTICK       = scripting.addModule("/ti/driverlib/SYSTICK");
+const TIMER         = scripting.addModule("/ti/driverlib/TIMER", {}, false);
+const TIMER1        = TIMER.addInstance();
+const TIMER2        = TIMER.addInstance();
+const TIMER3        = TIMER.addInstance();
+const TIMER4        = TIMER.addInstance();
+const UART          = scripting.addModule("/ti/driverlib/UART", {}, false);
+const UART1         = UART.addInstance();
+const UART2         = UART.addInstance();
+const VREF          = scripting.addModule("/ti/driverlib/VREF");
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+const divider7       = system.clockTree["PLL_PDIV"];
+divider7.divideValue = 4;
+
+const divider9       = system.clockTree["UDIV"];
+divider9.divideValue = 2;
+
+const multiplier2         = system.clockTree["PLL_QDIV"];
+multiplier2.multiplyValue = 20;
+
+const mux2       = system.clockTree["CANCLKMUX"];
+mux2.inputSelect = "CANCLKMUX_PLLCLK1_OUT";
+
+const mux4       = system.clockTree["EXHFMUX"];
+mux4.inputSelect = "EXHFMUX_XTAL";
+
+const mux8       = system.clockTree["HSCLKMUX"];
+mux8.inputSelect = "HSCLKMUX_SYSPLL0";
+
+const mux12       = system.clockTree["SYSPLLMUX"];
+mux12.inputSelect = "zSYSPLLMUX_HFCLK";
+
+const oscillator2           = system.clockTree["SYSOSC"];
+oscillator2.enableSYSOSCFCL = true;
+oscillator2.enableROSC      = true;
+
+const pinFunction3     = system.clockTree["HFCLKEXT"];
+pinFunction3.inputFreq = 32;
+
+const pinFunction4                        = system.clockTree["HFXT"];
+pinFunction4.inputFreq                    = 32;
+pinFunction4.enable                       = true;
+pinFunction4.HFXTStartup                  = 5;
+pinFunction4.peripheral.hfxInPin.$assign  = "PA5";
+pinFunction4.peripheral.hfxOutPin.$assign = "PA6";
+
+ADC121.samplingOperationMode             = "sequence";
+ADC121.sampClkSrc                        = "DL_ADC12_CLOCK_ULPCLK";
+ADC121.sampleTime0                       = "875ns";
+ADC121.adcMem3chansel                    = "DL_ADC12_INPUT_CHAN_3";
+ADC121.adcMem4chansel                    = "DL_ADC12_INPUT_CHAN_4";
+ADC121.adcMem5chansel                    = "DL_ADC12_INPUT_CHAN_5";
+ADC121.adcMem6chansel                    = "DL_ADC12_INPUT_CHAN_6";
+ADC121.adcMem7chansel                    = "DL_ADC12_INPUT_CHAN_7";
+ADC121.$name                             = "ADC0";
+ADC121.adcMem1_name                      = "CCS_PP";
+ADC121.adcMem1chansel                    = "DL_ADC12_INPUT_CHAN_2";
+ADC121.adcMem0_name                      = "CCS_CP_FB";
+ADC121.endAdd                            = 3;
+ADC121.adcMem2_name                      = "GBT_DP1";
+ADC121.adcMem2chansel                    = "DL_ADC12_INPUT_CHAN_1";
+ADC121.adcMem3_name                      = "PL_FB";
+ADC121.sampCnt                           = 4;
+ADC121.enabledDMATriggers                = ["DL_ADC12_DMA_MEM3_RESULT_LOADED"];
+ADC121.enabledInterrupts                 = ["DL_ADC12_INTERRUPT_MEM3_RESULT_LOADED"];
+ADC121.sampClkDiv                        = "DL_ADC12_CLOCK_DIVIDE_32";
+ADC121.peripheral.$assign                = "ADC0";
+ADC121.peripheral.adcPin0.$assign        = "PA27";
+ADC121.peripheral.adcPin2.$assign        = "PA25";
+ADC121.peripheral.adcPin3.$assign        = "PA24";
+ADC121.peripheral.adcPin1.$assign        = "PA26";
+ADC121.adcPin0Config.hideOutputInversion = scripting.forceWrite(false);
+
+ADC122.samplingOperationMode             = "sequence";
+ADC122.adcMem1chansel                    = "DL_ADC12_INPUT_CHAN_1";
+ADC122.adcMem2chansel                    = "DL_ADC12_INPUT_CHAN_2";
+ADC122.adcMem0_name                      = "Temp1";
+ADC122.adcMem1_name                      = "Temp2";
+ADC122.adcMem2_name                      = "Temp3";
+ADC122.adcMem3_name                      = "Temp4";
+ADC122.adcMem3chansel                    = "DL_ADC12_INPUT_CHAN_4";
+ADC122.endAdd                            = 1;
+ADC122.$name                             = "ADC1";
+ADC122.sampCnt                           = 2;
+ADC122.enabledDMATriggers                = ["DL_ADC12_DMA_MEM1_RESULT_LOADED"];
+ADC122.interruptPriority                 = "2";
+ADC122.enabledInterrupts                 = ["DL_ADC12_INTERRUPT_MEM1_RESULT_LOADED"];
+ADC122.trigSrc                           = "DL_ADC12_TRIG_SRC_EVENT";
+ADC122.subChanID                         = 1;
+ADC122.sampClkDiv                        = "DL_ADC12_CLOCK_DIVIDE_48";
+ADC122.adcMem0avgen                      = true;
+ADC122.adcMem1avgen                      = true;
+ADC122.hwNumerator                       = "DL_ADC12_HW_AVG_NUM_ACC_64";
+ADC122.hwDenominator                     = "DL_ADC12_HW_AVG_DEN_DIV_BY_64";
+ADC122.peripheral.adcPin0.$assign        = "PA15";
+ADC122.peripheral.adcPin1.$assign        = "PA16";
+ADC122.adcPin0Config.hideOutputInversion = scripting.forceWrite(false);
+ADC122.adcPin1Config.hideOutputInversion = scripting.forceWrite(false);
+
+Board.configureVDDA               = true;
+Board.peripheral.$assign          = "DEBUGSS";
+Board.peripheral.swclkPin.$assign = "PA20";
+Board.peripheral.swdioPin.$assign = "PA19";
+
+CRC.seed    = 0xFFFFFFFF;
+CRC.profile = "CONFIG_PROFILE_5";
+
+GPIO1.$name                                       = "BSL";
+GPIO1.associatedPins[0].$name                     = "PIN_0";
+GPIO1.associatedPins[0].direction                 = "INPUT";
+GPIO1.associatedPins[0].pin.$assignAllowConflicts = "PA18";
+
+GPIO2.$name                          = "LED";
+GPIO2.associatedPins[0].$name        = "PIN_1";
+GPIO2.associatedPins[0].initialValue = "SET";
+GPIO2.associatedPins[0].pin.$assign  = "PA7";
+
+GPIO3.$name                         = "EV_Charge";
+GPIO3.associatedPins[0].$name       = "PIN_3";
+GPIO3.associatedPins[0].pin.$assign = "PB15";
+
+GPIO4.$name                         = "IO_Out_2";
+GPIO4.associatedPins[0].$name       = "PIN_4";
+GPIO4.associatedPins[0].pin.$assign = "PB13";
+
+GPIO5.$name                         = "IO_IN_1";
+GPIO5.associatedPins[0].$name       = "PIN_5";
+GPIO5.associatedPins[0].direction   = "INPUT";
+GPIO5.associatedPins[0].pin.$assign = "PB16";
+
+GPIO6.$name                                       = "IO_Out_1";
+GPIO6.associatedPins[0].$name                     = "PIN_6";
+GPIO6.associatedPins[0].pin.$assignAllowConflicts = "PA12";
+
+GPIO7.$name                         = "IO_IN_2";
+GPIO7.associatedPins[0].$name       = "PIN_7";
+GPIO7.associatedPins[0].direction   = "INPUT";
+GPIO7.associatedPins[0].pin.$assign = "PA13";
+
+GPIO8.$name                         = "CdM_j";
+GPIO8.associatedPins[0].$name       = "PIN_9";
+GPIO8.associatedPins[0].direction   = "INPUT";
+GPIO8.associatedPins[0].pin.$assign = "PB18";
+
+GPIO9.$name                         = "CdM_PD";
+GPIO9.associatedPins[0].$name       = "PIN_10";
+GPIO9.associatedPins[0].direction   = "INPUT";
+GPIO9.associatedPins[0].pin.$assign = "PB17";
+
+GPIO10.$name                         = "CdM_d2";
+GPIO10.associatedPins[0].$name       = "PIN_11";
+GPIO10.associatedPins[0].pin.$assign = "PA22";
+
+GPIO11.$name                         = "CdM_d1";
+GPIO11.associatedPins[0].$name       = "PIN_12";
+GPIO11.associatedPins[0].pin.$assign = "PB20";
+
+GPIO12.$name                                       = "GBT_EV_S2";
+GPIO12.associatedPins[0].$name                     = "PIN_13";
+GPIO12.associatedPins[0].pin.$assignAllowConflicts = "PB21";
+
+GPIO13.$name                         = "Plug_Lock_CdM_FB";
+GPIO13.associatedPins[0].$name       = "PIN_14";
+GPIO13.associatedPins[0].direction   = "INPUT";
+GPIO13.associatedPins[0].pin.$assign = "PB22";
+
+GPIO14.$name                         = "GBT_EV_S2apo";
+GPIO14.associatedPins[0].$name       = "PIN_15";
+GPIO14.associatedPins[0].pin.$assign = "PB23";
+
+GPIO15.$name                         = "GBT_S1";
+GPIO15.associatedPins[0].$name       = "PIN_16";
+GPIO15.associatedPins[0].pin.$assign = "PB24";
+
+GPIO16.$name                         = "GBT_S0";
+GPIO16.associatedPins[0].$name       = "PIN_17";
+GPIO16.associatedPins[0].pin.$assign = "PB25";
+
+GPIO17.$name                         = "Plug_Lock_nSleep";
+GPIO17.associatedPins[0].$name       = "PIN_18";
+GPIO17.associatedPins[0].pin.$assign = "PB26";
+
+GPIO18.$name                         = "Plug_Lock_Direction";
+GPIO18.associatedPins[0].$name       = "PIN_19";
+GPIO18.associatedPins[0].pin.$assign = "PB27";
+
+GPIO19.$name                         = "R_Mirror_Out";
+GPIO19.associatedPins[0].$name       = "PIN_20";
+GPIO19.associatedPins[0].direction   = "INPUT";
+GPIO19.associatedPins[0].pin.$assign = "PA31";
+
+GPIO20.$name                         = "Relay_Check";
+GPIO20.associatedPins[0].$name       = "PIN_21";
+GPIO20.associatedPins[0].direction   = "INPUT";
+GPIO20.associatedPins[0].pin.$assign = "PA4";
+
+GPIO21.$name                         = "RCD_Reset";
+GPIO21.associatedPins[0].$name       = "PIN_24";
+GPIO21.associatedPins[0].pin.$assign = "PB4";
+
+GPIO22.$name                         = "Super_Cap_Char";
+GPIO22.associatedPins[0].$name       = "PIN_25";
+GPIO22.associatedPins[0].direction   = "INPUT";
+GPIO22.associatedPins[0].pin.$assign = "PA3";
+
+GPIO23.$name                         = "IO_Out_3";
+GPIO23.associatedPins[0].$name       = "PIN_26";
+GPIO23.associatedPins[0].pin.$assign = "PB8";
+
+GPIO24.$name                               = "RCD_nFault";
+GPIO24.associatedPins[0].$name             = "PIN_27";
+GPIO24.associatedPins[0].direction         = "INPUT";
+GPIO24.associatedPins[0].interruptPriority = "0";
+GPIO24.associatedPins[0].polarity          = "FALL";
+GPIO24.associatedPins[0].interruptEn       = true;
+GPIO24.associatedPins[0].pin.$assign       = "PB1";
+
+GPIO25.$name                         = "CdM_EV_CP";
+GPIO25.associatedPins[0].$name       = "PIN_2";
+GPIO25.associatedPins[0].pin.$assign = "PB19";
+
+I2C1.$name                             = "RCD";
+I2C1.basicEnableController             = true;
+I2C1.advControllerRXFIFOTRIG           = "BYTES_8";
+I2C1.advControllerTXFIFOTRIG           = "BYTES_7";
+I2C1.advDigitalGlitchFilter            = "CLOCKS_1";
+I2C1.enableDMAEvent1                   = false;
+I2C1.enableDMAEvent2                   = false;
+I2C1.peripheral.$assign                = "I2C0";
+I2C1.peripheral.sdaPin.$assign         = "PA0";
+I2C1.peripheral.sclPin.$assign         = "PA1";
+
+PWM1.$name                              = "Relay_EN";
+PWM1.timerCount                         = 100;
+PWM1.dutyArgs                           = "[50,0,0,0]";
+PWM1.clockDivider                       = 4;
+PWM1.clockPrescale                      = 64;
+PWM1.ccIndex                            = [0];
+PWM1.pwmMode                            = "EDGE_ALIGN_UP";
+PWM1.peripheral.$assign                 = "TIMA1";
+PWM1.peripheral.ccp0Pin.$assign         = "PB0";
+PWM1.PWM_CHANNEL_0.$name                = "ti_driverlib_pwm_PWMTimerCC1";
+PWM1.PWM_CHANNEL_0.dutyCycle            = 0;
+
+PWM2.ccIndex                            = [0];
+PWM2.dutyArgs                           = "[50,0,0,0]";
+PWM2.clockDivider                       = 4;
+PWM2.clockPrescale                      = 64;
+PWM2.$name                              = "PlugLock";
+PWM2.timerCount                         = 100;
+PWM2.pwmMode                            = "EDGE_ALIGN_UP";
+PWM2.peripheral.$assign                 = "TIMG7";
+PWM2.peripheral.ccp0Pin.$assign         = "PA28";
+PWM2.PWM_CHANNEL_0.$name                = "ti_driverlib_pwm_PWMTimerCC5";
+
+PWM3.timerCount                         = 40000;
+PWM3.ccIndex                            = [0];
+PWM3.$name                              = "CCS_CP";
+PWM3.event1ControllerInterruptEn        = ["LOAD_EVENT"];
+PWM3.event2ControllerInterruptEn        = ["ZERO_EVENT"];
+PWM3.pwmMode                            = "EDGE_ALIGN_UP";
+PWM3.interrupts                         = ["CC0_UP_EVENT","LOAD_EVENT"];
+PWM3.peripheral.$assign                 = "TIMG0";
+PWM3.peripheral.ccp0Pin.$assign         = "PB10";
+PWM3.PWM_CHANNEL_0.$name                = "ti_driverlib_pwm_PWMTimerCC4";
+PWM3.PWM_CHANNEL_0.initVal              = "HIGH";
+
+SYSCTL.powerPolicy           = "STOP2";
+SYSCTL.useHFCLK_Manual       = true;
+SYSCTL.HFCLKSource           = "HFXT";
+SYSCTL.CANCLKSource          = "SYSPLLCLK1";
+SYSCTL.SYSPLL_CLK1En         = true;
+SYSCTL.clockTreeEn           = true;
+SYSCTL.HFCLK_Freq            = 32000000;
+SYSCTL.enableROSC            = true;
+SYSCTL.enableSYSOSCFCL       = true;
+SYSCTL.forceDefaultClkConfig = true;
+
+TIMER1.$name                       = "Temp_Timer";
+TIMER1.timerMode                   = "PERIODIC";
+TIMER1.timerPeriod                 = "500ms";
+TIMER1.timerStartTimer             = true;
+TIMER1.timerClkPrescale            = 128;
+TIMER1.timerClkDiv                 = 8;
+TIMER1.event1PublisherChannel      = 1;
+TIMER1.event1ControllerInterruptEn = ["LOAD_EVENT"];
+TIMER1.peripheral.$assign          = "TIMG8";
+
+TIMER2.interrupts         = ["ZERO"];
+TIMER2.$name              = "CP_MeasureHI_Timer";
+TIMER2.timerPeriod        = "0.02 ms";
+TIMER2.peripheral.$assign = "TIMG6";
+
+TIMER3.$name              = "CP_MeasureLO_Timer";
+TIMER3.interrupts         = ["ZERO"];
+TIMER3.timerPeriod        = "0.02 ms";
+TIMER3.peripheral.$assign = "TIMA0";
+
+TIMER4.$name              = "PL_DRV_Timer";
+TIMER4.timerClkDiv        = 4;
+TIMER4.interrupts         = ["ZERO"];
+TIMER4.timerPeriod        = "500 ms";
+TIMER4.peripheral.$assign = "TIMG12";
+
+UART1.$name                            = "AM62L";
+UART1.enabledDMARXTriggers             = "DL_UART_DMA_INTERRUPT_RX";
+UART1.enableFIFO                       = true;
+UART1.rxFifoThreshold                  = "DL_UART_RX_FIFO_LEVEL_ONE_ENTRY";
+UART1.enabledDMATXTriggers             = "DL_UART_DMA_INTERRUPT_TX";
+UART1.enabledInterrupts                = ["DMA_DONE_RX","DMA_DONE_TX","EOT_DONE"];
+UART1.txFifoThreshold                  = "DL_UART_TX_FIFO_LEVEL_1_4_EMPTY";
+UART1.targetBaudRate                   = 115200;
+UART1.peripheral.$assign               = "UART0";
+UART1.peripheral.rxPin.$assign         = "PA11";
+UART1.peripheral.txPin.$assign         = "PA10";
+UART1.DMA_CHANNEL_RX.srcLength         = "BYTE";
+UART1.DMA_CHANNEL_RX.dstLength         = "BYTE";
+UART1.DMA_CHANNEL_RX.$name             = "DMA_CH1";
+UART1.DMA_CHANNEL_RX.addressMode       = "f2b";
+UART1.DMA_CHANNEL_TX.srcLength         = "BYTE";
+UART1.DMA_CHANNEL_TX.dstLength         = "BYTE";
+UART1.DMA_CHANNEL_TX.$name             = "DMA_CH0";
+UART1.DMA_CHANNEL_TX.addressMode       = "b2f";
+
+UART2.$name                            = "Debug";
+UART2.peripheral.$assign               = "UART1";
+UART2.peripheral.rxPin.$assign         = "PA9";
+UART2.peripheral.txPin.$assign         = "PA8";
+
+VREF.basicMode                     = "DL_VREF_ENABLE_DISABLE";
+VREF.basicExtVolt                  = 3.3;
+VREF.basicVrefPins                 = "VREF+-";
+VREF.peripheral.$assign            = "VREF";
+VREF.peripheral.vrefPosPin.$assign = "PA23";
+VREF.peripheral.vrefNegPin.$assign = "PA21";
+
+ProjectConfig.deviceSpin      = "MSPM0G3507";
+ProjectConfig.genLibIQ        = true;
+ProjectConfig.genLibIQVersion = "MATHACL";

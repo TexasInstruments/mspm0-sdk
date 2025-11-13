@@ -638,5 +638,23 @@
     "resourceType": "categoryInfo",
     "resourceClass": ["document"],
     "description": "The MSPM0 port of TinyUSB enables developers to easily implement various USB device and host classes on MSPM0 microcontrollers. This integration leverages the built-in USB peripheral of the MSPM0 devices. TinyUSB is a cross-platform open-source USB Host/Device stack for embedded systems, designed to be memory-efficient, portable, and flexible."
+  },
+  {
+    "name": "Machine Learning",
+    "mainCategories": [
+      [
+        "Documents"
+      ],
+      [
+        "Examples",
+        "Development Tools"
+      ]
+    ],
+    "subCategories": ["Middleware"],
+    "devices": ["$(MSPM0_all_devices)"],
+    "devtools": ["$(MSPM0_all_devtools)"],
+    "resourceType": "categoryInfo",
+    "resourceClass": ["document"],
+    "description": "Machine learning on MSPM0 devices enables intelligent edge computing applications with minimal power consumption. The MSPM0 microcontroller family from Texas Instruments combines ultra-low-power operation with processing capabilities suitable for running inference on machine learning models."
   }
 ]

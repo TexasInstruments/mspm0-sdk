@@ -1,0 +1,125 @@
+Edge AI Software Solution for MSPM0 Devices
+===========================================
+
+Overview
+--------
+
+The Edge AI Software solution for MSPM0 devices is a comprehensive framework designed to enable artificial intelligence capabilities on Texas Instruments' MSPM0 microcontroller units. This solution empowers developers to implement machine learning models directly on resource-constrained MSPM0 devices, enabling real-time inference at the edge with minimal power consumption.
+
+Software Components in SDK
+--------------------------
+
+The Edge AI software solution consists of the following key components:
+
+1. Feature Extraction Library
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Feature Extraction module provides capabilities to process raw sensor data and extract meaningful features that can be used as inputs to machine learning models. This component supports:
+
+-  Signal processing functions
+-  Time-domain feature extraction
+-  Frequency-domain transformations (FFT)
+-  Statistical feature calculations
+
+The feature extraction library leverages ARM CMSIS-DSP functions for efficient signal processing operations on MSPM0 devices.
+
+2. Neural Processing Unit (NPU) Driver
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The NPU component provides hardware acceleration for neural network inference by interfacing with the MSPM0's Neural Processing Unit. This driver:
+
+-  Handles instruction memory management
+-  Manages parameter memory
+-  Provides control interfaces for NPU operations
+-  Optimizes execution of neural network operations
+
+The NPU driver is designed to be called by compiled neural network libraries built using TI's Neural Network Compiler (NNC) for MCUs. Note the NPU driver is only applicable for MSP devices with NPU.
+
+3. Device Agent Protocol (Optional)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Communication interfaces for device management and data exchange between the MSPM0 device and Model Composer GUI. This is needed for the data capture and live preview features of the Model Composer. The communication interface is implemented using UART and is configurable for different data formats and baud rates.
+
+4. Examples
+~~~~~~~~~~~
+
+The solution includes a variety of example applications demonstrating Edge AI capabilities:
+
+Basic Examples
+^^^^^^^^^^^^^^
+
+-  **Hello World AI**: Simple classification of waveform types (sine, sawtooth, square)
+-  **Empty NPU AI**: Template project for creating NPU-accelerated AI applications
+-  **Waveform Classifier AI**: Classification of different waveform patterns
+
+Advanced Examples
+^^^^^^^^^^^^^^^^^
+
+-  **Character Recognition**: Basic OCR capabilities
+-  **Motor Fault AI**: Detection of motor faults through vibration analysis
+-  **AC Arc Fault Detection**: Safety-critical application for electrical systems
+
+NPU-Accelerated Variants
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+-  **Hello World AI NPU**: NPU-accelerated version of the hello world example
+-  **Character Recognition NPU**: NPU-accelerated optical character recognition
+-  **Motor Fault AI NPU**: NPU-accelerated motor fault detection
+-  **Waveform Classifier AI NPU**: NPU-accelerated waveform classification
+
+Data Collection and Visualization
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+-  **AC Arc Fault Data Capture**: Tools for capturing arc fault data for training
+-  **Motor Fault AI Data Capture**: Utilities for collecting motor vibration data
+-  **Motor Fault AI Live Preview**: Real-time visualization of motor fault detection
+-  **Time Series Data Capture**: General-purpose time series data collection
+-  **Time Series Live Preview**: Visualization tools for time series analysis
+
+Hardware Support
+----------------
+
+The Edge AI software solution is designed for MSPM0 microcontroller units, currently supporting:
+
+-  MSPM0G3507 LaunchPad development kit
+-  MSPM0G5187 LaunchPad development kit
+
+Development Environment
+-----------------------
+
+The solution is designed to be used with:
+
+-  Code Composer Studio (CCS)
+-  TI MSPM0 SDK
+-  ARM CMSIS-DSP library
+-  CLI Tools (Pytorch based framework to train and develop AI/ML Models)
+-  Model Composer (EdgeAI Studio GUI which enables accelerated development by enabling data capture)
+
+Development Workflow
+--------------------
+
+The Edge AI software solution supports the following workflow:
+
+1. **Data Collection**: Use data capture examples to collect sensor data from your application
+2. **Model Training**: Train models using collected data on a desktop environment
+3. **Model Deployment**: Deploy trained models to MSPM0 devices using the provided framework
+4. **Performance Optimization**: Use NPU-accelerated variants for improved performance
+5. **Inference Visualization**: Leverage live preview tools to visualize the inference results on the GUI in real time
+
+Performance Considerations
+--------------------------
+
+When implementing Edge AI applications on MSPM0 devices, consider:
+
+1. **Memory Constraints**: Optimize models to fit within the limited RAM and flash memory
+2. **Processing Power**: Balance model complexity with real-time requirements
+3. **Energy Efficiency**: Leverage low-power modes when inference is not needed
+4. **NPU Acceleration**: Use NPU-optimized versions for computationally intensive models
+5. **Real-time Requirements**: Consider sampling rates and processing latency for your application
+
+Conclusion
+----------
+
+The Edge AI Software solution for MSPM0 devices enables developers to bring machine learning capabilities to ultra-low-power edge devices. By leveraging efficient feature extraction, optimized inference engines, and optional NPU acceleration, developers can create intelligent embedded systems for a wide range of applications while maintaining the power efficiency expected from MSPM0 microcontrollers.
+
+The comprehensive set of examples provides a foundation for rapid development and exploration of Edge AI capabilities, from basic waveform classification to advanced use cases like motor fault detection and character recognition, with dedicated tools for both standard CPU execution and NPU-accelerated performance.

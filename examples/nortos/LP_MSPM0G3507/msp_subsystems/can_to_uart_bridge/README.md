@@ -68,8 +68,17 @@ For CANFD, the example has the following Nominal and Data Rate frequencies confi
 - Nominal Bit Rate (250 kbps)
 - Data Bit Rate    (2 Mbps)
 
-This example specifies the UART message format.
-When receiving the message from UART, the message format is 
-< 55 AA ID1 ID2 ID3 ID4 Length Data1 Data2 ...>. 
-Users can send data to the CAN bus from the terminal by entering data as the same format. 
-55 AA is the header. ID area is 4 bytes. Length area is 1 byte, indicating the data length.
+The example in this article supports both transparent transmission(default) and protocol transmission. 
+User can switch it in user_define.h
+
+For transparent transmission, a configurable timeout is used for UART to detect one message. 
+Data from UART is filled into the data area of CAN (same in reverse). CAN ID is the default value.
+
+For protocol transmission, this example specifies the UART message format. 
+Users can also modify the format according to application requirements. 
+When receiving the message from UART, the message format is < 55 AA ID1 ID2 ID3 ID4 Length Data1 Data2 ...>. 
+Users can send data to the CAN bus from the terminal by entering data in the same format. 
+55 AA is the header. ID area is four bytes. The length area is one byte, which indicates the data length.
+
+For more information about how to use this example to develop the bridge application as needed, 
+please visit the [Bridge Design between CAN and UART with MSPM0 MCUs](https://www.ti.com/lit/pdf/slaaen4).

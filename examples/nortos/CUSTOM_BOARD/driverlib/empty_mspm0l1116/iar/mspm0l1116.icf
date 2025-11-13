@@ -203,6 +203,6 @@ if (!isempty(ERAM_region))
     place in ERAM_region  { readwrite section application_specific_rw };
 }
 
-place in NON_MAIN_BCR_region  { section BCRCONFIG };
+place in NON_MAIN_BCR_region  { section .BCRCONFIG };
 
-place in NON_MAIN_BSL_region  { section BSLCONFIG };
+place in NON_MAIN_BSL_region  { section .BSLCONFIG };

@@ -3,13 +3,13 @@
  * Title:        arm_power_f32.c
  * Description:  Sum of the squares of the elements of a floating-point vector
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
- * Target Processor: Cortex-M cores
+ * Target Processor: Cortex-M and Cortex-A cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-#include "arm_math.h"
+#include "dsp/statistics_functions.h"
 
 /**
   @ingroup groupStats
@@ -43,6 +43,10 @@
   </pre>
 
   There are separate functions for floating point, Q31, Q15, and Q7 data types.
+
+  Since the result is not divided by the length, those functions are in fact computing
+  something which is more an energy than a power.
+
  */
 
 /**
@@ -55,13 +59,12 @@
   @param[in]     pSrc       points to the input vector
   @param[in]     blockSize  number of samples in input vector
   @param[out]    pResult    sum of the squares value returned here
-  @return        none
  */
 #if defined(ARM_MATH_MVEF) && !defined(ARM_MATH_AUTOVECTORIZE)
 
 #include "arm_helium_utils.h"
 
-void arm_power_f32(
+ARM_DSP_ATTRIBUTE void arm_power_f32(
   const float32_t * pSrc,
   uint32_t blockSize,
   float32_t * pResult)
@@ -107,7 +110,7 @@ void arm_power_f32(
 }
 #else
 #if defined(ARM_MATH_NEON) && !defined(ARM_MATH_AUTOVECTORIZE)
-void arm_power_f32(
+ARM_DSP_ATTRIBUTE void arm_power_f32(
   const float32_t * pSrc,
   uint32_t blockSize,
   float32_t * pResult)
@@ -157,7 +160,7 @@ void arm_power_f32(
   *pResult = sum;
 }
 #else
-void arm_power_f32(
+ARM_DSP_ATTRIBUTE void arm_power_f32(
   const float32_t * pSrc,
         uint32_t blockSize,
         float32_t * pResult)

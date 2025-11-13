@@ -21,7 +21,7 @@ CFLAGS += -I.. \
     -I. \
     $(addprefix @,$(SYSCFG_OPT_FILES)) \
     -D__MSPM0G3507__ \
-    -DCAN_INTERFACE \
+    -O2 \
     "-I$(MSPM0_SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" \
     "-I$(MSPM0_SDK_INSTALL_DIR)/source" \
     -gdwarf-3 \

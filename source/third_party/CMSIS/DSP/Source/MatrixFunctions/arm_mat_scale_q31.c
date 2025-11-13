@@ -3,13 +3,13 @@
  * Title:        arm_mat_scale_q31.c
  * Description:  Multiplies a Q31 matrix by a scalar
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
- * Target Processor: Cortex-M cores
+ * Target Processor: Cortex-M and Cortex-A cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-#include "arm_math.h"
+#include "dsp/matrix_functions.h"
 
 /**
   @ingroup groupMatrix
@@ -51,8 +51,8 @@
                    The input data <code>*pSrc</code> and <code>scaleFract</code> are in 1.31 format.
                    These are multiplied to yield a 2.62 intermediate result which is shifted with saturation to 1.31 format.
  */
-#if defined(ARM_MATH_MVEI)
-arm_status arm_mat_scale_q31(
+#if defined(ARM_MATH_MVEI) && !defined(ARM_MATH_AUTOVECTORIZE)
+ARM_DSP_ATTRIBUTE arm_status arm_mat_scale_q31(
   const arm_matrix_instance_q31 * pSrc,
         q31_t                     scaleFract,
         int32_t                   shift,
@@ -129,7 +129,7 @@ arm_status arm_mat_scale_q31(
 }
 
 #else
-arm_status arm_mat_scale_q31(
+ARM_DSP_ATTRIBUTE arm_status arm_mat_scale_q31(
   const arm_matrix_instance_q31 * pSrc,
         q31_t                     scaleFract,
         int32_t                   shift,

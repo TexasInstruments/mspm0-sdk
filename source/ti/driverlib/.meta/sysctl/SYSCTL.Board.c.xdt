@@ -39,7 +39,9 @@
     let SYSCTL = args[0]; /* passed by /ti/drivers/templates/Board.c.xdt */
     let content = args[1]; /* passed by /ti/drivers/templates/Board.c.xdt */
     let Common = system.getScript("/ti/driverlib/Common.js");
+    let Options = system.getScript("/ti/driverlib/sysctl/SYSCTLMSPM0options.js");
     let { ClockSignals } = system.getScript("/ti/driverlib/sysctl/SYSCTLMSPM0Clocks.js");
+    let ClockOptions = system.getScript("/ti/driverlib/sysctl/SYSCTLMSPM0options.js");
 
     /* shorthand names for some common references in template below */
     // since sysctl is static we don't use the inst variable
@@ -81,23 +83,33 @@
 %       let gen = system.getTemplate("/ti/driverlib/sysctl/SYSCTLclockTree.Board.c.xdt")
 `_.trimEnd(gen(SYSCTL,"GPIO"))`
 %   } else {
-% if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0L111X()){
+%%{
+    // FCC_IN Configuration
+%%}
+% if(stat.fccTrigSrc == "FCC_IN" && stat.enableFCC){
+    DL_GPIO_initPeripheralInputFunction(GPIO_FCC_IN_IOMUX, GPIO_FCC_IN_IOMUX_FUNC);
+% }
+% if(ClockSignals.includes("LFXT")){
 %   if(stat.LFCLKSource === "LFXT"){
     /* Configure GPIO/IOMUX for LFXT functionality */
     DL_GPIO_initPeripheralAnalogFunction(GPIO_LFXIN_IOMUX);
     DL_GPIO_initPeripheralAnalogFunction(GPIO_LFXOUT_IOMUX);
 %    }
-%   else if(stat.LFCLKSource === "LFCLK_IN"){
+% }
+% if(((ClockOptions.LFCLKSource).map(x=>x.name)).includes("LFCLK_IN")){
+%   if(stat.LFCLKSource === "LFCLK_IN"){
     DL_GPIO_initPeripheralInputFunction(GPIO_LFCLKIN_IOMUX, GPIO_LFCLKIN_IOMUX_FUNC);
 %   }
 % }
-%if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0L111X()){
+% if(ClockSignals.includes("HFXT")){
 %    if(stat.useHFCLK && stat.HFCLKSource === "HFXT"){
     /* Configure GPIO/IOMUX for HFXT functionality */
     DL_GPIO_initPeripheralAnalogFunction(GPIO_HFXIN_IOMUX);
     DL_GPIO_initPeripheralAnalogFunction(GPIO_HFXOUT_IOMUX);
 %    }
-%   else if(stat.useHFCLK && stat.HFCLKSource === "HFCLK_IN"){
+% }
+% if(((ClockOptions.HFCLKSource).map(x=>x.name)).includes("HFCLK_IN")){
+%   if(stat.useHFCLK && stat.HFCLKSource === "HFCLK_IN"){
     DL_GPIO_initPeripheralInputFunction(GPIO_HFCLKIN_IOMUX, GPIO_HFCLKIN_IOMUX_FUNC);
 %   }
 %}
@@ -353,7 +365,7 @@ if(!stat.powerPolicy.match(/SLEEP/)) {
 % } // if(!stat.driversEn)
 % /* Disabled when TI Drivers configuration enabled */
 % if(!stat.driversEn){
-%   if(isHSCLK){
+%   if(isHSCLK && ((Options.WaitStates).length>0)){
     DL_SYSCTL_setFlashWaitState(DL_SYSCTL_FLASH_WAIT_STATE_`stat.waitState`);
 %   }
 % } // if(!stat.driversEn)

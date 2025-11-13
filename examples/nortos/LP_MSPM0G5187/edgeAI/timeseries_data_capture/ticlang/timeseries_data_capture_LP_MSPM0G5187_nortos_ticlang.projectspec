@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectSpec>
+    <applicability>
+        <when>
+            <context
+                deviceFamily="ARM"
+                deviceId="MSPM0G5187"
+            />
+        </when>
+    </applicability>
+
+    <project
+        title="timeseries_data_capture"
+        name="timeseries_data_capture_LP_MSPM0G5187_nortos_ticlang"
+        configurations="Debug"
+        toolChain="TICLANG"
+        connection="TIXDS110_Connection.xml"
+        device="MSPM0G5187"
+        ignoreDefaultDeviceSettings="true"
+        ignoreDefaultCCSSettings="true"
+        products="MSPM0-SDK;sysconfig"
+        compilerBuildOptions="
+            -I${PROJECT_ROOT}
+            -I${PROJECT_ROOT}/${ConfigName}
+            -DDEVICE_NAME=MSPM0G5187
+            @device.opt
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/Core/Include
+            -Iexamples/edgeAI/timeseries_data_capture/device_agent_protocol
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/edgeAI/device_agent_protocol/core
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/edgeAI/device_agent_protocol/uart_comm
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -gdwarf-3
+            -mcpu=cortex-m0plus
+            -march=thumbv6m
+            -mfloat-abi=soft
+            -mthumb
+        "
+        linkerBuildOptions="
+            -ldevice.cmd.genlibs
+            -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -L${PROJECT_ROOT}
+            -L${PROJECT_BUILD_DIR}/syscfg
+            -Wl,--rom_model
+            -Wl,--warn_sections
+            -L${CG_TOOL_ROOT}/lib
+            -llibc.a
+        "
+        sysConfigBuildOptions="
+            --output .
+            --product ${COM_TI_MSPM0_SDK_INSTALL_DIR}/.metadata/product.json
+            --compiler ticlang
+        "
+        sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
+        description="Example to demonstrate data capture on EdgeAI studio for timeseries applications on MSPM0">
+
+        <property name="buildProfile" value="release"/>
+        <property name="isHybrid" value="true"/>
+        <file path="../timeseries_data_capture.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../device_agent_protocol/dap_interface.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="device_agent_protocol">
+        </file>
+        <file path="../device_agent_protocol/dap_interface.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="device_agent_protocol">
+        </file>
+        <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/edgeAI/device_agent_protocol/core/dap_core.c" openOnCreation="false" excludeFromBuild="false" action="link" targetDirectory="ti/edgeAI/device_agent_protocol/core">
+        </file>
+        <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/edgeAI/device_agent_protocol/uart_comm/uart_comm_target.c" openOnCreation="false" excludeFromBuild="false" action="link" targetDirectory="ti/edgeAI/device_agent_protocol/uart_comm">
+        </file>
+        <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/edgeAI/device_agent_protocol/core/dap_core.h" openOnCreation="false" excludeFromBuild="false" action="link" targetDirectory="ti/edgeAI/device_agent_protocol/core">
+        </file>
+        <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/edgeAI/device_agent_protocol/uart_comm/uart_comm_target.h" openOnCreation="false" excludeFromBuild="false" action="link" targetDirectory="ti/edgeAI/device_agent_protocol/uart_comm">
+        </file>
+        <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../README.html" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../timeseries_data_capture.syscfg" openOnCreation="true" excludeFromBuild="false" action="copy">
+        </file>
+    </project>
+</projectSpec>

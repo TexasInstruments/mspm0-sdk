@@ -3,13 +3,13 @@
  * Title:        arm_fir_init_q7.c
  * Description:  Q7 FIR filter initialization function
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
- * Target Processor: Cortex-M cores
+ * Target Processor: Cortex-M and Cortex-A cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-#include "arm_math.h"
+#include "dsp/filtering_functions.h"
 
 /**
   @ingroup groupFilters
@@ -40,11 +40,10 @@
 /**
   @brief         Initialization function for the Q7 FIR filter.
   @param[in,out] S          points to an instance of the Q7 FIR filter structure
-  @param[in] 	 numTaps    number of filter coefficients in the filter
+  @param[in]     numTaps    number of filter coefficients in the filter
   @param[in]     pCoeffs    points to the filter coefficients buffer
   @param[in]     pState     points to the state buffer
   @param[in]     blockSize  number of samples processed
-  @return        none
 
   @par           Details
                    <code>pCoeffs</code> points to the array of filter coefficients stored in time reversed order:
@@ -54,9 +53,18 @@
   @par
                    <code>pState</code> points to the array of state variables.
                    <code>pState</code> is of length <code>numTaps+blockSize-1</code> samples, where <code>blockSize</code> is the number of input samples processed by each call to <code>arm_fir_q7()</code>.
+  
+  @par          Initialization of Helium version
+                   For Helium version the array of coefficients must be a multiple of 16 (16a) even if less
+                   then 16a coefficients are defined in the FIR. The additional coefficients 
+                   (16a - numTaps) must be set to 0.
+                   numTaps is still set to its right value in the init function. It means that
+                   the implementation may require to read more coefficients due to the vectorization and
+                   to avoid having to manage too many different cases in the code.
+
  */
 
-void arm_fir_init_q7(
+ARM_DSP_ATTRIBUTE void arm_fir_init_q7(
         arm_fir_instance_q7 * S,
         uint16_t numTaps,
   const q7_t * pCoeffs,

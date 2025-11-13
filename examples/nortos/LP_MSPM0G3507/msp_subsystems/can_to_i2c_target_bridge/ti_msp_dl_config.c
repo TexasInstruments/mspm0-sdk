@@ -161,6 +161,7 @@ SYSCONFIG_WEAK void SYSCFG_DL_I2C_init(void) {
     /* Configure Interrupts */
     DL_I2C_enableInterrupt(I2C_INST,
                            DL_I2C_INTERRUPT_TARGET_RXFIFO_TRIGGER |
+                           DL_I2C_INTERRUPT_TARGET_RX_DONE |
                            DL_I2C_INTERRUPT_TARGET_START |
                            DL_I2C_INTERRUPT_TARGET_STOP |
                            DL_I2C_INTERRUPT_TARGET_TX_DONE);
@@ -208,8 +209,8 @@ static const DL_MCAN_ConfigParams gMCAN0ConfigParams={
     .timeoutCntEnable  = false,
     .filterConfig.rrfs = true,
     .filterConfig.rrfe = true,
-    .filterConfig.anfe = 1,
-    .filterConfig.anfs = 1,
+    .filterConfig.anfe = 0,
+    .filterConfig.anfs = 0,
 };
 
 static const DL_MCAN_MsgRAMConfigParams gMCAN0MsgRAMConfigParams ={

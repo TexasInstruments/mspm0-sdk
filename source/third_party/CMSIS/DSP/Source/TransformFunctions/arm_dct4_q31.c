@@ -3,13 +3,13 @@
  * Title:        arm_dct4_q31.c
  * Description:  Processing function of DCT4 & IDCT4 Q31
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
- * Target Processor: Cortex-M cores
+ * Target Processor: Cortex-M and Cortex-A cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -26,19 +26,19 @@
  * limitations under the License.
  */
 
-#include "arm_math.h"
+#include "dsp/transform_functions.h"
 
 /**
-  @addtogroup DCT4_IDCT4
+  @addtogroup DCT4Q31
   @{
  */
 
 /**
   @brief         Processing function for the Q31 DCT4/IDCT4.
+  @deprecated    Do not use this function. It will be removed in future versions.
   @param[in]     S             points to an instance of the Q31 DCT4 structure.
   @param[in]     pState        points to state buffer.
   @param[in,out] pInlineBuffer points to the in-place input and output buffer.
-  @return        none
 
   @par           Input an output formats
                    Input samples need to be downscaled by 1 bit to avoid saturations in the Q31 DCT process,
@@ -48,10 +48,15 @@
                    The input and output formats for different DCT sizes and number of bits to upscale are
                    mentioned in the table below:
 
-                   \image html dct4FormatsQ31Table.gif
+| DCT Size  | Input format  | Output format | Number of bits to upscale |
+| --------: | ------------: | ------------: | ------------------------: |
+| 2048      | 2.30          | 12.20         | 11                        |
+| 512       | 2.30          | 10.22         | 9                         |
+| 128       | 2.30          | 8.24          | 7                         |
+
  */
 
-void arm_dct4_q31(
+ARM_DSP_ATTRIBUTE void arm_dct4_q31(
   const arm_dct4_instance_q31 * S,
         q31_t * pState,
         q31_t * pInlineBuffer)
@@ -379,5 +384,5 @@ void arm_dct4_q31(
 }
 
 /**
-  @} end of DCT4_IDCT4 group
+  @} end of DCT4Q31 group
  */

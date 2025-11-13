@@ -123,8 +123,7 @@ SYSCONFIG_WEAK void SYSCFG_DL_PWM_0_init(void) {
     DL_TimerG_enableClock(PWM_0_INST);
 
 
-    DL_TimerG_enableInterrupt(PWM_0_INST , DL_TIMER_INTERRUPT_CC0_DN_EVENT |
-		DL_TIMER_INTERRUPT_LOAD_EVENT);
+    DL_TimerG_enableInterrupt(PWM_0_INST , DL_TIMER_INTERRUPT_LOAD_EVENT);
 
     DL_TimerG_setCCPDirection(PWM_0_INST , DL_TIMER_CC1_OUTPUT );
 

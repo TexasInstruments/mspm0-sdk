@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectSpec>
+    <applicability>
+        <when>
+            <context
+                deviceFamily="ARM"
+                deviceId="MSPM01507"
+            />
+        </when>
+    </applicability>
+
+    <project
+        title="hall_sensored-foc_TIDA010251_MSPM0G1507_nortos_ticlang"
+        name="hall_sensored-foc_TIDA010251_MSPM0G1507_nortos_ticlang"
+        toolChain="TICLANG"
+        connection="TIXDS110_Connection.xml"
+        device="MSPM0G1507"
+        ignoreDefaultDeviceSettings="true"
+        ignoreDefaultCCSSettings="true"
+        products="MSPM0-SDK;sysconfig"
+        compilerBuildOptions="
+            -I${PROJECT_ROOT}
+            -I${ORIG_PROJ_ROOT_DIR}
+            -I${ORIG_PROJ_SOURCE_DIR}
+            -I${PROJECT_ROOT}/modules/IQmath/include
+            -I${PROJECT_ROOT}/modules/motorControlLib/include
+            -I${PROJECT_ROOT}/modules/hal/gateDriverInterface/include
+            -I${PROJECT_ROOT}/modules/hal/gateDriverInterface/gateDriverLib/TIDA010251/include
+            -I${PROJECT_ROOT}/modules/hal/controllerInterface/include
+            -I${PROJECT_ROOT}/modules/hal/commInterface/uart_comm/include
+            -I${PROJECT_ROOT}/modules/algoLib/faults/include
+            -I${PROJECT_ROOT}/modules/algoLib/foc/include
+            -I${PROJECT_ROOT}/modules/algoLib/libraries/controller/include
+            -I${PROJECT_ROOT}/modules/algoLib/libraries/deadTimeCompensation/include
+            -I${PROJECT_ROOT}/modules/algoLib/libraries/filter/include
+            -I${PROJECT_ROOT}/modules/algoLib/libraries/slewRate/include
+            -I${PROJECT_ROOT}/modules/algoLib/load/include
+            -I${PROJECT_ROOT}/modules/algoLib/modulesInterconnect/algoConfig/faultsConfig/include
+            -I${PROJECT_ROOT}/modules/algoLib/modulesInterconnect/algoConfig/focConfig/include
+            -I${PROJECT_ROOT}/modules/algoLib/modulesInterconnect/algoConfig/librariesConfig/deadTimeCompensationConfig/include
+            -I${PROJECT_ROOT}/modules/algoLib/modulesInterconnect/algoConfig/loadConfig/include
+            -I${PROJECT_ROOT}/modules/algoLib/modulesInterconnect/algoConfig/sourceLimitsConfig/include
+            -I${PROJECT_ROOT}/modules/algoLib/modulesInterconnect/appHALConfig/include
+            -I${PROJECT_ROOT}/modules/algoLib/sourceLimits/include
+            -I${PROJECT_ROOT}/modules/appLib/appConfig/appInterfaceConfig/include
+            -I${PROJECT_ROOT}/modules/appLib/configTables/include
+            -I${PROJECT_ROOT}/modules/appLib/appInterface/include
+            -I${PROJECT_ROOT}/modules/appLib/application/include
+            -I${PROJECT_ROOT}/${ConfigName}
+            -D__MSPM0G1507__
+            -DGLOBAL_IQ=27
+            -D_IQ_MPY_MATHACL_INLINE
+            -O2
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/Core/Include
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -gdwarf-3
+            -mcpu=cortex-m0plus
+            -march=thumbv6m
+            -mfloat-abi=soft
+            -mthumb
+            -DSENSORED
+        "
+        linkerBuildOptions="
+            -L${PROJECT_BUILD_DIR}/syscfg
+            -l${ORIG_PROJ_SOURCE_DIR}/sensored_modules/algoLib/libraries/deadTimeCompensation/source/deadTimeCompute.lib
+            -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/ticlang/m0p/mspm0g1x0x_g3x0x/driverlib.a
+            -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/iqmath/lib/ticlang/m0p/rts/mspm0g1x0x_g3x0x/iqmath.a
+            -Wl,--rom_model
+            -Wl,--warn_sections
+            -L${CG_TOOL_ROOT}/lib
+            -llibc.a
+        "
+        enableSysConfigTool="true"
+        sysConfigBuildOptions="
+            --product ${COM_TI_MSPM0_SDK_INSTALL_DIR}/.metadata/product.json
+            --compiler ticlang
+        "
+        sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
+        description="Source project for sensorless foc">
+
+        <configuration 
+        name="TIDA010251" 
+        compilerBuildOptions="
+            -DTIDA010251
+        "/>
+        
+        <pathVariable name="ORIG_PROJ_ROOT_DIR" path="../" scope="project"/>
+        <pathVariable name="ORIG_PROJ_SOURCE_DIR" path="../../../../../../source/ti/motor_control_pmsm_foc" scope="project"/>
+
+        <property name="buildProfile" value="release"/>
+        <property name="isHybrid" value="true"/>
+        <file path="ORIG_PROJ_ROOT_DIR/README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="./mspm0g1507.cmd" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="./startup_mspm0g350x_ticlang.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ticlang">
+        </file>
+        <file path="ORIG_PROJ_ROOT_DIR/TIDA010251_1S.syscfg" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>     
+        <file path="ORIG_PROJ_ROOT_DIR/main.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="ORIG_PROJ_ROOT_DIR/main.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="ORIG_PROJ_ROOT_DIR/ISR.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="ORIG_PROJ_ROOT_DIR/ISR.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="ORIG_PROJ_SOURCE_DIR/sensored_modules/algoLib" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules">
+        </file>
+        <file path="ORIG_PROJ_SOURCE_DIR/sensored_modules/appLib" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules">
+        </file>
+        <file path="ORIG_PROJ_SOURCE_DIR/common_modules/IQmath" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules">
+        </file>
+        <file path="ORIG_PROJ_SOURCE_DIR/common_modules/motorControlLib" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules">
+        </file>
+        <file path="ORIG_PROJ_SOURCE_DIR/common_modules/hal/LP_MSPM0Gx5xx/commInterface" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/hal">
+        </file>
+        <file path="ORIG_PROJ_SOURCE_DIR/sensored_modules/hal/LP_MSPM0Gx5xx/controllerInterface" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/hal">
+        </file>
+        <file path="ORIG_PROJ_SOURCE_DIR/common_modules/hal/LP_MSPM0Gx5xx/gateDriverInterface/LP_MSPM0G3507/include/gateDriver.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/hal/gateDriverInterface/include">
+        </file>
+        <file path="ORIG_PROJ_SOURCE_DIR/common_modules/hal/LP_MSPM0Gx5xx/gateDriverInterface/gateDriverLib/TIDA010251" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/hal/gateDriverInterface/gateDriverLib">
+        </file>
+        <file path="ORIG_PROJ_SOURCE_DIR/common_modules/hal/LP_MSPM0Gx5xx/gateDriverInterface/LP_MSPM0G3507/source/tida010251_focHalInterface.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/hal/gateDriverInterface/source">
+        </file>
+    </project>
+</projectSpec>

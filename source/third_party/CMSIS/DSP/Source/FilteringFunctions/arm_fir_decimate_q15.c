@@ -3,13 +3,13 @@
  * Title:        arm_fir_decimate_q15.c
  * Description:  Q15 FIR Decimator
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
- * Target Processor: Cortex-M cores
+ * Target Processor: Cortex-M and Cortex-A cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-#include "arm_math.h"
+#include "dsp/filtering_functions.h"
 
 /**
   @ingroup groupFilters
@@ -43,7 +43,6 @@
   @param[in]     pSrc       points to the block of input data
   @param[out]    pDst       points to the block of output data
   @param[in]     blockSize  number of input samples to process per call
-  @return        none
 
   @par           Scaling and Overflow Behavior
                    The function is implemented using a 64-bit internal accumulator.
@@ -57,11 +56,11 @@
                    Refer to \ref arm_fir_decimate_fast_q15() for a faster but less precise implementation of this function.
  */
 
-#if defined(ARM_MATH_MVEI)
+#if defined(ARM_MATH_MVEI) && !defined(ARM_MATH_AUTOVECTORIZE)
 
 #include "arm_helium_utils.h"
 
-void arm_fir_decimate_q15(
+ARM_DSP_ATTRIBUTE void arm_fir_decimate_q15(
   const arm_fir_decimate_instance_q15 * S,
   const q15_t * pSrc,
         q15_t * pDst,
@@ -316,7 +315,7 @@ void arm_fir_decimate_q15(
 #else
 #if defined (ARM_MATH_DSP)
 
-void arm_fir_decimate_q15(
+ARM_DSP_ATTRIBUTE void arm_fir_decimate_q15(
   const arm_fir_decimate_instance_q15 * S,
   const q15_t * pSrc,
         q15_t * pDst,
@@ -534,9 +533,8 @@ void arm_fir_decimate_q15(
 
   /* Points to the start of the state buffer */
   pStateCur = S->pState;
-
   i = (numTaps - 1U) >> 2U;
-
+ 
   /* copy data */
   while (i > 0U)
   {
@@ -562,7 +560,7 @@ void arm_fir_decimate_q15(
 
 #else /* #if defined (ARM_MATH_DSP) */
 
-void arm_fir_decimate_q15(
+ARM_DSP_ATTRIBUTE void arm_fir_decimate_q15(
   const arm_fir_decimate_instance_q15 * S,
   const q15_t * pSrc,
         q15_t * pDst,

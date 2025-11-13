@@ -3,13 +3,13 @@
  * Title:        arm_lms_norm_init_f32.c
  * Description:  Floating-point NLMS filter initialization function
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
- * Target Processor: Cortex-M cores
+ * Target Processor: Cortex-M and Cortex-A cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-#include "arm_math.h"
+#include "dsp/filtering_functions.h"
 
 /**
   @ingroup groupFilters
@@ -45,7 +45,6 @@
   @param[in]     pState    points to state buffer
   @param[in]     mu        step size that controls filter coefficient updates
   @param[in]     blockSize number of samples to process
-  @return        none
 
   @par           Details
                    <code>pCoeffs</code> points to the array of filter coefficients stored in time reversed order:
@@ -57,7 +56,7 @@
                    where <code>blockSize</code> is the number of input samples processed by each call to <code>arm_lms_norm_f32()</code>.
  */
 
-void arm_lms_norm_init_f32(
+ARM_DSP_ATTRIBUTE void arm_lms_norm_init_f32(
         arm_lms_norm_instance_f32 * S,
         uint16_t numTaps,
         float32_t * pCoeffs,

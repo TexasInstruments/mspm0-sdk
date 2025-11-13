@@ -3,13 +3,13 @@
  * Title:        arm_var_q15.c
  * Description:  Variance of an array of Q15 type
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
- * Target Processor: Cortex-M cores
+ * Target Processor: Cortex-M and Cortex-A cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-#include "arm_math.h"
+#include "dsp/statistics_functions.h"
 
 /**
   @ingroup groupStats
@@ -42,7 +42,6 @@
   @param[in]     pSrc       points to the input vector
   @param[in]     blockSize  number of samples in input vector
   @param[out]    pResult    variance value returned here
-  @return        none
 
   @par           Scaling and Overflow Behavior
                    The function is implemented using a 64-bit internal accumulator.
@@ -54,8 +53,8 @@
                    Finally, the 34.30 result is truncated to 34.15 format by discarding the lower
                    15 bits, and then saturated to yield a result in 1.15 format.
  */
-#if defined(ARM_MATH_MVEI)
-void arm_var_q15(
+#if defined(ARM_MATH_MVEI) && !defined(ARM_MATH_AUTOVECTORIZE)
+ARM_DSP_ATTRIBUTE void arm_var_q15(
   const q15_t * pSrc,
         uint32_t blockSize,
         q15_t * pResult)
@@ -81,8 +80,8 @@ void arm_var_q15(
         /* Compute Sum of squares of the input samples
          * and then store the result in a temporary variable, sumOfSquares. */
 
-        sumOfSquares = vmlaldavaq(sumOfSquares, vecSrc, vecSrc);
-        sum = vaddvaq(sum, vecSrc);
+        sumOfSquares = vmlaldavaq_s16(sumOfSquares, vecSrc, vecSrc);
+        sum = vaddvaq_s16(sum, vecSrc);
 
         blkCnt --;
         pSrc += 8;
@@ -111,16 +110,16 @@ void arm_var_q15(
 
     /* Compute Mean of squares of the input samples
      * and then store the result in a temporary variable, meanOfSquares. */
-    meanOfSquares = arm_div_q63_to_q31(sumOfSquares, (blockSize - 1U));
+    meanOfSquares = arm_div_int64_to_int32(sumOfSquares, (blockSize - 1U));
 
     /* Compute square of mean */
-    squareOfMean = arm_div_q63_to_q31((q63_t)sum * sum, (q31_t)(blockSize * (blockSize - 1U)));
+    squareOfMean = arm_div_int64_to_int32((q63_t)sum * sum, (q31_t)(blockSize * (blockSize - 1U)));
 
     /* mean of the squares minus the square of the mean. */
     *pResult = (meanOfSquares - squareOfMean) >> 15;
 }
 #else
-void arm_var_q15(
+ARM_DSP_ATTRIBUTE void arm_var_q15(
   const q15_t * pSrc,
         uint32_t blockSize,
         q15_t * pResult)
@@ -154,12 +153,12 @@ void arm_var_q15(
     /* Compute sum of squares and store result in a temporary variable, sumOfSquares. */
     /* Compute sum and store result in a temporary variable, sum. */
 #if defined (ARM_MATH_DSP)
-    in32 = read_q15x2_ia ((q15_t **) &pSrc);
+    in32 = read_q15x2_ia (&pSrc);
     sumOfSquares = __SMLALD(in32, in32, sumOfSquares);
     sum += ((in32 << 16U) >> 16U);
     sum +=  (in32 >> 16U);
 
-    in32 = read_q15x2_ia ((q15_t **) &pSrc);
+    in32 = read_q15x2_ia (&pSrc);
     sumOfSquares = __SMLALD(in32, in32, sumOfSquares);
     sum += ((in32 << 16U) >> 16U);
     sum +=  (in32 >> 16U);

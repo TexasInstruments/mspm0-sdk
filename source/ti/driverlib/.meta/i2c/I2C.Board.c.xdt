@@ -40,6 +40,7 @@
     let content = args[1];
 
     let Common = system.getScript("/ti/driverlib/Common.js");
+    let I2CCommon = system.getScript("/ti/driverlib/I2C.common.js");
 
     /* shorthand names for some common references in template below */
     let instances = I2C.$instances;
@@ -279,9 +280,15 @@ SYSCONFIG_WEAK void SYSCFG_DL_`instName`_init(void) {
 %} // if(!Common.I2CTargetWakeupWorkaroundFixed())
 %} // if (inst.basicEnableTarget)
 %    /* Interrupt generation */
+%%{
+    let disabledControllerInterrupts    = (I2CCommon.getControllerDisabledIntOptions(inst)).map(x=>x.name);
+    let disabledTargetInterrupts        = (I2CCommon.getTargetDisabledIntOptions(inst)).map(x=>x.name);
+    let disabledGenericInterrupts       = (I2CCommon.getGenericDisabledIntOptions(inst)).map(x=>x.name);
+%%}
 %    let interArgs = "";
 %    let interFct = ""
 %    for (let inter of inst.intController) {
+%        if (disabledControllerInterrupts.includes(inter)) continue;
 %        if(Common.isUnicommI2C()){
 %           interArgs += Array(27).fill(' ').join('')+"DL_I2C"+flavor+"_INTERRUPT_"+inter+" |\n";
 %        }
@@ -290,6 +297,7 @@ SYSCONFIG_WEAK void SYSCFG_DL_`instName`_init(void) {
 %        }
 %    }
 %    for (let inter of inst.intTarget) {
+%        if (disabledTargetInterrupts.includes(inter)) continue;
 %        if (inter == "INTERRUPT_OVERFLOW ") {
 %           if(Common.isUnicommI2C()){
 %               interArgs += Array(27).fill(' ').join('')+"DL_I2C"+flavor+"_INTERRUPT_OVERFLOW"+" |\n";
@@ -307,9 +315,10 @@ SYSCONFIG_WEAK void SYSCFG_DL_`instName`_init(void) {
 %        }
 %    }
 %    for (let inter of inst.intGeneric) {
+%        if (disabledGenericInterrupts.includes(inter)) continue;
 %        interArgs += Array(27).fill(' ').join('')+"DL_I2C"+flavor+"_INTERRUPT_"+inter+" |\n";
 %    }
-%    if((inst.intController.length + inst.intTarget.length + inst.intGeneric.length) > 0){
+%    if((interArgs.length) > 0){
     /* Configure Interrupts */
 %        interArgs = interArgs.slice(0,-3); // remove last
 %        interFct = "DL_I2C"+flavor+"_enableInterrupt("+instNameModule+",\n"+interArgs+");\n";

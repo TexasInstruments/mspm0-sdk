@@ -623,9 +623,7 @@ let WaitStateOptions = {
         {name: "2"},
     ],
     "MSPM0C110X": [
-        {name: "0"},
-        {name: "1"},
-        {name: "2"},
+        // not available
     ],
     "MSPM0GX51X": [
         {name: "0"},

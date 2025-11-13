@@ -3,13 +3,13 @@
  * Title:        arm_dct4_q15.c
  * Description:  Processing function of DCT4 & IDCT4 Q15
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
- * Target Processor: Cortex-M cores
+ * Target Processor: Cortex-M and Cortex-A cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -26,29 +26,35 @@
  * limitations under the License.
  */
 
-#include "arm_math.h"
+#include "dsp/transform_functions.h"
 
 /**
-  @addtogroup DCT4_IDCT4
+  @addtogroup DCT4Q15
   @{
  */
 
 /**
   @brief         Processing function for the Q15 DCT4/IDCT4.
+  @deprecated    Do not use this function. It will be removed in future versions.
   @param[in]     S             points to an instance of the Q15 DCT4 structure.
   @param[in]     pState        points to state buffer.
   @param[in,out] pInlineBuffer points to the in-place input and output buffer.
-  @return        none
  
   @par           Input an output formats
                    Internally inputs are downscaled in the RFFT process function to avoid overflows.
                    Number of bits downscaled, depends on the size of the transform. The input and output
                    formats for different DCT sizes and number of bits to upscale are mentioned in the table below:
+ 
+| DCT Size  | Input format  | Output format | Number of bits to upscale |
+| --------: | ------------: | ------------: | ------------------------: |
+| 2048      | 1.15          | 11.5          | 10                        |
+| 512       | 1.15          | 9.7           | 8                         |
+| 128       | 1.15          | 7.9           | 6                         |
 
-                   \image html dct4FormatsQ15Table.gif
+
  */
 
-void arm_dct4_q15(
+ARM_DSP_ATTRIBUTE void arm_dct4_q15(
   const arm_dct4_instance_q15 * S,
         q15_t * pState,
         q15_t * pInlineBuffer)
@@ -377,5 +383,5 @@ void arm_dct4_q15(
 }
 
 /**
-  @} end of DCT4_IDCT4 group
+  @} end of DCT4Q15 group
  */

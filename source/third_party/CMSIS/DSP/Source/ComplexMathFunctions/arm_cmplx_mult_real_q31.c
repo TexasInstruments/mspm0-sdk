@@ -3,13 +3,13 @@
  * Title:        arm_cmplx_mult_real_q31.c
  * Description:  Q31 complex by real multiplication
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
- * Target Processor: Cortex-M cores
+ * Target Processor: Cortex-M and Cortex-A cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-#include "arm_math.h"
+#include "dsp/complex_math_functions.h"
 
 /**
   @ingroup groupCmplxMath
@@ -43,22 +43,21 @@
   @param[in]     pSrcReal    points to real input vector
   @param[out]    pCmplxDst   points to complex output vector
   @param[in]     numSamples  number of samples in each vector
-  @return        none
 
   @par           Scaling and Overflow Behavior
                    The function uses saturating arithmetic.
                    Results outside of the allowable Q31 range[0x80000000 0x7FFFFFFF] are saturated.
  */
 
-#if defined(ARM_MATH_MVEI)
-void arm_cmplx_mult_real_q31(
+#if defined(ARM_MATH_MVEI) && !defined(ARM_MATH_AUTOVECTORIZE)
+ARM_DSP_ATTRIBUTE void arm_cmplx_mult_real_q31(
   const q31_t * pSrcCmplx,
   const q31_t * pSrcReal,
         q31_t * pCmplxDst,
         uint32_t numSamples)
 {
 
-    const static uint32_t stride_cmplx_x_real_32[4] = {
+    static const uint32_t stride_cmplx_x_real_32[4] = {
         0, 0, 1, 1
     };
     q31x4_t rVec;
@@ -105,7 +104,7 @@ void arm_cmplx_mult_real_q31(
     }
 }
 #else
-void arm_cmplx_mult_real_q31(
+ARM_DSP_ATTRIBUTE void arm_cmplx_mult_real_q31(
   const q31_t * pSrcCmplx,
   const q31_t * pSrcReal,
         q31_t * pCmplxDst,

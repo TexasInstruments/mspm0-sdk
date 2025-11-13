@@ -35,19 +35,13 @@
 
 /* Variables for ItoC_FIFO
  * ItoC_FIFO is used to temporarily store message from I2C to CAN */
-#define ItoC_FIFO_SIZE   (10)
-uint16_t ItoC_in = 0;
-uint16_t ItoC_out = 0;
-uint16_t ItoC_count = 0;
-Custom_Element ItoC_FIFO[ItoC_FIFO_SIZE];
+Custom_Element gItoC_FIFO[ItoC_FIFO_SIZE];
+Custom_FIFO gI2c2Can_FIFO = {0, 0, 0, gItoC_FIFO};
 
 /* Variables for C2I_FIFO
  * C2I_FIFO is used to temporarily store message from CAN to I2C */
-#define C2I_FIFO_SIZE   (10)
-uint16_t C2I_in = 0;
-uint16_t C2I_out = 0;
-uint16_t C2I_count = 0;
-Custom_Element C2I_FIFO[C2I_FIFO_SIZE];
+Custom_Element gC2I_FIFO[C2I_FIFO_SIZE];
+Custom_FIFO gCan2I2c_FIFO = {0, 0, 0, gC2I_FIFO};
 
 int main(void)
 {
@@ -66,32 +60,41 @@ int main(void)
 
     while (1) {
         /* Send received CAN message to I2C */
-        if(C2I_count>0 && gI2CTxflag == false)
+        if(gCan2I2c_FIFO.fifo_count>0 && gI2CTxflag == false)
         {
             /* Get gI2C_TX_Element from C2I_FIFO
              * Update indicator variable of C2I_FIFO */
-            gI2C_TX_Element = C2I_FIFO[C2I_out];
-            C2I_count--;
-            C2I_out++;
-            if(C2I_out >= C2I_FIFO_SIZE)C2I_out = 0;
+            gI2C_TX_Element = gCan2I2c_FIFO.fifo_pointer[gCan2I2c_FIFO.fifo_out];
+            gCan2I2c_FIFO.fifo_count--;
+            gCan2I2c_FIFO.fifo_out++;
+            if(gCan2I2c_FIFO.fifo_out >= C2I_FIFO_SIZE)gCan2I2c_FIFO.fifo_out = 0;
+#ifdef I2C_TRANSPARENT     /* I2C Transparent transmission */
             /* Convert message format */
-            processI2CTxMsg(gI2CTransmitGroup, &gI2C_TX_Element);
+            processI2CTxMsg_target_transparent(gI2CTransmitGroup, &gI2C_TX_Element);
             /* Send messages via I2C */
             gI2CTxflag = true;
-            gTxLen = (7 + gI2CTransmitGroup[6]);
+            gTxLen = (gI2C_TX_Element.dlc);
             sendI2CTxMsg_target(gI2CTransmitGroup);
+#else       /* I2C Protocol transmission */
+            /* Convert message format */
+            processI2CTxMsg_target(gI2CTransmitGroup, &gI2C_TX_Element);
+            /* Send messages via I2C */
+            gI2CTxflag = true;
+            gTxLen = (3 + I2C_ID_LENGTH + gI2C_TX_Element.dlc);
+            sendI2CTxMsg_target(gI2CTransmitGroup);
+#endif
         }
 
         /* Send received I2C message to CAN */
-        if(ItoC_count>0)
+        if(gI2c2Can_FIFO.fifo_count>0)
         {
             /* Get gCAN_TX_Element from ItoC_FIFO
              * Update indicator variable of I2C2C_FIFO */
-            gCAN_TX_Element = ItoC_FIFO[ItoC_out];
-            ItoC_count--;
-            ItoC_out++;
-            if(ItoC_out >= ItoC_FIFO_SIZE)
-                ItoC_out = 0;
+            gCAN_TX_Element = gI2c2Can_FIFO.fifo_pointer[gI2c2Can_FIFO.fifo_out];
+            gI2c2Can_FIFO.fifo_count--;
+            gI2c2Can_FIFO.fifo_out++;
+            if(gI2c2Can_FIFO.fifo_out >= ItoC_FIFO_SIZE)
+                gI2c2Can_FIFO.fifo_out = 0;
             /* Convert message format */
             processCANTxMsg(&txMsg0, &gCAN_TX_Element);
             /* Send messages via CAN */
@@ -110,12 +113,12 @@ void CANFD0_IRQHandler(void)
             DL_MCAN_clearIntrStatus(
                 CANFD0, gInterruptLine1Status, DL_MCAN_INTR_SRC_MCAN_LINE_1);
             processFlag = getCANRxMsg(&rxMsg);
-            if( C2I_count >= C2I_FIFO_SIZE)
+            if( gCan2I2c_FIFO.fifo_count >= C2I_FIFO_SIZE)
             {
                 /* When the CAN bus is overloaded, stop receiving messages */
                 processFlag = false;
                 /* Overload handle */
-                __BKPT(0);
+                //__BKPT(0);
             }
             if(processFlag == true)
             {
@@ -123,10 +126,10 @@ void CANFD0_IRQHandler(void)
                 processCANRxMsg(&rxMsg, &gCAN_RX_Element);
                 /* Store gCAN_RX_Element into C2S_FIFO
                  * Update indicator variable of C2S_FIFO */
-                C2I_FIFO[C2I_in] = gCAN_RX_Element;
-                C2I_count++;
-                C2I_in++;
-                if(C2I_in >= C2I_FIFO_SIZE)C2I_in = 0;
+                gCan2I2c_FIFO.fifo_pointer[gCan2I2c_FIFO.fifo_in] = gCAN_RX_Element;
+                gCan2I2c_FIFO.fifo_count++;
+                gCan2I2c_FIFO.fifo_in++;
+                if(gCan2I2c_FIFO.fifo_in >= C2I_FIFO_SIZE)gCan2I2c_FIFO.fifo_in = 0;
             }
             break;
         default:
@@ -137,8 +140,6 @@ void I2C_INST_IRQHandler(void)
 {
     bool processFlag;
     switch (DL_I2C_getPendingInterrupt(I2C_INST)) {
-        case DL_I2C_IIDX_TARGET_TX_DONE:
-            break;
         case DL_I2C_IIDX_TARGET_START:
             /* Flush TX FIFO to refill it */
             DL_I2C_flushTargetTXFIFO(I2C_INST);
@@ -146,30 +147,40 @@ void I2C_INST_IRQHandler(void)
             gTxCount = 0;
             break;
         case DL_I2C_IIDX_TARGET_RXFIFO_TRIGGER:
+#ifdef I2C_TRANSPARENT     /* I2C Transparent transmission */
+            /* Store received data in buffer */
+            while (DL_I2C_isTargetRXFIFOEmpty(I2C_INST) != true)
+            {
+                /* Returns true when the I2C group is full */
+                getI2CRxMsg_target_transparent(gI2CReceiveGroup);
+            }
+#else       /* I2C Protocol transmission */
             /* Store received data in buffer */
             while (DL_I2C_isTargetRXFIFOEmpty(I2C_INST) != true)
             {
                 processFlag = getI2CRxMsg_target(gI2CReceiveGroup);
-                if(ItoC_count >= ItoC_FIFO_SIZE)
+                if(gI2c2Can_FIFO.fifo_count >= ItoC_FIFO_SIZE)
                 {
                     /* When the I2C is overloaded, stop receiving messages */
                     processFlag = false;
                     /* Overload handle*/
-                    __BKPT(0);
+                    //__BKPT(0);
                 }
                 if(processFlag == true)
                 {
                     /*Convert the received message to gI2C_RX_Element */
-                    processI2CRxMsg(gI2CReceiveGroup, &gI2C_RX_Element);
+                    processI2CRxMsg_target(gI2CReceiveGroup, &gI2C_RX_Element);
                     /* Store gI2C_RX_Element into ItoC_FIFO
                      * Update indicator variable of ItoC_FIFO */
-                    ItoC_FIFO[ItoC_in] = gI2C_RX_Element;
-                    ItoC_count++;
-                    ItoC_in++;
-                    if(ItoC_in >= ItoC_FIFO_SIZE)
-                        ItoC_in = 0;
+                    gI2c2Can_FIFO.fifo_pointer[gI2c2Can_FIFO.fifo_in] = gI2C_RX_Element;
+                    gI2c2Can_FIFO.fifo_count++;
+                    gI2c2Can_FIFO.fifo_in++;
+                    if(gI2c2Can_FIFO.fifo_in >= ItoC_FIFO_SIZE)
+                        gI2c2Can_FIFO.fifo_in = 0;
+                    processFlag = false;
                 }
             }
+#endif
             break;
         case DL_I2C_IIDX_TARGET_TXFIFO_TRIGGER:
             /* Fill TX FIFO if there are more bytes to send */
@@ -187,11 +198,43 @@ void I2C_INST_IRQHandler(void)
                     ;
             }
             break;
+        case DL_I2C_IIDX_TARGET_TX_DONE:
+            break;
+        case DL_I2C_IIDX_TARGET_RX_DONE:
+            break;
         case DL_I2C_IIDX_TARGET_STOP:
-            /* Toggle LED to indicate successful RX or TX */
             if(gI2CTxflag == true)
             {
+                /* For Tx done, clear gI2CTxflag*/
                 gI2CTxflag = false;
+            }
+            else
+            {
+#ifdef I2C_TRANSPARENT     /* I2C Transparent transmission */
+                /* For Transparent Rx done, receive the message */
+                processFlag = true;
+                if(gI2c2Can_FIFO.fifo_count >= ItoC_FIFO_SIZE)
+                {
+                    /* When the I2C is overloaded, stop receiving messages */
+                    processFlag = false;
+                    /* Overload handle*/
+                    //__BKPT(0);
+                }
+                if(processFlag == true)
+                {
+                    /*Convert the received message to gI2C_RX_Element */
+                    processI2CRxMsg_target_transparent(gI2CReceiveGroup, &gI2C_RX_Element);
+                    /* Store gI2C_RX_Element into ItoC_FIFO
+                     * Update indicator variable of ItoC_FIFO */
+                    gI2c2Can_FIFO.fifo_pointer[gI2c2Can_FIFO.fifo_in] = gI2C_RX_Element;
+                    gI2c2Can_FIFO.fifo_count++;
+                    gI2c2Can_FIFO.fifo_in++;
+                    if(gI2c2Can_FIFO.fifo_in >= ItoC_FIFO_SIZE)
+                        gI2c2Can_FIFO.fifo_in = 0;
+                    processFlag = false;
+                    gGetI2cRxMsg_Count = 0;
+                }
+#endif
             }
             DL_GPIO_togglePins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);
             break;

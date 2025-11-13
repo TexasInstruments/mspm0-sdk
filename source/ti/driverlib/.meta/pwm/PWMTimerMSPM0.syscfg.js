@@ -40,6 +40,7 @@
 /* get Common /ti/driverlib utility functions */
 let Common = system.getScript("/ti/driverlib/Common.js");
 let EVENT = system.getScript("/ti/driverlib/EVENT.syscfg.js");
+let PWMCommon = system.getScript("/ti/driverlib/pwm/PWM.common.js");
 
 /*
  *  ======== _getPinResources ========
@@ -1060,24 +1061,7 @@ const BehaviorOptions = [
         {name: "HIGHZ", displayName: "High-Z"},
 ];
 
-let allEventOptions = [
-    { name: "ZERO_EVENT", displayName: "Zero event", description: "PWM Timer reaches zero" },
-    { name: "LOAD_EVENT", displayName: "Load event", description: "PWM Timer loads Timer Count Value" },
-    { name: "FAULT_EVENT", displayName: "Fault event", reason: "Fault not Capable" },
-    { name: "OVERFLOW_EVENT", displayName: "Overflow event" },
-    { name: "CC0_DN_EVENT", displayName: "Channel 0 capture or compare down event", reason: "Channel Not In Use" },
-    { name: "CC0_UP_EVENT", displayName: "Channel 0 capture or compare up event", reason: "Channel Not In Use" },
-    { name: "CC1_DN_EVENT", displayName: "Channel 1 capture or compare down event", reason: "Channel Not In Use" },
-    { name: "CC1_UP_EVENT", displayName: "Channel 1 capture or compare up event", reason: "Channel Not In Use" },
-    { name: "CC2_DN_EVENT", displayName: "Channel 2 capture or compare down event", reason: "Channel Not In Use" },
-    { name: "CC2_UP_EVENT", displayName: "Channel 2 capture or compare up event", reason: "Channel Not In Use" },
-    { name: "CC3_DN_EVENT", displayName: "Channel 3 capture or compare down event", reason: "Channel Not In Use" },
-    { name: "CC3_UP_EVENT", displayName: "Channel 3 capture or compare up event", reason: "Channel Not In Use" },
-    { name: "CC4_DN_EVENT", displayName: "Channel 4 capture or compare down event", reason: "Channel Not In Use" },
-    { name: "CC4_UP_EVENT", displayName: "Channel 4 capture or compare up event", reason: "Channel Not In Use" },
-    { name: "CC5_DN_EVENT", displayName: "Channel 5 capture or compare down event", reason: "Channel Not In Use" },
-    { name: "CC5_UP_EVENT", displayName: "Channel 5 capture or compare up event", reason: "Channel Not In Use" },
-];
+
 
 function getTimerClockSourceFreq(inst) {
     let timerClockFreq = 0;
@@ -1100,50 +1084,9 @@ function getTimerClockSourceFreq(inst) {
    return timerClockFreq;
 }
 
-function getEventOptions(inst)
-{
-    let options = [];
-    //let pubs = system.modules["/ti/driverlib/EVENT"].$static.channel2Pub;
-    for(let option of allEventOptions){
-        options.push({name: option["name"], displayName: option["displayName"]});
-    }
 
-    if(!inst.fourChannelCapable) {
-        options = options.filter( (el) => !el.name.match("CC2|3") );
-        if(!inst.timerACapable) {
-             options.splice(2,1); // remove fault
-        }
-    }
-    if(!Common.hasTimerA()) {
-        options = options.filter( (el) => !el.name.match("CC4|5") );
-    }
-    return options;
-}
 
-function getDisabledEvents(inst)
-{
-    let allOptions = allEventOptions;
 
-    if(!inst.fourChannelCapable) {
-        allOptions = _.filter( allOptions, (el) => !el.name.match("CC2|3") );
-    }
-
-    let channels = [0,1,2,3];
-    for (let cc of inst.ccIndex) {
-        // remove the channels that are active, since these are not disabled
-        channels.splice(channels.indexOf(cc),1);
-    }
-
-    var str = "CC"
-    if(channels.length != 0) {
-        for (let chan of channels){
-            str += chan + '|';
-        }
-        // remove last '|' before matching
-        return allOptions.filter( (el) => el.name.match(str.slice(0,-1)) );
-    }
-    return [];
-}
 
 function getDisabledCCIndexCmplOptions(inst)
 {
@@ -2634,8 +2577,8 @@ Timer clock prescale set to 4\n
                     description: "Specifies which interrupts are to be set",
                     longDescription: `Specifies the timer events that are to trigger an interrupt`,
                     default: [],
-                    options: getEventOptions,
-                    getDisabledOptions: getDisabledEvents,
+                    options: PWMCommon.getEventOptions,
+                    getDisabledOptions: PWMCommon.getDisabledEvents,
                     onChange: (inst, ui) => {
                         onChangeResetProfile(inst, ui);
                         updateGUI_Interrupts(inst, ui);
@@ -2678,8 +2621,8 @@ Timer clock prescale set to 4\n
                     longDescription: `Selects all possible timer Events that will create an Event 1 condition`,
                     hidden: true,
                     default: [],
-                    options: getEventOptions,
-                    getDisabledOptions: getDisabledEvents,
+                    options: PWMCommon.getEventOptions,
+                    getDisabledOptions: PWMCommon.getDisabledEvents,
                     onChange: onChangeResetProfile
                 },
                 {
@@ -2706,8 +2649,8 @@ Timer clock prescale set to 4\n
                     longDescription: `Selects all possible timer Events that will create an Event 2 condition`,
                     hidden: true,
                     default: [],
-                    options: getEventOptions,
-                    getDisabledOptions: getDisabledEvents,
+                    options: PWMCommon.getEventOptions,
+                    getDisabledOptions: PWMCommon.getDisabledEvents,
                     onChange: onChangeResetProfile
                 },
                 {

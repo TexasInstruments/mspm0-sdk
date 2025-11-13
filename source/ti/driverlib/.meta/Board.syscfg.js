@@ -179,7 +179,7 @@ else if(Common.isDeviceFamily_PARENT_MSPM0L210X()){
 /* MSPM0GX218_GX207 specific options */
 else if(Common.isDeviceFamily_PARENT_MSPM0GX218_GX207()){
     MasterOrder = [
-        "SYSCTL", "PWM", "QEI", "CAPTURE", "COMPARE", "TIMER", "IWDT", "I2C", "i2cSMBUS", "UART", "uartLIN",
+        "SYSCTL", "PWM", "QEI", "CAPTURE", "COMPARE", "TIMER", "TIMERB", "IWDT", "I2C", "i2cSMBUS", "UART", "uartLIN",
         "SPI", "ADC12", "COMP", "VREF", "EVENT", "DMA",
         "GPIO", "AESADV", "CRCP", "RTCB", "SYSTICK", "DAC12", "WWDT", "MATHACL", "MCAN"
     ];

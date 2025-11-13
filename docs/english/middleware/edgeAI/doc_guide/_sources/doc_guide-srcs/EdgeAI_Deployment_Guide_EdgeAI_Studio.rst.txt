@@ -1,0 +1,300 @@
+Deploying Machine Learning Models on TI MSPM0 Microcontrollers Using EdgeAI Studio GUI Tools
+============================================================================================
+
+This guide provides a step-by-step overview of how to easily deploy machine learning models on TI's MSPM0 microcontrollers using TI EdgeAI Studio within few clicks.
+
+Table of Contents
+-----------------
+
+1. `Introduction <#introduction>`__
+2. `Environment Setup and Installation <#environment-setup-and-installation>`__
+3. `Methods for Data Collection <#methods-for-data-collection>`__
+4. `Model Training <#model-training>`__
+5. `Deploying to TI MSPM0's Hardware <#deploying-to-ti-mspm0s-hardware>`__
+6. `Summary <#summary>`__
+7. `References <#references>`__
+
+1. Introduction
+---------------
+
+Machine learning on MSPM0 devices enables intelligent edge computing applications with minimal power consumption. The MSPM0 microcontroller family from Texas Instruments combines ultra-low-power operation with processing capabilities suitable for running inference on machine learning models.
+
+This guide provides a simple workflow for getting deep learning model up and running on TI's MSPM0 microcontrollers. The steps covered include:
+
+1. Complete grounds-up walk through of tool installation and environment setup
+2. Getting started with EdgeAI Studio
+3. Data Capture
+4. Model Selection
+5. Training Models on EdgeAI Studio
+6. Trained model export
+7. Compilation of the trained model to an executable Cortex-M0+ object code library (*.h, *.a) that can run on an MSPM0 microcontroller using TI's neural network compiler for MCUs
+8. Integration of the exported compiled model into a software project for an MSPM0 microcontroller
+
+1.1 Who This Document is For
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This document is focused on developers seeking to deploy TI provided machine learning models to affordable microcontrollers with the goal of being able to run inferences at the edge. It focuses on TI provided GUI based tool, and is intended to be used by developers which need guidance on how to leverage TI's tools to efficiently quantize and compile models for TI MSPM0 MCUs and integrate the models into an embedded software application.
+
+This document also describes on front-end aspect of the machine learning workflow, such as data gathering. If you have your own dataset and wish to train and deploy TI provided model, this document will provide all of the information you need to get started quickly.
+
+1.2 Target Hardware
+~~~~~~~~~~~~~~~~~~~
+
+This guide targets deployment of models onto TI's MSPM0 microcontrollers which are based on the Arm Cortex-M0+ CPU core. Variants are available in this family with 24, 32, and 80MHz CPU performance. In the example discussed in this guide, the MSPM0G5187 microcontroller will be used to execute the inference with the trained model. The MSPM0G5187 microcontroller includes an 80MHz Arm CPU, 128kB of flash memory, 32kB of SRAM memory and TI NPU hardware accelerator, and is available on the easy-to-use `LP-MSPM0G5187 <https://www.ti.com/tool/LP-MSPM0G5187>`__ TI LaunchPad hardware development kit.
+
+1.3 EdgeAI Studio: Model Composer
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Edge AI Studio is a collection of graphical and command line tools designed to accelerate edge AI development on TI processors and microcontrollers. Whether developing a proof of concept using a model from the TI Model Zoo or leveraging your own model, `EdgeAI-Studio <https://www.ti.com/tool/download/EDGE-AI-STUDIO>`__ provides the tooling you need:
+
+• Model Composer is a fully integrated solution for collecting and annotating data, training and compiling models for deployment on a live development platform. Model Composer hosts a variety of example solutions complete with demonstration data sets to enable testing the toolchain without importing any of your own data. Model composer also supports Bring-Your-Own-Data (BYOD), enabling the re-training of models from the TI Model Zoo with custom data to improve accuracy and performance. Model Composer is available as a cloud-based application for vision-based tasks and as both a cloud and desktop application for real-time control tasks.
+
+• Model Analyzer is a free online service for vision applications that allows for the evaluation of accelerated deep learning inference on remotely accessed development boards. With Model analyzer it only takes minutes to login, deploy a model and obtain a variety of performance benchmarks.
+
+• Model Maker is a command-line end-to-end model development tool. Model Maker includes features for dataset handling, model training and compilation. Expert users can use these tools to leverage their own models
+
+.. figure:: images/edge-ai-studio-workflow.png
+   :alt: EdgeAI Studio
+
+   EdgeAI Studio
+
+The six steps required to take a machine learning project from start to finish are shown in the figure below, from data gathering through to compilation and deployment.
+
+.. figure:: images/ml_workflow.png
+   :alt: Machine Learning Workflow
+
+   Machine Learning Workflow
+
+This document will focus on EdgeAI Studio GUI based tools for - Data Capture - Model training - Model Compilation, and - Deployment
+
+Example Dataset and Model
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This guide demonstrates a simple introduction into TI's edge AI toolchain and products. Our software is meant as a starting place and engineering tool not as production ready examples. This example is a generic time series "Hello World" type of demo that is meant to introduce the workflow of data collection, training, compilation, and execution of an AI model. The entire workflow of this demo was created using Model Composer, a GUI-based tool that is part of the Edge AI Studio toolset.
+
+.. figure:: images/model-composer-workflow.png
+   :alt: Model Composer Workflow
+
+   Model Composer Workflow
+
+**Dataset** This guide demonstrates using a prepared example dataset of three different periodic signals at varying amplitudes and noise levels: sine wave, square wave, and sawtooth.
+
+.. figure:: images/sine-wave.png
+   :alt: Sine Wave
+
+   Sine Wave
+
+.. figure:: images/sawtooth-wave.png
+   :alt: Sawtooth Wave
+
+   Sawtooth Wave
+
+.. figure:: images/square-wave.png
+   :alt: Square Wave
+
+   Square Wave
+
+2. Environment Setup and Installation
+-------------------------------------
+
+Getting started with Model Composer is easy. This section will explain the process for installing all of the tools required to train a deep learning model and get it up and running on a MSPM0 MCU.
+
+2.1 Required Software Tools
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The table below lists all of the tools used in this guide. Step by step setup instructions are also provided below. Versions for the tools are defined where relevant, with a disposition of "required" (implies it is mandatory to use the stated version of the tool), "minimum" (implies that this is the minimum required version), or "tested with" which implies that this workflow was evaluated with these versions but it is expected that other versions (especially newer versions) may work without issue as well.
+
++-------------------------------+------------------------+-----------------------------------------------------+-------------------------------------------------------------------------------------------+
+| Tool                          | Tool Version           | Purpose                                             | Where to obtain                                                                           |
++===============================+========================+=====================================================+===========================================================================================+
+| Model Composer                | 1.5.0 (minimum)        | EdgeAI Studio GUI tool                              | Available from `EdgeAI-Studio Link <https://www.ti.com/tool/download/EDGE-AI-STUDIO>`__   |
++-------------------------------+------------------------+-----------------------------------------------------+-------------------------------------------------------------------------------------------+
+| TI MSPM0-SDK                  | 2.08.00.0x(minimum)    | Software development kit for TI MSPM0 MCUs          | Available from `SDK Link <https://www.ti.com/tool/MSPM0-SDK>`__                           |
++-------------------------------+------------------------+-----------------------------------------------------+-------------------------------------------------------------------------------------------+
+| TI Code Composer Studio IDE   | 20.x.x (tested with)   | Integrated development environment for MSPM0 MCUs   | Available from `CCS Link <https://www.ti.com/tool/CCSTUDIO>`__                            |
++-------------------------------+------------------------+-----------------------------------------------------+-------------------------------------------------------------------------------------------+
+
+2.2 Tool Installation and Configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Follow the steps below to install the tools and configure your environment. Guidance for Microsoft Windows vs. Linux is provided where applicable.
+
+1. **Install Model Composer** The first step in environment setup is to install Model Composer GUI. Obtain Model Composer Studio from TI.com (for Windows) or use the Cloud based GUI and run the respective installer. Model Composer includes the pretrained models (Model-Zoo), datasets and also the TI Neural Network compiler for MCUs, which will be used for model compilation.
+
+2. **Install the TI MSPM0-SDK** Obtain the MSPM0-SDK from TI.com (for Linux or Windows) and run the respective installer, following the instructions provided: `MSPM0-SDK <https://www.ti.com/tool/MSPM0-SDK#downloads>`__ Alternately, the MSPM0-SDK is also available as a Git repository hosted on `GitHub <https://github.com/TexasInstruments/mspm0-sdk>`__ and may be cloned to your machine as shown below:
+
+Linux (Bash):
+
+::
+
+      $ cd ~/
+      $ mkdir ti
+      $ cd ti
+      $ git clone https://github.com/TexasInstruments/mspm0-sdk.git
+
+3. **Install TI Code Composer Studio IDE** Obtain Code Composer Studio from TI.com (for Linux or Windows) and run the respective installer, following the instructions provided: `TI CCS <https://www.ti.com/tool/CCSTUDIO#downloads>`__ Code Composer Studio includes both the integrated development environment (editor, debugger) but also the TI Arm Clang C/C++ compiler, which will be used for model compilation together with the TI Neural Network Compiler for MCUs.
+
+3. Getting Started with Model Composer
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Steps to Use Model Composer:
+
+1. Start Model Composer GUI desktop version or login to `Model Composer Cloud <https://dev.ti.com/modelcomposer/>`__
+2. Click "Example Project", under Task select "Generic Time Series", under Tools select "MCU Analytics Backend v1.2.0", under Sample Dataset select "hello\_world\_example\_dsg". Give the project a name and then click "New Project".
+
+.. figure:: images/mc-home-page.png
+   :alt: Getting Started with Model Composer
+
+   Getting Started with Model Composer
+
+3. Methods for Data Collection
+------------------------------
+
+A large dataset is required for successful machine learning training. A recommended minimum starting place is thousands of quality examples for each classification class. The quality and diversity of the data is critical. TI offers reference designs with automatic class labeling, and software to analyze dataset quality to assist engineers in evaluating edge AI applications.
+
+High-quality data:
+
+-  Sample rate: Sampled well above the Nyquist frequency of the signals of interest
+-  Steady state: Labeled frames can't be transitioning between labeled classes highest resolution available
+
+Data collection: The final AI model can be trained on data that is representative of the final circuit design and real-world application. Lab collected data can be used as a starting place to tune the full signal chain including the model and analog circuit design. In this example we collected three different classes of periodic signal data: sine, square and sawtooth. They are saved into three separate folders.
+
+3.1 Collection Process
+~~~~~~~~~~~~~~~~~~~~~~
+
+Ideally the data is collected through the analog front end and sensor used in the final application. MSPM0 SDK includes an example for data capture. The example Readme is available on MSPM0G5187 MCU to setup a PC to LaunchPad connection for data streaming. The example found at
+
+.. code:: c
+
+    <mspm0 sdk install path>/examples/nortos/LP_MSPM0G5187/edgeAI/time_series_data_capture/ 
+
+which can be used to stream an array of sensor data into a automatically generated GUI on the host PC. Then the data can be exported to CSV
+
+To prototype developers can also use the existing datasets which are available as part of the model composer.
+
+The "Capture" tab is used for data visualization, labeling, and importing. The tabs at the top of the page can be used to iterate through the project. Selecting a file on the left menu brings up a visualization of that data file. Options for rendering are shown on the right side. Additional data can be imported using the "Import Data" button. This button can also be used to import your own dataset when creating a new generic time series project.
+
+.. figure:: images/mc-data-capture.png
+   :alt: Data Capture on Model Composer
+
+   Data Capture on Model Composer
+
+3.2 Data Formats
+~~~~~~~~~~~~~~~~
+
+A dataset must be configured into a dataset folder containing two directories named classes and annotations. The classes directory contains a folder for each classification filled with CSV files of data in each column. Multi-channel classes require multiple data columns. The annotations folder contains three text files instances\_test\_list.txt, instances\_train\_list.txt, and instances\_val\_list.txt. These files are used by model composer to split the dataset into training, testing and validation sets. It is recommended that 50% of the files are in the training list, 30% in the validation, and 20% in the testing list. A visualization of the architecture is shown in figure below
+
+.. figure:: images/data-capture-folder-path.png
+   :alt: Data Capture Folder Path
+
+   Data Capture Folder Path
+
+4. Model Training
+-----------------
+
+This section describes the procedures to upload data, train, and compile models through Edge-AI Model Composer. A command line tool through TinyML Model Maker is available for customers to fine-tune model parameters and modify the models.
+
+Refer to the deployment guide using EdgeAI Studio CLI tools: `Here <./EdgeAI_Deployment_Guide_CLI.html>`__
+
+**Device and Model Selection on Model Composer** Go to the model selection tab by using the link on the top of the page and select target device and model. The slider can be used to select a recommended device or the user can manually select a device. For this example, it is recommend using the MSPM0G5187 that uses TI's neural processing unit (NPU).
+
+.. figure:: images/mc-device-model-selection.png
+   :alt: Model and Device Selection
+   :width: 40.0%
+
+   Model and Device Selection
+
+This demo features four different sizes of generic time series neural network models that can be used for a wide range of time series classification tasks.
+
+.. figure:: images/model-selection.png
+   :alt: Model Selection
+
+   Model Selection
+
+**Preprocessing Options**
+
+Preprocessing generic time series data generally enables neural networks to more accurately classify signals. This process is referred to as feature extraction. Since the goal of the FFT and other operations are to isolate features unique to specific signals of interest.
+
+In "Train" tab, configure the pre-processing parameters before training. There are nine preset configurations and a custom option. All the parameter fields are updated when a preset is selected. User can further adjust the parameters to improve performance. The following drop-down options are given:
+
+-  Preprocessing preset: Choose from a variety of preset configurations.
+-  Transform: This is the transformation applied to the raw time series data.
+
+   • Fast Fourier Transform: (FFT) is used to extract frequency information. FFT sizes supported are all factors of 2. The output size is equal to frame size/2. If this option is chosen, frames to concatenate must be 1.
+
+   • FFT BIN: (takes the FFT output and combines it into a number of bins equal to the feature size per frame parameter)
+
+   • RAW (Raw time series data)
+-  Frame Size: (number of input samples)
+-  Feature size per frame: (number of bins for each frame of data, more bins give higher accuracy at the cost of a larger model)
+-  Frames to Concatenate: Concatenates the bins of past input frames in a buffer. This allows the model to detect time varying changes across the frequency spectrum. More frames give the model more context at the cost of a larger model.
+-  Channels: Number of sensor channels.
+
+-  Once the desired options are selected click train. The selected model goes through the training and validation data. The results are displayed after training is complete.
+-  The training results displays once the model optimization is complete
+
+.. figure:: images/mc-train.png
+   :alt: Model Training on Model Composer
+
+   Model Training on Model Composer
+
+-  A confusion matrix is also generated from the test dataset to identify which classes the neural network can confuse. In this simple example case, 100% of the data files were correctly identified.
+
+.. figure:: images/mc-train-matrix.png
+   :alt: Training Confusion Matrix
+
+   Training Confusion Matrix
+
+-  TI uses quantization aware training that first trains the model in full precision, then quantizes the model parameters and re-trains the model. This approach maintains a high accuracy and significantly reduced model size.
+
+5. Deploying to TI MSPM0's Hardware
+-----------------------------------
+
+5.1 TI Neural Network Compiler
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This tool is utilized in the backend of the software to generate optimized executable code based on the processor you selected. If using a device with TI neural processing unit (NPU) the generated function call automatically utilizes the accelerator in parallel to the main MCU core. This option can be disabled by choosing the "forced soft NPU preset" under compilation parameters.
+
+For a complete detailed description of TI's neural network compiler for MCUs, including additional configuration options and guidelines for use, visit the `TI NNC for MCU's User's Guide <https://software-dl.ti.com/mctools/nnc/mcu/users_guide/>`__.
+
+.. figure:: images/mc-deploy.png
+   :alt: Deployment on Model Composer
+
+   Deployment on Model Composer
+
+5.2 Model Execution
+~~~~~~~~~~~~~~~~~~~
+
+The Deploy tab provides the option to export the compiled model for deploying onto the target device or exporting a trained model for further analysis by other engineering tools. The compiled model folder contains all the necessary configuration and code to run the model using the MSPM0 SDK 2.08.00 or later SDK.
+
+.. figure:: images/mc-artefacts.png
+   :alt: Compiled Artefacts
+
+   Compiled Artefacts
+
+Steps to import trained model into CCS project:
+
+1. Open Code Composer Studio and navigate to File-> import project ->. Select this folder **"SDK\_INSTALL\_PATH/examples/nortos/LP\_MSPM0G5187/edgeAI/time\_series\_data\_capture/"**
+2. Import the necessary files from your compiled model download
+
+a. Unzip the compiled model
+b. Copy the artifacts folder into the imported project and overwriting the original files.
+c. Copy the test\_vector.c and user\_input config.h from the golden\_vector directory inside the compiled model directory into your project. These overwrite the original test\_vector and user\_input\_config.h file.
+
+3. Next, rebuild the project.
+4. Connect a MSPM0G5187 LaunchPad. With the device debugger connected, press debug to verify the model feature extraction and neural network.
+
+6. Summary
+----------
+
+The purpose of this demo is to guide customers through Texas Instruments' Edge AI software and hardware capabilities. It is designed as a hands-on exploration tool to demonstrate key features and the development flow. This demo is not intended to represent a real-world industrial production use case, but rather to showcase the foundational elements that developers can build upon for their own applications.
+
+7. References
+-------------
+
+1. `PyTorch Documentation <https://pytorch.org/docs/stable/index.html>`__
+2. `ONNX Format Specification <https://onnx.ai/>`__
+3. `TI Neural Network Compiler for MCUs – User Guide <https://software-dl.ti.com/mctools/nnc/mcu/users_guide/>`__
+4. `MSPM0 SDK – Quick Start Guide <https://www.ti.com/tool/MSPM0-SDK>`__
+5. `TI Code Composer Studio <https://www.ti.com/tool/CCSTUDIO>`__
+6. `tinyml-tensorlab - TI's MCU AI Toolchain <https://github.com/TexasInstruments/tinyml-tensorlab>`__

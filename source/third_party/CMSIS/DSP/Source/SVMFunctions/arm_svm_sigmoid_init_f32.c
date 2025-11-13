@@ -3,11 +3,13 @@
  * Title:        arm_svm_sigmoid_predict_f32.c
  * Description:  SVM Sigmoid Instance Initialization
  *
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: Cortex-M and Cortex-A cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -24,13 +26,22 @@
  * limitations under the License.
  */
 
-#include "arm_math.h"
+#include "dsp/svm_functions.h"
 #include <limits.h>
 #include <math.h>
 
+/**
+  @ingroup groupSVM
+ */
 
 /**
- * @addtogroup groupSVM
+  @defgroup sigmoidsvm Sigmoid SVM
+
+  Sigmoid SVM classifier
+ */
+
+/**
+ * @addtogroup sigmoidsvm
  * @{
  */
 
@@ -50,11 +61,10 @@
  * @param[in]    classes                Array of 2 classes ID
  * @param[in]    coef0                  coeff0 (scikit-learn terminology)
  * @param[in]    gamma                  gamma (scikit-learn terminology)
- * @return none.
  *
  */
 
-void arm_svm_sigmoid_init_f32(arm_svm_sigmoid_instance_f32 *S, 
+ARM_DSP_ATTRIBUTE void arm_svm_sigmoid_init_f32(arm_svm_sigmoid_instance_f32 *S, 
   uint32_t nbOfSupportVectors,
   uint32_t vectorDimension,
   float32_t intercept,
@@ -77,5 +87,5 @@ void arm_svm_sigmoid_init_f32(arm_svm_sigmoid_instance_f32 *S,
 
 
 /**
- * @} end of groupSVM group
+ * @} end of sigmoidsvm group
  */
