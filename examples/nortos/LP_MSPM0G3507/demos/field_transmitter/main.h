@@ -45,4 +45,6 @@ enum status_enum {
     STATUS_CFG_CHANGED
 };
 
+#define VERSION_STR "1.0"
+
 #endif /* MAIN_H_ */

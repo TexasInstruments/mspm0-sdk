@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectSpec>
+    <applicability>
+        <when>
+            <context
+                deviceFamily="ARM"
+                deviceId="Cortex M.MSPM0G3218"
+            />
+        </when>
+    </applicability>
+
+    <project
+        title="customer_secure_code"
+        name="customer_secure_code_LP_MSPM0G3218_nortos_ticlang"
+        configurations="Debug"
+        toolChain="TICLANG"
+        connection="TIXDS110_Connection.xml"
+        device="Cortex M.MSPM0G3218"
+        ignoreDefaultDeviceSettings="true"
+        ignoreDefaultCCSSettings="true"
+        products="MSPM0-SDK;sysconfig"
+        compilerBuildOptions="
+            -I${PROJECT_ROOT}
+            -D__MSPM0G3218__
+            -DEXCLUDE_TRACE
+            -flto
+            -Oz
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/mcuboot/boot/bootutil/include
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/mcuboot/ext/mbedtls-asn1/include
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/mcuboot/ext/
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/boot_manager/ecc/include
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/boot_manager/sha2sw/inc
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/Core/Include
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -gdwarf-3
+            -mcpu=cortex-m0plus
+            -march=thumbv6m
+            -mfloat-abi=soft
+            -mthumb
+        "
+        linkerBuildOptions="
+            -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/boot_manager/lib/ticlang/m0p/bimsupport.a
+            -Wl,--stack_size=256
+            -Wl,--heap_size=128
+            -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/ticlang/m0p/mspm0gx218_gx207/driverlib.a
+            -Wl,--rom_model
+            -Wl,--warn_sections
+            -Wl,--display_error_number
+            -L${CG_TOOL_ROOT}/lib
+            -llibc.a
+        "
+
+        enableSysConfigTool="true"
+        sysConfigBuildOptions="
+            --product ${COM_TI_MSPM0_SDK_INSTALL_DIR}/.metadata/product.json
+            --compiler ticlang
+        "
+
+        sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
+        postBuildStep="
+            ${CG_TOOL_ROOT}/bin/tiarmobjcopy ${ProjName}.out -R .BCRConfig -R .BSLConfig -R .TI.bound* --output-target binary ${ProjName}-bank1-0x20000.bin
+        "
+        description="Customer Secure Code using MCUBoot">
+
+        <property name="buildProfile" value="release"/>
+        <property name="isHybrid" value="true"/>
+        <file path="../flash_map_backend/flash_map_backend.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="flash_map_backend">
+        </file>
+        <file path="../flash_map_backend/flash_map_backend.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="flash_map_backend">
+        </file>
+        <file path="../mcuboot_config/itm_private.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="mcuboot_config">
+        </file>
+        <file path="../mcuboot_config/mcuboot_assert.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="mcuboot_config">
+        </file>
+        <file path="../mcuboot_config/mcuboot_config.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="mcuboot_config">
+        </file>
+        <file path="../mcuboot_config/mcuboot_logging.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="mcuboot_config">
+        </file>
+        <file path="../mcuboot_config/trace.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="mcuboot_config">
+        </file>
+        <file path="../mcuboot_config/trace.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="mcuboot_config">
+        </file>
+        <file path="../sysflash/sysflash.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="sysflash">
+        </file>
+        <file path="../aes_cmac.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../aes_cmac.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../customer_secure_code.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../boot_keys.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../lockable_storage_common.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../lockable_storage_private.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../lockable_storage_public.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../lockable_storage_private.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../hash_verify.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../hash_verify.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../secret.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../secret.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../keystore.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../keystore.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../rollback.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../rollback.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../error_code.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../third_party/mcuboot/boot/bootutil/src/boot_record.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/mcuboot/boot/bootutil/src">
+        </file>
+        <file path="../third_party/mcuboot/boot/bootutil/src/bootutil_misc.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/mcuboot/boot/bootutil/src">
+        </file>
+        <file path="../third_party/mcuboot/boot/bootutil/src/bootutil_priv.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/mcuboot/boot/bootutil/src">
+        </file>
+        <file path="../third_party/mcuboot/boot/bootutil/src/bootutil_public.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/mcuboot/boot/bootutil/src">
+        </file>
+        <file path="../third_party/mcuboot/boot/bootutil/src/caps.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/mcuboot/boot/bootutil/src">
+        </file>
+        <file path="../third_party/mcuboot/boot/bootutil/src/encrypted.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/mcuboot/boot/bootutil/src">
+        </file>
+        <file path="../third_party/mcuboot/boot/bootutil/src/fault_injection_hardening.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/mcuboot/boot/bootutil/src">
+        </file>
+        <file path="../third_party/mcuboot/boot/bootutil/src/fault_injection_hardening_delay_rng_mbedtls.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/mcuboot/boot/bootutil/src">
+        </file>
+        <file path="../third_party/mcuboot/boot/bootutil/src/image_ec.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/mcuboot/boot/bootutil/src">
+        </file>
+        <file path="../third_party/mcuboot/boot/bootutil/src/image_ec256.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/mcuboot/boot/bootutil/src">
+        </file>
+        <file path="../third_party/mcuboot/boot/bootutil/src/image_ed25519.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/mcuboot/boot/bootutil/src">
+        </file>
+        <file path="../third_party/mcuboot/boot/bootutil/src/image_rsa.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/mcuboot/boot/bootutil/src">
+        </file>
+        <file path="../third_party/mcuboot/boot/bootutil/src/image_validate.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/mcuboot/boot/bootutil/src">
+        </file>
+        <file path="../third_party/mcuboot/boot/bootutil/src/loader.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/mcuboot/boot/bootutil/src">
+        </file>
+        <file path="../third_party/mcuboot/boot/bootutil/src/swap_misc.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/mcuboot/boot/bootutil/src">
+        </file>
+        <file path="../third_party/mcuboot/boot/bootutil/src/swap_move.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/mcuboot/boot/bootutil/src">
+        </file>
+        <file path="../third_party/mcuboot/boot/bootutil/src/swap_priv.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/mcuboot/boot/bootutil/src">
+        </file>
+        <file path="../third_party/mcuboot/boot/bootutil/src/swap_scratch.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/mcuboot/boot/bootutil/src">
+        </file>
+        <file path="../third_party/mcuboot/boot/bootutil/src/tlv.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/mcuboot/boot/bootutil/src">
+        </file>
+        <file path="../third_party/mcuboot/ext/mbedtls-asn1/src/asn1parse.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/mcuboot/ext/mbedtls-asn1/src">
+        </file>
+        <file path="../third_party/mcuboot/ext/mbedtls-asn1/src/platform_util.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/mcuboot/ext/mbedtls-asn1/src">
+        </file>
+        <file path="../third_party/mcuboot/ext/msp-crypto/msp_crypto.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/mcuboot/ext/msp-crypto">
+        </file>
+        <file path="../third_party/mcuboot/ext/msp-crypto/msp_crypto.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/mcuboot/ext/msp-crypto">
+        </file>
+        <file path="../third_party/mcuboot/ext/os/os.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/mcuboot/ext/os">
+        </file>
+        <file path="../third_party/mcuboot/ext/os/os_heap.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/mcuboot/ext/os">
+        </file>
+        <file path="../third_party/mcuboot/ext/os/os_malloc.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/mcuboot/ext/os">
+        </file>
+        <file path="../ti/driverlib/dl_flashctl.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
+        </file>
+        <file path="../ti/driverlib/dl_aesadv.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
+        </file>
+        <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../README.html" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="mspm0g3218.cmd" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="startup_mspm0g321x_ticlang.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../customer_secure_code.syscfg" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+    </project>
+</projectSpec>

@@ -49,3 +49,5 @@ extern bool UartFlag;
         ##__VA_ARGS__)
 
 #endif /* SYSTEM_UART_H_ */
+
+#define MAX_STR_LEN_RX 32

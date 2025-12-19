@@ -34,9 +34,9 @@
 
 #include <stdbool.h>
 #include <string.h>
-#include "system/flash.h"
-#include "system/system.h"
-#include "system/uart.h"
+#include "flash.h"
+#include "system.h"
+#include "uart.h"
 
 uint32_t gSysTick = 0;
 bool gMainLoop;
@@ -77,7 +77,7 @@ static struct command commands[] = {
 static enum status_enum help_cmd(char *cmd)
 {
     int i;
-    uart_printf("all command must start with sys \r\n");
+    uart_printf("All commands must start with sys \r\n");
     for (i = 0; i < sizeof(commands) / sizeof(commands[0]); i++) {
         uart_printf("%-10s - 0x%x - %s\r\n", commands[i].name,
             commands[i].function, commands[i].help);

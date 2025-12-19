@@ -64,7 +64,7 @@
             --compiler gcc
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="Show correct wake-up mechanism after SHUTDOWN vs STOP, STANDBY and SLEEP">
+        description="Show correct wake-up mechanism for different power policies after SHUTDOWN vs STOP, STANDBY and SLEEP">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

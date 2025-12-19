@@ -80,6 +80,8 @@ struct id_func_input_map_struct {
     adc_get_reading_func adc_get_reading;
     /** handle uart commands and execute them */
     adc_cmd_func adc_cmd;
+    /** stores the name of the adc driver **/
+    char *adc_driver_name;
 
     /** adc conditioning init function **/
     condition_adc_init_func condition_adc_init;
@@ -109,6 +111,8 @@ struct id_func_output_map_struct {
     output_set_reading_func output_set_reading;
     /** output uart handler **/
     output_cmd_func output_cmd;
+    /** stores the name of the output driver **/
+    char *output_driver_name;
 
     /** init cpu clock **/
     cpu_clock_init_func cpu_clock_init;

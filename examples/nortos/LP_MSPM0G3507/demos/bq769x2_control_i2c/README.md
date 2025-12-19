@@ -1,6 +1,6 @@
 ## Example Summary
 
-This example shows the implementation of using MSPM0 to control BQ769x2 to detect the battery status. After pressing the button connected to PB21, MSPM0 will start communicaiting with BQ769x2 though the I2C port at PA0(SDA) and PA1(SCL).
+This example shows the implementation of using MSPM0 to control BQ769x2 to detect the battery status. After pressing the button connected to PB21, MSPM0 will start communicating with BQ769x2 though the I2C port at PA0(SDA) and PA1(SCL).
 
 The example uses a BQ769x2 which is a battery monitor, but the same framework can be adapted for other similar I2C-based battery management ICs from TI. Please refer to [BQ769x2 Control Based on MSPM0 Through I2C](https://www.ti.com/lit/slaaeb3) app note for more details.
 

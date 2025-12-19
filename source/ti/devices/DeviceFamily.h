@@ -80,6 +80,10 @@ extern "C" {
 #define DeviceFamily_ID_MSPM0L211X      19
 #define DeviceFamily_ID_MSPM0L112X      20
 #define DeviceFamily_ID_MSPM0G352X      21
+#define DeviceFamily_ID_MSPM0G321X      22
+#define DeviceFamily_ID_MSPM0G320X      23
+#define DeviceFamily_ID_MSPM0G121X      24
+#define DeviceFamily_ID_MSPM0G120X      25
 
 /*
  * DeviceFamily_PARENT_XYZ values.
@@ -101,6 +105,7 @@ extern "C" {
 #define DeviceFamily_PARENT_MSPM0G518X          11
 #define DeviceFamily_PARENT_MSPM0L211X_L112X    12
 #define DeviceFamily_PARENT_MSPM0G352X          13
+#define DeviceFamily_PARENT_MSPM0GX218_GX207    14
 
 /*
  * Lookup table that sets DeviceFamily_ID, DeviceFamily_DIRECTORY, and
@@ -235,6 +240,26 @@ extern "C" {
     #define DeviceFamily_DIRECTORY      msp
     #define DeviceFamily_PARENT         DeviceFamily_PARENT_MSPM0L211X_L112X
 
+#elif defined(DeviceFamily_MSPM0G321X) || defined(__MSPM0G3218__)
+    #define DeviceFamily_ID             DeviceFamily_ID_MSPM0G321X
+    #define DeviceFamily_DIRECTORY      msp
+    #define DeviceFamily_PARENT         DeviceFamily_PARENT_MSPM0GX218_GX207
+
+#elif defined(DeviceFamily_MSPM0G320X) || defined(__MSPM0G3207__)
+    #define DeviceFamily_ID             DeviceFamily_ID_MSPM0G320X
+    #define DeviceFamily_DIRECTORY      msp
+    #define DeviceFamily_PARENT         DeviceFamily_PARENT_MSPM0GX218_GX207
+
+#elif defined(DeviceFamily_MSPM0G121X) || defined(__MSPM0G1218__)
+    #define DeviceFamily_ID             DeviceFamily_ID_MSPM0G121X
+    #define DeviceFamily_DIRECTORY      msp
+    #define DeviceFamily_PARENT         DeviceFamily_PARENT_MSPM0GX218_GX207
+
+#elif defined(DeviceFamily_MSPM0G120X) || defined(__MSPM0G1207__)
+    #define DeviceFamily_ID             DeviceFamily_ID_MSPM0G120X
+    #define DeviceFamily_DIRECTORY      msp
+    #define DeviceFamily_PARENT         DeviceFamily_PARENT_MSPM0GX218_GX207
+
 
 #else
     #error "DeviceFamily_XYZ undefined. You must define a DeviceFamily_XYZ!"
@@ -262,6 +287,10 @@ extern "C" {
     + defined(DeviceFamily_MSPM0G518X) \
     + defined(DeviceFamily_MSPM0L211X) \
     + defined(DeviceFamily_MSPM0L112X) \
+    + defined(DeviceFamily_MSPM0G321X) \
+    + defined(DeviceFamily_MSPM0G320X) \
+    + defined(DeviceFamily_MSPM0G121X) \
+    + defined(DeviceFamily_MSPM0G120X) \
     ) > 1
     #error More then one DeviceFamily has been defined!
 #endif

@@ -78,43 +78,43 @@ main.obj: ../main.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-ti_motor_control_bldc_sensored_trap_hall_modules_hal_MSPM0G1507_hal.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/1979/execroot/__main__/source/ti/motor_control_bldc_sensored_trap_hall/modules/hal/MSPM0G1507/hal.c $(SYSCFG_H_FILES)
+ti_motor_control_bldc_sensored_trap_hall_modules_hal_MSPM0G1507_hal.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/12888/execroot/__main__/source/ti/motor_control_bldc_sensored_trap_hall/modules/hal/MSPM0G1507/hal.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-ti_motor_control_bldc_sensored_trap_hall_modules_hall_trap_hall_trap.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/1979/execroot/__main__/source/ti/motor_control_bldc_sensored_trap_hall/modules/hall_trap/hall_trap.c $(SYSCFG_H_FILES)
+ti_motor_control_bldc_sensored_trap_hall_modules_hall_trap_hall_trap.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/12888/execroot/__main__/source/ti/motor_control_bldc_sensored_trap_hall/modules/hall_trap/hall_trap.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-ti_motor_control_bldc_sensored_trap_hall_modules_motor_driver_drv8300_drv8300.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/1979/execroot/__main__/source/ti/motor_control_bldc_sensored_trap_hall/modules/motor_driver/drv8300/drv8300.c $(SYSCFG_H_FILES)
+ti_motor_control_bldc_sensored_trap_hall_modules_motor_driver_drv8300_drv8300.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/12888/execroot/__main__/source/ti/motor_control_bldc_sensored_trap_hall/modules/motor_driver/drv8300/drv8300.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-ti_motor_control_bldc_sensored_trap_hall_modules_motor_driver_drv8311_drv8311.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/1979/execroot/__main__/source/ti/motor_control_bldc_sensored_trap_hall/modules/motor_driver/drv8311/drv8311.c $(SYSCFG_H_FILES)
+ti_motor_control_bldc_sensored_trap_hall_modules_motor_driver_drv8311_drv8311.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/12888/execroot/__main__/source/ti/motor_control_bldc_sensored_trap_hall/modules/motor_driver/drv8311/drv8311.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-ti_motor_control_bldc_sensored_trap_hall_modules_motor_driver_drv8316_drv8316.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/1979/execroot/__main__/source/ti/motor_control_bldc_sensored_trap_hall/modules/motor_driver/drv8316/drv8316.c $(SYSCFG_H_FILES)
+ti_motor_control_bldc_sensored_trap_hall_modules_motor_driver_drv8316_drv8316.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/12888/execroot/__main__/source/ti/motor_control_bldc_sensored_trap_hall/modules/motor_driver/drv8316/drv8316.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-ti_motor_control_bldc_sensored_trap_hall_modules_motor_driver_drv8317_drv8317.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/1979/execroot/__main__/source/ti/motor_control_bldc_sensored_trap_hall/modules/motor_driver/drv8317/drv8317.c $(SYSCFG_H_FILES)
+ti_motor_control_bldc_sensored_trap_hall_modules_motor_driver_drv8317_drv8317.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/12888/execroot/__main__/source/ti/motor_control_bldc_sensored_trap_hall/modules/motor_driver/drv8317/drv8317.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-ti_motor_control_bldc_sensored_trap_hall_modules_motor_driver_drv8323_drv8323.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/1979/execroot/__main__/source/ti/motor_control_bldc_sensored_trap_hall/modules/motor_driver/drv8323/drv8323.c $(SYSCFG_H_FILES)
+ti_motor_control_bldc_sensored_trap_hall_modules_motor_driver_drv8323_drv8323.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/12888/execroot/__main__/source/ti/motor_control_bldc_sensored_trap_hall/modules/motor_driver/drv8323/drv8323.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-ti_motor_control_bldc_sensored_trap_hall_modules_motor_driver_drv8328_drv8328.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/1979/execroot/__main__/source/ti/motor_control_bldc_sensored_trap_hall/modules/motor_driver/drv8328/drv8328.c $(SYSCFG_H_FILES)
+ti_motor_control_bldc_sensored_trap_hall_modules_motor_driver_drv8328_drv8328.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/12888/execroot/__main__/source/ti/motor_control_bldc_sensored_trap_hall/modules/motor_driver/drv8328/drv8328.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-ti_motor_control_bldc_sensored_trap_hall_modules_motor_driver_drv8329_drv8329.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/1979/execroot/__main__/source/ti/motor_control_bldc_sensored_trap_hall/modules/motor_driver/drv8329/drv8329.c $(SYSCFG_H_FILES)
+ti_motor_control_bldc_sensored_trap_hall_modules_motor_driver_drv8329_drv8329.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/12888/execroot/__main__/source/ti/motor_control_bldc_sensored_trap_hall/modules/motor_driver/drv8329/drv8329.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-ti_motor_control_bldc_sensored_trap_hall_modules_motor_driver_drv8353_drv8353.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/1979/execroot/__main__/source/ti/motor_control_bldc_sensored_trap_hall/modules/motor_driver/drv8353/drv8353.c $(SYSCFG_H_FILES)
+ti_motor_control_bldc_sensored_trap_hall_modules_motor_driver_drv8353_drv8353.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/12888/execroot/__main__/source/ti/motor_control_bldc_sensored_trap_hall/modules/motor_driver/drv8353/drv8353.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 

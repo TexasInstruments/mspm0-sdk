@@ -50,7 +50,7 @@
             -llibc.a
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="Get the samples from the configured ADC channel and print them on the console using UART">
+        description="FreeRTOS example demonstrating getting the samples from the configured ADC channel and printing them on the console using UART">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

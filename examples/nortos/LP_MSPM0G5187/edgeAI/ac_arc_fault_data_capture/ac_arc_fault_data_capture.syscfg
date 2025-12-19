@@ -89,11 +89,11 @@ UART1.enabledDMARXTriggers              = "DL_UART_DMA_INTERRUPT_RX";
 UART1.enableFIFO                        = true;
 UART1.rxFifoThreshold                   = "DL_UART_RX_FIFO_LEVEL_ONE_ENTRY";
 UART1.txFifoThreshold                   = "DL_UART_TX_FIFO_LEVEL_3_4_EMPTY";
-UART1.ovsRate                           = "3";
 UART1.$name                             = "UART_DAP";
-UART1.targetBaudRate                    = 115200;
-UART1.peripheral.$assign                = "UC0";
-UART1.peripheral.rxPin.$assign          = "PA11";
+UART1.targetBaudRate                    = 5820000;
+UART1.ovsRate                           = "8";
+UART1.peripheral.$assign                = "UC3";
+UART1.peripheral.rxPin.$assign          = "PA13";
 UART1.peripheral.txPin.$assign          = "PA10";
 UART1.DMA_CHANNEL_TX.$name              = "DMA_CH1";
 UART1.DMA_CHANNEL_TX.addressMode        = "b2f";
@@ -107,6 +107,4 @@ UART1.DMA_CHANNEL_RX.addressMode        = "f2b";
 UART1.DMA_CHANNEL_RX.srcLength          = "BYTE";
 UART1.DMA_CHANNEL_RX.dstLength          = "BYTE";
 UART1.DMA_CHANNEL_RX.peripheral.$assign = "DMA_CH0";
-scripting.suppress("A higher oversampling rate is possible given the target baud rate and UART clock source frequency\\.                 It is recommended to pick a higher oversampling rate to improve tolerance to clock deviation\\.", UART1, "ovsRate");
-
 

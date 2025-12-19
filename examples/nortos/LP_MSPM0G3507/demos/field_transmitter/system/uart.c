@@ -39,10 +39,12 @@
 
 #include "adc.h"
 #include "adc_condition.h"
+#include "identification.h"
+#include "main.h"
 #include "out_condition.h"
 #include "output.h"
-#include "system/system.h"
-#include "system/uart.h"
+#include "system.h"
+#include "uart.h"
 
 static char gUartRxBuffer[32];
 static char UartRxPos = 0;
@@ -51,6 +53,8 @@ static char UartTxPos = 0;
 static char UartTxLen = 0;
 bool UartFlag         = false;
 static enum status_enum help_cmd(char *cmd);
+static enum status_enum version_cmd(char *cmd);
+static bool rxStringAccumulate(char byte);
 
 struct command {
     char *name;
@@ -58,7 +62,7 @@ struct command {
     enum status_enum (*function)(char *cmd);
 };
 
-static struct command commands[6];
+static struct command commands[7];
 #if 0
 static void uart_puts(char *str){
     while(*str != 0)
@@ -92,8 +96,18 @@ void uart_cmd_init(void)
     commands[i].name     = "help";
     commands[i].function = help_cmd;
     commands[i++].help   = "show this message";
+    commands[i].name     = "version";
+    commands[i].function = version_cmd;
+    commands[i++].help =
+        "show information about software and hardware version";
 }
 
+/**
+ * @brief handles help command, showing available commands
+ *
+ * @param[in] cmd pointer of UART input
+ * @return STATUS_OK always
+ */
 static enum status_enum help_cmd(char *cmd)
 {
     int i;
@@ -101,6 +115,37 @@ static enum status_enum help_cmd(char *cmd)
         uart_printf("%-7s - 0x%x - %s\r\n", commands[i].name,
             commands[i].function, commands[i].help);
     }
+    return STATUS_OK;
+}
+
+/**
+ * @brief handles version command, showing current version
+ *
+ * @param[in] cmd pointer of UART input
+ * @return STATUS_OK always
+ */
+static enum status_enum version_cmd(char *cmd)
+{
+    int i;
+    uart_printf("FT Platform compile date/time %s %s\r\n", __DATE__, __TIME__);
+    uart_printf("Version %s\r\n", VERSION_STR);
+
+    uart_printf("ADC driver in use: %s\r\n", gAdcDriverName);
+    uart_printf("Output driver in use: %s\r\n", OutputDriverName);
+
+    extern struct id_func_input_map_struct gIdFuncInputMap[];
+    extern struct id_func_output_map_struct gIdFuncOutputMap[];
+
+    uart_printf("Supported ADC drivers:\r\n");
+    for (i = 0; i < AdcDriverCnt; i++) {
+        uart_printf("  %s\r\n", gIdFuncInputMap[i].adc_driver_name);
+    }
+
+    uart_printf("Supported Output drivers:\r\n");
+    for (i = 0; i < OutputDriverCnt; i++) {
+        uart_printf("  %s\r\n", gIdFuncOutputMap[i].output_driver_name);
+    }
+
     return STATUS_OK;
 }
 
@@ -122,6 +167,34 @@ void uart_handle_cmd(void)
         uart_printf("command not found - try help\r\n");
     }
     memset(gUartRxBuffer, 0, sizeof(gUartRxBuffer));
+}
+
+//! \brief Callback function for GUI HAL. Called when byte is received.
+//!
+//! \param[in] byte is the byte received from GUI Comm interface.
+//!
+//! \return true if end of command string was reached
+static bool rxStringAccumulate(char byte)
+{
+    static uint16_t charCnt = 0;
+    bool end                = false;
+    // gUartRxBuffer[UartRxPos++]
+    if (charCnt >= MAX_STR_LEN_RX) {
+        charCnt = 0;
+    }  // overflow
+    switch (byte) {
+        case '\b':  // backspace  (0x08)
+            if (charCnt > 0) {
+                gUartRxBuffer[UartRxPos--] = '\0';
+                gUartRxBuffer[UartRxPos]   = '\0';
+            }
+            break;
+
+        default:
+
+            break;
+    }
+    return end;
 }
 
 /**
@@ -149,6 +222,7 @@ void UART_CMD_INST_IRQHandler(void)
     switch (DL_UART_Main_getPendingInterrupt(UART_CMD_INST)) {
         case DL_UART_MAIN_IIDX_RX:
             data = DL_UART_Main_receiveData(UART_CMD_INST);
+            rxStringAccumulate(data);  // handling \b chars
             DL_UART_Main_transmitData(UART_CMD_INST, data);
             if (UartRxPos < sizeof(gUartRxBuffer)) {
                 gUartRxBuffer[UartRxPos++] = data;

@@ -41,13 +41,12 @@
 #define LIN_TABLE_INDEX_PID_09 (4)
 #define LIN_TABLE_INDEX_PID_0D (5)
 
-volatile LIN_STATE gStateMachine = LIN_STATE_WAIT_FOR_BREAK;
 volatile bool gSendMessage1      = false;
 volatile bool gSendMessage2      = false;
 volatile bool gDataReceived      = false;
 
 uint8_t gCommanderRXBuffer[LIN_DATA_MAX_BUFFER_SIZE] = {0};
-uint8_t gCommanderTXPacket[] = {0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8};
+uint8_t gCommanderTXPacket[LIN_DATA_MAX_BUFFER_SIZE] = {0x0, 0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7};
 
 static void LIN_processMessage_Rx(void);
 
@@ -74,6 +73,7 @@ int main(void)
 
     NVIC_ClearPendingIRQ(LIN_0_INST_INT_IRQN);
     NVIC_EnableIRQ(LIN_0_INST_INT_IRQN);
+    NVIC_EnableIRQ(TIMER_0_INST_INT_IRQN);
 
     NVIC_EnableIRQ(GPIO_MULTIPLE_GPIOA_INT_IRQN);
 
@@ -83,12 +83,10 @@ int main(void)
         if (gSendMessage1 == true) { /* Send LIN message PID_39 */
             gSendMessage1 = false;
             gDataReceived = false;
-            LIN_Commander_transmitMessage(LIN_0_INST, LIN_TABLE_INDEX_PID_39,
-                gCommanderTXPacket, gCommanderMessageTable);
-
-            /* Increment first and last bytes of the data */
+             /* Increment first and last bytes of the data */
             gCommanderTXPacket[0] += 1;
             gCommanderTXPacket[7] += 1;
+            LIN_Commander_sendPID(LIN_0_INST, LIN_TABLE_INDEX_PID_39, gCommanderTXPacket, gCommanderMessageTable);
 
             /* Toggle LED1 with TX packet */
             DL_GPIO_togglePins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);
@@ -96,8 +94,7 @@ int main(void)
         } else if (gSendMessage2 == true) { /* Send LIN message PID_08 */
             gSendMessage2 = false;
             gDataReceived = false;
-            LIN_Commander_transmitMessage(LIN_0_INST, LIN_TABLE_INDEX_PID_08,
-                gCommanderRXBuffer, gCommanderMessageTable);
+            LIN_Commander_sendPID(LIN_0_INST, LIN_TABLE_INDEX_PID_08, gCommanderTXPacket, gCommanderMessageTable);
         }
     }
 }
@@ -131,6 +128,35 @@ void GROUP1_IRQHandler(void)
     }
 }
 
+
+void LIN_0_INST_IRQHandler(void)
+{
+
+    uint8_t data = 0;
+
+    switch (DL_UART_Extend_getPendingInterrupt(LIN_0_INST)) {
+        case DL_UART_EXTEND_IIDX_RX:
+            /* Process data received from the Responder */
+            data = DL_UART_Extend_receiveData(LIN_0_INST);
+            DL_Timer_stopCounter(TIMER_0_INST);
+            DL_Timer_setLoadValue(TIMER_0_INST, TIMEOUT);
+            LIN_Commander_receiveMessage(LIN_0_INST, data, gCommanderRXBuffer, gCommanderMessageTable);
+            break;
+
+
+#ifdef Transmit_INT
+        case DL_UART_EXTEND_IIDX_TX:
+            LIN_Commander_transmitMessage(LIN_0_INST, gCommanderTXPacket, gCommanderMessageTable);
+            break;
+#endif
+
+        default:
+            break;
+    }
+}
+
+
+
 static void LIN_processMessage_Rx(void)
 {
     /* Message received */
@@ -140,17 +166,4 @@ static void LIN_processMessage_Rx(void)
     DL_GPIO_togglePins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_2_PIN);
 }
 
-void LIN_0_INST_IRQHandler(void)
-{
-    uint8_t data = 0;
-    switch (DL_UART_Extend_getPendingInterrupt(LIN_0_INST)) {
-        case DL_UART_EXTEND_IIDX_RX:
-            /* Process data received from the Responder */
-            data = DL_UART_Extend_receiveData(LIN_0_INST);
-            LIN_Commander_receiveMessage(
-                LIN_0_INST, data, gCommanderRXBuffer, gCommanderMessageTable);
-            break;
-        default:
-            break;
-    }
-}
+

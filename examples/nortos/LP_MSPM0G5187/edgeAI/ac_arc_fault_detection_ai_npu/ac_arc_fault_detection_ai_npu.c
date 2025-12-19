@@ -67,9 +67,6 @@ struct tvmgen_default_outputs tvm_of_map = { (void*) &gOF_Map[0] };
 /* Buffer to hold newly extracted features in 8-bit integer format.*/
 volatile int8_t gNewFeatures[FE_FEATURE_SIZE_PER_FRAME];
 
-/* Buffer for storing intermediate samples during the feature extraction process */
-volatile int16_t gNewFESamples[FE_FEATURE_SIZE_PER_FRAME];
-
 /*Flag set by an ADC interrupt when new sample data is ready to be processed.*/
 volatile bool gCheckADC;
 
@@ -86,33 +83,6 @@ volatile uint8_t gPredPtr;
 /* Running sum of the values in the 'pred' buffer, used for a voting-based
    arc fault detection algorithm.*/
 volatile uint16_t gPredSum;
-
-/* Normalizes and quantizes Q15 features to 8-bit integers.*/
-static void FE_normalise(q15_t * inputBuffer, int8_t * outputBuffer)
-{
-    uint16_t binSize = FE_BIN_SIZE;
-    uint16_t numBins = FE_FEATURE_SIZE_PER_FRAME;
-
-    for(int i = 0; i < numBins; i++)
-    {
-
-        q31_t avg = inputBuffer[i];
-
-        avg = ((int32_t)((avg + tvmgen_default_bias_data[0]) * tvmgen_default_scale_data[0])) >> tvmgen_default_shift_data[0];
-        if(avg > 127)
-        {
-            avg = 127;
-        }
-        else if(avg < -128)
-        {
-            avg = -128;
-        }
-
-
-    outputBuffer[i] = (int8_t)avg;
-    }
-}
-
 
 /* Function to adjust sensitivity of post AI/ML inference tripping */
 int trip_logic(int inf)
@@ -241,9 +211,7 @@ int main(void)
 		adc_q15_scale(newSamples);
 
 		/* Run Feature extraction on the new captured samples */
-		FE_process(newSamples, gNewFESamples);
-
-		FE_normalise(gNewFESamples, gNewFeatures);
+		FE_process(newSamples, gNewFeatures,0);
 
 		/* Shift the existing features by sliding window size and append new features */
 		uint32_t numFeaturestoShift = ((FE_NUM_FRAME_CONCAT - FE_FRAME_SKIP) * (FE_FEATURE_SIZE_PER_FRAME));

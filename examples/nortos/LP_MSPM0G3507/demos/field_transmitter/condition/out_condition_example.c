@@ -57,7 +57,7 @@ static struct command commands[] = {
 static enum status_enum help_cmd(char *cmd)
 {
     int i;
-    uart_printf("all command must start with cout \r\n");
+    uart_printf("All commands must start with cout \r\n");
     for (i = 0; i < sizeof(commands) / sizeof(commands[0]); i++) {
         uart_printf("%-10s - 0x%x - %s\r\n", commands[i].name,
             commands[i].function, commands[i].help);

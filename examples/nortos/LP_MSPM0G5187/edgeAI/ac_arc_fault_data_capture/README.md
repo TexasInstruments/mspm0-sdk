@@ -7,8 +7,8 @@ This example demonstrates the process of capturing timeseries data from MSPM0 de
 | Peripheral | Function | MCU Pin | Launchpad Pin | Launchpad Settings |
 | --- | --- | --- | --- | --- |
 | TIMG0 |  |  |  |  |
-| UC0 | RX Pin | PA11 | Back-Channel UART RXD |  |
-| UC0 | TX Pin | PA10 | Back-Channel UART TXD |  |
+| UC3 | RX Pin | PA13 | Back-Channel UART RXD |  |
+| UC3 | TX Pin | PA10 | Back-Channel UART TXD |  |
 | ADC0 | ADC12 Channel 4 Pin | PB25 | J1_8 |  |
 | ADC0 | ADC12 Channel 2 Pin | PA25 | J1_2 |  |
 | EVENT |  |  |  |  |
@@ -35,7 +35,7 @@ MSPM0 LaunchPad, please visit the LP-MSPM0G5187 User's Guide.
 ## Example Usage
 
 To capture data:
-1. Configure the serial port in EdgeAI Studio. Confirm that the port and baud rate (115200 bps) are selected to match the device's UART baudrate.
+1. Configure the serial port in EdgeAI Studio. Confirm that the port and baud rate (5820000 bps) are selected to match the device's UART baudrate.
 2. Before capturing, check the status bar in EdgeAI studio for the message "**Hardware connected**"
 3. Navigate to the **Capture** tab
     1. Specify the number of samples to capture and a label for the dataset.

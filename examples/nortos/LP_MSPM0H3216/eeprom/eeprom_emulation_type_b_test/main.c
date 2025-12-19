@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021, Texas Instruments Incorporated
+ * Copyright (c) 2021-2025, Texas Instruments Incorporated
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -33,10 +33,11 @@
 #include <ti/eeprom/emulation_type_b/eeprom_emulation_type_b.h>
 #include "ti_msp_dl_config.h"
 
-/* Address in main memory to write to. This is defined in the
- * eeprom_emulation_type_b.h header file. Uncommenting the #define below will
- * overwrite the default #define in the header file. */
-//#define EEPROM_EMULATION_ADDRESS    0x00001400
+/* The starting emulation address is defined in the eeprom_emulation_type_b.h
+ * header file. It is 0x2000. If the example needs to change its location, it is
+ * necessary to define EEPROM_EMULATION_ADDRESS at the project level or change
+ * the value in the header file.
+ */
 
 /* Data and identifier used for test */
 uint16_t var1_id       = 0x0011;
@@ -52,9 +53,10 @@ uint32_t var_data      = 0;
 uint32_t var_data_read = 0;
 
 /* 64bytes data for unexpected case*/
-uint32_t DataArray[16] = {0xABCDEF00, 0x12345678, 0x00FEDCBA, 0x87654321,
-    0xABCDEF00, 0x12345678, 0x00FEDCBA, 0x87654321, 0xABCDEF00, 0x12345678,
-    0x00FEDCBA, 0x87654321, 0xABCDEF00, 0x12345678, 0x00FEDCBA, 0x87654321};
+const uint32_t UnexpectedDataArray[16] = {0xABCDEF00, 0x12345678, 0x00FEDCBA,
+    0x87654321, 0xABCDEF00, 0x12345678, 0x00FEDCBA, 0x87654321, 0xABCDEF00,
+    0x12345678, 0x00FEDCBA, 0x87654321, 0xABCDEF00, 0x12345678, 0x00FEDCBA,
+    0x87654321};
 
 int main(void)
 {
@@ -65,14 +67,21 @@ int main(void)
 
     /*
      *
-     * 1. Test EEPROM_TypeB_init under abnormal conditions
+     * 1. Test EEPROM_TypeB_init with previous unused data present.
      *
      */
-    DL_FlashCTL_programMemoryBlocking64WithECCGenerated(FLASHCTL,
-        EEPROM_EMULATION_ADDRESS, &DataArray[0], 16,
+    DL_FlashCTL_unprotectSector(
+        FLASHCTL, EEPROM_EMULATION_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
+    DL_FlashCTL_eraseMemoryFromRAM(
+        FLASHCTL, EEPROM_EMULATION_ADDRESS, DL_FLASHCTL_COMMAND_SIZE_SECTOR);
+
+    DL_FlashCTL_unprotectSector(
+        FLASHCTL, EEPROM_EMULATION_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
+    DL_FlashCTL_programMemoryBlockingFromRAM64WithECCGenerated(FLASHCTL,
+        EEPROM_EMULATION_ADDRESS, (uint32_t *) &UnexpectedDataArray[0], 16,
         DL_FLASHCTL_REGION_SELECT_MAIN);
     __BKPT(0);
-    /* In memory browser, search the address 0x00001400
+    /* In memory browser, search the address 0x00002000
      * Before EEPROM_TypeB_init, Flash is populated with the following 64-byte irrelevant data:
      * 0xABCDEF00, 0x12345678, 0x00FEDCBA, 0x87654321,
      * 0xABCDEF00, 0x12345678, 0x00FEDCBA, 0x87654321,
@@ -124,13 +133,13 @@ int main(void)
      *      0x0011, 0x0022, 0x0033
      *
      * Flash is as below:
-     *      group1(start address 0x00001400):
+     *      group1(start address 0x00002000):
      *          0x00000000, 0xFFFFFFFF, 0x00000011, 0xAAAA1234,
      *          0x00000022, 0xBBBB4321, 0x00000033, 0xCCCC0000,
      *          0x00000033, 0xDDDDFFFF
-     *      group2(start address 0x00001C00):
+     *      group2(start address 0x00002800):
      *          all erased
-     *      group3(start address 0x00002400):
+     *      group3(start address 0x00003000):
      *          all erased
      *
      * global variables are as below:
@@ -151,12 +160,12 @@ int main(void)
      *      0x0011, 0x0022, 0x0033
      *
      * Flash is as below:
-     *      group1(start address 0x00001400):
+     *      group1(start address 0x00002000):
      *          all erased
-     *      group2(start address 0x00001C00):
+     *      group2(start address 0x00002800):
      *          0x00000000, 0xFFFFFFFF, 0x00000033, 0xDDDDFFFF,
      *          0x00000022, 0xBBBB4321, 0x00000011, 0xAAAA1234
-     *      group3(start address 0x00002400):
+     *      group3(start address 0x00003000):
      *          all erased
      *
      * global variables are as below:
@@ -189,9 +198,9 @@ int main(void)
      *      0x0011, 0x0022, 0x0033, 0x0000, 0x0001, 0x0002, 0x0003
      *
      * Flash is as below:
-     *      group1(start address 0x00001400):
+     *      group1(start address 0x00002000):
      *          all erased
-     *      group2(start address 0x00001C00):
+     *      group2(start address 0x00002800):
      *          0x00000000, 0x00000000, 0x00000033, 0xDDDDFFFF,
      *          0x00000022, 0xBBBB4321, 0x00000011, 0xAAAA1234,
      *          0x00000000, 0x00000000, 0x00000001, 0x00000000,
@@ -199,7 +208,7 @@ int main(void)
      *          ...
      *          0x00000000, 0x0000003E, 0x00000001, 0x0000003E,
      *          0x00000002, 0x0000003E, 0x00000003, 0x0000003E,
-     *      group3(start address 0x00002400):
+     *      group3(start address 0x00003000):
      *          0x00000000, 0xFFFFFFFF, 0x00000003, 0x0000003E,
      *          0x00000002, 0x0000003E, 0x00000001, 0x0000003E,
      *          0x00000000, 0x0000003E, 0x00000011, 0xAAAA1234,
@@ -224,11 +233,11 @@ int main(void)
          *      0x0011, 0x0022, 0x0033, 0x0000, 0x0001, 0x0002, 0x0003
          *
          * Flash is as below:
-         *      group1(start address 0x00001400):
+         *      group1(start address 0x00002000):
          *          all erased
-         *      group2(start address 0x00001C00):
+         *      group2(start address 0x00002800):
          *          all erased
-         *      group3(start address 0x00002400):
+         *      group3(start address 0x00003000):
          *          0x00000000, 0xFFFFFFFF, 0x00000003, 0x0000003E,
          *          0x00000002, 0x0000003E, 0x00000001, 0x0000003E,
          *          0x00000000, 0x0000003E, 0x00000011, 0xAAAA1234,

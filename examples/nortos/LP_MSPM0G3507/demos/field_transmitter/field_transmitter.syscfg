@@ -80,11 +80,11 @@ scripting.suppress("Resource conflict,@@@.+?@@@ is also in use by @@@.+?@@@", GP
 scripting.suppress("Resource conflict,@@@.+?@@@ is also in use by @@@.+?@@@", GPIO1.associatedPins[3], "pin");
 scripting.suppress("Resource conflict,@@@.+?@@@ is also in use by @@@.+?@@@", GPIO1.associatedPins[4], "pin");
 
-GPIO2.$name                          = "GPIO_ID";
-GPIO2.associatedPins[0].$name        = "ID0";
-GPIO2.associatedPins[0].assignedPort = "PORTA";
-GPIO2.associatedPins[0].assignedPin  = "3";
-GPIO2.associatedPins[0].pin.$assign  = "PA3";
+GPIO2.$name                         = "GPIO_ID";
+GPIO2.port                          = "PORTA";
+GPIO2.associatedPins[0].$name       = "ID0";
+GPIO2.associatedPins[0].assignedPin = "4";
+GPIO2.associatedPins[0].pin.$assign = "PA4";
 
 GPIO3.$name                                       = "GPIO_DAC";
 GPIO3.associatedPins.create(3);
@@ -101,11 +101,10 @@ GPIO3.associatedPins[2].direction                 = "INPUT";
 GPIO3.associatedPins[2].pin.$assign               = "PA15";
 scripting.suppress("Resource conflict,@@@.+?@@@ is also in use by @@@.+?@@@", GPIO3.associatedPins[0], "pin");
 
-GPIO4.$name                         = "GPIO_ADC";
+GPIO4.$name                   = "GPIO_ADC";
 GPIO4.associatedPins.create(2);
-GPIO4.associatedPins[0].$name       = "ADC_CS";
-GPIO4.associatedPins[1].$name       = "ADC_RIDGE_SWITCH_CONTROL";
-GPIO4.associatedPins[1].pin.$assign = "PA25";
+GPIO4.associatedPins[0].$name = "ADC_CS";
+GPIO4.associatedPins[1].$name = "ADC_BRIDGE_SWITCH_CONTROL";
 
 SPI1.$name                      = "SPI_0";
 SPI1.enabledInterrupts          = ["RX"];
@@ -113,10 +112,10 @@ SPI1.frameFormat                = "MOTO3";
 SPI1.targetBitRate              = 10000000;
 SPI1.rxFifoThreshold            = "DL_SPI_RX_FIFO_LEVEL_ONE_FRAME";
 SPI1.txFifoThreshold            = "DL_SPI_TX_FIFO_LEVEL_ONE_FRAME";
+SPI1.misoPinConfig.enableConfig = true;
 SPI1.peripheral.sclkPin.$assign = "PA11";
 SPI1.peripheral.mosiPin.$assign = "PA9";
 SPI1.peripheral.misoPin.$assign = "PA10";
-SPI1.misoPinConfig.enableConfig = true;
 
 SPI2.$name                                    = "SPI_1";
 SPI2.targetBitRate                            = 10000000;

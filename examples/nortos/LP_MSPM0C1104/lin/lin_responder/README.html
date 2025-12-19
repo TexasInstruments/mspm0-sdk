@@ -35,7 +35,7 @@
 <div id="content">
   <h1>Readme</h1>
 <h2 id="example-summary">Example Summary</h2>
-<p>This example configures the UART as a LIN Responder, and demonstrates basic transmit and receive of LIN 2.0 packets using enhanced checksum. Additionally, the example has the ability to automatically reconfigure baud rate if the commander sends data at a rate within a 15% difference of what the responder expects. LIN is a feature only usable with a UART Extend instance.</p>
+<p>This example configures the UART as a LIN Responder, and demonstrates basic transmit and receive of LIN 2.0 packets using enhanced checksum. Additionally, the example has the ability to automatically reconfigure baud rate if the commander sends data at a rate within a 15% difference of what the responder expects. LIN is a feature only usable with a UART Extend instance. This example is provided for reference purposes only.</p>
 <p><strong>Note</strong>: Example requires Rev E3 or later of the MSPM0C1104 LaunchPad.</p>
 <h2 id="peripherals-pin-assignments">Peripherals &amp; Pin Assignments</h2>
 <table>
@@ -174,7 +174,7 @@
 <li>Network Analyzer GND -&gt; BoosterPack GND</li>
 <li>Network Analyzer LINbus -&gt; BoosterPack LIN_TERM</li>
 </ul>
-<p>The LIN responder is configured to run at 32MHz at 19200 baud. These settings can be updated in SysConfig. If desired, an automatic baud rate synchronizer can be disabled, since it is enabled by default. This feature uses the sync field to determine a new baud rate given the responder receives data at a rate different than what it is expecting. The feature has a 15% tolerance. To turn off the automatic baud rate synchronization, find line 56 in “lin_config.h” and set “AUTO_BAUD_ENABLED” to false.</p>
+<p>The LIN responder is configured to run at 32MHz at 19200 baud. These settings can be updated in SysConfig. If desired, an automatic baud rate synchronizer can be disabled, since it is enabled by default. This feature uses the sync field to determine a new baud rate given the responder receives data at a rate different than what it is expecting. The feature has a 15% tolerance. To turn off the automatic baud rate synchronization, in “lin_config.h”, set “AUTO_BAUD_ENABLED” to false. The responder can transmit data either in polling mode or interrupt mode.</p>
 <p>Compile, load and run the example.</p>
 <p>Send the LIN 2.0 packets with enhanced checksum using the LIN Commander/Network Analyzer. The list of acceptable PID commands are:</p>
 <ul>

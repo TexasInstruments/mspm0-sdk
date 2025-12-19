@@ -35,7 +35,7 @@
 <div id="content">
   <h1>Readme</h1>
 <h2 id="example-summary">Example Summary</h2>
-<p>Configures different power policies based on the configuration of two input pins. Which allows user to prevent the device to indefinately stay in SHUTDOWN mode since the serial wire debug (SWD) remain locked while the device is in SHUTDOWN mode.</p>
+<p>Configures different power policies based on the configuration of two input pins. Which allows user to prevent the device to indefinitely stay in SHUTDOWN mode since the serial wire debug (SWD) remain locked while the device is in SHUTDOWN mode.</p>
 <p>After entering SHUTDOWN mode, the device will exit when a high level is detected on the wake-up pin. Then it will toggle LED2 for as many times as it has exited SHUTDOWN mode before (i.e. LED2 will toggle once the first time it wakes up, two times the second time it wakes-up and so on).</p>
 <p>If a different power policy is selected via the configuration input pnis. The device will only remain in the selected power policy but will not wake-up via wake-up pin</p>
 <p>The table below shows the power policy to be configured based on configuration input configuration.</p>

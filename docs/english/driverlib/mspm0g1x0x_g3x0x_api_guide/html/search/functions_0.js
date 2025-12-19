@@ -1262,6 +1262,7 @@ var searchData=
   ['dl_5fsysctl_5fenablesleeponexit',['DL_SYSCTL_enableSleepOnExit',['../group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#gaf9e752083d5fdc113ea0f41e3986d21e',1,'dl_sysctl_mspm0g1x0x_g3x0x.h']]],
   ['dl_5fsysctl_5fenablesysoscfcl',['DL_SYSCTL_enableSYSOSCFCL',['../group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#ga8209173a763a90618c126b4f3a0a533a',1,'dl_sysctl_mspm0g1x0x_g3x0x.h']]],
   ['dl_5fsysctl_5fenablesysoscfclexternalresistor',['DL_SYSCTL_enableSYSOSCFCLExternalResistor',['../group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#ga3974b94a8e546a7d399b77a90657f680',1,'dl_sysctl_mspm0g1x0x_g3x0x.h']]],
+  ['dl_5fsysctl_5fenablesyspll',['DL_SYSCTL_enableSYSPLL',['../group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#ga5e5fb73f25a0c077672a65d46cfed162',1,'dl_sysctl_mspm0g1x0x_g3x0x.h']]],
   ['dl_5fsysctl_5fenablewritelock',['DL_SYSCTL_enableWriteLock',['../group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#gae0b1c86e5a0be32ac2238c2a0e2540b2',1,'dl_sysctl_mspm0g1x0x_g3x0x.h']]],
   ['dl_5fsysctl_5fgetborthreshold',['DL_SYSCTL_getBORThreshold',['../group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#gade6cc0ae8994808608697159762f0e1a',1,'dl_sysctl_mspm0g1x0x_g3x0x.h']]],
   ['dl_5fsysctl_5fgetclockstatus',['DL_SYSCTL_getClockStatus',['../group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#gabc4dead61fdff7cac031224790efb999',1,'dl_sysctl_mspm0g1x0x_g3x0x.h']]],

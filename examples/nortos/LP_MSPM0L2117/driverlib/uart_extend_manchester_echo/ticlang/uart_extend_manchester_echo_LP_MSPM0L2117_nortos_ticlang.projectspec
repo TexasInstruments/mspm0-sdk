@@ -48,7 +48,7 @@
             --compiler ticlang
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="UART Extend using Manchester encoding, echo received packet">
+        description="UART Extend instance using Manchester encoding, echo received packet">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

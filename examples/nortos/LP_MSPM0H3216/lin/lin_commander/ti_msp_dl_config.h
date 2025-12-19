@@ -78,19 +78,27 @@ extern "C" {
 
 
 
+/* Defines for TIMER_0 */
+#define TIMER_0_INST                                                     (TIMA0)
+#define TIMER_0_INST_IRQHandler                                 TIMA0_IRQHandler
+#define TIMER_0_INST_INT_IRQN                                   (TIMA0_INT_IRQn)
+#define TIMER_0_INST_LOAD_VALUE                                             (0U)
+
+
+
 /* Defines for LIN_0 */
 #define LIN_0_INST                                                         UART0
 #define LIN_0_INST_FREQUENCY                                            32000000
 #define LIN_0_INST_IRQHandler                                   UART0_IRQHandler
 #define LIN_0_INST_INT_IRQN                                       UART0_INT_IRQn
-#define GPIO_LIN_0_RX_PORT                                                 GPIOA
-#define GPIO_LIN_0_TX_PORT                                                 GPIOA
-#define GPIO_LIN_0_RX_PIN                                         DL_GPIO_PIN_11
-#define GPIO_LIN_0_TX_PIN                                         DL_GPIO_PIN_10
-#define GPIO_LIN_0_IOMUX_RX                                      (IOMUX_PINCM16)
-#define GPIO_LIN_0_IOMUX_TX                                      (IOMUX_PINCM15)
-#define GPIO_LIN_0_IOMUX_RX_FUNC                       IOMUX_PINCM16_PF_UART0_RX
-#define GPIO_LIN_0_IOMUX_TX_FUNC                       IOMUX_PINCM15_PF_UART0_TX
+#define GPIO_LIN_0_RX_PORT                                                 GPIOB
+#define GPIO_LIN_0_TX_PORT                                                 GPIOB
+#define GPIO_LIN_0_RX_PIN                                          DL_GPIO_PIN_8
+#define GPIO_LIN_0_TX_PIN                                          DL_GPIO_PIN_9
+#define GPIO_LIN_0_IOMUX_RX                                      (IOMUX_PINCM19)
+#define GPIO_LIN_0_IOMUX_TX                                      (IOMUX_PINCM20)
+#define GPIO_LIN_0_IOMUX_RX_FUNC                       IOMUX_PINCM19_PF_UART0_RX
+#define GPIO_LIN_0_IOMUX_TX_FUNC                       IOMUX_PINCM20_PF_UART0_TX
 #define LIN_0_BAUD_RATE                                                  (19200)
 #define LIN_0_IBRD_32_MHZ_19200_BAUD                                       (104)
 #define LIN_0_FBRD_32_MHZ_19200_BAUD                                        (11)
@@ -103,36 +111,36 @@ extern "C" {
 /* Port definition for Pin Group GPIO_LIN_ENABLE */
 #define GPIO_LIN_ENABLE_PORT                                             (GPIOB)
 
-/* Defines for USER_LIN_ENABLE: GPIOB.24 with pinCMx 39 on package pin 42 */
-#define GPIO_LIN_ENABLE_USER_LIN_ENABLE_PIN                     (DL_GPIO_PIN_24)
-#define GPIO_LIN_ENABLE_USER_LIN_ENABLE_IOMUX                    (IOMUX_PINCM39)
+/* Defines for USER_LIN_ENABLE: GPIOB.16 with pinCMx 23 on package pin 26 */
+#define GPIO_LIN_ENABLE_USER_LIN_ENABLE_PIN                     (DL_GPIO_PIN_16)
+#define GPIO_LIN_ENABLE_USER_LIN_ENABLE_IOMUX                    (IOMUX_PINCM23)
 /* Port definition for Pin Group GPIO_SWITCHES1 */
 #define GPIO_SWITCHES1_PORT                                              (GPIOA)
 
-/* Defines for USER_SWITCH_1: GPIOA.5 with pinCMx 8 on package pin 11 */
+/* Defines for USER_SWITCH_1: GPIOA.11 with pinCMx 16 on package pin 19 */
 // groups represented: ["GPIO_SWITCHES2","GPIO_SWITCHES1"]
 // pins affected: ["USER_SWITCH_2","USER_SWITCH_1"]
 #define GPIO_MULTIPLE_GPIOA_INT_IRQN                            (GPIOA_INT_IRQn)
 #define GPIO_MULTIPLE_GPIOA_INT_IIDX            (DL_INTERRUPT_GROUP1_IIDX_GPIOA)
-#define GPIO_SWITCHES1_USER_SWITCH_1_IIDX                    (DL_GPIO_IIDX_DIO5)
-#define GPIO_SWITCHES1_USER_SWITCH_1_PIN                         (DL_GPIO_PIN_5)
-#define GPIO_SWITCHES1_USER_SWITCH_1_IOMUX                        (IOMUX_PINCM8)
+#define GPIO_SWITCHES1_USER_SWITCH_1_IIDX                   (DL_GPIO_IIDX_DIO11)
+#define GPIO_SWITCHES1_USER_SWITCH_1_PIN                        (DL_GPIO_PIN_11)
+#define GPIO_SWITCHES1_USER_SWITCH_1_IOMUX                       (IOMUX_PINCM16)
 /* Port definition for Pin Group GPIO_SWITCHES2 */
 #define GPIO_SWITCHES2_PORT                                              (GPIOA)
 
-/* Defines for USER_SWITCH_2: GPIOA.18 with pinCMx 30 on package pin 33 */
-#define GPIO_SWITCHES2_USER_SWITCH_2_IIDX                   (DL_GPIO_IIDX_DIO18)
-#define GPIO_SWITCHES2_USER_SWITCH_2_PIN                        (DL_GPIO_PIN_18)
-#define GPIO_SWITCHES2_USER_SWITCH_2_IOMUX                       (IOMUX_PINCM30)
+/* Defines for USER_SWITCH_2: GPIOA.14 with pinCMx 26 on package pin 29 */
+#define GPIO_SWITCHES2_USER_SWITCH_2_IIDX                   (DL_GPIO_IIDX_DIO14)
+#define GPIO_SWITCHES2_USER_SWITCH_2_PIN                        (DL_GPIO_PIN_14)
+#define GPIO_SWITCHES2_USER_SWITCH_2_IOMUX                       (IOMUX_PINCM26)
 /* Port definition for Pin Group GPIO_LEDS */
 #define GPIO_LEDS_PORT                                                   (GPIOB)
 
-/* Defines for USER_LED_1: GPIOB.16 with pinCMx 23 on package pin 26 */
-#define GPIO_LEDS_USER_LED_1_PIN                                (DL_GPIO_PIN_16)
-#define GPIO_LEDS_USER_LED_1_IOMUX                               (IOMUX_PINCM23)
-/* Defines for USER_LED_2: GPIOB.17 with pinCMx 33 on package pin 36 */
-#define GPIO_LEDS_USER_LED_2_PIN                                (DL_GPIO_PIN_17)
-#define GPIO_LEDS_USER_LED_2_IOMUX                               (IOMUX_PINCM33)
+/* Defines for USER_LED_1: GPIOB.20 with pinCMx 38 on package pin 41 */
+#define GPIO_LEDS_USER_LED_1_PIN                                (DL_GPIO_PIN_20)
+#define GPIO_LEDS_USER_LED_1_IOMUX                               (IOMUX_PINCM38)
+/* Defines for USER_LED_2: GPIOB.24 with pinCMx 39 on package pin 42 */
+#define GPIO_LEDS_USER_LED_2_PIN                                (DL_GPIO_PIN_24)
+#define GPIO_LEDS_USER_LED_2_IOMUX                               (IOMUX_PINCM39)
 
 
 /* clang-format on */
@@ -141,6 +149,7 @@ void SYSCFG_DL_init(void);
 void SYSCFG_DL_initPower(void);
 void SYSCFG_DL_GPIO_init(void);
 void SYSCFG_DL_SYSCTL_init(void);
+void SYSCFG_DL_TIMER_0_init(void);
 void SYSCFG_DL_LIN_0_init(void);
 
 

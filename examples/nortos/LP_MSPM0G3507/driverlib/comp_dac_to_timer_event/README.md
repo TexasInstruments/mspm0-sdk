@@ -3,7 +3,7 @@
 COMP is configured using the 8-bit DAC as positive input, and the external pin
 as negative input. The DAC is set to 1V using VDDA as reference.
 The output of the comparator triggers a timer event. The timer is configured in
-Edge Time Capture mode with a capture window of 1sec.
+Edge Time Capture mode with a capture window of 2 sec.
 At the end of the window, a breakpoint is triggered to check the number of
 detected captures.
 

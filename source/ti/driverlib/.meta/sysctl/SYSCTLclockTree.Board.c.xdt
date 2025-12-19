@@ -100,9 +100,6 @@
 % function printFunction() {
 %  let funcStr = "";
 %  let tempStr = "";
-%     let genFCC = system.getTemplate("/ti/clockTree/templates/fccSource.Board.c.xdt");
-%  tempStr = _.trimEnd(genFCC());
-%  funcStr += tempStr != ""?tempStr + "\n":"";
 %     let genOSC = system.getTemplate("/ti/clockTree/templates/oscillator.Board.c.xdt");
 %  tempStr = _.trimEnd(genOSC("Function"));
 %  funcStr += tempStr != ""?tempStr + "\n":"";
@@ -126,11 +123,16 @@
 %  tempStr = _.trimEnd(genHFCLK());
 %  funcStr += tempStr != ""?tempStr + "\n":"";
 %   }
+% /* SYSPLL Configuration */
 %   if(Common.isDeviceM0G()){
 %     let genPLL = system.getTemplate("/ti/clockTree/templates/syspll.Board.c.xdt");
 %  tempStr =_.trimEnd(genPLL("Call"));
 %  funcStr += tempStr != ""?tempStr + "\n":"";
 %   } // if is M0G
+% /* FCC Configuration */
+%     let genFCC = system.getTemplate("/ti/clockTree/templates/fccSource.Board.c.xdt");
+%  tempStr = _.trimEnd(genFCC());
+%  funcStr += tempStr != ""?tempStr + "\n":"";
 %     let genMDIV = system.getTemplate("/ti/clockTree/templates/divider.Board.c.xdt");
 %  tempStr = _.trimEnd(genMDIV());
 %  funcStr += tempStr != ""?tempStr + "\n":"";

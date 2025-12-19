@@ -64,7 +64,7 @@
             --compiler gcc
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="Retains scratchpad data on loss of VDD power.">
+        description="Retains scratchpad memory on loss of VDD power.">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

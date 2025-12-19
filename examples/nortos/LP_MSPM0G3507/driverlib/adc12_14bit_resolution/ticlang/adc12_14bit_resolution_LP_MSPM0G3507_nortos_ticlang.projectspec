@@ -48,7 +48,7 @@
             --compiler ticlang
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="ADC12 conversion at maximum frequency using DMA with hardware averaging enabled">
+        description="ADC capture 1024 samples of a single channel at maximum sampling rate using the DMA and hardware averaging to achieve 14-bit resolution">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

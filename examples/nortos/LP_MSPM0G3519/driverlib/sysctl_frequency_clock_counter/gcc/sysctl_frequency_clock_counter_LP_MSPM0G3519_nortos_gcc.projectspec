@@ -64,7 +64,7 @@
             --compiler gcc
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="Monitor SYSOSC via Frequency Clock Counter (FCC)">
+        description="Use Frequency Clock Counter (FCC) to monitor if SYSOSC is in expected frequency range">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

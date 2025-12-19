@@ -1,6 +1,6 @@
 ## Example Summary
 
-This example demonstrates AC arc fault detection using the Neural Processing Unit (NPU) on the TIDA-971 Board. The application captures AC current waveforms using an ADC, extracts relevant features using the feature_extract library, and uses a neural network model to classify the waveform as either normal operation or containing an arc fault signature.
+This example demonstrates AC arc fault detection using the Neural Processing Unit (NPU) on the TIDA-010971 Board. The application captures AC current waveforms using an ADC, extracts relevant features using the feature_extract library, and uses a neural network model to classify the waveform as either normal operation or containing an arc fault signature.
 
 This example demonstrates the live preview feature on EdgeAI studio using MSPM0 devices. The application captures AC current waveforms using an ADC, extracts relevant features using the feature_extract library, and performs inference with a model that is functionally equivalent to the ac_arc_fault_detection_ai_npu model. The final output is then streamed to EdgeAI Studio for real-time visualization
 
@@ -12,8 +12,8 @@ This example is built for the Hardware accelerated inference using a Neural netw
 | GPIOA | Standard with Wake Output | PA31 | J4_35 | <ul><li>PA31 can be connected to LED <ul><li> |
 | ADC0 | A0 | PA21 | J2_18 |  |
 | SYSCTL |  |  |  |  |
-| UC0 | RX Pin | PA11 | Back-Channel UART RXD |  |
-| UC0 | TX Pin | PA10 | Back-Channel UART TXD |  |
+| UC3 | RX Pin | PA13 | Back-Channel UART RXD |  |
+| UC3 | TX Pin | PA10 | Back-Channel UART TXD |  |
 | EVENT |  |  |  |  |
 | DMA |  |  |  |  |
 | BOARD | Debug Clock | PA20 | J101_16 |  |
@@ -38,7 +38,7 @@ MSPM0 LaunchPad, please visit the LP-MSPM0G5187 User's Guide.
 1. Connect a current sensor to the ADC input pin PA21. The sensor should be capable of safely measuring AC current in the circuit being monitored.
 2. Compile, load and run the example.
 3. Open a serial terminal with the following settings:
-   - Baud rate: 115200
+   - Baud rate: 5820000
    - Data bits: 8
    - Stop bits: 1
    - Parity: None

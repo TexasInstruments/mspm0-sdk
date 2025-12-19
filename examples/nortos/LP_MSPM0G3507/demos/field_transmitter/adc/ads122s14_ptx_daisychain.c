@@ -30,7 +30,7 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "adc/ads122s14_ptx_daisychain.h"
+#include "ads122s14_ptx_daisychain.h"
 #include "main.h"
 #include "system/flash.h"
 #include "system/uart.h"
@@ -39,6 +39,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <string.h>
+#include <strings.h>
 
 static enum status_enum help_cmd(char *cmd);
 static enum status_enum get_cmd(char *cmd);
@@ -46,6 +47,9 @@ static enum status_enum stream_cmd(char *cmd);
 static enum status_enum rreg_cmd(char *cmd);
 static enum status_enum wreg_cmd(char *cmd);
 static enum status_enum bridgetimer_cmd(char *cmd);
+static enum status_enum bridgectrl_cmd(char *cmd);
+static enum status_enum lowpwr_cmd(char *cmd);
+static enum status_enum cm_test_cmd(char *cmd);
 
 static void readRegistersDaisyChain(uint8_t address, uint8_t *data);
 static void writeRegisterDaisyChain(uint8_t addressADC1, uint8_t dataADC1,
@@ -53,6 +57,8 @@ static void writeRegisterDaisyChain(uint8_t addressADC1, uint8_t dataADC1,
 static void stopADCconversions(void);
 static void startADCconversions(void);
 static void init_ADCs(void);
+static void readDataDaisyChain(int32_t *res, uint8_t *status);
+bool time_calc = false;
 
 struct command {
     char *name;
@@ -64,16 +70,27 @@ static struct command commands[] = {
     {"help", "show this message", help_cmd},
     {"get", "return one raw reading", get_cmd},
     {"stream", "starts/stops streaming raw readings", stream_cmd},
-    {"rreg", "read register on both ADCs - rreg 0xreg", rreg_cmd},
-    {"wreg", "write register to one ADC - wreg [0|1] 0xreg 0xvalue", wreg_cmd},
+    {"rreg", "read register on both ADCs - rreg reg", rreg_cmd},
+    {"wreg",
+        "write register to ADC1 - wreg 1 reg value\r\n\t\t    - write "
+        "register to ADC2 - wreg 2 reg value",
+        wreg_cmd},
     {"start", "start conversion",
         (enum status_enum(*)(char *)) startADCconversions},
     {"stop", "stop conversion",
         (enum status_enum(*)(char *)) stopADCconversions},
-    {"reset", "rewrite default adc config",
+    {"reset", "rewrite default EVM adc config",
         (enum status_enum(*)(char *)) init_ADCs},
-    {"bridgetimer", "read/write bridge control timer",
-        (enum status_enum(*)(char *)) bridgetimer_cmd},
+    //{"bridgetmr", "read/write bridge control timer", (enum status_enum (*)(char *)) bridgetimer_cmd},
+    {"bridgectrl",
+        "Enable/disable bridge and bridge status readback - bridgectrl "
+        "[on|off]",
+        (enum status_enum(*)(char *)) bridgectrl_cmd},
+    {"lowpwr",
+        "operate bridge and ADC in duty cycle mode - enter time between "
+        "power-ups in ms",
+        (enum status_enum(*)(char *)) lowpwr_cmd},
+    {"cm_test", "production test for manufacturer", cm_test_cmd},
 };
 
 struct ads122s14_config_struct {
@@ -85,11 +102,51 @@ struct ads122s14_config_struct {
  * default configuration ADC1 will be connected to bridge
  * ADC2 will be RTD input
  */
+#ifndef ADC_REV_E1
 volatile struct ads122s14_config_struct gADSDefault[2][9] = {
     {
         /* ADC 1 */
         {MUX_CFG_ADDRESS,
-            MUX_CFG_AINP_AIN2 | MUX_CFG_AINN_AIN3},  // set mux to AIN0-AIN1
+            MUX_CFG_AINP_AIN2 | MUX_CFG_AINN_AIN3},  // set mux to AIN2-AIN3
+        {REFERENCE_CFG_ADDRESS,
+            REFERENCE_CFG_REFP_BUF_EN_ENABLED |
+                REFERENCE_CFG_REFN_BUF_EN_DISABLED |
+                REFERENCE_CFG_REF_SEL_EXTERNAL},  // set external reference and enable positive reference buffer
+        {GAIN_CFG_ADDRESS, GAIN_CFG_GAIN_1},  // set gain to 1
+        {IDAC_MUX_CFG_ADDRESS,
+            IDAC_MUX_CFG_IUNIT_10UA |
+                IDAC_MUX_CFG_I1MUX_AIN0},  // set IDAC1 to AIN0 and set units to 10uA
+        {DATA_RATE_CFG_ADDRESS, DATA_RATE_CFG_FLTR_OSR_20_SPS},  // 20 sps
+        {DEVICE_CFG_ADDRESS, DEVICE_CFG_CONV_MODE_CONT},
+        {DIGITAL_CFG_ADDRESS, DIGITAL_CFG_STATUS_EN_ENABLED},
+        {IGNORE_ENTRY,
+            IGNORE_ENTRY},  // not used entry, just make sure both dimensions of entry have same length
+    },
+    {
+        /* ADC 2*/
+        {MUX_CFG_ADDRESS,
+            MUX_CFG_AINP_AIN2 | MUX_CFG_AINN_AIN3},  // set mux to AIN2-AIN3
+        {GAIN_CFG_ADDRESS, GAIN_CFG_GAIN_1},         // set gain to 1
+        {REFERENCE_CFG_ADDRESS,
+            REFERENCE_CFG_REFP_BUF_EN_ENABLED |
+                REFERENCE_CFG_REFN_BUF_EN_DISABLED |
+                REFERENCE_CFG_REF_SEL_EXTERNAL},  // set external reference and enable positive reference buffer
+        {IDAC_MUX_CFG_ADDRESS,
+            IDAC_MUX_CFG_IUNIT_10UA | IDAC_MUX_CFG_I2MUX_AIN7 |
+                IDAC_MUX_CFG_I1MUX_AIN6},  // set IDAC 2 to AIN7, IDAC1 to AIN6 and sets unit to 10uA
+        {IDAC_MAG_CFG_ADDRESS,
+            IDAC_MAG_CFG_I1MAG_30X},  // enable IDAC1 and set magnitude to 20 x 10uA (0.2mA)
+        {DATA_RATE_CFG_ADDRESS, DATA_RATE_CFG_FLTR_OSR_20_SPS},  // 20 sps
+        {DEVICE_CFG_ADDRESS, DEVICE_CFG_CONV_MODE_CONT},
+        {DIGITAL_CFG_ADDRESS, DIGITAL_CFG_STATUS_EN_ENABLED},
+    },
+};
+#else
+volatile struct ads122s14_config_struct gADSDefault[2][9] = {
+    {
+        /* ADC 1 */
+        {MUX_CFG_ADDRESS,
+            MUX_CFG_AINP_AIN2 | MUX_CFG_AINN_AIN3},  // set mux to AIN2-AIN3
         {REFERENCE_CFG_ADDRESS,
             REFERENCE_CFG_REFP_BUF_EN_ENABLED |
                 REFERENCE_CFG_REFN_BUF_EN_ENABLED |
@@ -117,17 +174,22 @@ volatile struct ads122s14_config_struct gADSDefault[2][9] = {
             IDAC_MUX_CFG_IUNIT_10UA | IDAC_MUX_CFG_I2MUX_AIN7 |
                 IDAC_MUX_CFG_I1MUX_AIN6},  // set IDAC1 to AIN6 and sets unit to 10uA
         {IDAC_MAG_CFG_ADDRESS,
-            IDAC_MAG_CFG_I1MAG_20X},  // enable IDAC1 and set magnitude to 10 x 10uA (0.1mA)
+            IDAC_MAG_CFG_I1MAG_30X},  // enable IDAC1 and set magnitude to 10 x 10uA (0.1mA)
         {DATA_RATE_CFG_ADDRESS, DATA_RATE_CFG_FLTR_OSR_20_SPS},  // 20 sps
         {DEVICE_CFG_ADDRESS, DEVICE_CFG_CONV_MODE_SINGLE},       // single shot
         {DIGITAL_CFG_ADDRESS, DIGITAL_CFG_STATUS_EN_ENABLED},
     },
 };
+#endif
+
+enum bridge_control_state_enum { on, off, toggle };
 
 struct ads122s14_ptx_chain_config_struct {
     uint8_t config_length;
     uint8_t config_chksum;
     uint32_t bridge_time;
+    uint32_t sample_time;
+    enum bridge_control_state_enum bridge_state;
 };
 static struct ads122s14_ptx_chain_config_struct *gADSConfigMem;
 
@@ -142,7 +204,7 @@ static uint32_t gADCTimeoutTimer = 0;
 static bool ADCRunning           = false;
 
 void SPI_0_INST_IRQHandler(void)
-{  // todo: this will need to be moved somewhere and get configurable
+{  // this will be moved somewhere and get configurable
     // when multiple trx cards are available using spi irq
     static char dummy;
     switch (DL_SPI_getPendingInterrupt(SPI_0_INST)) {
@@ -166,10 +228,12 @@ void SPI_0_INST_IRQHandler(void)
 static enum status_enum help_cmd(char *cmd)
 {
     int i;
-    uart_printf("all command must start with out \r\n");
+    uart_printf("All commands must start with adc\r\n");
     for (i = 0; i < sizeof(commands) / sizeof(commands[0]); i++) {
-        uart_printf("%-10s - 0x%x - %s\r\n", commands[i].name,
-            commands[i].function, commands[i].help);
+        if (commands[i].help[0] != '$') {
+            uart_printf("%-10s - 0x%x - %s\r\n", commands[i].name,
+                commands[i].function, commands[i].help);
+        }
     }
     return STATUS_OK;
 }
@@ -233,7 +297,7 @@ static enum status_enum rreg_cmd(char *cmd)
     if (!subcmd)
         return STATUS_CMDERROR;
     else {
-        ret = sscanf(cmd, "0x%x", &reg);
+        ret = sscanf(cmd, "%x", &reg);
         if (ret != 1) return STATUS_CMDERROR;
         readRegistersDaisyChain(reg, value);
         uart_printf("Reg 0x%x, 0x%x 0x%x\r\n", reg, value[0], value[1]);
@@ -262,16 +326,19 @@ static enum status_enum wreg_cmd(char *cmd)
 {
     int reg, val, adc;
 
-    if (sscanf(cmd, "%d 0x%x 0x%x", &adc, &reg, &val) ==
+    if (sscanf(cmd, "%d %x %x", &adc, &reg, &val) ==
         3) { /* need exactly 3 arguments */
-        if (adc == 0) {
+        if (adc == 1) {
             writeRegisterDaisyChain(reg, val, IGNORE_ADC, 0);
-        } else if (adc == 1) {
+        } else if (adc == 2) {
             writeRegisterDaisyChain(IGNORE_ADC, 0, reg, val);
-        } else if (adc == 3) {
-            writeRegisterDaisyChain(reg, val, reg, val);
         } else
             return STATUS_CMDERROR;
+        time_calc = false;
+        return STATUS_OK;
+    } else if (sscanf(cmd, "%x %x", &reg, &val) == 2) {
+        writeRegisterDaisyChain(reg, val, reg, val);
+        time_calc = false;
         return STATUS_OK;
     } else
         return STATUS_CMDERROR;
@@ -299,6 +366,43 @@ static enum status_enum bridgetimer_cmd(char *cmd)
     } else {
         sscanf(subcmd, "%d", &timer);
         gADSConfigMem->bridge_time = timer;
+        gADSConfigMem->config_chksum =
+            crc8((void *) (gADSConfigMem) + 2, gADSConfigMem->config_length);
+        ret = STATUS_OK;
+    }
+    return ret;
+}
+
+/**
+ * @brief Handles command line input to read/update bridge control
+ *
+ * @param [in] cmd Pointer to the input command string
+ *
+ * @return Information if completed successfully
+ * @retval STATUS_OK if the function execution was successful
+ * @retval STATUS_CMDERROR otherwise
+ */
+static enum status_enum bridgectrl_cmd(char *cmd)
+{
+    enum status_enum ret = STATUS_CMDERROR;
+    int cnt;
+    char *subcmd = strtok(cmd, " ");
+    if (!subcmd) {
+        uart_printf("%d\r\n", gADSConfigMem->bridge_state);
+        ret = STATUS_OK;
+    } else {
+        if (!strcasecmp(subcmd, "on")) {
+            gADSConfigMem->bridge_state = on;
+            DL_GPIO_setPins(
+                GPIO_ADC_PORT, GPIO_ADC_ADC_BRIDGE_SWITCH_CONTROL_PIN);
+        } else if (!strcasecmp(subcmd, "off")) {
+            gADSConfigMem->bridge_state = off;
+            DL_GPIO_clearPins(
+                GPIO_ADC_PORT, GPIO_ADC_ADC_BRIDGE_SWITCH_CONTROL_PIN);
+        } else if (!strcasecmp(subcmd, "toggle")) {
+            gADSConfigMem->bridge_state = toggle;
+        }
+
         gADSConfigMem->config_chksum =
             crc8((void *) (gADSConfigMem) + 2, gADSConfigMem->config_length);
         ret = STATUS_OK;
@@ -336,19 +440,410 @@ static void rw_spi_non_blocking(const char *buf, int len)
 }
 
 /**
- * @brief Write values to specified registers in a daisy-chained ADC system.
+ * @brief Timer
+ * Timer used for converting time in us to a delay outside of delay_cycles
+ *  Function uses assembly code for most efficient application
+ */
+void timer_us(uint32_t time_in_us)
+{
+    // 32 MHz clock = 32 cycles per microsecond
+    uint32_t cycles = (time_in_us * 27) / 11;
+
+    while (cycles--) {
+        __asm("NOP");  // Prevent compiler optimization
+    }
+}
+/**
+ * @brief Low-power ADC bridge measurement with power cycling
  *
- * This function writes values to two ADS122S14 chips connected in series,
- * using SPI protocol. The addresses and data pairs for each
- * chip are packed into a single 10-byte buffer, which is then sent through
- * the SPI API using spi_non_blocking().
+ * Performs periodic bridge sensor measurements while minimizing power consumption
+ * by cycling both ADCs and bridge power between conversions.
  *
- * @param addressADC1 The register address on the first ADS122S14 chip.
- * @param dataADC1    The value to write to the corresponding register on the first
- *                     ADS122S14 chip.
- * @param addressADC2 The register address on the second ADS122S14 chip.
- * @param dataADC2    The value to write to the corresponding register on the second
- *                     ADS122S14 chip.
+ * @param cmd Command string containing sample interval in ms, or "stop" to halt
+ * @return STATUS_OK on success, STATUS_ERR on invalid parameters
+ *
+ * Operation:
+ * - User specifies sample interval via command argument (e.g., "100" for 100ms)
+ * - Uses existing ADC configuration: SPEED_MODE, OSR, DELAY, GLOBAL_CHOP
+ * - Validates timing: ensures sample interval > startup + conversion + 10% margin
+ * - Streams ADC1/ADC2 readings at specified interval until "stop" command
+ *
+ * Power Sequence per Sample interval:
+ * 1. Wake ADCs from power-down (~10ms startup)
+ * 2. Enable bridge excitation via low-side switch
+ * 3. Wait for bridge settling (user-configured DELAY)
+ * 4. Perform single-shot conversion
+ * 5. Disable bridge and return ADCs to power-down
+ * 6. Sleep for remainder of sample interval
+ *
+ * Timing Diagram:
+ *
+ *     |<----------------------- Sample Interval (interval_ms) ----------------------->|
+ *     |                                                                            |
+ *     | Startup  | User Delay | Conversion |         Power-Down Sleep              |
+ *     |<-------->|<---------->|<---------->|<------------------------------------->|
+ *     |          |                         |
+ *     |          |<----- Bridge Active --->|
+ *     |
+ *     ADC Wake                              ADC Sleep
+ *
+ * Example Usage:
+ *   adc lowpwr           - Show current interval
+ *   adc lowpwr 250       - Sample every 250ms
+ *   adc lowpwr stop      - Stop streaming
+ *
+ * Notes:
+ * - Duty cycle displayed shows active time vs total sample period
+ * - Minimum interval enforced to prevent >90% duty cycle
+ * - 2% timing margin added to account for MCU/ADC clock variations
+ */
+
+static enum status_enum lowpwr_cmd(char *cmd)
+{
+    static int32_t interval_ms = 100;  // Default time between samples (ms)
+    uint8_t value[2];
+    int32_t adcResult[2];
+    uint8_t adcStatus[2];
+    uint8_t speed_mode, osr_reg, delay_reg, status, user_delay_bits;
+    uint32_t f_mod_hz, osr, active_time_modclks, user_delay_time_modclks,
+        latency_in_modclks;
+    float conversion_time_ms, start_up_time_ms, active_time_ms,
+        user_delay_time_ms, duty_cycle;
+    float conversion_time_us, start_up_time_us, active_time_us,
+        user_delay_time_us, effective_time_us, min_time_us, interval_us,
+        t_mod_us;
+    volatile bool adc_lowpwr_stop = false;
+
+    // Speed mode and latency tables
+    static const struct {
+        uint8_t reg_value;
+        uint32_t f_mod_hz;
+    } speed_modes[] = {
+        {0x00, 32000},   // Mode 0: 32 kHz
+        {0x01, 256000},  // Mode 1: 256 kHz
+        {0x02, 512000},  // Mode 2: 512 kHz
+        {0x03, 1024000}  // Mode 3: 1.024 MHz
+    };
+
+    static const struct {
+        uint8_t reg_value;
+        uint32_t latency[4];
+        // latancy table from datasheet
+    } latency_table[] = {
+        {0x00, 80, 88, 88, 104},            // OSR16
+        {0x01, 144, 152, 152, 168},         // OSR32
+        {0x02, 240, 248, 248, 264},         // OSR128
+        {0x03, 368, 376, 376, 392},         // OSR256
+        {0x04, 624, 632, 632, 648},         // OSR512
+        {0x05, 1136, 1144, 1144, 1160},     // OSR1024
+        {0x06, 1416, 10384, 20624, 41120},  // SPS25
+        {0x07, 1736, 12944, 25744, 51360}   // SPS20
+
+    };
+
+    // Parse subcommand (interval_ms) confirm valid time entered by user
+    char *subcmd = strtok(cmd, " ");
+    if (!subcmd) {
+        uart_printf("Current interval: %u ms\r\n", interval_ms);
+        return STATUS_OK;
+    }
+
+    if (strcmp(subcmd, "stop") == 0) {
+        adc_lowpwr_stop = true;
+        uart_printf("Stopping ADC Low power bridge cycling stream...\r\n");
+        return STATUS_OK;
+    }
+
+    uint32_t new_interval_ms;
+    if (sscanf(subcmd, "%u", &new_interval_ms) != 1 || new_interval_ms == 0) {
+        uart_printf("Invalid power-up time: %s\r\n", subcmd);
+        return STATUS_ERR;
+    }
+    interval_ms = new_interval_ms;
+    interval_us = interval_ms * 1000;  // convert interval from ms to us
+
+    /*ADC configuration*/
+    // Read Speed mode from DEVICE_CFG_ADDRESS[1:0]
+    readRegistersDaisyChain(DEVICE_CFG_ADDRESS, value);
+    speed_mode = value[0] & 0x03;  // Bits [1:0]
+    f_mod_hz   = speed_modes[speed_mode].f_mod_hz;
+
+    // Set Single-Shot mode (preserve existing bits)
+    writeRegisterDaisyChain(DEVICE_CFG_ADDRESS,
+        value[0] | DEVICE_CFG_CONV_MODE_SINGLE, DEVICE_CFG_ADDRESS,
+        value[0] | DEVICE_CFG_CONV_MODE_SINGLE);
+
+    // Read DATA_RATE register for OSR, Delay bits, and Global Chop
+    readRegistersDaisyChain(DATA_RATE_CFG_ADDRESS, value);
+
+    // Read user ADC delay register bits
+    delay_reg = value[0] & 0xF0;  // Bits [7:4]
+
+    // Global Chop
+    bool global_chop = value[0] & 0x08;  // Bit [3]
+
+    // Isolating OSR value bits
+    osr_reg = value[0] & 0x07;  // Bits [2:0]
+
+    // tMOD Calculation based on fMOD
+    t_mod_us = 1000000.0f / f_mod_hz;  // tMOD time in us
+
+    // First Conversion Latency table from datasheet
+    latency_in_modclks = latency_table[osr_reg].latency[speed_mode];
+
+    // ADC delay bit isolations and calculations
+    user_delay_bits         = (delay_reg) >> 4;
+    user_delay_time_modclks = (1 << (user_delay_bits - 1));
+    user_delay_time_us      = t_mod_us * (float) (user_delay_time_modclks);
+
+    // Total time the ADC is active
+    active_time_modclks = latency_in_modclks + user_delay_time_modclks;
+    active_time_us =
+        active_time_modclks * t_mod_us *
+        1.03;  // addtional 3% timing error buffer added for internal oscillator tolerance of ADC and MSPMO
+
+    if (global_chop) {  // Global Chop bit check
+        active_time_us *= 2;
+    }
+
+    // PDWN start up time (5-10ms)
+    start_up_time_us = 10000;
+
+    // duty cycle as a percentage of the sample time
+    duty_cycle = ((active_time_us + start_up_time_us) / interval_us) * 100.0f;
+
+    min_time_us =
+        1.111f *
+        (active_time_us +
+            start_up_time_us);  // 90% duty cycle check to confirm sample period
+    effective_time_us = interval_us;
+    if ((float) interval_us < min_time_us) {
+        uart_printf(
+            "Sample interval too short for settings (%.3f ms). Please adjust "
+            "inputs.\r\n",
+            interval_ms);
+        return STATUS_ERR;
+    }
+
+    // Converison from us to ms for terminal output
+    start_up_time_ms   = start_up_time_us / 1000.0f;
+    user_delay_time_ms = user_delay_time_us / 1000.0f;
+    active_time_ms     = active_time_us / 1000.0f;
+
+    // Output: Speed Mode | fMOD frequency | OSR setting | Start up delay time | user set ADC delay | ADC Active time | Duty cycle of ADC active vs interval_ms
+    uart_printf(
+        "Mode: %u | f_MOD: %u Hz | OSR: 0x0%uh | Start up: %.1f ms | Delay: "
+        "%.4f ms | Conv: %.2f ms | Duty Cycle: %.2f %%\r\n",
+        speed_mode, f_mod_hz, osr_reg, start_up_time_ms, user_delay_time_ms,
+        active_time_ms, duty_cycle);
+
+    // Sampling loop start terminal output
+    uart_printf(
+        "ADC Low power bridge cycling streaming every %d ms. Type 'adc lowpwr "
+        "stop' to halt.\r\n\n",
+        interval_ms);
+    float down_time_us =
+        (effective_time_us > active_time_us)
+            ? (effective_time_us - active_time_us - start_up_time_us)
+            : 0.0f;
+
+    // Loop to stream data every interval_ms while utilizing the powerdown function of the ADC
+    while (!adc_lowpwr_stop) {
+        if (strcmp(subcmd, "stop") ==
+            0)  // break out from loop to stop the stream
+        {
+            adc_lowpwr_stop = true;
+            uart_printf("Stopping ADC Low power bridge cycling stream...\r\n");
+
+            // Turn off bridge
+            DL_GPIO_clearPins(
+                GPIO_ADC_PORT, GPIO_ADC_ADC_BRIDGE_SWITCH_CONTROL_PIN);
+            writeRegisterDaisyChain(CONVERSION_CTRL_ADDRESS,
+                CONVERSION_CTRL_STOP_STOP, CONVERSION_CTRL_ADDRESS,
+                CONVERSION_CTRL_STOP_STOP);
+            break;
+        }
+
+        // Setting the ADCs to idle mode
+        writeRegisterDaisyChain(DEVICE_CFG_ADDRESS,
+            DEVICE_CFG_PWDN_NO_PWDN | speed_mode | DEVICE_CFG_CONV_MODE_SINGLE,
+            DEVICE_CFG_ADDRESS,
+            DEVICE_CFG_PWDN_NO_PWDN | speed_mode |
+                DEVICE_CFG_CONV_MODE_SINGLE);
+
+        // delay for adc startup from powerdown
+        timer_us(start_up_time_us);
+
+        // Turn bridge on after ADC startup delay
+        DL_GPIO_setPins(GPIO_ADC_PORT, GPIO_ADC_ADC_BRIDGE_SWITCH_CONTROL_PIN);
+
+        // Start conversions writing to the CONVERSION CONTROL register
+        writeRegisterDaisyChain(CONVERSION_CTRL_ADDRESS,
+            CONVERSION_CTRL_START_START, CONVERSION_CTRL_ADDRESS,
+            CONVERSION_CTRL_START_START);
+
+        // Delay for the active time of the ADC
+        timer_us(active_time_us);
+
+        // Turn off bridge after converion
+        DL_GPIO_clearPins(
+            GPIO_ADC_PORT, GPIO_ADC_ADC_BRIDGE_SWITCH_CONTROL_PIN);
+
+        // ADC data out to MCU memory
+        readDataDaisyChain(adcResult, adcStatus);
+
+        // error handling could be done here to check the status for DRDY status bit
+
+        //Setting the ADCs into power down mode from idle mode
+        writeRegisterDaisyChain(DEVICE_CFG_ADDRESS,
+            DEVICE_CFG_PWDN_PWDN | speed_mode | DEVICE_CFG_CONV_MODE_SINGLE,
+            DEVICE_CFG_ADDRESS,
+            DEVICE_CFG_PWDN_PWDN | speed_mode | DEVICE_CFG_CONV_MODE_SINGLE);
+
+        // Print result ADC1: 0xresult ADC2: 0xresult
+        uart_printf("ADC1: 0x%x ADC2: 0x%x\r\n", adcResult[0], adcResult[1]);
+
+        // Delay remainder of time of interval_ms
+        if (down_time_us > 0) timer_us(down_time_us);
+    }
+    uart_printf("ADC Low power bridge cycling stream stopped.\r\n");
+    return STATUS_OK;
+}
+
+/**
+ * @brief Performs a simple test to verify proper manufacturing.
+ *
+ * This function sets predefined register configuration for both ADCs and reads expected values.
+ * if the ADC reading is outside the expected limits, then a manufacturing error is possible.
+ *
+ */
+static enum status_enum cm_test_cmd(char *cmd)
+{
+    int32_t adcResult[2];
+    uint8_t adcStatus[2];
+    uint8_t value[2];
+    bool test_pass_M0     = false;
+    bool test_pass_adc1   = false;
+    bool test_pass_adc2   = false;
+    bool test_pass_bridge = false;
+    bool test_pass_rtd    = false;
+    delay_cycles(100000);
+    writeRegisterDaisyChain(CONVERSION_CTRL_ADDRESS,
+        CONVERSION_CTRL_START_START, CONVERSION_CTRL_ADDRESS,
+        CONVERSION_CTRL_START_START);
+    DL_GPIO_setPins(GPIO_ADC_PORT, GPIO_ADC_ADC_BRIDGE_SWITCH_CONTROL_PIN);
+    writeRegisterDaisyChain(MUX_CFG_ADDRESS, 0x23, MUX_CFG_ADDRESS, 0x23);
+    writeRegisterDaisyChain(GAIN_CFG_ADDRESS, 0x03, GAIN_CFG_ADDRESS, 0x01);
+    writeRegisterDaisyChain(
+        REFERENCE_CFG_ADDRESS, 0x00, REFERENCE_CFG_ADDRESS, 0x31);
+    writeRegisterDaisyChain(
+        IGNORE_ADC, IGNORE_ENTRY, IDAC_MUX_CFG_ADDRESS, 0xF6);
+    writeRegisterDaisyChain(
+        IGNORE_ADC, IGNORE_ENTRY, IDAC_MAG_CFG_ADDRESS, 0x0A);
+
+    writeRegisterDaisyChain(CONVERSION_CTRL_ADDRESS,
+        CONVERSION_CTRL_START_START, CONVERSION_CTRL_ADDRESS,
+        CONVERSION_CTRL_START_START);
+    delay_cycles(10000000);
+    readRegistersDaisyChain(MUX_CFG_ADDRESS, value);
+
+    readDataDaisyChain(adcResult, adcStatus);
+    delay_cycles(100000);
+
+    uart_printf("Starting Manufacturing Test: \r\n Result:\r\n");
+
+    if (  // M0 to ADC1 connection test
+
+        value[0] == 0x23) {
+        test_pass_adc1 = true;
+    }
+
+    test_pass_adc1 ? uart_printf("\tADC1 communication: Passed\r\n")
+                   : uart_printf("\tADC1 communication: FAILED\r\n");
+
+    if (  // M0 to ADC2 connection test
+
+        value[1] == 0x23) {
+        test_pass_adc2 = true;
+    }
+
+    test_pass_adc2 ? uart_printf("\tADC2 communication: Passed\r\n")
+                   : uart_printf("\tADC2 communication: FAILED\r\n");
+
+    if (                               // ADC1 signal chain test
+        (adcResult[0] >= 0x172977) &&  // ADC1 min
+        (adcResult[0] <= 0x19999E))    // ADC1 max
+
+    {
+        test_pass_bridge = true;
+    }
+
+    test_pass_bridge ? uart_printf("\tBridge: Passed\r\n")
+                     : uart_printf("\tBridge: FAILED\r\n");
+
+    if (                               // ADC2 signal chain test
+        (adcResult[1] >= 0x1E3FAE) &&  // ADC2 min
+        (adcResult[1] <= 0x216ECE))    // ADC2 max
+    {
+        test_pass_rtd = true;
+    }
+
+    test_pass_rtd ? uart_printf("\tRTD: Passed\r\n")
+                  : uart_printf("\tRTD: FAILED\r\n");
+
+    bool good_comms   = false;
+    good_comms        = test_pass_adc1 && test_pass_adc2;
+    bool good_sensors = false;
+    good_sensors      = test_pass_bridge && test_pass_rtd;
+
+    if (good_comms && good_sensors) {
+        uart_printf("\nTest complete\r\n");
+    } else {
+        if (good_comms) {
+            uart_printf(
+                "\nACTION: Check connections and rerun test\r\n\tIf test "
+                "fails again discard unit\r\n");
+        }
+
+        else {
+            uart_printf(
+                "\nACTION: Communication test failed, rerun test\r\n\tIf test "
+                "fails again discard unit\r\n");
+        }
+    }
+
+    return STATUS_OK;
+}
+
+/**
+ * @brief Write to registers on two daisy-chained ADS122S14 ADCs via SPI
+ *
+ * Writes register values to two ADS122S14 connected in a daisy-chain
+ * configuration. Data is sent in a single 10-byte SPI transaction, with the
+ * first write command routed to ADC2 (first in chain) and the second to ADC1.
+ *
+ * @param addressADC1 Register address for ADC1 (last device in chain)
+ * @param dataADC1    Data byte to write to ADC1 register
+ * @param addressADC2 Register address for ADC2 (first device in chain)
+ * @param dataADC2    Data byte to write to ADC2 register
+ *
+ * Protocol:
+ * - Each write command is 2 bytes: [0x80 | address, data]
+ * - Total frame: 10 bytes
+ * - ADC2 command sent first (bytes 3-4), ADC1 second (bytes 8-9)
+ *
+ * Timing Diagram (Single Frame):
+ *
+ *                                                                                Frame 1
+ *                                              ADC2                                                                 ADC1
+ *
+ *
+ * CSn  |________________________________________________________________________________________________________________________________________________|
+ *
+ * SDI:           | don't care | don't care | don't care | 80h+Address | Register Data | don't care | don't care | don't care | 80h+Address | Register Data |
+ *
+ * SDO:           | Status MSB | Status LSB | Data MSB   | Data MID    | Data LSB      | Status MSB | Status LSB | Data MSB   | Data MID    | Data LSB      |
+ *
  *
  */
 static void writeRegisterDaisyChain(uint8_t addressADC1, uint8_t dataADC1,
@@ -442,31 +937,62 @@ static void readDataDaisyChain(int32_t *res, uint8_t *status)
     memset(spibuf, 0, sizeof(spibuf));
 
     /* Read data command is a 1 frame operation
-    * DIN should be set to 0x000000 while clocking 24 SCLK bits
-    * FYI, max data rate is 128KSPS, which converts to a 7.8us delay between
-    * samples in continuous mode. */
+    * SDI should be set to 0x000000 while clocking 24 SCLK bits
+    */
     rw_spi_non_blocking((const char *) spibuf, sizeof(spibuf));
 
     /* wait until data trx is done */
     while (gSPIState != idle) asm("wfi");
 
-    res[0] =
-        (gSPIRxBuf[2] << 24 | gSPIRxBuf[3] << 16 | gSPIRxBuf[4] << 8) >> 8;
     res[1] =
+        (gSPIRxBuf[2] << 24 | gSPIRxBuf[3] << 16 | gSPIRxBuf[4] << 8) >> 8;
+    res[0] =
         (gSPIRxBuf[7] << 24 | gSPIRxBuf[8] << 16 | gSPIRxBuf[9] << 8) >> 8;
 
-    status[0] = gSPIRxBuf[0];
-    status[1] = gSPIRxBuf[5];
+    status[1] = gSPIRxBuf[0];
+    status[0] = gSPIRxBuf[5];
 }
 
-/**
- * @brief Reads a register from both ADCs connected in a daisy-chain configuration.
+/** @brief Read a register from two daisy-chained ADS122S14 ADCs
  *
- * The register addresses are written to both SPI peripherals and read back using two separate frames.
- * This allows access to registers on adjacent ADC units in the chain.
+ * Reads the same register address from both ADCs using a two-frame SPI sequence.
+ * Frame 1 sends the read commands (0x40 | address), Frame 2 retrieves the data.
  *
- * @param[in] address The 7-bit address of the register to be read
- * @param[out] data pointer to an array of 8-bit unsigned integers where the register values will be stored.
+ * @param[in]  address Register address to read (0x00-0x0F)
+ * @param[out] data    Array to store register values: [0]=ADC1, [1]=ADC2
+ *
+ * Protocol:
+ * - Frame 1: Send read command (0x40 | address) to both ADCs
+ * - Frame 2: Send dummy bytes (0x00) and capture register data from previous command
+ * - Each frame is 10 bytes to accommodate daisy-chain routing
+ * - Register data appears in Frame 2 at byte positions 2 (ADC2) and 7 (ADC1)
+ *
+ * Frame 1 - Issue Read Commands:
+ *
+ *
+ *                                                                             Frame 1
+ *                                              ADC2                                                                 ADC1
+ *
+ *
+ * CSn  |________________________________________________________________________________________________________________________________________|
+ *
+ * SDI:           | don't care | don't care | don't care | 40h+Address | dont'care | don't care | don't care | don't care | 40h+Address | dont'care |
+ *
+ * SDO:           | Status MSB | Status LSB | Data MSB   | Data MID    | Data LSB  | Status MSB | Status LSB | Data MSB   | Data MID    | Data LSB  |
+ *
+ * Frame 2 - Retrieve Register Data:
+ *                                                                        Frame 2
+ *                                              ADC2                                                                 ADC1
+ *
+ *
+ * CSn  |________________________________________________________________________________________________________________________________________|
+ *
+ * SDI:           | don't care | don't care | don't care    | 0x00h   | 0x00h     | don't care | don't care | don't care    | 0x00h     | 0x00h     |
+ *
+ * SDO:           | Status MSB | Status LSB | Register Data | Address | 0x00h     | Status MSB | Status LSB | Register Data | Address   | 0x00h     |
+ *
+ *
+ *
  */
 static void readRegistersDaisyChain(uint8_t address, uint8_t *data)
 {
@@ -489,53 +1015,131 @@ static void readRegistersDaisyChain(uint8_t address, uint8_t *data)
     while (gSPIState != idle) asm("wfi");
 
     /* copy register values */
-    data[0] = gSPIRxBuf[2];
-    data[1] = gSPIRxBuf[7];
+    data[1] = gSPIRxBuf[2];
+    data[0] = gSPIRxBuf[7];
     return;
 }
 
 /**
- * @brief Returns true if both ADCs are signaling DRDY (Data Ready), indicating they have completed a conversion.
+ * @brief Manages adaptive timing delays for ADC sampling in the main loop
  *
- * This function reads the status registers from both ADC units and checks that the DRDY bit is set in each register.
+ * This cyclic function is called repeatedly from main() and implements an adaptive
+ * delay mechanism based on the ADC's conversion characteristics. The function serves
+ * two purposes:
+ * 1. Calculates appropriate timing delays based on ADC configuration (first call or
+ *    after register changes)
+ * 2. Implements the calculated delay on each call to pace ADC read operations
  *
- * @return True if both ADCs are ready with new data, false otherwise.
- */
-static bool get_drdy(void)
-{
-    uint8_t reg[2];
-    readRegistersDaisyChain(STATUS_MSB_ADDRESS, reg);
-    return reg[0] & STATUS_MSB_DRDY_MASK & reg[1] & STATUS_MSB_DRDY_MASK;
-}
-
-/**
- * @brief Cyclic function not used.
+ * Timing Calculation (performed when time_calc flag is false):
+ * - Reads SPEED_MODE from DEVICE_CFG register [1:0] to determine f_mod frequency
+ * - Reads OSR (oversampling ratio) from DATA_RATE_CFG register [2:0]
+ * - Handles special cases: fixed 25 SPS (OSR=0x06) and 20 SPS (OSR=0x07) modes
+ * - Calculates conversion time: (OSR / f_mod) * 1000000 Âµs
+ * - Doubles conversion time if Global Chop mode is enabled (bit [3])
+ * - Derives delay period as 1/4 of conversion time for 4x oversampling in main loop
+ * - Caches the calculated delay for subsequent calls
+ *
+ * Subsequent Calls:
+ * - Uses the cached delay value via timer_us() without recalculation
+ * - Recalculation is triggered when time_calc flag is reset (e.g., via WREG command)
+ *
+ * @note Depends on global flag 'time_calc' to determine calculation vs. cached mode
+ * @note The 1/4 conversion time allows main loop to poll ADC 4 times per conversion
+ * @note Contains commented bridge power control and ADC timeout recovery features
  *
  * @return STATUS_OK
  */
+
 enum status_enum ads122s14_ptx_daisychain_cyclic(void)
 {
-    static int bridge_timeer = 0;
+    static int bridge_timer = 0;
+    uint8_t value[2];
+    uint8_t speed_mode, osr_reg, status;
+    uint32_t f_mod_hz, osr, time_us, latency_in_modclks,
+        conversion_time_modclks, conversion_pull_modclks;
+    float t_mod_us, conversion_pull_us;
+    static uint32_t time_us_no_calc = 0;
 
-    if (bridge_timeer++ >= gADSConfigMem->bridge_time) {
-        /* turn on bridge power */
-        DL_GPIO_setPins(GPIO_ADC_PORT, GPIO_ADC_ADC_RIDGE_SWITCH_CONTROL_PIN);
-        startADCconversions();
-        bridge_timeer = 0;
+    // speed mode table
+    static const struct {
+        uint8_t reg_value;
+        uint32_t f_mod_hz;
+    } speed_modes[] = {
+        {0x00, 32000},    // Mode 0: 32 kHz
+        {0x01, 256000},   // Mode 1: 256 kHz
+        {0x02, 512000},   // Mode 2: 512 kHz
+        {0x03, 1024000},  // Mode 3: 1.024 MHz
+    };
+
+    // Second conversion latency table
+    static const struct {
+        uint8_t reg_value;
+        uint32_t latency[4];
+
+    } latency_table[] = {
+        {0x00, 16, 16, 16, 16},             // OSR16
+        {0x01, 32, 32, 32, 32},             // OSR32
+        {0x02, 128, 128, 128, 128},         // OSR128
+        {0x03, 256, 256, 256, 256},         // OSR256
+        {0x04, 512, 512, 512, 512},         // OSR512
+        {0x05, 1024, 1024, 1024, 1024},     // OSR1024
+        {0x06, 1280, 10240, 20480, 40960},  // SPS25
+        {0x07, 1600, 12800, 25600, 51200}   // SPS20
+
+    };
+
+    if (!time_calc) {
+        // Read Speed mode from DEVICE_CFG_ADDRESS[1:0]
+        readRegistersDaisyChain(DEVICE_CFG_ADDRESS, value);
+        speed_mode = value[0] & 0x03;  // Bits [1:0]
+        f_mod_hz   = speed_modes[speed_mode].f_mod_hz;
+
+        // Read DATA_RATE register for OSR, Delay bits, and Global Chop
+        readRegistersDaisyChain(DATA_RATE_CFG_ADDRESS, value);
+
+        // Global Chop
+        bool global_chop = value[0] & 0x08;  // Bit [3]
+
+        // Isolating OSR value bits
+        osr_reg = value[0] & 0x07;  // Bits [2:0]
+
+        // tMOD Calculation based on fMOD
+        t_mod_us = 1000000.0f / f_mod_hz;  // tMOD time in us
+
+        // Second Conversion Latency table
+        latency_in_modclks = latency_table[osr_reg].latency[speed_mode];
+
+        // Converting conversion time to 1/4 conversion time for DRDY staus pulling
+        conversion_time_modclks = latency_in_modclks;
+        conversion_pull_modclks = conversion_time_modclks / 4;
+        conversion_pull_us      = conversion_pull_modclks * t_mod_us;
+
+        if (global_chop) {  // Global Chop bit check
+            conversion_pull_us *= 2;
+        }
+        // setting time_us_no_calc for efficient runs after calculations
+        // After any register write these will be recalculated
+        time_us         = conversion_pull_us;
+        time_us_no_calc = time_us;
+
+        timer_us(time_us);  // timer fuction for delay
+
+        time_calc = true;  // time has beeen calc'ed
+    } else {
+        timer_us(time_us_no_calc);  // timer function for delay
     }
 
-    /* this is a work around, as it can happen when starting up from the loop power, that the ADC get initialized to early and does not start sampling */
-    if (gADCTimeoutTimer++ >
-        500) { /* if not getting one sample in 0.5s something is odd, restart ADC. */
-        if (ADCRunning) {
-            init_ADCs();
+    /* this is a work around, as it can happen when starting up from the loop power,
+    that the ADC get initialized to early and does not start sampling */
+    /*if(gADCTimeoutTimer++ > 500){  if not getting one sample in 0.5s something is odd, restart ADC.
+        if(ADCRunning){
+            //init_ADCs();
             startADCconversions();
-            gADSConfigMem->bridge_time   = 200; /* 5 samples per second */
-            gADSConfigMem->config_chksum = crc8(
-                (void *) (gADSConfigMem) + 2, gADSConfigMem->config_length);
+            gADSConfigMem->bridge_time = 200; // 5 samples per second
+            gADSConfigMem->config_chksum = crc8((void*)(gADSConfigMem)+2, gADSConfigMem->config_length);
             gADCTimeoutTimer = 0;
         }
-    }
+    }*/
     return STATUS_OK;
 }
 
@@ -585,7 +1189,7 @@ enum status_enum ads122s14_ptx_daisychain_init(void *config)
     };
 
     /* turn off bridge power */
-    DL_GPIO_clearPins(GPIO_ADC_PORT, GPIO_ADC_ADC_RIDGE_SWITCH_CONTROL_PIN);
+    DL_GPIO_clearPins(GPIO_ADC_PORT, GPIO_ADC_ADC_BRIDGE_SWITCH_CONTROL_PIN);
 
     uart_printf("Using ADS122S14 in daisy chain for pressure sensing \r\n");
     DL_GPIO_setPins(GPIO_ADC_PORT, GPIO_ADC_ADC_CS_PIN);
@@ -617,10 +1221,18 @@ enum status_enum ads122s14_ptx_daisychain_init(void *config)
     if (crc8(config + 2, gADSConfigMem->config_length) !=
         gADSConfigMem->config_chksum) {
         ERR_LOG("ADS122S14 config reset");
-        gADSConfigMem->bridge_time = 500; /* 2 samples per second */
+        gADSConfigMem->bridge_time  = 500; /* 2 samples per second */
+        gADSConfigMem->bridge_state = on;
         gADSConfigMem->config_chksum =
             crc8(config + 2, gADSConfigMem->config_length);
         ret = STATUS_CFG_CHANGED;
+    }
+
+    if (gADSConfigMem->bridge_state == off) {
+        DL_GPIO_clearPins(
+            GPIO_ADC_PORT, GPIO_ADC_ADC_BRIDGE_SWITCH_CONTROL_PIN);
+    } else if (gADSConfigMem->bridge_state == on) {
+        DL_GPIO_setPins(GPIO_ADC_PORT, GPIO_ADC_ADC_BRIDGE_SWITCH_CONTROL_PIN);
     }
 
     init_ADCs();
@@ -640,14 +1252,17 @@ enum status_enum ads122s14_ptx_daisychain_init(void *config)
 enum status_enum ads122s14_ptx_daisychain_get_reading(int32_t *adc_raw)
 {
     uint8_t status[2];
+
     readDataDaisyChain(adc_raw, status);
     if (status[0] & status[1] &
         1) { /* check status bits, if ADCs have finished conversion */
         gADCTimeoutTimer = 0;
-        //startADCconversions();
-        /* turn off bridge power */
-        DL_GPIO_clearPins(
-            GPIO_ADC_PORT, GPIO_ADC_ADC_RIDGE_SWITCH_CONTROL_PIN);
+        // startADCconversions();
+        /* turn off bridge power if in toggling mode */
+        if (gADSConfigMem->bridge_state == toggle) {
+            DL_GPIO_clearPins(
+                GPIO_ADC_PORT, GPIO_ADC_ADC_BRIDGE_SWITCH_CONTROL_PIN);
+        }
         memcpy(gRawReading, adc_raw, sizeof(gRawReading));
         if (gStreaming)
             uart_printf("0x%x 0x%x\r\n", gRawReading[0], gRawReading[1]);

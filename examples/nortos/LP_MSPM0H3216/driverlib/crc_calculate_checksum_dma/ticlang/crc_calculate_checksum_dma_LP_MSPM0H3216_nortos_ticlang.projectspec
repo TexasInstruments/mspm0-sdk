@@ -48,7 +48,7 @@
             --compiler ticlang
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="CRC32 checksum calculation of a memory block using DMA block transfer">
+        description="CRC checksum calculation of a memory block using DMA block transfer">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

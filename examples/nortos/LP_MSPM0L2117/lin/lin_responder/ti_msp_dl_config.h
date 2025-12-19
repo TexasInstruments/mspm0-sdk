@@ -81,6 +81,14 @@ extern "C" {
 
 
 
+/* Defines for TIMER_0 */
+#define TIMER_0_INST                                                     (TIMA0)
+#define TIMER_0_INST_IRQHandler                                 TIMA0_IRQHandler
+#define TIMER_0_INST_INT_IRQN                                   (TIMA0_INT_IRQn)
+#define TIMER_0_INST_LOAD_VALUE                                             (0U)
+
+
+
 /* Defines for LIN_0 */
 #define LIN_0_INST                                                           UC4
 #define LIN_0_INST_FREQUENCY                                            32000000
@@ -127,6 +135,7 @@ void SYSCFG_DL_init(void);
 void SYSCFG_DL_initPower(void);
 void SYSCFG_DL_GPIO_init(void);
 void SYSCFG_DL_SYSCTL_init(void);
+void SYSCFG_DL_TIMER_0_init(void);
 void SYSCFG_DL_LIN_0_init(void);
 
 

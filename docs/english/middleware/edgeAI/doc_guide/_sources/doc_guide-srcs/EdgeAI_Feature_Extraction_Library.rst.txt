@@ -112,10 +112,10 @@ Usage Example
 
         q15_t rawInput[FE_FRAME_SIZE];
         q15_t extractedFeatures[FE_FEATURE_SIZE_PER_FRAME];
-
+        uint8_t varIndex;
         // Fill rawInput with signal data
 
-        FE_process(rawInput, extractedFeatures);
+        FE_process(rawInput, extractedFeatures,varIndex);
 
 3. **Use extracted features for inference or further processing**
 

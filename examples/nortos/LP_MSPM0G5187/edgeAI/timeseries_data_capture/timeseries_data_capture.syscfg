@@ -46,7 +46,6 @@ ADC121.adcMem0vrefm               = "VREFM";
 ADC121.peripheral.$assign         = "ADC0";
 ADC121.peripheral.adcPin5.$assign = "PB24";
 
-
 Board.peripheral.$assign          = "DEBUGSS";
 Board.peripheral.swclkPin.$assign = "PA20";
 Board.peripheral.swdioPin.$assign = "PA19";

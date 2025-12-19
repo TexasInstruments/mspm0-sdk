@@ -35,7 +35,7 @@
 <div id="content">
   <h1>Readme</h1>
 <h2 id="example-summary">Example Summary</h2>
-<p>This example demonstrates AC arc fault detection using the Neural Processing Unit (NPU) on the TIDA-971 Board. The application captures AC current waveforms using an ADC, extracts relevant features using the feature_extract library, and uses a neural network model to classify the waveform as either normal operation or containing an arc fault signature.</p>
+<p>This example demonstrates AC arc fault detection using the Neural Processing Unit (NPU) on the TIDA-010971 Board. The application captures AC current waveforms using an ADC, extracts relevant features using the feature_extract library, and uses a neural network model to classify the waveform as either normal operation or containing an arc fault signature.</p>
 <p>This example demonstrates the live preview feature on EdgeAI studio using MSPM0 devices. The application captures AC current waveforms using an ADC, extracts relevant features using the feature_extract library, and performs inference with a model that is functionally equivalent to the ac_arc_fault_detection_ai_npu model. The final output is then streamed to EdgeAI Studio for real-time visualization</p>
 <p>This example is built for the Hardware accelerated inference using a Neural network Processing Unit (NPU).</p>
 <h2 id="peripherals-pin-functions-mcu-pins-launchpad-pins">Peripherals, Pin Functions, MCU Pins, Launchpad Pins</h2>
@@ -72,14 +72,14 @@
 <td></td>
 </tr>
 <tr class="even">
-<td>UC0</td>
+<td>UC3</td>
 <td>RX Pin</td>
-<td>PA11</td>
+<td>PA13</td>
 <td>Back-Channel UART RXD</td>
 <td></td>
 </tr>
 <tr class="odd">
-<td>UC0</td>
+<td>UC3</td>
 <td>TX Pin</td>
 <td>PA10</td>
 <td>Back-Channel UART TXD</td>
@@ -128,7 +128,7 @@
 <li>Open a serial terminal with the following settings:</li>
 </ol>
 <ul>
-<li>Baud rate: 115200</li>
+<li>Baud rate: 5820000</li>
 <li>Data bits: 8</li>
 <li>Stop bits: 1</li>
 <li>Parity: None</li>

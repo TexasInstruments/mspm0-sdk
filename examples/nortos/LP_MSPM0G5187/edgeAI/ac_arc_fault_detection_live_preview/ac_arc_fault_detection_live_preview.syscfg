@@ -62,14 +62,16 @@ GPIO1.associatedPins[0].pin.$assign = "PA31";
 SYSCTL.forceDefaultClkConfig = true;
 SYSCTL.clockTreeEn           = true;
 
-UART1.targetBaudRate                    = 115200;
 UART1.enableFIFO                        = true;
 UART1.rxFifoThreshold                   = "DL_UART_RX_FIFO_LEVEL_ONE_ENTRY";
 UART1.txFifoThreshold                   = "DL_UART_TX_FIFO_LEVEL_3_4_EMPTY";
 UART1.enabledDMARXTriggers              = "DL_UART_DMA_INTERRUPT_RX";
 UART1.enabledDMATXTriggers              = "DL_UART_DMA_INTERRUPT_TX";
 UART1.$name                             = "UART_DAP";
-UART1.peripheral.rxPin.$assign          = "PA11";
+UART1.targetBaudRate                    = 5820000;
+UART1.ovsRate                           = "8";
+UART1.peripheral.$assign                = "UC3";
+UART1.peripheral.rxPin.$assign          = "PA13";
 UART1.peripheral.txPin.$assign          = "PA10";
 UART1.DMA_CHANNEL_RX.$name              = "DMA_CH0";
 UART1.DMA_CHANNEL_RX.addressMode        = "f2b";
@@ -84,5 +86,5 @@ UART1.DMA_CHANNEL_TX.enableInterrupt    = true;
 UART1.DMA_CHANNEL_TX.peripheral.$assign = "DMA_CH1";
 
 ProjectConfig.migrationCondition = true;
-ProjectConfig.genLibNPU   = true;
-ProjectConfig.genLibCMSIS = true;
+ProjectConfig.genLibNPU          = true;
+ProjectConfig.genLibCMSIS        = true;

@@ -38,9 +38,9 @@
 #include <strings.h>
 #include <ti_msp_dl_config.h>
 #include "IOL_Types.h"
+#include "flash.h"
 #include "main.h"
-#include "system/flash.h"
-#include "system/uart.h"
+#include "uart.h"
 
 extern void IOLD_API_Init(struct iolink_config_struct *config,
     struct iolink_process_struct *process);
@@ -69,7 +69,7 @@ static struct command commands[] = {
     {"cycle", "get/set cycle time in ms", cycle_cmd},
     {"com", "get/set com", com_cmd},
     {"pin2mode", "set pin 2 mode [in|npn|pnp]", pin2mode_cmd},
-    {"pin2value", "set pin 2 mode [0|1]", pin2value_cmd},
+    {"pin2value", "set pin 2 value [0|1]", pin2value_cmd},
     {"status", "get IO-Link status", status_cmd},
 };
 

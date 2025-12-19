@@ -2397,6 +2397,7 @@ var searchData=
   ['dl_5fsysctl_5fenablesramboundarylock',['DL_SYSCTL_enableSRAMBoundaryLock',['../group___s_y_s_c_t_l__mspm0gx51x.html#ga39c018eec70c3968558ac32300a69b0b',1,'dl_sysctl_mspm0gx51x.h']]],
   ['dl_5fsysctl_5fenablesysoscfcl',['DL_SYSCTL_enableSYSOSCFCL',['../group___s_y_s_c_t_l__mspm0gx51x.html#ga8209173a763a90618c126b4f3a0a533a',1,'dl_sysctl_mspm0gx51x.h']]],
   ['dl_5fsysctl_5fenablesysoscfclexternalresistor',['DL_SYSCTL_enableSYSOSCFCLExternalResistor',['../group___s_y_s_c_t_l__mspm0gx51x.html#ga3974b94a8e546a7d399b77a90657f680',1,'dl_sysctl_mspm0gx51x.h']]],
+  ['dl_5fsysctl_5fenablesyspll',['DL_SYSCTL_enableSYSPLL',['../group___s_y_s_c_t_l__mspm0gx51x.html#ga5e5fb73f25a0c077672a65d46cfed162',1,'dl_sysctl_mspm0gx51x.h']]],
   ['dl_5fsysctl_5fenablewritelock',['DL_SYSCTL_enableWriteLock',['../group___s_y_s_c_t_l__mspm0gx51x.html#gae0b1c86e5a0be32ac2238c2a0e2540b2',1,'dl_sysctl_mspm0gx51x.h']]],
   ['dl_5fsysctl_5ferror_5fbehavior',['DL_SYSCTL_ERROR_BEHAVIOR',['../group___s_y_s_c_t_l__mspm0gx51x.html#ga06e41abcd8e8c7519885e1a6f9f740e7',1,'dl_sysctl_mspm0gx51x.h']]],
   ['dl_5fsysctl_5ferror_5fbehavior_5fnmi',['DL_SYSCTL_ERROR_BEHAVIOR_NMI',['../group___s_y_s_c_t_l__mspm0gx51x.html#gga06e41abcd8e8c7519885e1a6f9f740e7ac239a8ae4ef547487c103d3a78f39f57',1,'dl_sysctl_mspm0gx51x.h']]],

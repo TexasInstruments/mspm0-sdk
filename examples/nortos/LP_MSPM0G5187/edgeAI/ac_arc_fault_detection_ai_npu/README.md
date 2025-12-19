@@ -24,7 +24,7 @@ and input/output data structures and the inference function are defined.
 
 ## Hardware Required
 
-- TIDA-971 Board
+- TIDA-010971 Board
 - AC power source (for testing)
 - Current sensing circuitry (e.g., current transformer or shunt resistor)
 - Optional: Arc fault generation test equipment (for validation)
@@ -53,14 +53,14 @@ The application uses a trained neural network model optimized for the NPU. The m
 
 | Parameter | Description | Default Value |
 |-----------|-------------|---------------|
-| `SAMPLING_RATE` | ADC sampling frequency in Hz | 8000 |
-| `DETECTION_THRESHOLD` | Confidence threshold for arc fault detection | 0.75 |
-| `WINDOW_SIZE` | Number of samples used for feature extraction | 512 |
+| `SAMPLING_RATE` | ADC sampling frequency | 9.3 us |
+| `DETECTION_THRESHOLD` | Confidence threshold for arc fault detection | 20 |
+| `WINDOW_SIZE` | Number of samples used for feature extraction | 1024 |
 
 ## Performance
 
-- Detection accuracy: >95% for series arc faults, >90% for parallel arc faults
-- False positive rate: <0.1%
+- Detection accuracy: 
+- False positive rate: 
 - Response time: <100ms
 - Power consumption: <10mW during active monitoring
 

@@ -64,7 +64,7 @@
             --compiler gcc
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="Demonstrate UART in RS485 mode, receive a packet">
+        description="Demonstrate UART in RS485 mode, receive a packet of data">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

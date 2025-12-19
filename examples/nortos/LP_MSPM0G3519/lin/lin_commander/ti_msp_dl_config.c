@@ -40,6 +40,8 @@
 
 #include "ti_msp_dl_config.h"
 
+DL_TimerA_backupConfig gTIMER_0Backup;
+
 /*
  *  ======== SYSCFG_DL_init ========
  *  Perform any initialization needed before using any board APIs
@@ -50,7 +52,33 @@ SYSCONFIG_WEAK void SYSCFG_DL_init(void)
     SYSCFG_DL_GPIO_init();
     /* Module-Specific Initializations*/
     SYSCFG_DL_SYSCTL_init();
+    SYSCFG_DL_TIMER_0_init();
     SYSCFG_DL_LIN_0_init();
+    /* Ensure backup structures have no valid state */
+	gTIMER_0Backup.backupRdy 	= false;
+
+}
+/*
+ * User should take care to save and restore register configuration in application.
+ * See Retention Configuration section for more details.
+ */
+SYSCONFIG_WEAK bool SYSCFG_DL_saveConfiguration(void)
+{
+    bool retStatus = true;
+
+	retStatus &= DL_TimerA_saveConfiguration(TIMER_0_INST, &gTIMER_0Backup);
+
+    return retStatus;
+}
+
+
+SYSCONFIG_WEAK bool SYSCFG_DL_restoreConfiguration(void)
+{
+    bool retStatus = true;
+
+	retStatus &= DL_TimerA_restoreConfiguration(TIMER_0_INST, &gTIMER_0Backup, false);
+
+    return retStatus;
 }
 
 SYSCONFIG_WEAK void SYSCFG_DL_initPower(void)
@@ -58,11 +86,13 @@ SYSCONFIG_WEAK void SYSCFG_DL_initPower(void)
     DL_GPIO_reset(GPIOA);
     DL_GPIO_reset(GPIOB);
     DL_GPIO_reset(GPIOC);
+    DL_TimerA_reset(TIMER_0_INST);
     DL_UART_Extend_reset(LIN_0_INST);
 
     DL_GPIO_enablePower(GPIOA);
     DL_GPIO_enablePower(GPIOB);
     DL_GPIO_enablePower(GPIOC);
+    DL_TimerA_enablePower(TIMER_0_INST);
     DL_UART_Extend_enablePower(LIN_0_INST);
     delay_cycles(POWER_STARTUP_DELAY);
 }
@@ -117,6 +147,45 @@ SYSCONFIG_WEAK void SYSCFG_DL_SYSCTL_init(void)
 	/* Set default configuration */
 	DL_SYSCTL_disableHFXT();
 	DL_SYSCTL_disableSYSPLL();
+
+}
+
+
+
+/*
+ * Timer clock configuration to be sourced by LFCLK /  (32768 Hz)
+ * timerClkFreq = (timerClkSrc / (timerClkDivRatio * (timerClkPrescale + 1)))
+ *   32768 Hz = 32768 Hz / (1 * (0 + 1))
+ */
+static const DL_TimerA_ClockConfig gTIMER_0ClockConfig = {
+    .clockSel    = DL_TIMER_CLOCK_LFCLK,
+    .divideRatio = DL_TIMER_CLOCK_DIVIDE_1,
+    .prescale    = 0U,
+};
+
+/*
+ * Timer load value (where the counter starts from) is calculated as (timerPeriod * timerClockFreq) - 1
+ * TIMER_0_INST_LOAD_VALUE = (0 ms * 32768 Hz) - 1
+ */
+static const DL_TimerA_TimerConfig gTIMER_0TimerConfig = {
+    .period     = TIMER_0_INST_LOAD_VALUE,
+    .timerMode  = DL_TIMER_TIMER_MODE_ONE_SHOT,
+    .startTimer = DL_TIMER_STOP,
+};
+
+SYSCONFIG_WEAK void SYSCFG_DL_TIMER_0_init(void) {
+
+    DL_TimerA_setClockConfig(TIMER_0_INST,
+        (DL_TimerA_ClockConfig *) &gTIMER_0ClockConfig);
+
+    DL_TimerA_initTimerMode(TIMER_0_INST,
+        (DL_TimerA_TimerConfig *) &gTIMER_0TimerConfig);
+    DL_TimerA_enableInterrupt(TIMER_0_INST , DL_TIMERA_INTERRUPT_ZERO_EVENT);
+    DL_TimerA_enableClock(TIMER_0_INST);
+
+
+
+
 
 }
 

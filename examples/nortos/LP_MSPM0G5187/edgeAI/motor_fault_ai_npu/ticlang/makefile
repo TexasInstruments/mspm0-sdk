@@ -84,11 +84,11 @@ ADXL355.obj: ../ADXL355.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-ti_edgeAI_feature_extract_feature_extract.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/1819/execroot/__main__/source/ti/edgeAI/feature_extract/feature_extract.c $(SYSCFG_H_FILES)
+ti_edgeAI_feature_extract_feature_extract.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/12701/execroot/__main__/source/ti/edgeAI/feature_extract/feature_extract.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-ti_edgeAI_npu_npu.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/1819/execroot/__main__/source/ti/edgeAI/npu/npu.c $(SYSCFG_H_FILES)
+ti_edgeAI_npu_npu.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/12701/execroot/__main__/source/ti/edgeAI/npu/npu.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 

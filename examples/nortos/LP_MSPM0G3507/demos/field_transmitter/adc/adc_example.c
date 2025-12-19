@@ -82,7 +82,7 @@ static struct adc_config_struct *adc_config;
 static enum status_enum help_cmd(char *cmd)
 {
     int i;
-    uart_printf("all command must start with adc \r\n");
+    uart_printf("All commands must start with adc \r\n");
     for (i = 0; i < sizeof(commands) / sizeof(commands[0]); i++) {
         uart_printf("%-10s - 0x%x - %s\r\n", commands[i].name,
             commands[i].function, commands[i].help);

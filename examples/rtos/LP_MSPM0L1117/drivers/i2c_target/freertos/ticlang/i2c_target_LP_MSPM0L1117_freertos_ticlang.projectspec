@@ -50,7 +50,7 @@
             -llibc.a
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="Responds to the i2c_controller example commands using the i2c target driver">
+        description="FreeRTOS example demonstrating responding to the i2c_controller example commands using the i2c target driver">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

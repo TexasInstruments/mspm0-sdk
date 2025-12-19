@@ -62,11 +62,11 @@ i2ctargetApp.obj: ../../i2ctargetApp.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-ti_display_Display.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/1774/execroot/__main__/source/ti/display/Display.c
+ti_display_Display.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/12637/execroot/__main__/source/ti/display/Display.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-ti_display_DisplayUart.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/1774/execroot/__main__/source/ti/display/DisplayUart.c
+ti_display_DisplayUart.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/12637/execroot/__main__/source/ti/display/DisplayUart.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 

@@ -48,7 +48,7 @@
             --compiler ticlang
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="AES128 CBC encryption and decryption example">
+        description="AES 128-bit CBC encryption-decryption using the on-board advanced AES engine">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

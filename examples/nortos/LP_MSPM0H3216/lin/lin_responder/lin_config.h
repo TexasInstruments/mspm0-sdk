@@ -42,7 +42,7 @@
 #define LIN_DATA_MAX_BUFFER_SIZE (8)
 
 /* UART LIN value for the number of cycles in a sync validation */
-#define LIN_RESPONDER_SYNC_CYCLES (5)
+#define LIN_RESPONDER_SYNC_CYCLES (4)
 
 /* UART LIN value for the message not found */
 #define LIN_MESSAGE_NOT_FOUND (0xFF)
@@ -51,7 +51,10 @@
 #define LIN_SYNC_BYTE (0x55)
 
 /* Number of delay cycles between PID STOP bit and data transmission START bit*/
-#define LIN_RESPONSE_LAPSE (LIN_0_INST_FREQUENCY / (2 * LIN_0_BAUD_RATE))
+#define LIN_RESPONSE_LAPSE (CPUCLK_FREQ / (2 * LIN_0_BAUD_RATE))
+
+/* Receive timeout period*/
+#define TIMEOUT 32 //1ms LFCLK
 
 /*Defaults the system to enable the automatic baud rate synchronization feature*/
 #define AUTO_BAUD_ENABLED (true)
@@ -129,16 +132,21 @@ typedef struct {
     uint16_t posEdge;
 } LIN_Sync_Bits;
 
+void LIN_processMessage_Tx(void);
+
 #if defined(__MSPM0_HAS_UART_EXTD__)
 
-void sendLINResponderTXMessage(UART_Regs *uart, uint8_t tableIndex,
-    uint8_t *msgBuffer, LIN_table_record_t *responderMessageTable);
+void LIN_Responder_receivePID(UART_Regs *uart, uint8_t rxByte, uint8_t *TXmsgBuffer, LIN_table_record_t *messageTable);
+void LIN_Responder_receiveMessage(uint8_t rxByte, uint8_t *msgBuffer, LIN_table_record_t *messageTable);
+void LIN_Responder_transmitMessage(UART_Regs *uart, uint8_t *msgBuffer, LIN_table_record_t *messageTable);
 
 #endif
 
 #if defined(__MCU_HAS_UNICOMMUART__)
-    
-void sendLINResponderTXMessage(UNICOMM_Inst_Regs *unicomm, uint8_t tableIndex,
-    uint8_t *msgBuffer, LIN_table_record_t *responderMessageTable);    
+
+void LIN_Responder_receivePID(UNICOMM_Inst_Regs *unicomm, uint8_t rxByte, uint8_t *TXmsgBuffer, LIN_table_record_t *messageTable);
+void LIN_Responder_receiveMessage(uint8_t rxByte, uint8_t *msgBuffer, LIN_table_record_t *messageTable);
+void LIN_Responder_transmitMessage(UNICOMM_Inst_Regs *unicomm, uint8_t *msgBuffer, LIN_table_record_t *messageTable);
 
 #endif
+

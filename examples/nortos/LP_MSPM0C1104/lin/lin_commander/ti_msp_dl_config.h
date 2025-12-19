@@ -77,6 +77,14 @@ extern "C" {
 
 
 
+/* Defines for TIMER_0 */
+#define TIMER_0_INST                                                     (TIMA0)
+#define TIMER_0_INST_IRQHandler                                 TIMA0_IRQHandler
+#define TIMER_0_INST_INT_IRQN                                   (TIMA0_INT_IRQn)
+#define TIMER_0_INST_LOAD_VALUE                                             (0U)
+
+
+
 /* Defines for LIN_0 */
 #define LIN_0_INST                                                         UART0
 #define LIN_0_INST_FREQUENCY                                            24000000
@@ -102,9 +110,9 @@ extern "C" {
 /* Port definition for Pin Group GPIO_LEDS */
 #define GPIO_LEDS_PORT                                                   (GPIOA)
 
-/* Defines for USER_LED_1: GPIOA.4 with pinCMx 5 on package pin 9 */
-#define GPIO_LEDS_USER_LED_1_PIN                                 (DL_GPIO_PIN_4)
-#define GPIO_LEDS_USER_LED_1_IOMUX                                (IOMUX_PINCM5)
+/* Defines for USER_LED_1: GPIOA.22 with pinCMx 23 on package pin 17 */
+#define GPIO_LEDS_USER_LED_1_PIN                                (DL_GPIO_PIN_22)
+#define GPIO_LEDS_USER_LED_1_IOMUX                               (IOMUX_PINCM23)
 /* Port definition for Pin Group GPIO_LIN_ENABLE */
 #define GPIO_LIN_ENABLE_PORT                                             (GPIOA)
 
@@ -135,6 +143,7 @@ void SYSCFG_DL_init(void);
 void SYSCFG_DL_initPower(void);
 void SYSCFG_DL_GPIO_init(void);
 void SYSCFG_DL_SYSCTL_init(void);
+void SYSCFG_DL_TIMER_0_init(void);
 void SYSCFG_DL_LIN_0_init(void);
 
 

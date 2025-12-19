@@ -88,6 +88,14 @@
 #include <ti/devices/msp/m0p/mspm0l211x.h>
 #elif (DeviceFamily_ID == DeviceFamily_ID_MSPM0L112X)
 #include <ti/devices/msp/m0p/mspm0l112x.h>
+#elif (DeviceFamily_ID == DeviceFamily_ID_MSPM0G321X)
+#include <ti/devices/msp/m0p/mspm0g321x.h>
+#elif (DeviceFamily_ID == DeviceFamily_ID_MSPM0G121X)
+#include <ti/devices/msp/m0p/mspm0g121x.h>
+#elif (DeviceFamily_ID == DeviceFamily_ID_MSPM0G320X)
+#include <ti/devices/msp/m0p/mspm0g320x.h>
+#elif (DeviceFamily_ID == DeviceFamily_ID_MSPM0G120X)
+#include <ti/devices/msp/m0p/mspm0g120x.h>
 
 /********************************************************************
  *

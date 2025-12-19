@@ -64,7 +64,7 @@
             --compiler gcc
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="Flash writing of different size data">
+        description="Demonstrate programming Flash with multiple data sizes (8/16/32/64-bit)">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

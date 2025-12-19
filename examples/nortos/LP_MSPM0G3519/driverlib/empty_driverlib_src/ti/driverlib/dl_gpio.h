@@ -2242,7 +2242,12 @@ __STATIC_INLINE uint32_t DL_GPIO_readPins(GPIO_Regs* gpio, uint32_t pins)
  */
 __STATIC_INLINE void DL_GPIO_writePins(GPIO_Regs* gpio, uint32_t pins)
 {
-    gpio->DOUT31_0 = pins;
+#ifdef __GPIO_ERR_06__
+    gpio->DOUTTGL31_0 = ~(gpio->DOUT31_0) & pins;
+    gpio->DOUTTGL31_0 = gpio->DOUT31_0 & (~pins);
+#else
+    gpio->DOUT31_0    = pins;
+#endif
 }
 
 /**
@@ -2261,7 +2266,12 @@ __STATIC_INLINE void DL_GPIO_writePinsVal(
     uint32_t doutVal = gpio->DOUT31_0;
     doutVal &= ~pinsMask;
     doutVal |= (pinsVal & pinsMask);
-    gpio->DOUT31_0 = doutVal;
+#ifdef __GPIO_ERR_06__
+    gpio->DOUTTGL31_0 = ~(gpio->DOUT31_0) & doutVal;
+    gpio->DOUTTGL31_0 = gpio->DOUT31_0 & (~doutVal);
+#else
+    gpio->DOUT31_0    = doutVal;
+#endif
 }
 
 /**
@@ -2272,7 +2282,11 @@ __STATIC_INLINE void DL_GPIO_writePinsVal(
  */
 __STATIC_INLINE void DL_GPIO_setPins(GPIO_Regs* gpio, uint32_t pins)
 {
+#ifdef __GPIO_ERR_06__
+    gpio->DOUTTGL31_0 = ~(gpio->DOUT31_0) & pins;
+#else
     gpio->DOUTSET31_0 = pins;
+#endif
 }
 
 /**
@@ -2283,7 +2297,11 @@ __STATIC_INLINE void DL_GPIO_setPins(GPIO_Regs* gpio, uint32_t pins)
  */
 __STATIC_INLINE void DL_GPIO_clearPins(GPIO_Regs* gpio, uint32_t pins)
 {
+#ifdef __GPIO_ERR_06__
+    gpio->DOUTTGL31_0 = gpio->DOUT31_0 & pins;
+#else
     gpio->DOUTCLR31_0 = pins;
+#endif
 }
 
 /**

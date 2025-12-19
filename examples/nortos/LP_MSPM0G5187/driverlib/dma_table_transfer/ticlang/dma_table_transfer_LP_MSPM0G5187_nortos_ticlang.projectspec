@@ -48,7 +48,7 @@
             --compiler ticlang
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="DMA using Table mode with DMA">
+        description="DMA example with a table distributed to SRAM memory via DMA, triggered by software">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

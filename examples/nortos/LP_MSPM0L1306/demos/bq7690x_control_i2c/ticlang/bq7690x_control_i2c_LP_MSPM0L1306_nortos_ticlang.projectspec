@@ -48,7 +48,7 @@
             --compiler ticlang
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="Demonstrate BQ7690x control through I2C">
+        description="Demonstrate BQ7690x configuration and control through I2C">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

@@ -50,7 +50,7 @@
             -llibc.a
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="Read temperature from Tmp117 Sensor using I2C">
+        description="FreeRTOS example demonstrating reading temperature from Tmp117 Sensor using I2C">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

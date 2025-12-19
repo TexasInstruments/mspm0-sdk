@@ -222,6 +222,8 @@ exports = {
     isPinMuxable            : isPinMuxable,
 
     hasNPU                  : hasNPU,
+
+    isdeviceAffected_SYSPLL_ERR_01 : isdeviceAffected_SYSPLL_ERR_01,
 };
 
 /*
@@ -2685,10 +2687,22 @@ function getGPIOConfigBoardC(inst){
                         if(inst.peripheral === undefined){
                             if(["PA19","PA20"].includes(inst[pinst.passedResourceName].$solution.devicePinName)){
                                 returnString += "\n\t"+"DL_GPIO_set"+pinst.passedPeripheralType+"InternalResistor("+pinst.passedPinName+", DL_GPIO_RESISTOR_NONE);"
+                                if(!pinst.enableConfig){
+                                    let ioMuxName = pinst.passedPinName;
+                                    initIOMux = "DL_GPIO_initPeripheralOutputFunction("+
+                                    "\n\t\t "+ioMuxName +", "+ioMuxName+"_FUNC);";
+                                    returnString +=  "\n\t"+initIOMux;
+                                }
                             }
                         }
                         else if(["PA19","PA20"].includes(inst.peripheral[pinst.passedResourceName].$solution.devicePinName)){
                             returnString += "\n\t"+"DL_GPIO_set"+pinst.passedPeripheralType+"InternalResistor("+pinst.passedPinName+", DL_GPIO_RESISTOR_NONE);"
+                            if(!pinst.enableConfig){
+                                let ioMuxName = pinst.passedPinName;
+                                initIOMux = "DL_GPIO_initPeripheralOutputFunction("+
+                                "\n\t\t "+ioMuxName +", "+ioMuxName+"_FUNC);";
+                                returnString +=  "\n\t"+initIOMux;
+                            }
                         }
                     }
                 }catch (e) {
@@ -3532,4 +3546,12 @@ function isPinMuxable(inst, pinName){
  */
 function hasNPU(){
     return (/NPU/.test(peripherals));
+}
+
+function isdeviceAffected_SYSPLL_ERR_01(){
+    /**
+     * TODO: change this to a list of devices that need the workaround (for now its all of them)
+     *  - open to renaming this
+     */
+    return true;
 }

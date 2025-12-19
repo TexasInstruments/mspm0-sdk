@@ -48,7 +48,7 @@
             --compiler ticlang
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="GPIO toggling output pins using C++">
+        description="GPIO toggling output pins to toggle the RGB LED using C++">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

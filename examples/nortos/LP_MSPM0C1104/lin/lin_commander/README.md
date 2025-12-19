@@ -3,6 +3,7 @@
 This example configures the UART as a LIN Commander, and demonstrates basic
 transmit and receive of LIN 2.0 packets using enhanced checksum.
 LIN is a feature only usable with a UART Extend instance.
+This example is provided for reference purposes only.
 
 **Note**: Example requires Rev E3 or later of the MSPM0C1104 LaunchPad.
 
@@ -77,6 +78,7 @@ the Network Analyzer and LIN BoosterPack:
 
 The LIN Commander is configured to run at 24MHz at 19200 baud. These settings
 can be modified in the application.
+The commander can transmit data either in polling mode or interrupt mode.
 
 The list of acceptable PID commands are:
   - PID 0x39 / 0x3A / 0x3B

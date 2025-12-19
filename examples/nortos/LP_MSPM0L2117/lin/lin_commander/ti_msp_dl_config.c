@@ -50,6 +50,7 @@ SYSCONFIG_WEAK void SYSCFG_DL_init(void)
     SYSCFG_DL_GPIO_init();
     /* Module-Specific Initializations*/
     SYSCFG_DL_SYSCTL_init();
+    SYSCFG_DL_TIMER_0_init();
     SYSCFG_DL_LIN_0_init();
 }
 
@@ -57,10 +58,12 @@ SYSCONFIG_WEAK void SYSCFG_DL_initPower(void)
 {
     DL_GPIO_reset(GPIOA);
     DL_GPIO_reset(GPIOB);
+    DL_TimerA_reset(TIMER_0_INST);
     DL_UART_reset(LIN_0_INST);
 
     DL_GPIO_enablePower(GPIOA);
     DL_GPIO_enablePower(GPIOB);
+    DL_TimerA_enablePower(TIMER_0_INST);
     DL_UART_enablePower(LIN_0_INST);
     delay_cycles(POWER_STARTUP_DELAY);
 }
@@ -121,6 +124,45 @@ SYSCONFIG_WEAK void SYSCFG_DL_SYSCTL_init(void)
 }
 
 
+
+/*
+ * Timer clock configuration to be sourced by LFCLK /  (32768 Hz)
+ * timerClkFreq = (timerClkSrc / (timerClkDivRatio * (timerClkPrescale + 1)))
+ *   32768 Hz = 32768 Hz / (1 * (0 + 1))
+ */
+static const DL_TimerA_ClockConfig gTIMER_0ClockConfig = {
+    .clockSel    = DL_TIMER_CLOCK_LFCLK,
+    .divideRatio = DL_TIMER_CLOCK_DIVIDE_1,
+    .prescale    = 0U,
+};
+
+/*
+ * Timer load value (where the counter starts from) is calculated as (timerPeriod * timerClockFreq) - 1
+ * TIMER_0_INST_LOAD_VALUE = (0 ms * 32768 Hz) - 1
+ */
+static const DL_TimerA_TimerConfig gTIMER_0TimerConfig = {
+    .period     = TIMER_0_INST_LOAD_VALUE,
+    .timerMode  = DL_TIMER_TIMER_MODE_ONE_SHOT,
+    .startTimer = DL_TIMER_STOP,
+};
+
+SYSCONFIG_WEAK void SYSCFG_DL_TIMER_0_init(void) {
+
+    DL_TimerA_setClockConfig(TIMER_0_INST,
+        (DL_TimerA_ClockConfig *) &gTIMER_0ClockConfig);
+
+    DL_TimerA_initTimerMode(TIMER_0_INST,
+        (DL_TimerA_TimerConfig *) &gTIMER_0TimerConfig);
+    DL_TimerA_enableInterrupt(TIMER_0_INST , DL_TIMERA_INTERRUPT_ZERO_EVENT);
+    DL_TimerA_enableClock(TIMER_0_INST);
+
+
+
+
+
+}
+
+
 static const DL_UART_ClockConfig gLIN_0ClockConfig = {
     .clockSel    = DL_UART_CLOCK_BUSCLK,
     .divideRatio = DL_UART_CLOCK_DIVIDE_RATIO_1
@@ -149,21 +191,13 @@ SYSCONFIG_WEAK void SYSCFG_DL_LIN_0_init(void)
     DL_UART_setBaudRateDivisor(LIN_0_INST, LIN_0_IBRD_32_MHZ_19200_BAUD, LIN_0_FBRD_32_MHZ_19200_BAUD);
 
 
-    /* Configure Interrupts */
-    DL_UART_enableInterrupt(LIN_0_INST,
-                                 DL_UART_INTERRUPT_RX);
-
     /* Configure FIFOs */
+    DL_UART_enableFIFOs(LIN_0_INST);
     DL_UART_setRXFIFOThreshold(LIN_0_INST, DL_UART_RX_FIFO_LEVEL_ONE_ENTRY);
-    DL_UART_setTXFIFOThreshold(LIN_0_INST, DL_UART_TX_FIFO_LEVEL_ONE_ENTRY);
+    DL_UART_setTXFIFOThreshold(LIN_0_INST, DL_UART_TX_FIFO_LEVEL_EMPTY);
 
     /* Configure LIN settings */
-    DL_UART_enableLINCounter(LIN_0_INST);
     DL_UART_setLINCounterValue(LIN_0_INST, 0);
-    DL_UART_enableLINCounterCompareMatch(LIN_0_INST);
-    DL_UART_setLINCounterCompareValue(LIN_0_INST, LIN_0_COUNTER_COMPARE_VALUE);
-    DL_UART_enableLINCountWhileLow(LIN_0_INST);
-    DL_UART_enableLINCounterClearOnFallingEdge(LIN_0_INST);
 
     DL_UART_enable(LIN_0_INST);
 }

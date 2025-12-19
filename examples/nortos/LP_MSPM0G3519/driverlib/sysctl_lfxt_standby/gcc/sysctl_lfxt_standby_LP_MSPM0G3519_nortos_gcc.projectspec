@@ -64,7 +64,7 @@
             --compiler gcc
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="Sets LFXT as source to LFCLK (32kHz) and power policy in STANDBY0">
+        description="Sets LFXT as source to LFCLK (32kHz) and low power policy in STANDBY0">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

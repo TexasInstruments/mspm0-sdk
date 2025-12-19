@@ -14,6 +14,8 @@ const GPIO     = scripting.addModule("/ti/driverlib/GPIO", {}, false);
 const GPIO1    = GPIO.addInstance();
 const GPIO2    = GPIO.addInstance();
 const SYSCTL   = scripting.addModule("/ti/driverlib/SYSCTL");
+const TIMER    = scripting.addModule("/ti/driverlib/TIMER", {}, false);
+const TIMER1   = TIMER.addInstance();
 const uartLIN  = scripting.addModule("/ti/driverlib/uartLIN", {}, false);
 const uartLIN1 = uartLIN.addInstance();
 
@@ -25,30 +27,30 @@ Board.peripheral.swclkPin.$assign = "PA20";
 Board.peripheral.swdioPin.$assign = "PA19";
 
 GPIO1.$name                         = "GPIO_LEDS";
-GPIO1.port                          = "PORTB";
-GPIO1.portSegment                   = "Upper";
 GPIO1.associatedPins.create(2);
 GPIO1.associatedPins[0].$name       = "USER_LED_1";
-GPIO1.associatedPins[0].assignedPin = "16";
-GPIO1.associatedPins[0].pin.$assign = "PB16";
+GPIO1.associatedPins[0].pin.$assign = "PB20";
 GPIO1.associatedPins[1].$name       = "USER_LED_2";
-GPIO1.associatedPins[1].assignedPin = "17";
-GPIO1.associatedPins[1].pin.$assign = "PB17";
+GPIO1.associatedPins[1].pin.$assign = "PB24";
 
 GPIO2.$name                         = "GPIO_LIN_ENABLE";
 GPIO2.port                          = "PORTB";
 GPIO2.portSegment                   = "Upper";
 GPIO2.associatedPins[0].$name       = "USER_LIN_ENABLE";
-GPIO2.associatedPins[0].assignedPin = "24";
-GPIO2.associatedPins[0].pin.$assign = "PB24";
+GPIO2.associatedPins[0].pin.$assign = "PB16";
 
-SYSCTL.clockTreeEn           = true;
+SYSCTL.clockTreeEn = true;
+
+TIMER1.$name       = "TIMER_0";
+TIMER1.timerClkSrc = "LFCLK";
+TIMER1.interrupts  = ["ZERO"];
 
 uartLIN1.$name                    = "LIN_0";
 uartLIN1.profile                  = "CONFIG_PROFILE_1";
 uartLIN1.peripheral.$assign       = "UART0";
-uartLIN1.peripheral.rxPin.$assign = "PA11";
-uartLIN1.peripheral.txPin.$assign = "PA10";
+uartLIN1.peripheral.rxPin.$assign = "PB8";
+uartLIN1.peripheral.txPin.$assign = "PB9";
 
 const ProjectConfig              = scripting.addModule("/ti/project_config/ProjectConfig", {}, false);
 ProjectConfig.migrationCondition = true;
+

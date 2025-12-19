@@ -259,10 +259,10 @@ extern enum status_enum ads122s14_ptx_daisychain_cmd(char *cmd);
 /* SPEED_MODE field */
 #define DEVICE_CFG_SPEED_MODE_MASK ((uint8_t) 0x03)
 #define DEVICE_CFG_SPEED_MODE_BITOFFSET (0)
-#define DEVICE_CFG_SPEED_MODE_LOW ((uint8_t) 0x00)  // DEFAULT
-#define DEVICE_CFG_SPEED_MODE_MID ((uint8_t) 0x01)
-#define DEVICE_CFG_SPEED_MODE_FULL ((uint8_t) 0x02)
-#define DEVICE_CFG_SPEED_MODE_HIGH ((uint8_t) 0x03)
+#define DEVICE_CFG_SPEED_MODE_0 ((uint8_t) 0x00)  // DEFAULT
+#define DEVICE_CFG_SPEED_MODE_1 ((uint8_t) 0x01)
+#define DEVICE_CFG_SPEED_MODE_2 ((uint8_t) 0x02)
+#define DEVICE_CFG_SPEED_MODE_3 ((uint8_t) 0x03)
 
 /* Register 0x06 (DATA_RATE_CFG) definition
  * |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -609,31 +609,33 @@ extern enum status_enum ads122s14_ptx_daisychain_cmd(char *cmd);
 #define IDAC_MAG_CFG_I2MAG_MASK ((uint8_t) 0xF0)
 #define IDAC_MAG_CFG_I2MAG_BITOFFSET (4)
 #define IDAC_MAG_CFG_I2MAG_DISABLE ((uint8_t) 0x00)  // DEFAULT
-#define IDAC_MAG_CFG_I2MAG_10X ((uint8_t) 0x10)
-#define IDAC_MAG_CFG_I2MAG_20X ((uint8_t) 0x20)
-#define IDAC_MAG_CFG_I2MAG_30X ((uint8_t) 0x30)
-#define IDAC_MAG_CFG_I2MAG_40X ((uint8_t) 0x40)
-#define IDAC_MAG_CFG_I2MAG_50X ((uint8_t) 0x50)
-#define IDAC_MAG_CFG_I2MAG_60X ((uint8_t) 0x60)
-#define IDAC_MAG_CFG_I2MAG_70X ((uint8_t) 0x70)
-#define IDAC_MAG_CFG_I2MAG_80X ((uint8_t) 0x80)
-#define IDAC_MAG_CFG_I2MAG_90X ((uint8_t) 0x90)
-#define IDAC_MAG_CFG_I2MAG_100X ((uint8_t) 0xA0)
+#define IDAC_MAG_CFG_I2MAG_1X ((uint8_t) 0x10)
+#define IDAC_MAG_CFG_I2MAG_10X ((uint8_t) 0x20)
+#define IDAC_MAG_CFG_I2MAG_20X ((uint8_t) 0x30)
+#define IDAC_MAG_CFG_I2MAG_30X ((uint8_t) 0x40)
+#define IDAC_MAG_CFG_I2MAG_40X ((uint8_t) 0x50)
+#define IDAC_MAG_CFG_I2MAG_50X ((uint8_t) 0x60)
+#define IDAC_MAG_CFG_I2MAG_60X ((uint8_t) 0x70)
+#define IDAC_MAG_CFG_I2MAG_70X ((uint8_t) 0x80)
+#define IDAC_MAG_CFG_I2MAG_80X ((uint8_t) 0x90)
+#define IDAC_MAG_CFG_I2MAG_90X ((uint8_t) 0xA0)
+#define IDAC_MAG_CFG_I2MAG_100X ((uint8_t) 0xB0)
 
 /* I1MAG field */
 #define IDAC_MAG_CFG_I1MAG_MASK ((uint8_t) 0x0F)
 #define IDAC_MAG_CFG_I1MAG_BITOFFSET (0)
 #define IDAC_MAG_CFG_I1MAG_DISABLE ((uint8_t) 0x00)  // DEFAULT
-#define IDAC_MAG_CFG_I1MAG_10X ((uint8_t) 0x01)
-#define IDAC_MAG_CFG_I1MAG_20X ((uint8_t) 0x02)
-#define IDAC_MAG_CFG_I1MAG_30X ((uint8_t) 0x03)
-#define IDAC_MAG_CFG_I1MAG_40X ((uint8_t) 0x04)
-#define IDAC_MAG_CFG_I1MAG_50X ((uint8_t) 0x05)
-#define IDAC_MAG_CFG_I1MAG_60X ((uint8_t) 0x06)
-#define IDAC_MAG_CFG_I1MAG_70X ((uint8_t) 0x07)
-#define IDAC_MAG_CFG_I1MAG_80X ((uint8_t) 0x08)
-#define IDAC_MAG_CFG_I1MAG_90X ((uint8_t) 0x09)
-#define IDAC_MAG_CFG_I1MAG_100X ((uint8_t) 0x0A)
+#define IDAC_MAG_CFG_I1MAG_1X ((uint8_t) 0x01)
+#define IDAC_MAG_CFG_I1MAG_10X ((uint8_t) 0x02)
+#define IDAC_MAG_CFG_I1MAG_20X ((uint8_t) 0x03)
+#define IDAC_MAG_CFG_I1MAG_30X ((uint8_t) 0x04)
+#define IDAC_MAG_CFG_I1MAG_40X ((uint8_t) 0x05)
+#define IDAC_MAG_CFG_I1MAG_50X ((uint8_t) 0x06)
+#define IDAC_MAG_CFG_I1MAG_60X ((uint8_t) 0x07)
+#define IDAC_MAG_CFG_I1MAG_70X ((uint8_t) 0x08)
+#define IDAC_MAG_CFG_I1MAG_80X ((uint8_t) 0x09)
+#define IDAC_MAG_CFG_I1MAG_90X ((uint8_t) 0x0A)
+#define IDAC_MAG_CFG_I1MAG_100X ((uint8_t) 0x0B)
 
 /* Register 0x0E (IDAC_MUX_CFG) definition
  * |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|

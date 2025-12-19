@@ -44,15 +44,15 @@ static bool gStreaming = false;
  * calibration coeffients from Coeffient_Generation.xlsx
  * Should be moved to config memory later
  */
-static int32_t h0       = 31707;
+static int32_t h0       = 27340;
 static int32_t h1       = 0;
 static int32_t h2       = 0;
 static int32_t h3       = 0;
-static int32_t g0       = 23584188;
+static int32_t g0       = 18135484;
 static int32_t g1       = 0;
 static int32_t g2       = 0;
 static int32_t g3       = 0;
-static int32_t n0       = 549385696;
+static int32_t n0       = 421023099;
 static int32_t n1       = 0;
 static int32_t n2       = 0;
 static int32_t n3       = 0;
@@ -60,7 +60,7 @@ static int32_t m0       = 0;
 static int32_t m1       = 0;
 static int32_t m2       = 0;
 static int32_t m3       = 0;
-static int32_t P_offset = 0;
+static int32_t P_offset = -1769446;
 static int32_t T_offset = 0;
 
 static float h0n;
@@ -101,7 +101,7 @@ static struct command commands[] = {
 static enum status_enum help_cmd(char *cmd)
 {
     int i;
-    uart_printf("all command must start with cin \r\n");
+    uart_printf("All commands must start with cin \r\n");
     for (i = 0; i < sizeof(commands) / sizeof(commands[0]); i++) {
         uart_printf("%-10s - 0x%x - %s\r\n", commands[i].name,
             commands[i].function, commands[i].help);
@@ -177,8 +177,8 @@ enum status_enum condition_press_temp_adc_init(void *config)
 enum status_enum condition_press_temp_adc_process(int32_t *in, float *out)
 {
     uint32_t DAC = 0;
-    int32_t PADC = in[1];
-    int32_t TADC = in[0];
+    int32_t PADC = in[0];
+    int32_t TADC = in[1];
 
     float PADCn    = 0;
     float TADCn    = 0;
@@ -195,9 +195,8 @@ enum status_enum condition_press_temp_adc_process(int32_t *in, float *out)
     float DACn = 0;
 
     /*convert PADC and TADC from unsigned 32 bit integer to float, add offset and normalize */
-    PADCn =
-        (PADC + P_offset) / 4194304.0; /* divide by 2^22 or right shift >>22 */
-    TADCn = (TADC + T_offset) / 4194304.0;
+    PADCn = (PADC + P_offset) / 1073741824.0; /* scale */
+    TADCn = (TADC + T_offset) / 1073741824.0;
 
     /* calculate PADC^2 and TADC^2 */
     PADCn_sq = PADCn * PADCn;
@@ -217,7 +216,7 @@ enum status_enum condition_press_temp_adc_process(int32_t *in, float *out)
     DACn = term1 + term2 + term3 + term4;
 
     /* Multiply normalized DACn */
-    DAC = DACn * 262140;
+    DAC = DACn * 1073741824.0;
 
     *out = DAC;
 

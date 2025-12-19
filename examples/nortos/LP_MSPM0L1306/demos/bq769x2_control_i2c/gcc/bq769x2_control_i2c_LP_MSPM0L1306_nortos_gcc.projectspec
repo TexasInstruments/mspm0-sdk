@@ -64,7 +64,7 @@
             --compiler gcc
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="Demonstrate BQ769x2 control through I2C">
+        description="Demonstrate BQ769x2 control to detect battery status through I2C">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

@@ -48,7 +48,7 @@
             --compiler ticlang
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="Comparator in high-speed mode triggers a TIMA fault">
+        description="Comparator in high-speed mode triggers a PWM fault">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

@@ -48,7 +48,7 @@
             --compiler ticlang
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="Timer edge time detection using Timer capture mode">
+        description="Timer capture mode for edge time detection">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

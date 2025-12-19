@@ -71,4 +71,10 @@ enum status_enum (*adc_get_reading)(
  */
 enum status_enum (*adc_cmd)(char *cmd);
 
+/** stores the pointer to the name of the selected driver **/
+extern char *gAdcDriverName;
+
+/** stores number of drivers **/
+extern int AdcDriverCnt;
+
 #endif

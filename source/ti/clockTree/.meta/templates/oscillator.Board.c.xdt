@@ -186,16 +186,6 @@ SYSCONFIG_WEAK void DL_SYSCFG_SYSCTL_SYSOSC_USERTRIM(uint8_t SYSCTL_SYSOSCTRIMUS
 
     if(!sysoscInst.disableSYSOSC)
     {
-        // frequency correction loop
-        if(sysoscInst.enableSYSOSCFCL){
-            if(sysoscInst.enableROSC) {
-                sysoscStr = "\n\t/* Enable SYSOSC FCL in External Resistor Mode */"
-                sysoscStr += "\n\tDL_SYSCTL_enableSYSOSCFCLExternalResistor();"
-            } else if(!sysoscInst.enableROSC){
-                sysoscStr = "\n\t/* Enable SYSOSC FCL in Internal Resistor Mode */"
-                sysoscStr += "\n\tDL_SYSCTL_enableSYSOSCFCL();"
-            }
-        }
         if(sysoscInst.enableUserTrim) {
             sysoscStr += "\n\tDL_SYSCFG_SYSCTL_SYSOSC_USERTRIM(" + sysoscInst.userTrimFrequency + ");"
         }
@@ -204,7 +194,16 @@ SYSCONFIG_WEAK void DL_SYSCFG_SYSCTL_SYSOSC_USERTRIM(uint8_t SYSCTL_SYSOSCTRIMUS
         } else {
             sysoscStr += "\n\tDL_SYSCTL_setSYSOSCFreq(DL_SYSCTL_SYSOSC_FREQ_BASE);";
         }
-
+        // frequency correction loop
+        if(sysoscInst.enableSYSOSCFCL){
+            if(sysoscInst.enableROSC) {
+                sysoscStr += "\n\t/* Enable SYSOSC FCL in External Resistor Mode */"
+                sysoscStr += "\n\tDL_SYSCTL_enableSYSOSCFCLExternalResistor();"
+            } else if(!sysoscInst.enableROSC){
+                sysoscStr += "\n\t/* Enable SYSOSC FCL in Internal Resistor Mode */"
+                sysoscStr += "\n\tDL_SYSCTL_enableSYSOSCFCL();"
+            }
+        }
     }
 %%}
 %

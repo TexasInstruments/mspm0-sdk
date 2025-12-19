@@ -65,7 +65,7 @@
 
 #define FLASH_NUM_SECTORS (512)
 
-#elif defined(__MSPM0L2228__)
+#elif defined(__MSPM0L2228__) || defined(__MSPM0G3218__)
 
 #define BOOTLOADER_BASE_ADDRESS (0x00000)
 #define BOOT_BOOTLOADER_SIZE (0x04800)

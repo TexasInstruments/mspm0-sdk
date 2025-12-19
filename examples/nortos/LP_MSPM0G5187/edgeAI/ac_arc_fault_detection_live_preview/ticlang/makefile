@@ -86,19 +86,19 @@ device_agent_protocol_dap_interface.obj: ../device_agent_protocol/dap_interface.
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-ti_edgeAI_device_agent_protocol_core_dap_core.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/1887/execroot/__main__/source/ti/edgeAI/device_agent_protocol/core/dap_core.c $(SYSCFG_H_FILES)
+ti_edgeAI_device_agent_protocol_core_dap_core.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/12744/execroot/__main__/source/ti/edgeAI/device_agent_protocol/core/dap_core.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-ti_edgeAI_device_agent_protocol_uart_comm_uart_comm_target.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/1887/execroot/__main__/source/ti/edgeAI/device_agent_protocol/uart_comm/uart_comm_target.c $(SYSCFG_H_FILES)
+ti_edgeAI_device_agent_protocol_uart_comm_uart_comm_target.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/12744/execroot/__main__/source/ti/edgeAI/device_agent_protocol/uart_comm/uart_comm_target.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-ti_edgeAI_feature_extract_feature_extract.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/1887/execroot/__main__/source/ti/edgeAI/feature_extract/feature_extract.c $(SYSCFG_H_FILES)
+ti_edgeAI_feature_extract_feature_extract.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/12744/execroot/__main__/source/ti/edgeAI/feature_extract/feature_extract.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-ti_edgeAI_npu_npu.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/1887/execroot/__main__/source/ti/edgeAI/npu/npu.c $(SYSCFG_H_FILES)
+ti_edgeAI_npu_npu.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/12744/execroot/__main__/source/ti/edgeAI/npu/npu.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 

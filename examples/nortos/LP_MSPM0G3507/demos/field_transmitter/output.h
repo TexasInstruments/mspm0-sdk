@@ -70,4 +70,10 @@ enum status_enum (*output_set_reading)(int32_t raw);
  */
 enum status_enum (*output_cmd)(char *cmd);
 
+/** stores the pointer to the name of the selected driver **/
+extern char *OutputDriverName;
+
+/** stores number of supported output drivers **/
+extern int OutputDriverCnt;
+
 #endif /* OUTPUT_H_ */

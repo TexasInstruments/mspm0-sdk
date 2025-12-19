@@ -64,7 +64,7 @@
             --compiler gcc
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="UART TX using a DMA trigger">
+        description="UART transmit of multiple bytes of data using a DMA trigger and interrupts">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

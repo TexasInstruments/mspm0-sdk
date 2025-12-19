@@ -48,7 +48,7 @@
             --compiler ticlang
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="Timer in periodic mode while device is in STOP mode">
+        description="Timer in periodic mode while device is in STOP low power mode">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

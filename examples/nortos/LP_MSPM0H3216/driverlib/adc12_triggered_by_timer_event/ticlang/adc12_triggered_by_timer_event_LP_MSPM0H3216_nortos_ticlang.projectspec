@@ -48,7 +48,7 @@
             --compiler ticlang
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="ADC12 conversion triggered by a Timer event">
+        description="Configure the ADC to perform a simple single conversion triggered by a timer event">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

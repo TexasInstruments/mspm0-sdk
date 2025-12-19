@@ -64,7 +64,7 @@
             --compiler gcc
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="timb emulating 32bit timer">
+        description="TimerB (Basic timer) emulating 32-bit timer that toggles a GPIO via interrupt every second with a 50% duty cycle">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

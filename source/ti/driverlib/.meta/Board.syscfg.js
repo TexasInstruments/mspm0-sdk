@@ -41,167 +41,160 @@
 
 /* get ti/drivers common utility functions */
 let Common = system.getScript("/ti/driverlib/Common.js");
+let peripherals = Object.keys(system.deviceData.peripherals);
 
-let MasterOrder = [];
+/* ============== Module Order  =========================*/
+/* Ordered list of all possible peripheral modules */
+let completeOrder = [
+    "SYSCTL",
+    "RTCA",
+    "BEEPER",
+    "PWM",
+    "QEI",
+    "CAPTURE",
+    "COMPARE",
+    "TIMER",
+    "TIMERB",
+    "TAMPERIO",
+    "IWDT",
+    "I2C",
+    "i2cSMBUS",
+    "UART",
+    "uartLIN",
+    "SPI",
+    "ADC12",
+    "COMP",
+    "VREF",
+    "OPA",
+    "GPAMP",
+    "EVENT",
+    "DMA",
+    "GPIO",
+    "AES",
+    "AESADV",
+    "CRC",
+    "CRCP",
+    "RTC",
+    "RTCB",
+    "TRNG",
+    "SYSTICK",
+    "DAC12",
+    "WWDT",
+    "MATHACL",
+    "MCAN",
+    "USB",
+    "I2S",
+    "LCD",
+];
 
-if(["MSPM0G350X"].includes(Common.getDeviceName())){
-    MasterOrder = [
-        "SYSCTL", "PWM", "QEI", "CAPTURE", "COMPARE", "TIMER", "I2C", "i2cSMBUS", "UART", "uartLIN",
-        "SPI", "ADC12", "COMP", "VREF", "OPA", "GPAMP", "EVENT", "DMA",
-        "GPIO", "AES", "CRC", "RTC", "TRNG", "SYSTICK", "DAC12", "WWDT", "MATHACL", "MCAN"
-    ];
-}else if(["MSPM0G150X"].includes(Common.getDeviceName())){
-    MasterOrder = [
-        "SYSCTL", "PWM", "QEI", "CAPTURE", "COMPARE",  "TIMER", "I2C", "i2cSMBUS", "UART", "uartLIN",
-        "SPI", "ADC12", "COMP", "VREF", "OPA", "GPAMP", "EVENT", "DMA",
-        "GPIO", "AES", "CRC", "RTC", "TRNG", "SYSTICK", "DAC12", "WWDT", "MATHACL"
-    ];
-}
-else if(["MSPM0G310X"].includes(Common.getDeviceName())){
-    MasterOrder = [
-        "SYSCTL", "PWM", "QEI", "CAPTURE", "COMPARE",  "TIMER", "I2C", "i2cSMBUS", "UART", "uartLIN",
-        "SPI", "ADC12", "VREF", "GPAMP", "EVENT", "DMA",
-        "GPIO", "AES", "CRC", "RTC", "TRNG", "SYSTICK", "WWDT", "MCAN"
-    ];
-}
-else if(["MSPM0G110X"].includes(Common.getDeviceName())){
-    MasterOrder = [
-        "SYSCTL", "PWM", "QEI", "CAPTURE", "COMPARE",  "TIMER", "I2C", "i2cSMBUS", "UART", "uartLIN",
-        "SPI", "ADC12", "VREF", "GPAMP", "EVENT", "DMA",
-        "GPIO", "CRC", "RTC", "SYSTICK", "WWDT",
-    ];
-}
-/* MSPM0L Series-Specific Option */
-/* For MSPM0L134X and MSPM0L130X */
-else if(Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX() && !Common.isDeviceM0x110x()){
-    MasterOrder = [
-        "SYSCTL", "PWM", "CAPTURE", "COMPARE",  "TIMER", "I2C", "i2cSMBUS", "UART", "uartLIN",
-        "SPI", "ADC12", "COMP", "VREF", "OPA", "GPAMP", "EVENT", "DMA",
-        "GPIO", "CRC", "SYSTICK", "WWDT"
-    ];
-}
-/* For MSPM0L110X */
-else if(Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX() && Common.isDeviceM0x110x()){
-    MasterOrder = [
-        "SYSCTL", "PWM", "CAPTURE", "COMPARE",  "TIMER", "I2C", "i2cSMBUS", "UART", "uartLIN",
-        "SPI", "ADC12", "VREF", "GPAMP", "EVENT", "DMA",
-        "GPIO", "CRC", "SYSTICK", "WWDT"
-    ];
-}
-/* MSPM0L122X specific options */
-else if(Common.isDeviceFamily_PARENT_MSPM0L122X()){
-    MasterOrder = [
-        "SYSCTL", "RTCA", "PWM", "QEI", "CAPTURE", "COMPARE",  "TIMER", "TAMPERIO", "IWDT", "I2C", "i2cSMBUS", "UART", "uartLIN",
-        "SPI", "ADC12", "COMP", "VREF", "EVENT", "DMA",
-        "GPIO", "AESADV", "CRCP", "TRNG", "SYSTICK", "WWDT",
-    ];
-}
-/* MSPM0L222X specific options */
-else if(Common.isDeviceFamily_PARENT_MSPM0L222X()){
-    MasterOrder = [
-        "SYSCTL", "RTCA", "PWM", "QEI", "CAPTURE", "COMPARE",  "TIMER", "TAMPERIO", "IWDT", "I2C", "i2cSMBUS", "UART", "uartLIN",
-        "SPI", "ADC12", "COMP", "VREF", "EVENT", "DMA",
-        "GPIO", "AESADV", "CRCP", "TRNG", "SYSTICK", "WWDT", "LCD",
-    ];
-}
-/* MSPM0C110X specific options */
-else if(Common.isDeviceFamily_PARENT_MSPM0C110X()){
-    MasterOrder = [
-        "SYSCTL", "BEEPER", "PWM", "QEI", "CAPTURE", "COMPARE",  "TIMER", "I2C",
-        "i2cSMBUS", "UART", "uartLIN", "SPI", "ADC12", "VREF", "EVENT", "DMA",
-        "GPIO", "CRC", "WWDT",
-    ];
-}
-/* MSPM0GX51X specific options */
-else if(["MSPM0G351X"].includes(Common.getDeviceName())){
-    MasterOrder = [
-        "SYSCTL", "PWM", "QEI", "CAPTURE", "COMPARE", "TIMER", "IWDT", "I2C", "i2cSMBUS", "UART", "uartLIN",
-        "SPI", "ADC12", "COMP", "VREF", "GPAMP", "EVENT", "DMA",
-        "GPIO", "AESADV", "CRCP", "RTCB", "TRNG", "SYSTICK", "DAC12", "WWDT", "MATHACL", "MCAN"
-    ];
-}
-else if(["MSPM0G151X"].includes(Common.getDeviceName())){
-    MasterOrder = [
-        "SYSCTL", "PWM", "QEI", "CAPTURE", "COMPARE", "TIMER", "IWDT", "I2C", "i2cSMBUS", "UART", "uartLIN",
-        "SPI", "ADC12", "COMP", "VREF", "GPAMP", "EVENT", "DMA",
-        "GPIO", "AESADV", "CRCP", "RTCB", "TRNG", "SYSTICK", "DAC12", "WWDT", "MATHACL"
-    ];
-}
-/* MSPM0L111X specific options */
-else if(Common.isDeviceFamily_PARENT_MSPM0L111X()){
-    MasterOrder = [
-        "SYSCTL", "PWM", "QEI", "CAPTURE", "COMPARE", "TIMER", "IWDT", "I2C", "i2cSMBUS", "UART", "uartLIN",
-        "SPI", "ADC12", "VREF","EVENT", "DMA",
-        "GPIO", "AESADV", "CRCP", "RTCB", "TRNG", "SYSTICK", "WWDT",
-    ];
-}
-/* MSPM0H321X specific options */
-else if(Common.isDeviceFamily_PARENT_MSPM0H321X()){
-    MasterOrder = [
-        "SYSCTL", "BEEPER", "PWM", "QEI", "CAPTURE", "COMPARE", "TIMER", "IWDT", "I2C", "i2cSMBUS", "UART", "uartLIN",
-        "SPI", "ADC12", "VREF", "EVENT", "DMA",
-        "GPIO", "CRC", "RTCB", "SYSTICK", "WWDT",
-    ];
-}
-/* MSPM0C1105_C1106 specific options */
-else if(Common.isDeviceFamily_PARENT_MSPM0C1105_C1106()){
-    MasterOrder = [
-        "SYSCTL", "BEEPER", "PWM", "QEI", "CAPTURE", "COMPARE", "TIMER", "IWDT", "I2C", "i2cSMBUS", "UART", "uartLIN",
-        "SPI", "ADC12", "COMP", "VREF", "EVENT", "DMA",
-        "GPIO", "CRC", "RTCB", "SYSTICK", "WWDT",
-    ];
-}
-/* MSPM0G511X specific options */
-else if(Common.isDeviceFamily_PARENT_MSPM0G511X() || Common.isDeviceFamily_PARENT_MSPM0G518X()){
-    MasterOrder = [
-        "SYSCTL", "PWM", "QEI", "CAPTURE", "COMPARE", "TIMER", "TIMERB","IWDT", "I2C", "i2cSMBUS", "UART", "uartLIN",
-        "SPI", "ADC12", "COMP", "VREF", "EVENT", "DMA",
-        "GPIO", "AESADV", "CRCP", "RTCB", "SYSTICK", "WWDT", "USB", "I2S"
-    ];
-}
-/* MSPM0L211X_L112X specific options */
-else if(Common.isDeviceFamily_PARENT_MSPM0L211X_L112X()){
-    MasterOrder = [
-        "SYSCTL", "PWM", "QEI", "CAPTURE", "COMPARE", "TIMER", "TIMERB", "IWDT", "I2C", "i2cSMBUS", "UART", "uartLIN",
-        "SPI", "ADC12", "COMP", "VREF", "EVENT", "DMA",
-        "GPIO", "AESADV", "CRC", "RTCB", "SYSTICK", "WWDT","LCD"
-    ];
-}
-/* MSPM0L210X specific options */
-else if(Common.isDeviceFamily_PARENT_MSPM0L210X()){
-    MasterOrder = [
-        "SYSCTL", "PWM", "QEI", "CAPTURE", "COMPARE", "TIMER", "TIMERB", "IWDT", "I2C", "i2cSMBUS", "UART", "uartLIN",
-        "SPI", "ADC12", "VREF", "EVENT", "DMA",
-        "GPIO", "CRC", "RTCB", "SYSTICK", "WWDT","LCD"
-    ];
-}
-// TODO: sanity check list for new device
-/* MSPM0GX218_GX207 specific options */
-else if(Common.isDeviceFamily_PARENT_MSPM0GX218_GX207()){
-    MasterOrder = [
-        "SYSCTL", "PWM", "QEI", "CAPTURE", "COMPARE", "TIMER", "TIMERB", "IWDT", "I2C", "i2cSMBUS", "UART", "uartLIN",
-        "SPI", "ADC12", "COMP", "VREF", "EVENT", "DMA",
-        "GPIO", "AESADV", "CRCP", "RTCB", "SYSTICK", "DAC12", "WWDT", "MATHACL", "MCAN"
-    ];
-}
-/* MSPM0G122X specific options */
-else if(Common.isDeviceFamily_PARENT_MSPM0G122X()){
-    MasterOrder = [
-        "SYSCTL", "PWM", "QEI", "CAPTURE", "COMPARE", "TIMER", "IWDT", "I2C", "i2cSMBUS", "UART", "uartLIN",
-        "SPI", "ADC12", "COMP", "VREF", "EVENT", "DMA",
-        "GPIO", "AESADV", "CRCP", "RTCB", "SYSTICK", "DAC12", "WWDT", "MATHACL", "MCAN"
-    ];
+/* Function to filter out unavailable peripheral modules */
+function removePeripheralFromOrder(peripheral){
+    let idx = completeOrder.indexOf(peripheral);
+    if(idx > -1){
+        completeOrder.splice(idx, 1);
+    }
 }
 
+// AES
+if(!(/AES/.test(peripherals) && !/AESADV/.test(peripherals))) {
+    removePeripheralFromOrder("AES");
+}
+// AESADV
+if(!(/AESADV/.test(peripherals))) {
+    removePeripheralFromOrder("AESADV");
+}
+// BEEPER
+// [TODO: condition can be improved]
+if(!(Common.isDeviceM0C() || Common.isDeviceFamily_PARENT_MSPM0H321X())){
+    removePeripheralFromOrder("BEEPER");
+}
+// COMP
+if(!(/COMP/.test(peripherals))) {
+    removePeripheralFromOrder("COMP");
+}
+// CRC
+if(!(/CRC/.test(peripherals) && !/CRCP/.test(peripherals))) {
+    removePeripheralFromOrder("CRC");
+}
+// CRCP
+if(!(/CRCP/.test(peripherals))) {
+    removePeripheralFromOrder("CRCP");
+}
+// DAC12
+if(!(/DAC/.test(peripherals))) {
+    removePeripheralFromOrder("DAC12");
+}
+// GPAMP
+// [TODO: condition can be improved]
+if(!(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() || Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX())){
+    removePeripheralFromOrder("GPAMP");
+}
+// I2S
+if(!(/I2S/.test(peripherals))){
+    removePeripheralFromOrder("I2S");
+}
+// IWDT
+if(!(/LFSS/.test(peripherals))) {
+    removePeripheralFromOrder("IWDT");
+}
+// LCD
+if(!(/LCD/.test(peripherals))){
+    removePeripheralFromOrder("LCD");
+}
+// MCAN
+// [TODO: condition can be improved]
+if(!(["MSPM0G350X","MSPM0G310X", "MSPM0G351X","MSPM0G321X","MSPM0G320X"].includes(system.deviceData.device))){
+    removePeripheralFromOrder("MCAN");
+}
+// MATHACL
+if(!Common.hasMATHACL()){
+    removePeripheralFromOrder("MATHACL");
+}
+// OPA
+if(!(/OPA/.test(peripherals))) {
+    removePeripheralFromOrder("OPA");
+}
+// QEI
+if (!(Common.getTimerInstances("QEI").length != 0)) {
+    removePeripheralFromOrder("QEI");
+}
+// RTC
+if(!(/RTC/.test(peripherals) && !(/LFSS/.test(peripherals)))) {
+    removePeripheralFromOrder("RTC");
+}
+// RTCA
+// [TODO: condition can be improved]
+if(!(/LFSS/.test(peripherals) && Common.isDeviceFamily_PARENT_MSPM0L122X_L222X())){
+    removePeripheralFromOrder("RTCA");
+    // RTCB
+    if(!(/LFSS/.test(peripherals))) {
+        removePeripheralFromOrder("RTCB");
+    }
+}
 
-
+// TAMPERIO
+if(!(/LFSS/.test(peripherals) && Common.isDeviceFamily_PARENT_MSPM0L122X_L222X())){
+    removePeripheralFromOrder("TAMPERIO");
+}
+// TIMERB
+if(!(/TIMB/.test(peripherals))) {
+    removePeripheralFromOrder("TIMERB");
+}
+// TRNG
+if(!(/TRNG/.test(peripherals))) {
+    removePeripheralFromOrder("TRNG");
+}
+// USB
+if(!(/USB/.test(peripherals))){
+    removePeripheralFromOrder("USB");
+}
 
 /* master sorted template list of modules */
 
 let MasterList = [];
 let MasterIndex = {};
-for(let modIdx in MasterOrder){
-    let mod = MasterOrder[modIdx];
+for(let modIdx in completeOrder){
+    let mod = completeOrder[modIdx];
     let nameStr = "/ti/driverlib/" + mod;
     MasterList.push({name: nameStr, displayName: mod});
     MasterIndex[mod] = modIdx;
@@ -351,7 +344,7 @@ function onChangeSwapTwo(inst, index)
     }
 
     let used = {};
-    for(let mod of MasterOrder){
+    for(let mod of completeOrder){
         used[mod] = false;
     }
 

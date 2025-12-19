@@ -48,7 +48,7 @@
             --compiler ticlang
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="UART Extend using IrDA encoding, send packet via UART">
+        description="UART Extend instance using IrDA encoding to receive a packet of data">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

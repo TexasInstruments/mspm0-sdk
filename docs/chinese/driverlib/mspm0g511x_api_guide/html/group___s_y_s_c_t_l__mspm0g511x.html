@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0G511X Driver Library
-   &#160;<span id="projectnumber">2.08.00.03</span>
+   &#160;<span id="projectnumber">2.09.00.01</span>
    </div>
   </td>
  </tr>
@@ -715,6 +715,9 @@ __STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class
 <tr class="memitem:ga10ec5038b54f8e1d48b93b5ff9632d8f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_y_s_c_t_l__mspm0g511x.html#ga10ec5038b54f8e1d48b93b5ff9632d8f">DL_SYSCTL_configSYSPLL</a> (const <a class="el" href="struct_d_l___s_y_s_c_t_l___s_y_s_p_l_l_config.html">DL_SYSCTL_SYSPLLConfig</a> *config)</td></tr>
 <tr class="memdesc:ga10ec5038b54f8e1d48b93b5ff9632d8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure SYSPLL output frequencies.  <a href="#ga10ec5038b54f8e1d48b93b5ff9632d8f">More...</a><br /></td></tr>
 <tr class="separator:ga10ec5038b54f8e1d48b93b5ff9632d8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5e5fb73f25a0c077672a65d46cfed162"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_y_s_c_t_l__mspm0g511x.html#ga5e5fb73f25a0c077672a65d46cfed162">DL_SYSCTL_enableSYSPLL</a> (void)</td></tr>
+<tr class="memdesc:ga5e5fb73f25a0c077672a65d46cfed162"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the SYSPLL.  <a href="#ga5e5fb73f25a0c077672a65d46cfed162">More...</a><br /></td></tr>
+<tr class="separator:ga5e5fb73f25a0c077672a65d46cfed162"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa12a2d083883528812c853cb6ee25fd1"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_y_s_c_t_l__mspm0g511x.html#gaa12a2d083883528812c853cb6ee25fd1">DL_SYSCTL_setULPCLKDivider</a> (<a class="el" href="group___s_y_s_c_t_l__mspm0g511x.html#ga30905901ec99d62a476407bf7b648c04">DL_SYSCTL_ULPCLK_DIV</a> divider)</td></tr>
 <tr class="memdesc:gaa12a2d083883528812c853cb6ee25fd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the divider for the Ultra Low Power Clock (ULPCLK)  <a href="#gaa12a2d083883528812c853cb6ee25fd1">More...</a><br /></td></tr>
 <tr class="separator:gaa12a2d083883528812c853cb6ee25fd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -3286,6 +3289,28 @@ SYSOSC is running at base frequency (32MHz) even if HFCLK is the SYSPLL referenc
 </dl>
 
 <p>Referenced by <a class="el" href="group___s_y_s_c_t_l__mspm0g511x.html#ga6ff18a52a5b1ddb681127f640453ceb0">DL_SYSCTL_clearECCErrorStatus()</a>.</p>
+
+</div>
+</div>
+<a id="ga5e5fb73f25a0c077672a65d46cfed162"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5e5fb73f25a0c077672a65d46cfed162">&sect;&nbsp;</a></span>DL_SYSCTL_enableSYSPLL()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__STATIC_INLINE void DL_SYSCTL_enableSYSPLL </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enable the SYSPLL. </p>
+<p>Enable SYSPLL clock. Note that user must first configure the clocks before enabling SYSPLL, it is recommended to call <a class="el" href="group___s_y_s_c_t_l__mspm0g511x.html#ga10ec5038b54f8e1d48b93b5ff9632d8f">DL_SYSCTL_configSYSPLL</a> for initialization.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group___s_y_s_c_t_l__mspm0g511x.html#gabc4dead61fdff7cac031224790efb999" title="Returns status of the different clocks in CKM. ">DL_SYSCTL_getClockStatus</a> </dd></dl>
 
 </div>
 </div>

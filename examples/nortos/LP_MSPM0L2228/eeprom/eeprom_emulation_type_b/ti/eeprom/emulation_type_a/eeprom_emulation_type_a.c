@@ -187,7 +187,6 @@ void EEPROM_TypeA_readData(uint32_t *data)
 bool EEPROM_TypeA_repairFormat(uint32_t *data)
 {
     uint32_t FormatRepairAddress;
-    uint32_t EraseSectorAddress;
     uint32_t HeaderArray64[] = {0x0000ffff, 0xffffffff};
     DL_FLASHCTL_COMMAND_STATUS FlashAPIState;
 

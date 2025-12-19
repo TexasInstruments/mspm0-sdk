@@ -48,7 +48,7 @@
             --compiler ticlang
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="Event configuration to toggle LED when switch is pressed">
+        description="Demonstrate how to publish and subscribe to Events to toggle an LED when a switch is pressed">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

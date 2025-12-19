@@ -33,6 +33,7 @@
 #include <ti/devices/msp/msp.h>
 #include <ti/driverlib/driverlib.h>
 #include <ti/driverlib/m0p/dl_core.h>
+#include "ti_msp_dl_config.h"
 
 /* Max data buffer size for LIN RX and TX */
 #define LIN_DATA_MAX_BUFFER_SIZE (8)
@@ -49,8 +50,11 @@
 /* UART LIN responder value for the number of messages */
 #define LIN_COMMANDER_NUM_MSGS (0x07)
 
-/* UART LIN break length to 1ms */
-#define LIN_BREAK_LENGTH (32000)
+/* UART LIN break length to 13 Tbit at 19200 baud and 32Mhz CPU Frequency */
+#define LIN_BREAK_LENGTH (21666)
+
+/* Receive timeout period*/
+#define TIMEOUT 32 //1ms LFCLK
 
 /*! @enum LIN_RX_STATE */
 typedef enum {
@@ -121,18 +125,16 @@ typedef struct {
 
 #if defined(__MSPM0_HAS_UART_EXTD__)
 
-void LIN_Commander_receiveMessage(UART_Regs *uart, uint8_t rxByte, uint8_t *,
-    LIN_table_record_t *messageTable);
-void LIN_Commander_transmitMessage(UART_Regs *uart, uint8_t tableIndex,
-    uint8_t *buffer, LIN_table_record_t *messageTable);
+void LIN_Commander_sendPID(UART_Regs *uart, uint8_t tableIndex, uint8_t *TXmsgBuffer, LIN_table_record_t *messageTable);
+void LIN_Commander_receiveMessage(UART_Regs *uart, uint8_t rxByte, uint8_t *msgBuffer, LIN_table_record_t *messageTable);
+void LIN_Commander_transmitMessage(UART_Regs *uart, uint8_t *msgBuffer, LIN_table_record_t *messageTable);
 
 #endif
 
 #if defined(__MCU_HAS_UNICOMMUART__)
 
-void LIN_Commander_receiveMessage(UNICOMM_Inst_Regs *unicomm, uint8_t rxByte, uint8_t *,
-    LIN_table_record_t *messageTable);
-void LIN_Commander_transmitMessage(UNICOMM_Inst_Regs *unicomm, uint8_t tableIndex,
-    uint8_t *buffer, LIN_table_record_t *messageTable);
+void LIN_Commander_sendPID(UNICOMM_Inst_Regs *unicomm, uint8_t tableIndex, uint8_t *TXmsgBuffer, LIN_table_record_t *messageTable);
+void LIN_Commander_receiveMessage(UNICOMM_Inst_Regs *unicomm, uint8_t rxByte, uint8_t *msgBuffer, LIN_table_record_t *messageTable);
+void LIN_Commander_transmitMessage(UNICOMM_Inst_Regs *unicomm, uint8_t *msgBuffer, LIN_table_record_t *messageTable);
 
-#endif    
+#endif

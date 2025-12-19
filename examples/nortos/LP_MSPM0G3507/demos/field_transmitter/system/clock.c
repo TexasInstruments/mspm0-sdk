@@ -33,8 +33,8 @@
 #include <ti/devices/msp/msp.h>
 #include <ti/driverlib/driverlib.h>
 #include "main.h"
-#include "system/uart.h"
 #include "ti_msp_dl_config.h"
+#include "uart.h"
 
 #define UART_CMD_IBRD_4_MHZ_115200_BAUD (2)
 #define UART_CMD_FBRD_4_MHZ_115200_BAUD (11)
@@ -72,7 +72,7 @@ enum status_enum cpu_clock_init_80m(void)
     DL_SYSCTL_setMCLKSource(SYSOSC, HSCLK, DL_SYSCTL_HSCLK_SOURCE_SYSPLL);
     DL_UART_Main_setBaudRateDivisor(UART_CMD_INST,
         UART_CMD_IBRD_40_MHZ_115200_BAUD, UART_CMD_FBRD_40_MHZ_115200_BAUD);
-    DL_SYSTICK_config(80000);
+    DL_SYSTICK_config(80000);  //80000
     uart_printf("Running at 80 MHz\r\n");
     return STATUS_OK;
 }
@@ -85,7 +85,7 @@ enum status_enum cpu_clock_init_80m(void)
 enum status_enum cpu_clock_init_32m(void)
 {
     DL_SYSCTL_setSYSOSCFreq(DL_SYSCTL_SYSOSC_FREQ_BASE);
-    DL_SYSTICK_config(32000);
+    DL_SYSTICK_config(500);  // 32000
     DL_UART_Main_setBaudRateDivisor(UART_IO_INST,
         UART_CMD_IBRD_32_MHZ_115200_BAUD, UART_CMD_FBRD_32_MHZ_115200_BAUD);
     uart_printf("Running at 32 MHz\r\n");

@@ -48,7 +48,7 @@
             --compiler ticlang
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="SPI Controller transmit and read data using register format">
+        description="SPI Controller transmit and receive data using register format">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

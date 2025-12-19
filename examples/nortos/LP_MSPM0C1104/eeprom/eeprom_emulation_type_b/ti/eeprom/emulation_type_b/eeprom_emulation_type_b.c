@@ -152,13 +152,10 @@ uint32_t EEPROM_TypeB_transferDataItem(uint16_t GroupNum)
     uint16_t DataItemCount;
 
     uint32_t ReceivingGroupAddress;
-    uint32_t ReceivingDataItemAddress;
-    uint32_t* ReceivingDataItemPointer;
     uint16_t ReceivingGroupNum;
     uint16_t ReceivingDataItemNum;
 
     uint32_t HeaderArray64[] = {0x0000ffff, 0xffffffff};
-    uint32_t ItemArray64[]   = {0xffffffff, 0xffffffff};
     DL_FLASHCTL_COMMAND_STATUS FlashAPIState;
     uint32_t EEPROMEmulationState;
 
@@ -379,7 +376,7 @@ uint32_t EEPROM_TypeB_init(void)
 uint32_t EEPROM_TypeB_checkFormat(void)
 {
     uint16_t CheckGroupNum;
-    uint16_t ErrorGroupNum;
+    uint16_t ErrorGroupNum = 0;
     uint32_t Temp0, Temp1;
     bool CheckState, FormatErrorFlag;
     uint32_t CheckGroupAddress;
@@ -401,17 +398,18 @@ uint32_t EEPROM_TypeB_checkFormat(void)
         Temp0             = *CheckGroupPointer;
         CheckGroupPointer = (void*) (CheckGroupAddress + 4);
         Temp1             = *CheckGroupPointer;
-        if (Temp0 == 0xffffffff && Temp1 == 0xffffffff)  //Erased
-        {
-        } else if (Temp0 == 0x00000000 && Temp1 == 0xffffffff)  //Active
-        {
+
+        if (Temp0 == 0xffffffff && Temp1 == 0xffffffff) {
+            /* Erased, no further action */
+        } else if (Temp0 == 0x00000000 && Temp1 == 0xffffffff) {
             /* If active group is found, record the gActiveGroupNum */
             gActiveGroupNum = CheckGroupNum;
             CheckState      = 1;
         } else if (Temp0 == 0x0000ffff && Temp1 == 0xffffffff)  //Receiving
         {
-        } else if (Temp1 == 0x00000000)  //Erasing
-        {
+            /* Receiving, no further action */
+        } else if (Temp1 == 0x00000000) {
+            /* Erasing, no further action */
         } else {
             /* If error group is found, record the ErrorGroupNum */
             ErrorGroupNum   = CheckGroupNum;

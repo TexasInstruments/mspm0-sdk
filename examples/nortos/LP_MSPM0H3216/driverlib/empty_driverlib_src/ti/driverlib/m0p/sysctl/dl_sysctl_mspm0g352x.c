@@ -110,7 +110,7 @@ void DL_SYSCTL_configSYSPLL(const DL_SYSCTL_SYSPLLConfig *config)
             SYSCTL_SYSPLLCFG0_MCLK2XVCO_MASK));
 
     // enable SYSPLL
-    SYSCTL->SOCLOCK.HSCLKEN |= SYSCTL_HSCLKEN_SYSPLLEN_ENABLE;
+    DL_SYSCTL_enableSYSPLL();
 
     // wait until SYSPLL startup is stabilized
     while ((DL_SYSCTL_getClockStatus() & SYSCTL_CLKSTATUS_SYSPLLGOOD_MASK) !=

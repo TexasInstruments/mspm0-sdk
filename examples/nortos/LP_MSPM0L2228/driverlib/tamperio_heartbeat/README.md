@@ -1,9 +1,9 @@
 ## Example Summary
 
-Configures a TamperIO pin to continuously output a heartbeat.
-The heartbeat interval is set to an interval of 0.125 seconds with a pulse width of 1 millisecond.
+Configures a TamperIO pin to continuously output a heart beat.
+The heart beat interval is set to an interval of 0.125 seconds with a pulse width of 1 millisecond.
 
-The heartbeat generator allows the signaling of a certain operating state of the LFSS IP to the outside world. The signal is a repetitive pulse with a configurable interval time and pulse width. The heartbeat will remain functional during power loss of the main supply or during SHUTDOWN mode.
+The heart beat generator allows the signaling of a certain operating state of the LFSS IP to the outside world. The signal is a repetitive pulse with a configurable interval time and pulse width. The heart beat will remain functional during power loss of the main supply or during SHUTDOWN mode.
 
 ## Peripherals & Pin Assignments
 
@@ -47,5 +47,5 @@ MSPM0 LaunchPad, please visit the [LP-MSPM0L2228 web page](https://www.ti.com/to
 ## Example Usage
 
 Compile, load and run the example.
-The heartbeat pulse can be measured on TAMPERIO0.
+The heart beat pulse can be measured on TAMPERIO0.
 USER_LED_1 will toggle every 500 ms while main power is supplied.

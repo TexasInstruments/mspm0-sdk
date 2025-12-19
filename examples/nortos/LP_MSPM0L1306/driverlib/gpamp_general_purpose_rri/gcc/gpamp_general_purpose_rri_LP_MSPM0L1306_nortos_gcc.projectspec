@@ -64,7 +64,7 @@
             --compiler gcc
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="GPAmp configured in general purpose Rail-to-Rail mode">
+        description="GPAMP configured in general purpose Rail-to-Rail mode">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

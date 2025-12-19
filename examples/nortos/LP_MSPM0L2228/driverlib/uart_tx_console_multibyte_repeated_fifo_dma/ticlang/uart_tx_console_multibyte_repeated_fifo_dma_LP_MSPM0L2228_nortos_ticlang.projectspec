@@ -48,7 +48,7 @@
             --compiler ticlang
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="UART TX to a console using a continous DMA trigger">
+        description="UART transmit of multiple bytes of data to a console using a continous DMA trigger">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

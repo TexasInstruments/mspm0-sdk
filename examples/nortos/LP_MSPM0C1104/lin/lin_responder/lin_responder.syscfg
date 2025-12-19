@@ -13,6 +13,8 @@ const Board    = scripting.addModule("/ti/driverlib/Board");
 const GPIO     = scripting.addModule("/ti/driverlib/GPIO", {}, false);
 const GPIO1    = GPIO.addInstance();
 const GPIO2    = GPIO.addInstance();
+const TIMER    = scripting.addModule("/ti/driverlib/TIMER", {}, false);
+const TIMER1   = TIMER.addInstance();
 const uartLIN  = scripting.addModule("/ti/driverlib/uartLIN", {}, false);
 const uartLIN1 = uartLIN.addInstance();
 
@@ -20,13 +22,10 @@ const uartLIN1 = uartLIN.addInstance();
  * Write custom configuration values to the imported modules.
  */
 
-GPIO1.$name                          = "GPIO_LEDS";
-GPIO1.port                           = "PORTA";
-GPIO1.portSegment                    = "Lower";
-GPIO1.associatedPins[0].$name        = "USER_LED_1";
-GPIO1.associatedPins[0].assignedPin  = "4";
-GPIO1.associatedPins[0].invert       = "ENABLE";
-GPIO1.associatedPins[0].initialValue = "SET";
+GPIO1.$name                         = "GPIO_LEDS";
+GPIO1.associatedPins[0].$name       = "USER_LED_1";
+GPIO1.associatedPins[0].invert      = "ENABLE";
+GPIO1.associatedPins[0].pin.$assign = "PA22";
 
 GPIO2.$name                         = "GPIO_LIN_ENABLE";
 GPIO2.port                          = "PORTA";
@@ -36,6 +35,10 @@ GPIO2.associatedPins[0].$name       = "USER_LIN_ENABLE";
 
 const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL", {}, false);
 
+TIMER1.$name       = "TIMER_0";
+TIMER1.timerClkSrc = "LFCLK";
+TIMER1.interrupts  = ["ZERO"];
+
 uartLIN1.$name                            = "LIN_0";
 uartLIN1.targetBaudRate                   = 19200;
 uartLIN1.enableLinCounter                 = true;
@@ -43,6 +46,8 @@ uartLIN1.enableLinCounterClearFallingEdge = true;
 uartLIN1.enableLinCountWhileLow           = true;
 uartLIN1.enableLinCounterCompare          = true;
 uartLIN1.tbitVal                          = 9.5;
-uartLIN1.profile                          = "CONFIG_PROFILE_1";
+uartLIN1.enabledInterrupts                = ["BREAK_ERROR","LINC0_MATCH","LIN_COUNTER_OVERFLOW","LIN_FALLING_EDGE"];
 uartLIN1.peripheral.rxPin.$assign         = "PA26";
 uartLIN1.peripheral.txPin.$assign         = "PA27";
+
+

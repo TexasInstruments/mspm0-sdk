@@ -64,7 +64,7 @@
             --compiler gcc
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="ADC12 conversion at maximum frequency using DMA in 8 bit resolution">
+        description="Capture 1024 samples of a single ADC channel using 8-bit ADC resolution mode at maximum sampling rate using the DMA.">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

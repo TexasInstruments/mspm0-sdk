@@ -222,6 +222,87 @@ let autoTrimSYSOSCConfig = [
     }
 ];
 
+let SYSPLLWorkaroundConfig = [];
+    if(ClockSignals[index].includes("SYSPLL") && Common.isdeviceAffected_SYSPLL_ERR_01()) {
+        SYSPLLWorkaroundConfig.push(
+            {
+                name: "GROUP_WORKAROUND_SYSPLL_ERR_01",
+                displayName: "SYSPLL Validation",
+                description: "(SYSPLL_ERR_01)",
+                longDescription:
+`Use FCC to check for the validity of the SYSPLL frequency. This configuration
+serves as a workaround for SYSPLL_ERR_01.
+\n* SYSPLL_ERR_01: When setting the SYSPLLEN bit to 1 in SYSCTL HSCLKEN register,
+the SYSPLL will run the phase locked loop search. The search can potentially
+fail where the frequency will not be set to the correct value, instead the
+resultant frequency will be drastically different than the configured
+frequency.`,
+                collapsed: false,
+                config: [
+                    {
+                        name: "enableWorkaround_SYSPLL_ERR_01",
+                        displayName: "Validate SYSPLL Frequency Lock",
+                        default: true,
+                        description: "Use FCC to check for the validity of the SYSPLL frequency (SYSPLL_ERR_01)",
+                        longDescription:
+`This option serves as a workaround for SYSPLL_ERR_01, when enabled it will use
+FCC to check for the validity of the SYSPLL frequency
+`,
+                        hidden: false,
+                    },
+                    // FCC Limitation boundary
+                    {
+                        name: "workaroundfccBoundaryStr_SYSPLL_ERR_01",
+                        displayName: "FCC Limitation Boundary (%)",
+                        description: "Set the limitation boundary percentage used for validating the FCC Ratio",
+                        longDescription:
+`Set the limitation boundary percentage used for validating the FCC Ratio`,
+                        default: 0.3,
+                        range  : [0,100],
+                    },
+                    // Default Period Calculation
+                    {
+                        name: "overrideworkaroundFCCPeriod_SYSPLL_ERR_01",
+                        displayName: "Override Calculated FCC Period",
+                        default: false,
+                        onChange: (inst,ui)=>{
+                            ui.workaroundFCCPeriod_SYSPLL_ERR_01.hidden = !inst.overrideworkaroundFCCPeriod_SYSPLL_ERR_01;
+                            ui.workaroundFCCPeriodCalculated_SYSPLL_ERR_01.hidden = inst.overrideworkaroundFCCPeriod_SYSPLL_ERR_01;
+                        }
+                    },
+                    {
+                        name: "workaroundFCCPeriodCalculated_SYSPLL_ERR_01",
+                        displayName: "Calculated FCC Period",
+                        description: "Set the number of rising-edge to rising-edge period for FCC",
+                        longDescription: `Set the number of rising-edge to rising-edge period for FCC (for validation only)`,
+                        default: 1,
+                        range  : [1,32],
+                        getValue: (inst)=>{
+                            /*
+                             * FCC Periods = (4 * 1.6 / SYSPLL_SOURCE_FREQ / FCC Boundary) (Round the result up)
+                             * - 1.6% is max error percentage
+                             * - SYSPLL Source Frequency in MHz
+                             * - FCC Boundary is user input
+                             */
+                            let fccPeriod = Math.ceil(4 * 1.6 / (inst.SYSPLLSource_freq/1000000) / inst.workaroundfccBoundaryStr_SYSPLL_ERR_01);
+                            if(fccPeriod>32 || fccPeriod<1 || fccPeriod === NaN){ return 1};
+                            return fccPeriod;
+                        },
+                    },
+                    {
+                        name: "workaroundFCCPeriod_SYSPLL_ERR_01",
+                        displayName: "FCC Periods",
+                        description: "Set the number of rising-edge to rising-edge period for FCC",
+                        longDescription: `Set the number of rising-edge to rising-edge period for FCC (for validation only)`,
+                        default: 1,
+                        range  : [1,32],
+                        hidden: true,
+                    },
+                ],
+            }
+        )
+    }
+
 const clkConfigSuperset = {
     "SYSOSC": [
         {
@@ -1210,7 +1291,7 @@ fSYSPLLCLK2 = 80MHz \n
                 return (Common.getUnitPrefix(inst.SYSPLL_Freq_CLK2X)).str+"Hz";
             }
         },
-    ],
+    ].concat(SYSPLLWorkaroundConfig),
 
     "UDIV": [
         {

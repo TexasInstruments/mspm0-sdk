@@ -48,7 +48,7 @@
             --compiler ticlang
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="SPI Peripheral reading and writing multiple bytes polling FIFO">
+        description="SPI Peripheral transmits and receives multiple bytes through polling">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

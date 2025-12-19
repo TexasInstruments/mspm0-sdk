@@ -48,7 +48,7 @@
             --compiler ticlang
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="Flash configured with dynamic protection">
+        description="Flash controller dynamic protection against program and erase operations">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

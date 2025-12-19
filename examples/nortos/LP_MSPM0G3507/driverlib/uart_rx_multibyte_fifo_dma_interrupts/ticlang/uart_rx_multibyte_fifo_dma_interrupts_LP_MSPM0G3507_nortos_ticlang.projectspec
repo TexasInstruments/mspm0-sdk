@@ -48,7 +48,7 @@
             --compiler ticlang
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="UART RX using a DMA trigger">
+        description="UART receive multiple bytes of data using a DMA trigger and interrupts">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

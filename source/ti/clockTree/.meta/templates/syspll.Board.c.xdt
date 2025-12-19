@@ -38,6 +38,7 @@
 
     let Common = system.getScript("/ti/driverlib/Common.js");
     let content = args[0]; // passed by SYSCTLclockTree.Board.c.xdt
+    let { ClockSignals } = system.getScript("/ti/driverlib/sysctl/SYSCTLMSPM0Clocks.js");
 
     /* shorthand names for some common references in template below */
     // since sysctl is static we don't use the inst variable
@@ -142,6 +143,84 @@ static const DL_SYSCTL_SYSPLLConfig gSYSPLLConfig = {
     `printSYSPLL_config`
 };
 
+%%{
+    /**
+     *  Workaround for [ SYSPLL_ERR_01 ]
+     *    - check if condition is enabled and the workaround is applicable to this device
+     */
+    let useWorkaround_SYSPLL_ERR_01 = false;
+    if(ClockSignals.includes("SYSPLL") && Common.isdeviceAffected_SYSPLL_ERR_01()){
+        let muxMod = system.modules["/ti/clockTree/mux.js"];
+        let pllMuxInst = _.find(muxMod.$instances, ['$name', 'SYSPLLMUX']);
+        useWorkaround_SYSPLL_ERR_01 = pllMuxInst?.enableWorkaround_SYSPLL_ERR_01;
+    }
+    let sourceSYSPLL = "SYSOSC";
+    let activeSYSPLL = undefined;
+    let fccPeriodStr = undefined;
+    if(useWorkaround_SYSPLL_ERR_01){
+        /* Determine SYSPLL Clock Source */
+        let muxMod = system.modules["/ti/clockTree/mux.js"];
+        let pllMuxInst = _.find(muxMod.$instances, ['$name', 'SYSPLLMUX']);
+        if(pllMuxInst?.inputSelect?.includes("HFCLK")){
+            sourceSYSPLL = "HFCLK";
+        }
+        /* Determine which SYSPLL Clock to use */
+        let enabledPLLs = [];
+        if(pllEnabled){
+            if(pllClk0Inst.enable ){ enabledPLLs.push("SYSPLLCLK0" ); }
+            if(pllClk1Inst.enable ){ enabledPLLs.push("SYSPLLCLK1" ); }
+            if(pllClk2XInst.enable){ enabledPLLs.push("SYSPLLCLK2X"); }
+        }
+        activeSYSPLL = enabledPLLs[0];
+        /* Determine FCC Period String */
+        let fccPeriod_SYSPLL_ERR_01 = ((pllMuxInst.overrideworkaroundFCCPeriod_SYSPLL_ERR_01)?pllMuxInst.workaroundFCCPeriod_SYSPLL_ERR_01:pllMuxInst.workaroundFCCPeriodCalculated_SYSPLL_ERR_01);
+        fccPeriodStr = fccPeriod_SYSPLL_ERR_01.toString().padStart(2, "0");
+    }
+%%}
+% if(useWorkaround_SYSPLL_ERR_01){
+SYSCONFIG_WEAK bool SYSCFG_DL_SYSCTL_SYSPLL_init(void)
+{
+    bool fFCCRatioStatus = false;
+    uint32_t fFCCSysoscCount;
+    uint32_t fFCCPllCount;
+    uint32_t fFCCRatio;
+
+    DL_SYSCTL_setFCCPeriods( DL_SYSCTL_FCC_TRIG_CNT_`fccPeriodStr` );
+
+    /* Measuring PLL. */
+    DL_SYSCTL_configFCC(DL_SYSCTL_FCC_TRIG_TYPE_RISE_RISE,
+                        DL_SYSCTL_FCC_TRIG_SOURCE_LFCLK,
+                        DL_SYSCTL_FCC_CLOCK_SOURCE_`activeSYSPLL`);
+    /* Get SYSPLL frequency using FCC */
+    DL_SYSCTL_startFCC();
+    while (DL_SYSCTL_isFCCDone() == 0);
+
+    /* get measA= `activeSYSPLL` freq wrt LFOSC*/
+    fFCCPllCount = DL_SYSCTL_readFCC();
+
+    /* Measuring SYSPLL Source */
+    DL_SYSCTL_configFCC(DL_SYSCTL_FCC_TRIG_TYPE_RISE_RISE,
+                        DL_SYSCTL_FCC_TRIG_SOURCE_LFCLK,
+                        DL_SYSCTL_FCC_CLOCK_SOURCE_`sourceSYSPLL`);
+    /* Get SYSPLL frequency using FCC */
+    DL_SYSCTL_startFCC();
+    while (DL_SYSCTL_isFCCDone() == 0 );
+
+    /* get measB= SYSOSC freq wrt LFOSC*/
+    fFCCSysoscCount = DL_SYSCTL_readFCC();
+
+    /* Get ratio of both measurements*/
+    fFCCRatio = (fFCCPllCount * FLOAT_TO_INT_SCALE) / fFCCSysoscCount;
+    /* Check ratio is within bounds*/
+    if ((FCC_LOWER_BOUND <  fFCCRatio) && (fFCCRatio < FCC_UPPER_BOUND))
+    {
+        /* ratio is good for proceeding into application code. */
+        fFCCRatioStatus = true;
+    }
+
+    return fFCCRatioStatus;
+}
+% } // if useWorkaround_SYSPLL_ERR_01
 %   }
 % } // print config
 %
@@ -160,5 +239,37 @@ static const DL_SYSCTL_SYSPLLConfig gSYSPLLConfig = {
 %%}
 %   if(pllEnabled){
     DL_SYSCTL_configSYSPLL((DL_SYSCTL_SYSPLLConfig *) &gSYSPLLConfig);
-%   }
+
+%%{
+    /**
+     *  Workaround for [ SYSPLL_ERR_01 ]
+     *    - check if condition is enabled and the workaround is applicable to this device
+     */
+    let useWorkaround_SYSPLL_ERR_01 = false;
+    if(ClockSignals.includes("SYSPLL") && Common.isdeviceAffected_SYSPLL_ERR_01()){
+        let muxMod = system.modules["/ti/clockTree/mux.js"];
+        let pllMuxInst = _.find(muxMod.$instances, ['$name', 'SYSPLLMUX']);
+        useWorkaround_SYSPLL_ERR_01 = pllMuxInst?.enableWorkaround_SYSPLL_ERR_01;
+    }
+%%}
+%       if(useWorkaround_SYSPLL_ERR_01){
+    /*
+     * [SYSPLL_ERR_01]
+     * PLL Incorrect locking WA start.
+     * Insert after every PLL enable.
+     * This can lead an infinite loop if the condition persists
+     * and can block entry to the application code.
+     */
+
+    while (SYSCFG_DL_SYSCTL_SYSPLL_init() == false)
+    {
+        /* Toggle SYSPLL enable to re-enable SYSPLL and re-check incorrect locking */
+        DL_SYSCTL_disableSYSPLL();
+        DL_SYSCTL_enableSYSPLL();
+
+        /* Wait until SYSPLL startup is stabilized*/
+        while ((DL_SYSCTL_getClockStatus() & SYSCTL_CLKSTATUS_SYSPLLGOOD_MASK) != DL_SYSCTL_CLK_STATUS_SYSPLL_GOOD){}
+    }
+%       } // if useWorkaround_SYSPLL_ERR_01
+%   } // if pllEnabled
 % } // function printCall

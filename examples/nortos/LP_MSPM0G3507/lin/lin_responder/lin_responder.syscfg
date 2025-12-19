@@ -14,6 +14,8 @@ const GPIO     = scripting.addModule("/ti/driverlib/GPIO", {}, false);
 const GPIO1    = GPIO.addInstance();
 const GPIO2    = GPIO.addInstance();
 const SYSCTL   = scripting.addModule("/ti/driverlib/SYSCTL");
+const TIMER    = scripting.addModule("/ti/driverlib/TIMER", {}, false);
+const TIMER1   = TIMER.addInstance();
 const uartLIN  = scripting.addModule("/ti/driverlib/uartLIN", {}, false);
 const uartLIN1 = uartLIN.addInstance();
 
@@ -39,10 +41,24 @@ GPIO2.associatedPins[0].$name       = "USER_LIN_ENABLE";
 GPIO2.associatedPins[0].assignedPin = "15";
 GPIO2.associatedPins[0].pin.$assign = "PB15";
 
-SYSCTL.clockTreeEn = true;
+SYSCTL.clockTreeEn           = true;
 SYSCTL.forceDefaultClkConfig = true;
 
-uartLIN1.$name                    = "LIN_0";
-uartLIN1.profile                  = "CONFIG_PROFILE_1";
-uartLIN1.peripheral.rxPin.$assign = "PA11";
-uartLIN1.peripheral.txPin.$assign = "PA10";
+TIMER1.$name              = "TIMER_0";
+TIMER1.timerClkSrc        = "LFCLK";
+TIMER1.interrupts         = ["ZERO"];
+TIMER1.peripheral.$assign = "TIMG0";
+
+uartLIN1.$name                            = "LIN_0";
+uartLIN1.targetBaudRate                   = 19200;
+uartLIN1.enableLinCounter                 = true;
+uartLIN1.enableLinCounterClearFallingEdge = true;
+uartLIN1.enableDMARX                      = false;
+uartLIN1.enableDMATX                      = false;
+uartLIN1.tbitVal                          = 9.5;
+uartLIN1.enableLinCountWhileLow           = true;
+uartLIN1.enabledInterrupts                = ["BREAK_ERROR","LINC0_MATCH","LIN_COUNTER_OVERFLOW","LIN_FALLING_EDGE","OVERRUN_ERROR"];
+uartLIN1.enableLinCounterCompare          = true;
+uartLIN1.peripheral.rxPin.$assign         = "PA11";
+uartLIN1.peripheral.txPin.$assign         = "PA10";
+

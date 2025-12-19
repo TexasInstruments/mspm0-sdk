@@ -16,6 +16,8 @@ const GPIO2    = GPIO.addInstance();
 const GPIO3    = GPIO.addInstance();
 const GPIO4    = GPIO.addInstance();
 const SYSCTL   = scripting.addModule("/ti/driverlib/SYSCTL");
+const TIMER    = scripting.addModule("/ti/driverlib/TIMER", {}, false);
+const TIMER1   = TIMER.addInstance();
 const uartLIN  = scripting.addModule("/ti/driverlib/uartLIN", {}, false);
 const uartLIN1 = uartLIN.addInstance();
 
@@ -63,20 +65,25 @@ GPIO4.associatedPins[0].pin.$assign = "PA18";
 SYSCTL.clockTreeEn           = true;
 SYSCTL.forceDefaultClkConfig = true;
 
-uartLIN1.$name                            = "LIN_0";
-uartLIN1.targetBaudRate                   = 19200;
-uartLIN1.tbitVal                          = 9.5;
-uartLIN1.enableDMARX                      = false;
-uartLIN1.enableDMATX                      = false;
-uartLIN1.enableLinCounter                 = true;
-uartLIN1.enableLinCounterClearFallingEdge = true;
-uartLIN1.enableLinCountWhileLow           = true;
-uartLIN1.enableLinCounterCompare          = true;
-uartLIN1.enabledInterrupts                = ["RX"];
-uartLIN1.peripheral.$assign               = "UC4";
-uartLIN1.peripheral.rxPin.$assign         = "PA11";
-uartLIN1.peripheral.txPin.$assign         = "PA10";
-uartLIN1.rxPinConfig.enableConfig         = true;
+TIMER1.$name       = "TIMER_0";
+TIMER1.timerClkSrc = "LFCLK";
+TIMER1.interrupts  = ["ZERO"];
+
+uartLIN1.$name                    = "LIN_0";
+uartLIN1.targetBaudRate           = 19200;
+uartLIN1.tbitVal                  = 9.5;
+uartLIN1.enableDMARX              = false;
+uartLIN1.enableDMATX              = false;
+uartLIN1.enableFIFO               = true;
+uartLIN1.rxFifoThreshold          = "DL_UART_RX_FIFO_LEVEL_ONE_ENTRY";
+uartLIN1.txFifoThreshold          = "DL_UART_TX_FIFO_LEVEL_EMPTY";
+uartLIN1.peripheral.$assign       = "UC4";
+uartLIN1.peripheral.rxPin.$assign = "PA11";
+uartLIN1.peripheral.txPin.$assign = "PA10";
+uartLIN1.txPinConfig.$name        = "ti_driverlib_gpio_GPIOPinGeneric0";
+uartLIN1.rxPinConfig.$name        = "ti_driverlib_gpio_GPIOPinGeneric1";
+uartLIN1.rxPinConfig.enableConfig = true;
 
 const ProjectConfig              = scripting.addModule("/ti/project_config/ProjectConfig", {}, false);
 ProjectConfig.migrationCondition = true;
+

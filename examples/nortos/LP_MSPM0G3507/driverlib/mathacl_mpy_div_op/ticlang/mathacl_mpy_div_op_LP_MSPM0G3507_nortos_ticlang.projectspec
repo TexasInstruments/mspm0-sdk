@@ -48,7 +48,7 @@
             --compiler ticlang
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="MATHACL implementation of trigonometric functions">
+        description="Math accelerator (MATHACL) implementation of trigonometric functions">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

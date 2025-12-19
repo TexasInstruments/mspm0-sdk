@@ -16,6 +16,8 @@ const GPIO2    = GPIO.addInstance();
 const GPIO3    = GPIO.addInstance();
 const GPIO4    = GPIO.addInstance();
 const SYSCTL   = scripting.addModule("/ti/driverlib/SYSCTL");
+const TIMER    = scripting.addModule("/ti/driverlib/TIMER", {}, false);
+const TIMER1   = TIMER.addInstance();
 const uartLIN  = scripting.addModule("/ti/driverlib/uartLIN", {}, false);
 const uartLIN1 = uartLIN.addInstance();
 
@@ -63,7 +65,12 @@ GPIO4.associatedPins[0].assignedPin = "18";
 GPIO4.associatedPins[0].interruptEn = true;
 GPIO4.associatedPins[0].polarity    = "RISE";
 
-SYSCTL.clockTreeEn           = true;
+SYSCTL.clockTreeEn = true;
+
+TIMER1.$name              = "TIMER_0";
+TIMER1.timerClkSrc        = "LFCLK";
+TIMER1.interrupts         = ["ZERO"];
+TIMER1.peripheral.$assign = "TIMG0";
 
 uartLIN1.$name                    = "LIN_0";
 uartLIN1.targetBaudRate           = 19200;
@@ -77,3 +84,4 @@ uartLIN1.peripheral.txPin.$assign = "PA10";
 
 const ProjectConfig              = scripting.addModule("/ti/project_config/ProjectConfig", {}, false);
 ProjectConfig.migrationCondition = true;
+

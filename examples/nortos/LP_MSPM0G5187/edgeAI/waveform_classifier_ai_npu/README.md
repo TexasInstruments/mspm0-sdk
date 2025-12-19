@@ -1,6 +1,6 @@
 ## Example Summary
 
-This example demonstrates time series classification of waveform signals into one of three categories: sawtooth wave, sine wave, or square wave. This example uses an ADC to capture the input waveform, from which features are extracted using the feature_extract library. The extracted features are fed into the model for inference, and the model's output is used to activate the appropriate LED for each waveform type. The model was trained and validated using an input waveform with a frequency of 40 Hz and a DC offset of 1.65V.
+This example demonstrates time series classification of waveform signals into one of three categories: sawtooth wave, sine wave, or square wave. This example uses an ADC to capture the input waveform, from which features are extracted using the feature_extract library. The extracted features are fed into the model for inference, and the model's output is used to activate the appropriate LED for each waveform type. The model was trained and validated using an input waveform with a frequency of 300 Hz and a DC offset of 1.65V.
 
 A compact and modular Convolutional Neural Network (CNN) with 14,124 parameters is used for classification. The model is designed to handle multivariate input signals and supports multi-class classification.
 
@@ -65,7 +65,7 @@ The corresponding LED will illuminate to indicate the classified waveform type:
 
 The Blue LED also acts as a default for any other input shape.
 
-Note: The model was trained and tested exclusively with an input wave frequency of 40Hz and a DC offset of 1.65V. Performance with other frequencies and offsets may not be accurate.
+Note: The model was trained and tested exclusively with an input wave frequency of 300Hz and a DC offset of 1.65V. Performance with other frequencies and offsets may not be accurate.
 
 ## References
 

@@ -78,7 +78,14 @@ extern "C" {
 #define GPIO_CLKOUT_IOMUX                                        (IOMUX_PINCM36)
 #define GPIO_CLKOUT_IOMUX_FUNC                   IOMUX_PINCM36_PF_SYSCTL_CLK_OUT
 #define CPUCLK_FREQ                                                     80000000
+/* Defines for SYSPLL_ERR_01 Workaround */
+/* Represent 1.000 as 1000 */
+#define FLOAT_TO_INT_SCALE                                               (1000U)
+#define FCC_EXPECTED_RATIO                                                  1250
+#define FCC_UPPER_BOUND                       (FCC_EXPECTED_RATIO * (1 + 0.003))
+#define FCC_LOWER_BOUND                       (FCC_EXPECTED_RATIO * (1 - 0.003))
 
+bool SYSCFG_DL_SYSCTL_SYSPLL_init(void);
 
 
 /* Defines for TIMER_0 */
@@ -105,6 +112,8 @@ void SYSCFG_DL_initPower(void);
 void SYSCFG_DL_GPIO_init(void);
 void SYSCFG_DL_SYSCTL_init(void);
 void SYSCFG_DL_SYSCTL_CLK_init(void);
+
+bool SYSCFG_DL_SYSCTL_SYSPLL_init(void);
 void SYSCFG_DL_TIMER_0_init(void);
 
 

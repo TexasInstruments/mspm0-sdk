@@ -55,18 +55,18 @@
 #define NUM_BUFFER              (2)
 
 /* Global Variable to store input to the Model */
-float if_map[1][128][1][1] ;
+int8_t if_map[1][128][1][1] ;
 /* Global variable to store Model output */
-float of_map[1][3]={0,0,0};
+int8_t of_map[1][3]={0,0,0};
 
 /* Stores extracted features of a single frame */
-volatile q15_t featuresPerFrame[FE_FEATURE_SIZE_PER_FRAME];
+volatile int8_t featuresPerFrame[FE_FEATURE_SIZE_PER_FRAME];
 
 /* Stores features for all frames within the current sliding window */
-volatile q15_t newFeatures[(SLIDING_WINDOW_SIZE * FE_FEATURE_SIZE_PER_FRAME)];
+volatile int8_t newFeatures[(SLIDING_WINDOW_SIZE * FE_FEATURE_SIZE_PER_FRAME)];
 
 /* Stores the complete feature set for model input */
-volatile q15_t totalFeatures[FE_FEATURE_SIZE_PER_FRAME*FE_NUM_FRAME_CONCAT];
+volatile int8_t totalFeatures[FE_FEATURE_SIZE_PER_FRAME*FE_NUM_FRAME_CONCAT];
 
 
 /* ADC related Params */
@@ -161,7 +161,7 @@ int main(void)
                 q15_t* framePtr = &ADC_buffers[conBufferIndex][j*(FE_FRAME_SIZE)];
 
                 /* Extract Features from the corresponding frame */
-                FE_process(framePtr,featuresPerFrame);
+                FE_process(framePtr,featuresPerFrame,0);
 
                 /* Append Extracted features */
                 memcpy(&newFeatures[(j * FE_FEATURE_SIZE_PER_FRAME)], featuresPerFrame, sizeof(featuresPerFrame));
@@ -213,8 +213,8 @@ void ADC12_0_INST_IRQHandler(void)
             /* Check if whole ADC Buffer data is captured */
             if(dataIndex < ADC_BUFFER_SIZE)
             {
-                /* Storing the data in Q15 format */
-                ADC_buffers[prodBufferIndex][dataIndex++] = (gADCresult - 2048) << 4;
+                /* Storing the ADC data */
+                ADC_buffers[prodBufferIndex][dataIndex++] = gADCresult;
             }
 
             if(dataIndex >= ADC_BUFFER_SIZE)

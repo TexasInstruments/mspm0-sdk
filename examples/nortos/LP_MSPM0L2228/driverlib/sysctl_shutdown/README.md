@@ -1,7 +1,7 @@
 ## Example Summary
 
 Configures different power policies based on the configuration of two input
-pins. Which allows user to prevent the device to indefinately stay in SHUTDOWN
+pins. Which allows user to prevent the device to indefinitely stay in SHUTDOWN
 mode since the serial wire debug (SWD) remain locked while the device is in
 SHUTDOWN mode.
 

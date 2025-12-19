@@ -202,10 +202,10 @@
 <li><p><strong>Process input data to extract features:</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">q15_t</span> <span class="n">rawInput</span><span class="p">[</span><span class="n">FE_FRAME_SIZE</span><span class="p">];</span>
 <span class="n">q15_t</span> <span class="n">extractedFeatures</span><span class="p">[</span><span class="n">FE_FEATURE_SIZE_PER_FRAME</span><span class="p">];</span>
-
+<span class="n">uint8_t</span> <span class="n">varIndex</span><span class="p">;</span>
 <span class="o">//</span> <span class="n">Fill</span> <span class="n">rawInput</span> <span class="k">with</span> <span class="n">signal</span> <span class="n">data</span>
 
-<span class="n">FE_process</span><span class="p">(</span><span class="n">rawInput</span><span class="p">,</span> <span class="n">extractedFeatures</span><span class="p">);</span>
+<span class="n">FE_process</span><span class="p">(</span><span class="n">rawInput</span><span class="p">,</span> <span class="n">extractedFeatures</span><span class="p">,</span><span class="n">varIndex</span><span class="p">);</span>
 </pre></div>
 </div>
 </li>

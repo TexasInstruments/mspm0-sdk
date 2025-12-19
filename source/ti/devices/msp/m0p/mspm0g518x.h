@@ -226,6 +226,8 @@ typedef enum IRQn
 #define __MSPM0_HAS_USB__
 #define __MSPM0_HAS_ECC__
 
+#define __GPIO_ERR_06__
+
 /*@}*/ /* end of group MSPM0G518X_Peripherals */
 
 /******************************************************************************

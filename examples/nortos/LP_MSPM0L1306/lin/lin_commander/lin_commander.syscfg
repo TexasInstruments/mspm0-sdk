@@ -9,14 +9,16 @@
 /**
  * Import the modules used in this configuration.
  */
-const Board  = scripting.addModule("/ti/driverlib/Board");
-const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
-const GPIO1  = GPIO.addInstance();
-const GPIO2  = GPIO.addInstance();
-const GPIO3  = GPIO.addInstance();
-const uartLIN    = scripting.addModule("/ti/driverlib/uartLIN", {}, false);
-const uartLIN1   = uartLIN.addInstance();
-const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const Board    = scripting.addModule("/ti/driverlib/Board");
+const GPIO     = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1    = GPIO.addInstance();
+const GPIO2    = GPIO.addInstance();
+const GPIO3    = GPIO.addInstance();
+const SYSCTL   = scripting.addModule("/ti/driverlib/SYSCTL");
+const TIMER    = scripting.addModule("/ti/driverlib/TIMER", {}, false);
+const TIMER1   = TIMER.addInstance();
+const uartLIN  = scripting.addModule("/ti/driverlib/uartLIN", {}, false);
+const uartLIN1 = uartLIN.addInstance();
 
 /**
  * Write custom configuration values to the imported modules.
@@ -58,6 +60,12 @@ GPIO3.associatedPins[1].interruptEn         = true;
 GPIO3.associatedPins[1].internalResistor    = "PULL_UP";
 GPIO3.associatedPins[1].polarity            = "FALL";
 GPIO3.associatedPins[1].pin.$assign         = "PA14";
+
+
+TIMER1.$name              = "TIMER_0";
+TIMER1.timerClkSrc        = "LFCLK";
+TIMER1.interrupts         = ["ZERO"];
+TIMER1.peripheral.$assign = "TIMG0";
 
 uartLIN1.$name                    = "LIN_0";
 uartLIN1.targetBaudRate           = 19200;

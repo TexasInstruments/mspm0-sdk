@@ -30,7 +30,6 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "output/output_afe881.h"
 #include "ti_msp_dl_config.h"
 
 #include "identification.h"
@@ -52,7 +51,7 @@
 #include "output.h"
 #include "output/output_example.h"
 #ifdef USEIOLINK
-#include "output_io-link.h"
+#include "output/output_io-link.h"
 #endif
 #include "output/output_afe881.h"
 
@@ -61,12 +60,25 @@ struct id_idx_map_struct {
     int idx;
 };
 
+/** stores the pointer to the name of the selected driver **/
+char *gAdcDriverName;
+
+/** stores number of drivers **/
+int AdcDriverCnt;
+
+/** stores the pointer to the name of the selected driver **/
+char *OutputDriverName;
+
+/** stores number of supported output drivers **/
+int OutputDriverCnt;
+
 struct id_func_input_map_struct gIdFuncInputMap[] = {
     {
         .adc_init        = adc_example_init,
         .adc_cyclic      = adc_example_cyclic,
         .adc_get_reading = adc_example_get_reading,
         .adc_cmd         = adc_example_cmd,
+        .adc_driver_name = "Example driver",
 
         .condition_adc_init    = condition_example_adc_init,
         .condition_adc_cyclic  = condition_example_adc_cyclic,
@@ -78,6 +90,7 @@ struct id_func_input_map_struct gIdFuncInputMap[] = {
         .adc_cyclic      = ads122s14_ptx_daisychain_cyclic,
         .adc_get_reading = ads122s14_ptx_daisychain_get_reading,
         .adc_cmd         = ads122s14_ptx_daisychain_cmd,
+        .adc_driver_name = "ADS122S14 daisy chain driver",
 
         .condition_adc_init    = condition_press_temp_adc_init,
         .condition_adc_cyclic  = condition_press_temp_adc_cyclic,
@@ -108,6 +121,7 @@ struct id_func_output_map_struct gIdFuncOutputMap[] = {
         .output_cyclic      = output_example_cyclic,
         .output_set_reading = output_example_set_reading,
         .output_cmd         = output_example_cmd,
+        .output_driver_name = "Example driver",
 
         .cpu_clock_init = cpu_clock_init_32m,
     },
@@ -122,6 +136,7 @@ struct id_func_output_map_struct gIdFuncOutputMap[] = {
         .output_cyclic      = output_afe881h1_cyclic,
         .output_set_reading = output_afe881h1_set_reading,
         .output_cmd         = output_afe881h1_cmd,
+        .output_driver_name = "AFE881/2H1 driver",
 
         .cpu_clock_init = cpu_clock_init_32m,
     },
@@ -136,11 +151,13 @@ struct id_func_output_map_struct gIdFuncOutputMap[] = {
         .output_cyclic      = output_iolink_cyclic,
         .output_set_reading = output_iolink_set_reading,
         .output_cmd         = output_iolink_cmd,
+        .output_driver_name = "IO-Link driver",
 #else
         .output_init        = output_example_init,
         .output_cyclic      = output_example_cyclic,
         .output_set_reading = output_example_set_reading,
         .output_cmd         = output_example_cmd,
+        .output_driver_name = "Example driver",
 #endif
         .cpu_clock_init = cpu_clock_init_80m,
     }};
@@ -234,6 +251,9 @@ void load_id(void)
     adc_get_reading =
         gIdFuncInputMap[get_idx(gIdIdxInputMap, adcid)].adc_get_reading;
     adc_cmd = gIdFuncInputMap[get_idx(gIdIdxInputMap, adcid)].adc_cmd;
+    gAdcDriverName =
+        gIdFuncInputMap[get_idx(gIdIdxInputMap, adcid)].adc_driver_name;
+    AdcDriverCnt = sizeof(gIdFuncInputMap) / sizeof(gIdFuncInputMap[0]);
 
     condition_adc_init =
         gIdFuncInputMap[get_idx(gIdIdxInputMap, adcid)].condition_adc_init;
@@ -262,6 +282,9 @@ void load_id(void)
                              .output_set_reading;
     output_cmd =
         gIdFuncOutputMap[get_idx(gIdIdxOutputMap, outputid)].output_cmd;
+    OutputDriverName = gIdFuncOutputMap[get_idx(gIdIdxOutputMap, outputid)]
+                           .output_driver_name;
+    OutputDriverCnt = sizeof(gIdFuncOutputMap) / sizeof(gIdFuncOutputMap[0]);
 
     gIdFuncOutputMap[get_idx(gIdIdxOutputMap, outputid)].cpu_clock_init();
 

@@ -46,19 +46,19 @@
 #define INPUT_CHANNELS     (3)
 
 /** \brief Model input buffer */
-float if_map[1][384][1][1];
+int8_t if_map[1][3][128][1];
 
 /** \brief Model output buffer */
-float of_map[1][4]={0,0,0,0};
+int8_t of_map[1][4];
 
 /** \brief Data points of a single frame */
 q15_t input_data_q15[FE_FRAME_SIZE];
 
 /** \brief Extracted features of a single frame */
-q15_t featuresPerFrame[FE_FEATURE_SIZE_PER_FRAME];
+int8_t featuresPerFrame[FE_FEATURE_SIZE_PER_FRAME];
 
 /** \brief Complete feature set for model input */
-q15_t totalFeatures[FE_FEATURE_SIZE_PER_FRAME*FE_NUM_FRAME_CONCAT*INPUT_CHANNELS];
+int8_t totalFeatures[FE_FEATURE_SIZE_PER_FRAME*FE_NUM_FRAME_CONCAT*INPUT_CHANNELS];
 
 /** \brief Circular class buffer to determine which class LED has to glow */
 uint8_t class_buffer[SAMPLE_BUFFER_SIZE];
@@ -90,7 +90,7 @@ void motor_FE()
         {
             input_data_q15[j] = dataBuff.xData[i*FE_FRAME_SIZE + j];
         }
-        FE_process(input_data_q15, featuresPerFrame);
+        FE_process(input_data_q15, featuresPerFrame, 0);
 
         /* Append Extracted features */
         memcpy(&totalFeatures[0*(FE_NUM_FRAME_CONCAT*FE_FEATURE_SIZE_PER_FRAME) + (i*FE_FEATURE_SIZE_PER_FRAME)], featuresPerFrame, sizeof(featuresPerFrame));
@@ -102,7 +102,7 @@ void motor_FE()
         {
             input_data_q15[j] = dataBuff.yData[i*FE_FRAME_SIZE + j];
         }
-        FE_process(input_data_q15, featuresPerFrame);
+        FE_process(input_data_q15, featuresPerFrame, 1);
 
         /* Append Extracted features */
         memcpy(&totalFeatures[1*(FE_NUM_FRAME_CONCAT*FE_FEATURE_SIZE_PER_FRAME) + (i*FE_FEATURE_SIZE_PER_FRAME)], featuresPerFrame, sizeof(featuresPerFrame));
@@ -114,16 +114,21 @@ void motor_FE()
         {
             input_data_q15[j] = dataBuff.zData[i*FE_FRAME_SIZE + j];
         }
-        FE_process(input_data_q15, featuresPerFrame);
+        FE_process(input_data_q15, featuresPerFrame, 2);
 
         /* Append Extracted features */
         memcpy(&totalFeatures[2*(FE_NUM_FRAME_CONCAT*FE_FEATURE_SIZE_PER_FRAME) + (i*FE_FEATURE_SIZE_PER_FRAME)], featuresPerFrame, sizeof(featuresPerFrame));
     }
 
+    int index=0;
     /* Store the extracted features in the if_map*/
-    for(int i=0;i<FE_NUM_FRAME_CONCAT*FE_FEATURE_SIZE_PER_FRAME*INPUT_CHANNELS;i++)
+    for(int i=0;i<INPUT_CHANNELS;i++)
     {
-        if_map[0][i][0][0] = totalFeatures[i];
+        for(int j=0;j<FE_NUM_FRAME_CONCAT*FE_FEATURE_SIZE_PER_FRAME;j++)
+        {
+            if_map[0][i][j][0] = totalFeatures[index];
+            index++;
+        }
     }
 
 }

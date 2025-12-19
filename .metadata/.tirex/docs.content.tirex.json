@@ -12,7 +12,7 @@
     "devtools": ["$(MSPM0_all_devtools)"],
     "resourceType": "file",
     "resourceClass": ["document"],
-    "location": "../../release_notes_mspm0_sdk_2_08_00_03.html",
+    "location": "../../release_notes_mspm0_sdk_2_09_00_01.html",
     "mainCategories": [
         [
             "Documents"
@@ -183,7 +183,7 @@
     "devtools": ["$(MSPM0_all_devtools)"],
     "resourceType": "file",
     "resourceClass": ["document"],
-    "location": "../../manifest_mspm0_sdk_2_08_00_03.html",
+    "location": "../../manifest_mspm0_sdk_2_09_00_01.html",
     "mainCategories": [
         [
             "Documents"
@@ -1183,6 +1183,46 @@
     "subCategories": [
         "Middleware",
         "USB"
+    ],
+    "globalAliases": [
+        "mspm0_sdk_doc_en_usb_library_users_guide"
+    ]
+},
+{
+    "name": "TinyUSB API Guide",
+    "tags": [
+        "TinyUSB API Guide",
+        "USB Host",
+        "USB Device",
+        "Modbus Controller",
+        "Communication Device Class (CDC)",
+        "Human Interface Device (HID)",
+        "Mass Storage Class (MSC)",
+        "Billboard Class",
+        "Audio Class",
+        "HID Host",
+        "MSC Host",
+        "CDC Host",
+        "USB Descriptor Tool",
+        "Documentation",
+        "Middleware"
+    ],
+    "devices": ["$(MSPM0_all_devices)"],
+    "devtools": ["$(MSPM0_all_devtools)"],
+    "resourceType": "file",
+    "resourceClass": ["document"],
+    "location": "../../docs/english/middleware/tinyusb/doxygen/TinyUSB_API_Guide_Overview.html",
+    "mainCategories": [
+        [
+            "Documents"
+        ]
+    ],
+    "subCategories": [
+        "Middleware",
+        "USB"
+    ],
+    "globalAliases": [
+        "mspm0_sdk_doc_en_tinyusb_api_guide"
     ]
 },
 {
@@ -1432,7 +1472,7 @@
     "devtools": ["$(MSPM0_all_devtools)"],
     "resourceType": "file",
     "resourceClass": ["document"],
-    "location": "../../release_notes_mspm0_sdk_2_08_00_03.html",
+    "location": "../../release_notes_mspm0_sdk_2_09_00_01.html",
     "mainCategories": [
         [
             "Documents - Chinese"

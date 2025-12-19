@@ -1,0 +1,87 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+//@cliArgs --device "MSPM0G321X" --package "LQFP-64(PM)" --part "Default"
+//@v2CliArgs --device "MSPM0G3218" --package "LQFP-64(PM)"
+// @cliArgs --board /ti/boards/LP_MSPM0G3218 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const Board    = scripting.addModule("/ti/driverlib/Board");
+const GPIO     = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1    = GPIO.addInstance();
+const GPIO2    = GPIO.addInstance();
+const GPIO3    = GPIO.addInstance();
+const GPIO4    = GPIO.addInstance();
+const SYSCTL   = scripting.addModule("/ti/driverlib/SYSCTL");
+const TIMER    = scripting.addModule("/ti/driverlib/TIMER", {}, false);
+const TIMER1   = TIMER.addInstance();
+const uartLIN  = scripting.addModule("/ti/driverlib/uartLIN", {}, false);
+const uartLIN1 = uartLIN.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+Board.peripheral.$assign          = "DEBUGSS";
+Board.peripheral.swclkPin.$assign = "PA20";
+Board.peripheral.swdioPin.$assign = "PA19";
+
+GPIO1.$name                         = "GPIO_LEDS";
+GPIO1.associatedPins.create(2);
+GPIO1.associatedPins[0].$name       = "USER_LED_1";
+GPIO1.associatedPins[0].pin.$assign = "PB22";
+GPIO1.associatedPins[1].$name       = "USER_LED_2";
+GPIO1.associatedPins[1].pin.$assign = "PB26";
+
+GPIO2.$name                         = "GPIO_LIN_ENABLE";
+GPIO2.port                          = "PORTB";
+GPIO2.portSegment                   = "Lower";
+GPIO2.associatedPins[0].$name       = "USER_LIN_ENABLE";
+GPIO2.associatedPins[0].assignedPin = "15";
+GPIO2.associatedPins[0].pin.$assign = "PB15";
+
+GPIO3.$name                              = "GPIO_SWITCHES1";
+GPIO3.associatedPins[0].$name            = "USER_SWITCH_1";
+GPIO3.associatedPins[0].internalResistor = "PULL_UP";
+GPIO3.associatedPins[0].direction        = "INPUT";
+GPIO3.associatedPins[0].interruptEn      = true;
+GPIO3.associatedPins[0].polarity         = "FALL";
+GPIO3.associatedPins[0].assignedPort     = "PORTB";
+GPIO3.associatedPins[0].assignedPin      = "21";
+GPIO3.associatedPins[0].pin.$assign      = "PB21";
+
+GPIO4.$name                         = "GPIO_SWITCHES2";
+GPIO4.port                          = "PORTA";
+GPIO4.portSegment                   = "Upper";
+GPIO4.associatedPins[0].assignedPin = "18";
+GPIO4.associatedPins[0].direction   = "INPUT";
+GPIO4.associatedPins[0].polarity    = "RISE";
+GPIO4.associatedPins[0].interruptEn = true;
+GPIO4.associatedPins[0].$name       = "USER_SWITCH_2";
+GPIO4.associatedPins[0].pin.$assign = "PA18";
+
+SYSCTL.clockTreeEn           = true;
+SYSCTL.forceDefaultClkConfig = true;
+
+TIMER1.$name              = "TIMER_0";
+TIMER1.timerClkSrc        = "LFCLK";
+TIMER1.interrupts         = ["ZERO"];
+TIMER1.peripheral.$assign = "TIMA0";
+
+uartLIN1.$name                    = "LIN_0";
+uartLIN1.targetBaudRate           = 19200;
+uartLIN1.tbitVal                  = 9.5;
+uartLIN1.enableDMARX              = false;
+uartLIN1.enableDMATX              = false;
+uartLIN1.enableFIFO               = true;
+uartLIN1.rxFifoThreshold          = "DL_UART_RX_FIFO_LEVEL_ONE_ENTRY";
+uartLIN1.txFifoThreshold          = "DL_UART_TX_FIFO_LEVEL_EMPTY";
+uartLIN1.peripheral.$assign       = "UC0";
+uartLIN1.peripheral.rxPin.$assign = "PA11";
+uartLIN1.peripheral.txPin.$assign = "PA10";
+uartLIN1.rxPinConfig.enableConfig = true;
+
+const ProjectConfig              = scripting.addModule("/ti/project_config/ProjectConfig", {}, false);
+ProjectConfig.migrationCondition = true;

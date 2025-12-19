@@ -80,23 +80,23 @@ ti_eeprom_emulation_type_a_eeprom_emulation_type_a.obj: ../ti/eeprom/emulation_t
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-ti_dali_dali_103_dali_103_command.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/448/execroot/__main__/source/ti/dali/dali_103/dali_103_command.c $(SYSCFG_H_FILES)
+ti_dali_dali_103_dali_103_command.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/10548/execroot/__main__/source/ti/dali/dali_103/dali_103_command.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-ti_dali_dali_103_dali_cd_comm.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/448/execroot/__main__/source/ti/dali/dali_103/dali_cd_comm.c $(SYSCFG_H_FILES)
+ti_dali_dali_103_dali_cd_comm.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/10548/execroot/__main__/source/ti/dali/dali_103/dali_cd_comm.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-ti_dali_dali_103_dali_gpio_comm.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/448/execroot/__main__/source/ti/dali/dali_103/dali_gpio_comm.c $(SYSCFG_H_FILES)
+ti_dali_dali_103_dali_gpio_comm.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/10548/execroot/__main__/source/ti/dali/dali_103/dali_gpio_comm.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-ti_dali_dali_103_dali_303_dali_303_command.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/448/execroot/__main__/source/ti/dali/dali_103/dali_303/dali_303_command.c $(SYSCFG_H_FILES)
+ti_dali_dali_103_dali_303_dali_303_command.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/10548/execroot/__main__/source/ti/dali/dali_103/dali_303/dali_303_command.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-ti_dali_dali_103_dali_303_pir_interface.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/448/execroot/__main__/source/ti/dali/dali_103/dali_303/pir_interface.c $(SYSCFG_H_FILES)
+ti_dali_dali_103_dali_303_pir_interface.obj: /home/a0226989/.cache/bazel/_bazel_a0226989/4d845513c594c2a2405290acdd717718/sandbox/linux-sandbox/10548/execroot/__main__/source/ti/dali/dali_103/dali_303/pir_interface.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 

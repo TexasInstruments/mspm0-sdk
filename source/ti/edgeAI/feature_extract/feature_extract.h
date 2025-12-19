@@ -35,6 +35,7 @@
 #define FEATURE_EXTRACT_H_
 
 #include "model/user_input_config.h"
+#include "model/tvmgen_default.h"
 
 /* ARM CMSIS-DSP Header files */
 #include "arm_const_structs.h"
@@ -44,7 +45,7 @@
 q15_t scratchBuffer1[2*FE_FRAME_SIZE];
 q15_t scratchBuffer2[2*FE_FRAME_SIZE];
 
-#ifdef FE_RFFT
+#if defined(FE_RFFT) || defined(FE_PIR)
 arm_rfft_instance_q15 varInstRfftQ15;
 #endif
 
@@ -69,9 +70,10 @@ void FE_init(void);
  *
  * @param rawInput The raw input data to be processed.
  * @param extractedFeatures The output array to store the extracted features.
+ * @param varIndex The index of the variable for which raw data is being processed for feature extraction. 
  *
  * @return void
  */
-void FE_process(q15_t* rawInput, q15_t* extractedFeatures);
+void FE_process(q15_t* rawInput, int8_t* extractedFeatures, uint8_t varIndex);
 
 #endif /* FEATURE_EXTRACT_H_ */

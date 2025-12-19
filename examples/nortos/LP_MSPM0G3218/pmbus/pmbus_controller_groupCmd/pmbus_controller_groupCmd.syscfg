@@ -1,0 +1,46 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+//@cliArgs --device "MSPM0G321X" --package "LQFP-64(PM)" --part "Default"
+//@v2CliArgs --device "MSPM0G3218" --package "LQFP-64(PM)"
+// @cliArgs --board /ti/boards/LP_MSPM0G3218 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const GPIO          = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1         = GPIO.addInstance();
+const SYSCTL        = scripting.addModule("/ti/driverlib/SYSCTL");
+const i2cSMBUS      = scripting.addModule("/ti/driverlib/i2cSMBUS", {}, false);
+const i2cSMBUS1     = i2cSMBUS.addInstance();
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+GPIO1.$name                         = "GPIO_LED";
+GPIO1.associatedPins[0].$name       = "D0";
+GPIO1.associatedPins[0].invert      = "ENABLE";
+GPIO1.associatedPins[0].pin.$assign = "PA0";
+
+const Board                       = scripting.addModule("/ti/driverlib/Board", {}, false);
+Board.peripheral.$assign          = "DEBUGSS";
+Board.peripheral.swclkPin.$assign = "PA20";
+Board.peripheral.swdioPin.$assign = "PA19";
+
+SYSCTL.clockTreeEn = true;
+
+i2cSMBUS1.basicEnableController             = true;
+i2cSMBUS1.$name                             = "SMB_I2C";
+i2cSMBUS1.enableControllerPEC               = true;
+i2cSMBUS1.intController                     = ["ARBITRATION_LOST","NACK","PEC_RX_ERROR","RXFIFO_TRIGGER","START","STOP","TXFIFO_TRIGGER"];
+i2cSMBUS1.timeoutACount                     = 135;
+i2cSMBUS1.enableTimeoutA                    = true;
+i2cSMBUS1.intGeneric                        = ["TIMEOUT_A"];
+i2cSMBUS1.peripheral.$assign                = "UC0";
+i2cSMBUS1.peripheral.sdaPin.$assign         = "PA10";
+i2cSMBUS1.peripheral.sclPin.$assign         = "PA11";
+
+ProjectConfig.genLibPMBUS        = true;
+ProjectConfig.migrationCondition = true;

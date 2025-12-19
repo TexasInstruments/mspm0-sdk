@@ -48,7 +48,7 @@
             --compiler ticlang
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="ADC12 single conversion triggered by software using internal VREF">
+        description="Configure the ADC to perform a simple single conversion triggered by software using an internal voltage reference">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

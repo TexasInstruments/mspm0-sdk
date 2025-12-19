@@ -1,0 +1,77 @@
+/**
+* These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+* via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+*/
+//@cliArgs --device "MSPM0G321X" --part "Default" --package "LQFP-64(PM)"
+//@v2CliArgs --device "MSPM0G3218" --package "LQFP-64(PM)"
+// @cliArgs --board /ti/boards/LP_MSPM0G3218 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const ADC12  = scripting.addModule("/ti/driverlib/ADC12", {}, false);
+const ADC121 = ADC12.addInstance();
+const Board  = scripting.addModule("/ti/driverlib/Board");
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
+const GPIO2  = GPIO.addInstance();
+const GPIO3  = GPIO.addInstance();
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const TIMER  = scripting.addModule("/ti/driverlib/TIMER", {}, false);
+const TIMER1 = TIMER.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+ADC121.$name                      = "ADC12_0";
+ADC121.sampClkDiv                 = "DL_ADC12_CLOCK_DIVIDE_8";
+ADC121.enabledInterrupts          = ["DL_ADC12_INTERRUPT_MEM0_RESULT_LOADED"];
+ADC121.powerDownMode              = "DL_ADC12_POWER_DOWN_MODE_MANUAL";
+ADC121.repeatMode                 = true;
+ADC121.adcMem0chansel             = "DL_ADC12_INPUT_CHAN_7";
+ADC121.sampleTime0                = "15 us";
+ADC121.hwNumerator                = "DL_ADC12_HW_AVG_NUM_ACC_16";
+ADC121.peripheral.$assign         = "ADC0";
+ADC121.peripheral.adcPin7.$assign = "PA22";
+ADC121.adcPin7Config.$name        = "ti_driverlib_gpio_GPIOPinGeneric0";
+
+
+GPIO1.$name                          = "GPIO_LEDS";
+GPIO1.port                           = "PORTA";
+GPIO1.portSegment                    = "Lower";
+GPIO1.associatedPins[0].$name        = "USER_LED_1";
+GPIO1.associatedPins[0].assignedPin  = "0";
+GPIO1.associatedPins[0].initialValue = "SET";
+GPIO1.associatedPins[0].pin.$assign  = "PA0";
+
+GPIO2.$name                         = "GPIO_TEMP";
+GPIO2.port                          = "PORTB";
+GPIO2.associatedPins.create(3);
+GPIO2.associatedPins[0].$name       = "R_LED";
+GPIO2.associatedPins[0].pin.$assign = "PB26";
+GPIO2.associatedPins[1].$name       = "G_LED";
+GPIO2.associatedPins[1].pin.$assign = "PB27";
+GPIO2.associatedPins[2].$name       = "B_LED";
+GPIO2.associatedPins[2].pin.$assign = "PB22";
+
+GPIO3.$name                               = "GPIO_SWITCHES";
+GPIO3.associatedPins[0].$name             = "USER_SWITCH_2";
+GPIO3.associatedPins[0].direction         = "INPUT";
+GPIO3.associatedPins[0].internalResistor  = "PULL_UP";
+GPIO3.associatedPins[0].interruptEn       = true;
+GPIO3.associatedPins[0].launchPadShortcut = "Button3En";
+GPIO3.associatedPins[0].polarity          = "FALL";
+GPIO3.associatedPins[0].pin.$assign       = "PB21";
+
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn           = true;
+
+TIMER1.$name              = "TIMER_0";
+TIMER1.timerMode          = "PERIODIC";
+TIMER1.timerClkDiv        = 8;
+TIMER1.timerClkPrescale   = 16;
+TIMER1.timerClkSrc        = "LFCLK";
+TIMER1.timerPeriod        = "1000ms";
+TIMER1.interrupts         = ["ZERO"];
+TIMER1.peripheral.$assign = "TIMA0";
+

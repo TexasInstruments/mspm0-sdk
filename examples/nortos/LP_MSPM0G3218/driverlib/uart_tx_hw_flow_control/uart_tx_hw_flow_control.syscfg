@@ -1,0 +1,52 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+//@cliArgs --device "MSPM0G321X" --package "LQFP-64(PM)" --part "Default"
+//@v2CliArgs --device "MSPM0G3218" --package "LQFP-64(PM)"
+// @cliArgs --board /ti/boards/LP_MSPM0G3218 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
+const UART   = scripting.addModule("/ti/driverlib/UART", {}, false);
+const UART1  = UART.addInstance();
+const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+
+UART1.$name = "UART_0";
+UART1.profile = "CONFIG_PROFILE_3";
+UART1.peripheral.$assign       = "UC0";
+UART1.targetBaudRate = 115200;
+UART1.enableInternalLoopback = false;
+UART1.enabledInterrupts = ["RX", "RX_TIMEOUT_ERROR"];
+UART1.enableFIFO = true;
+UART1.rxTimeoutValue = 15;
+UART1.rxFifoThreshold = "DL_UART_RX_FIFO_LEVEL_3_4_FULL";
+
+UART1.peripheral.rxPin.$assign = "PA11";
+UART1.peripheral.txPin.$assign = "PA10";
+UART1.peripheral.rtsPin.$assign = "PB7";
+UART1.peripheral.ctsPin.$assign = "PB6";
+
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;
+
+GPIO1.$name                                 = "GPIO_LEDS";
+GPIO1.associatedPins.create(2);
+GPIO1.associatedPins[0].$name               = "USER_LED_1";
+GPIO1.associatedPins[0].assignedPort        = "PORTA";
+GPIO1.associatedPins[0].assignedPortSegment = "Lower";
+GPIO1.associatedPins[0].assignedPin         = "0";
+GPIO1.associatedPins[0].initialValue        = "SET";
+GPIO1.associatedPins[1].$name               = "USER_TEST";
+GPIO1.associatedPins[1].assignedPort        = "PORTA";
+GPIO1.associatedPins[1].assignedPortSegment = "Lower";
+GPIO1.associatedPins[1].assignedPin         = "15";
+GPIO1.associatedPins[1].initialValue        = "SET";

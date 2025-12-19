@@ -64,7 +64,7 @@
             --compiler gcc
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="SYSCTL switches between SLEEP mode and STANDBY modes">
+        description="SYSCTL switches the power policy between SLEEP mode and STANDBY mode">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

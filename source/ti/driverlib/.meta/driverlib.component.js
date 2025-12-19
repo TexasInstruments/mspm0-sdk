@@ -199,8 +199,8 @@ if(/DAC/.test(peripherals)) {
     );
 }
 
-/* MSPM0Gxx-specific modules - only available for MSPM0G350X, MSPM0G310X, MSPM0G351X */
-if(["MSPM0G350X","MSPM0G310X", "MSPM0G351X"].includes(system.deviceData.device)){
+/* MSPM0Gxx-specific modules - only available for MSPM0G350X, MSPM0G310X, MSPM0G351X, MSPM0G321X, MSPM0G320X */
+if(["MSPM0G350X","MSPM0G310X", "MSPM0G351X","MSPM0G321X","MSPM0G320X"].includes(system.deviceData.device)){
     commModulesList.push(
         "/ti/driverlib/MCAN",
     );

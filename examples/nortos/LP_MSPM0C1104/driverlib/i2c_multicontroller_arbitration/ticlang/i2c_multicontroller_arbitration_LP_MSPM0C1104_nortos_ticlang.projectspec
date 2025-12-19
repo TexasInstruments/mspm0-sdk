@@ -48,7 +48,7 @@
             --compiler ticlang
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="I2C Controller detecting arbitration error">
+        description="I2C Controller detecting arbitration error in a multi-controller bus">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

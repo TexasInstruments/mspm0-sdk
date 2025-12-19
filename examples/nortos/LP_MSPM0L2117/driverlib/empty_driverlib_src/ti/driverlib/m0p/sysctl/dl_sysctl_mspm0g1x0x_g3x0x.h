@@ -1812,6 +1812,20 @@ __STATIC_INLINE void DL_SYSCTL_clearECCErrorStatus(void)
 void DL_SYSCTL_configSYSPLL(const DL_SYSCTL_SYSPLLConfig *config);
 
 /**
+ *  @brief      Enable the SYSPLL
+ *
+ *  Enable SYSPLL clock. Note that user must first configure the clocks before
+ *  enabling SYSPLL, it is recommended to call @ref DL_SYSCTL_configSYSPLL for
+ *  initialization.
+ *
+ *  @sa DL_SYSCTL_getClockStatus
+ */
+__STATIC_INLINE void DL_SYSCTL_enableSYSPLL(void)
+{
+    SYSCTL->SOCLOCK.HSCLKEN |= SYSCTL_HSCLKEN_SYSPLLEN_ENABLE;
+}
+
+/**
  *  @brief     Set the divider for the Ultra Low Power Clock (ULPCLK)
  *
  *  The Ultra Low Power Clock (ULPCLK) is always sourced from the Main Clock

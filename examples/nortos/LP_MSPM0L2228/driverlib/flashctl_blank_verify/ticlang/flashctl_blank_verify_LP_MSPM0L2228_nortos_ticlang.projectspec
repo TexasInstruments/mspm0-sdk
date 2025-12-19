@@ -48,7 +48,7 @@
             --compiler ticlang
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="Implementation of Flash Blank Verify command">
+        description="Demonstration of usage of the Flash controller blank verify command, to verify if a command is blank">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

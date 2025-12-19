@@ -254,7 +254,88 @@
 % let cpuclkSpeedStr = "#define CPUCLK_FREQ";
 % let cpuclkSpeedStr2 = stat.CPUCLK_Freq.toString();
 `cpuclkSpeedStr.padEnd(40, " ")+cpuclkSpeedStr2.padStart(40, " ")`
-%}
+%%{
+    // SYSPLL is enabled on the device
+    let enabledSYSPLL = false;
+    // the user has enabled the workaround
+    let useWorkaround_SYSPLL_ERR_01 = false;
+    /* Check that device support SYSPLL */
+    if(ClockSignals.includes("SYSPLL") && Common.isdeviceAffected_SYSPLL_ERR_01()){
+        /* For SYSCTL, check the usesSYSPLL configurable */
+        if(!stat.clockTreeEn){
+            enabledSYSPLL = stat.useSYSPLL;
+            useWorkaround_SYSPLL_ERR_01 = stat.enableWorkaround_SYSPLL_ERR_01;
+        }
+        /* For ClockTree, check divider instances */
+        else{
+            let mod = system.modules["/ti/clockTree/divider.js"];
+            let pllClk2XInst = _.find(mod.$instances, ['$name', 'PLL_CLK2X_DIV']);
+            let pllClk0Inst = _.find(mod.$instances, ['$name', 'PLL_CLK0_DIV']);
+            let pllClk1Inst = _.find(mod.$instances, ['$name', 'PLL_CLK1_DIV']);
+
+            enabledSYSPLL = pllClk0Inst.enable || pllClk1Inst.enable || pllClk2XInst.enable;
+
+            let muxMod = system.modules["/ti/clockTree/mux.js"];
+            let pllMuxInst = _.find(muxMod.$instances, ['$name', 'SYSPLLMUX']);
+            useWorkaround_SYSPLL_ERR_01 = pllMuxInst?.enableWorkaround_SYSPLL_ERR_01;
+        }
+%%}
+%if(enabledSYSPLL && useWorkaround_SYSPLL_ERR_01){
+%%{
+    let fccBoundary_SYSPLL_ERR_01 = "0.003";
+    let SYSPLLSourceFreq = undefined;
+    let SYSPLLActiveClockFreq = undefined;
+    if(!stat.clockTreeEn){
+        // Find workaround boundary %
+        fccBoundary_SYSPLL_ERR_01 = stat.workaroundfccBoundaryStr_SYSPLL_ERR_01;
+        // Determine which SYSPLL Clock to use
+        let activeSYSPLL = undefined;
+        let enabledPLLs = [];
+        if(stat.SYSPLL_CLK0En ){ enabledPLLs.push("SYSPLL_Freq_CLK0" ); }
+        if(stat.SYSPLL_CLK1En ){ enabledPLLs.push("SYSPLL_Freq_CLK1" ); }
+        if(stat.SYSPLL_CLK2XEn){ enabledPLLs.push("SYSPLL_Freq_CLK2X");  }
+        activeSYSPLL = enabledPLLs[0];
+        // Determine Ratio
+        SYSPLLSourceFreq = stat.SYSPLLSource_freq;
+        SYSPLLActiveClockFreq = stat[activeSYSPLL];
+    }
+    else{
+        // Find workaround boundary %
+        let muxMod = system.modules["/ti/clockTree/mux.js"];
+        let pllMuxInst = _.find(muxMod.$instances, ['$name', 'SYSPLLMUX']);
+        fccBoundary_SYSPLL_ERR_01 = pllMuxInst?.workaroundfccBoundaryStr_SYSPLL_ERR_01;
+
+        // Determine Ratio
+        SYSPLLSourceFreq = pllMuxInst?.SYSPLLMUX_out;
+
+        let mod = system.modules["/ti/clockTree/divider.js"];
+        let pllClk2XInst = _.find(mod.$instances, ['$name', 'PLL_CLK2X_DIV']);
+        let pllClk0Inst = _.find(mod.$instances, ['$name', 'PLL_CLK0_DIV']);
+        let pllClk1Inst = _.find(mod.$instances, ['$name', 'PLL_CLK1_DIV']);
+
+        if(pllClk0Inst.enable ){ SYSPLLActiveClockFreq = pllClk0Inst?.PLL_CLK0_DIV_OUT; }
+        else if(pllClk1Inst.enable ){ SYSPLLActiveClockFreq = pllClk1Inst?.PLL_CLK1_DIV_OUT; }
+        else if(pllClk2XInst.enable){ SYSPLLActiveClockFreq = pllClk2XInst?.PLL_CLK2X_DIV_OUT; }
+    }
+    // Format workaround boundary string
+    let fccBoundaryStr_SYSPLL_ERR_01 = (fccBoundary_SYSPLL_ERR_01 / 100).toString();
+%%}
+% let floatToIntScaleStr = "#define "+"FLOAT_TO_INT_SCALE";
+/* Defines for SYSPLL_ERR_01 Workaround */
+/* Represent 1.000 as 1000 */
+`floatToIntScaleStr.padEnd(40," ")+"(1000U)".padStart(40, " ")`
+% let fccExpectedratioStr = "#define "+"FCC_EXPECTED_RATIO";
+% let fccExpectedRatioValueStr = (parseInt((1000 * SYSPLLActiveClockFreq) / SYSPLLSourceFreq)).toString();
+`fccExpectedratioStr.padEnd(40," ")+fccExpectedRatioValueStr.padStart(40, " ")`
+% let fccUpperBoundStr = "#define "+"FCC_UPPER_BOUND";
+`fccUpperBoundStr.padEnd(40," ")+("(FCC_EXPECTED_RATIO * (1 + "+fccBoundaryStr_SYSPLL_ERR_01+"))").padStart(40, " ")`
+% let fccLowerBoundStr = "#define "+"FCC_LOWER_BOUND";
+`fccLowerBoundStr.padEnd(40," ")+("(FCC_EXPECTED_RATIO * (1 - "+fccBoundaryStr_SYSPLL_ERR_01+"))").padStart(40, " ")`
+%} //if(enabledSYSPLL)
+%%{
+    } // if(ClockSignals.includes("SYSPLL"))
+%%}
+%} // function printDefine()
 
 %
 % function printDeclare() {
@@ -277,3 +358,35 @@ void SYSCFG_DL_SYSCTL_init(void);
 void SYSCFG_DL_SYSCTL_CLK_init(void);
 %   }
 % }
+%%{
+    // SYSPLL is enabled on the device
+    let enabledSYSPLL = false;
+    // the user has enabled the workaround
+    let useWorkaround_SYSPLL_ERR_01 = false;
+    /* Check that device support SYSPLL */
+    if(ClockSignals.includes("SYSPLL") && Common.isdeviceAffected_SYSPLL_ERR_01()){
+        /* For SYSCTL, check the usesSYSPLL configurable */
+        if(!stat.clockTreeEn){
+            enabledSYSPLL = stat.useSYSPLL;
+            useWorkaround_SYSPLL_ERR_01 = stat.enableWorkaround_SYSPLL_ERR_01;
+        }
+        /* For ClockTree, check divider instances */
+        else{
+            let mod = system.modules["/ti/clockTree/divider.js"];
+            let pllClk2XInst = _.find(mod.$instances, ['$name', 'PLL_CLK2X_DIV']);
+            let pllClk0Inst = _.find(mod.$instances, ['$name', 'PLL_CLK0_DIV']);
+            let pllClk1Inst = _.find(mod.$instances, ['$name', 'PLL_CLK1_DIV']);
+
+            enabledSYSPLL = pllClk0Inst.enable || pllClk1Inst.enable || pllClk2XInst.enable;
+
+            let muxMod = system.modules["/ti/clockTree/mux.js"];
+            let pllMuxInst = _.find(muxMod.$instances, ['$name', 'SYSPLLMUX']);
+            useWorkaround_SYSPLL_ERR_01 = pllMuxInst?.enableWorkaround_SYSPLL_ERR_01;
+        }
+%%}
+% if(enabledSYSPLL && useWorkaround_SYSPLL_ERR_01){
+bool SYSCFG_DL_SYSCTL_SYSPLL_init(void);
+%}
+%%{
+    } // if(ClockSignals.includes("SYSPLL"))
+%%}

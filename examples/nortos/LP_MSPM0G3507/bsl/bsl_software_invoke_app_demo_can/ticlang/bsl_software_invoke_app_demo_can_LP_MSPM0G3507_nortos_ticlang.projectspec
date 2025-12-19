@@ -49,7 +49,7 @@
             --compiler ticlang
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="Demonstrates an application request to reset the device and jump to the ROM bootloader (BSL).">
+        description="Demonstrates an application request to reset the device and jump to the ROM bootloader (BSL) by BSL CAN interface.">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

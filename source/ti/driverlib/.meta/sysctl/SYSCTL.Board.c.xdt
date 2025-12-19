@@ -151,7 +151,7 @@
 %%{ /* Helper function for PLL (feeding mClockSource) */
 
     let pllConf = ``;
-    if(Common.isDeviceM0G()){
+    if(ClockSignals.includes("SYSPLL")) {
     pllConf += `.inputFreq              = ${stat.SYSPLL_InputCLKFreqRange},\n\t`;
 
     pllConf += `.rDivClk2x              = ${stat.SYSPLL_CLK2XDiv},\n\t`;
@@ -185,8 +185,83 @@
 static const DL_SYSCTL_SYSPLLConfig gSYSPLLConfig = {
     `printSYSPLL_config`
 };
-%   }
-% }
+
+%%{
+    /**
+     *  Workaround for [ SYSPLL_ERR_01 ]
+     *    - check if condition is enabled and the workaround is applicable to this device
+     */
+    let useWorkaround_SYSPLL_ERR_01 = false;
+    if(ClockSignals.includes("SYSPLL") && Common.isdeviceAffected_SYSPLL_ERR_01()){
+        useWorkaround_SYSPLL_ERR_01 = stat.enableWorkaround_SYSPLL_ERR_01;
+    }
+    let sourceSYSPLL = "SYSOSC";
+    let activeSYSPLL = undefined;
+    let fccPeriodStr = undefined;
+    if(useWorkaround_SYSPLL_ERR_01){
+        /* Determine SYSPLL Clock Source */
+        if(stat?.SYSPLLSource?.includes("HFCLK")){
+            sourceSYSPLL = "HFCLK";
+        }
+        /* Determine which SYSPLL Clock to use */
+        let enabledPLLs = [];
+        if(stat.useSYSPLL ){
+            if(stat.SYSPLL_CLK0En ){ enabledPLLs.push("SYSPLLCLK0" ); }
+            if(stat.SYSPLL_CLK1En ){ enabledPLLs.push("SYSPLLCLK1" ); }
+            if(stat.SYSPLL_CLK2XEn){ enabledPLLs.push("SYSPLLCLK2X"); }
+        }
+        activeSYSPLL = enabledPLLs[0];
+        /* Determine FCC Period String */
+        let fccPeriod_SYSPLL_ERR_01 = ((stat.overrideworkaroundFCCPeriod_SYSPLL_ERR_01)?stat.workaroundFCCPeriod_SYSPLL_ERR_01:stat.workaroundFCCPeriodCalculated_SYSPLL_ERR_01);
+        fccPeriodStr = fccPeriod_SYSPLL_ERR_01.toString().padStart(2, "0");
+    }
+%%}
+% if(useWorkaround_SYSPLL_ERR_01){
+SYSCONFIG_WEAK bool SYSCFG_DL_SYSCTL_SYSPLL_init(void)
+{
+    bool fFCCRatioStatus = false;
+    uint32_t fFCCSysoscCount;
+    uint32_t fFCCPllCount;
+    uint32_t fFCCRatio;
+
+    DL_SYSCTL_setFCCPeriods( DL_SYSCTL_FCC_TRIG_CNT_`fccPeriodStr` );
+
+    /* Measuring PLL. */
+    DL_SYSCTL_configFCC(DL_SYSCTL_FCC_TRIG_TYPE_RISE_RISE,
+                        DL_SYSCTL_FCC_TRIG_SOURCE_LFCLK,
+                        DL_SYSCTL_FCC_CLOCK_SOURCE_`activeSYSPLL`);
+    /* Get SYSPLL frequency using FCC */
+    DL_SYSCTL_startFCC();
+    while (DL_SYSCTL_isFCCDone() == 0);
+
+    /* get measA= `activeSYSPLL` freq wrt LFOSC*/
+    fFCCPllCount = DL_SYSCTL_readFCC();
+
+    /* Measuring SYSPLL Source */
+    DL_SYSCTL_configFCC(DL_SYSCTL_FCC_TRIG_TYPE_RISE_RISE,
+                        DL_SYSCTL_FCC_TRIG_SOURCE_LFCLK,
+                        DL_SYSCTL_FCC_CLOCK_SOURCE_`sourceSYSPLL`);
+    /* Get SYSPLL frequency using FCC */
+    DL_SYSCTL_startFCC();
+    while (DL_SYSCTL_isFCCDone() == 0 );
+
+    /* get measB= SYSOSC freq wrt LFOSC*/
+    fFCCSysoscCount = DL_SYSCTL_readFCC();
+
+    /* Get ratio of both measurements*/
+    fFCCRatio = (fFCCPllCount * FLOAT_TO_INT_SCALE) / fFCCSysoscCount;
+    /* Check ratio is within bounds*/
+    if ((FCC_LOWER_BOUND <  fFCCRatio) && (fFCCRatio < FCC_UPPER_BOUND))
+    {
+        /* ratio is good for proceeding into application code. */
+        fFCCRatioStatus = true;
+    }
+
+    return fFCCRatioStatus;
+}
+%       } // if(useWorkaround_SYSPLL_ERR_01)
+%   } // if (stat.useSYSPLL)
+% } // if Clock Tree enabled
 % /* LFCLK Config */
 %   if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0L111X()){
     %   if(stat.LFCLKSource == "LFXT"){
@@ -356,12 +431,6 @@ if(!stat.powerPolicy.match(/SLEEP/)) {
     % if(stat.vboostMode !== "ONDEMAND"){
     DL_SYSCTL_setVBOOSTConfig(DL_SYSCTL_VBOOST_`stat.vboostMode`);
     % }
-    % if(stat.enableFCC && !stat.clockTreeEn){
-    DL_SYSCTL_configFCC(DL_SYSCTL_FCC_TRIG_TYPE_`stat.fccTrigLvl`, DL_SYSCTL_FCC_TRIG_SOURCE_`stat.fccTrigSrc`, DL_SYSCTL_FCC_CLOCK_SOURCE_`stat.fccClkSrc`);
-        % if(stat.fccTrigLvl == "RISE_RISE"){
-    DL_SYSCTL_setFCCPeriods(DL_SYSCTL_FCC_TRIG_CNT_`stat.fccPeriods`);
-        % }
-    % }
 % } // if(!stat.driversEn)
 % /* Disabled when TI Drivers configuration enabled */
 % if(!stat.driversEn){
@@ -391,6 +460,12 @@ if(!stat.powerPolicy.match(/SLEEP/)) {
     }
 %%}
 % if(!stat.disableSYSOSC){
+% if(stat.enableUserTrim) {
+    DL_SYSCFG_SYSCTL_SYSOSC_USERTRIM(`stat.userTrimFrequency`);
+%}
+% else {
+    DL_SYSCTL_setSYSOSCFreq(`printSYSOSCFreq`);
+%}
 %   if(stat.enableSYSOSCFCL){
 %     if(stat.enableROSC) {
     /* Enable SYSOSC FCL in External Resistor Mode */
@@ -399,12 +474,6 @@ if(!stat.powerPolicy.match(/SLEEP/)) {
     /* Enable SYSOSC FCL in Internal Resistor Mode */
     DL_SYSCTL_enableSYSOSCFCL();
 % } //(stat.enableSYSOSCFCL)
-%}
-% if(stat.enableUserTrim) {
-    DL_SYSCFG_SYSCTL_SYSOSC_USERTRIM(`stat.userTrimFrequency`);
-%}
-% else {
-    DL_SYSCTL_setSYSOSCFreq(`printSYSOSCFreq`);
 %}
 % }
 %if(stat.forceDefaultClkConfig) {
@@ -429,11 +498,47 @@ if(!stat.powerPolicy.match(/SLEEP/)) {
 % }
 % /* SYSPLL Config */
 %%{ /* Helper function for PLL (feeding mClockSource) */
-    if(Common.isDeviceM0G()){
+    if(ClockSignals.includes("SYSPLL")) {
     let printSYSPLL_call = "DL_SYSCTL_configSYSPLL((DL_SYSCTL_SYSPLLConfig *) &gSYSPLLConfig);\n\t";
 %%}
 %   if (stat.useSYSPLL){
     `printSYSPLL_call`
+%%{
+    /**
+     *  Workaround for [ SYSPLL_ERR_01 ]
+     *    - check if condition is enabled and the workaround is applicable to this device
+     */
+    let useWorkaround_SYSPLL_ERR_01 = false;
+    if(ClockSignals.includes("SYSPLL") && Common.isdeviceAffected_SYSPLL_ERR_01()){
+        useWorkaround_SYSPLL_ERR_01 = stat.enableWorkaround_SYSPLL_ERR_01;
+    }
+%%}
+%       if(useWorkaround_SYSPLL_ERR_01){
+    /*
+     * [SYSPLL_ERR_01]
+     * PLL Incorrect locking WA start.
+     * Insert after every PLL enable.
+     * This can lead an infinite loop if the condition persists
+     * and can block entry to the application code.
+     */
+
+    while (SYSCFG_DL_SYSCTL_SYSPLL_init() == false)
+    {
+        /* Toggle SYSPLL enable to re-enable SYSPLL and re-check incorrect locking */
+        DL_SYSCTL_disableSYSPLL();
+        DL_SYSCTL_enableSYSPLL();
+
+        /* Wait until SYSPLL startup is stabilized*/
+        while ((DL_SYSCTL_getClockStatus() & SYSCTL_CLKSTATUS_SYSPLLGOOD_MASK) != DL_SYSCTL_CLK_STATUS_SYSPLL_GOOD){}
+    }
+%       } // if useWorkaround_SYSPLL_ERR_01
+%   } // if useSYSPLL
+% } // function printCall
+% /* FCC Config */
+% if(stat.enableFCC && !stat.clockTreeEn){
+        DL_SYSCTL_configFCC(DL_SYSCTL_FCC_TRIG_TYPE_`stat.fccTrigLvl`, DL_SYSCTL_FCC_TRIG_SOURCE_`stat.fccTrigSrc`, DL_SYSCTL_FCC_CLOCK_SOURCE_`stat.fccClkSrc`);
+%   if(stat.fccTrigLvl == "RISE_RISE"){
+        DL_SYSCTL_setFCCPeriods(DL_SYSCTL_FCC_TRIG_CNT_`stat.fccPeriods`);
 %   }
 % }
 % /* LFCLK Config */

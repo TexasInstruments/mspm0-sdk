@@ -70,6 +70,8 @@
 #include <ti/devices/msp/peripherals/m0p/sysctl/hw_sysctl_mspm0g518x.h>
 #elif (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0L211X_L112X)
 #include <ti/devices/msp/peripherals/m0p/sysctl/hw_sysctl_mspm0l211x_l112x.h>
+#elif (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0GX218_GX207)
+#include <ti/devices/msp/peripherals/m0p/sysctl/hw_sysctl_mspm0gx218_gx207.h>
 /********************************************************************
  *
  ********************************************************************/

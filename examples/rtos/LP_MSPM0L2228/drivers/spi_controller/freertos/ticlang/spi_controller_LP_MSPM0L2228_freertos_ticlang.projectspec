@@ -50,7 +50,7 @@
             -llibc.a
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="Demonstrates the SPI driver in controller mode to communicate with another LP_MSPM0G3507 running the spi_peripheral example">
+        description="FreeRTOS example demonstrating the SPI driver in controller mode to communicate with another MSPM0 device running the spi_peripheral example">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

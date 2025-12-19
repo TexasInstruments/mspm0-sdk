@@ -30,7 +30,7 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "output/output_afe881.h"
+#include "output_afe881.h"
 #include "ti_msp_dl_config.h"
 
 #include <stdbool.h>
@@ -105,7 +105,7 @@ static struct command commands[] = {
 static enum status_enum help_cmd(char *cmd)
 {
     int i;
-    uart_printf("all command must start with out \r\n");
+    uart_printf("All commands must start with out \r\n");
     for (i = 0; i < sizeof(commands) / sizeof(commands[0]); i++) {
         uart_printf("%-10s - 0x%x - %s\r\n", commands[i].name,
             commands[i].function, commands[i].help);

@@ -65,7 +65,10 @@ if(Common.isDeviceFamily_PARENT_MSPM0C110X()){
     `;
 }
 
+// Used for 128-bit passwords
 let sha256Note = "";
+// used for 256-bit passwords
+let sha256NoteAlt = "";
 if (deviceOptions.SUPPORT_PW_HASH == true)
 {
     sha256Note = `
@@ -76,51 +79,107 @@ between 128-bit plaintext password and hash:
 1. Determine the 128-bit password to use. These steps will use the following
 example password:
 
-0x12345678\n
-0xCAFECAFE\n
-0xDEADBEEF\n
-0xCAFEBABE\n
+* 0x12345678\n
+* 0xCAFECAFE\n
+* 0xDEADBEEF\n
+* 0xCAFEBABE\n
 
 2. Reverse the password endianness. Combine it into one string.
-0x78563412\n
-0xFECAFECA\n
-0xEFBEADDE\n
-0xBEBAFECA\n
+* 0x78563412\n
+* 0xFECAFECA\n
+* 0xEFBEADDE\n
+* 0xBEBAFECA\n
 
-Combined String: 78563412FECAFECAEFBEADDEBEBAFECA
+\tCombined String: 78563412FECAFECAEFBEADDEBEBAFECA
 
 3. Calculate the SHA256 of the string. Break the output into 8 32-bit words.
 The user can use online tools like the one provided here:
 [SHA256 online tool](https://emn178.github.io/online-tools/sha256.html)
 
-Output String: 2738a5682ad52550177227468dd2b55f552c34bd25560b9067b0a3f3d5c648f9
+\tOutput String: 2738a5682ad52550177227468dd2b55f552c34bd25560b9067b0a3f3d5c648f9
 
-Result:\n
-0x2738a568\n
-0x2ad52550\n
-0x17722746\n
-0x8dd2b55f\n
-0x552c34bd\n
-0x25560b90\n
-0x67b0a3f3\n
-0xd5c648f9\n
+\tResult:\n
+* 0x2738a568\n
+* 0x2ad52550\n
+* 0x17722746\n
+* 0x8dd2b55f\n
+* 0x552c34bd\n
+* 0x25560b90\n
+* 0x67b0a3f3\n
+* 0xd5c648f9\n
 
 4. Reverse endianness of the 32-bit words.
 
-Original   -> Converted\n
-0x2738a568 -> 0x68A53827\n
-0x2ad52550 -> 0x5025D52A\n
-0x17722746 -> 0x46277217\n
-0x8dd2b55f -> 0x5FB5D28D\n
-0x552c34bd -> 0xBD342C55\n
-0x25560b90 -> 0x900B5625\n
-0x67b0a3f3 -> 0xF3A3B067\n
-0xd5c648f9 -> 0xF948C6D5\n
+\tOriginal   -> Converted\n
+* 0x2738a568 -> 0x68A53827\n
+* 0x2ad52550 -> 0x5025D52A\n
+* 0x17722746 -> 0x46277217\n
+* 0x8dd2b55f -> 0x5FB5D28D\n
+* 0x552c34bd -> 0xBD342C55\n
+* 0x25560b90 -> 0x900B5625\n
+* 0x67b0a3f3 -> 0xF3A3B067\n
+* 0xd5c648f9 -> 0xF948C6D5\n
+
+5. Enter the converted password into the BCR (boot configuration routine) structure
+for the desired function e.g. mass erase, factory reset, or debug lock.
+`;
+
+    sha256NoteAlt = `
+**Note**: This password field **requires** the user to provide the SHA256
+hash of the 256-bit password.
+
+Refer to the following steps on correctly converting
+between a plaintext password and hash for reference:
+
+1. Determine the password to use. These steps will use the following
+example password:
+
+* 0x12345678\n
+* 0xCAFECAFE\n
+* 0xDEADBEEF\n
+* 0xCAFEBABE\n
+
+2. Reverse the password endianness. Combine it into one string.
+* 0x78563412\n
+* 0xFECAFECA\n
+* 0xEFBEADDE\n
+* 0xBEBAFECA\n
+
+\tCombined String: 78563412FECAFECAEFBEADDEBEBAFECA
+
+3. Calculate the SHA256 of the string. Break the output into 8 32-bit words.
+The user can use online tools like the one provided here:
+[SHA256 online tool](https://emn178.github.io/online-tools/sha256.html)
+
+\tOutput String: 2738a5682ad52550177227468dd2b55f552c34bd25560b9067b0a3f3d5c648f9
+
+\tResult:\n
+* 0x2738a568\n
+* 0x2ad52550\n
+* 0x17722746\n
+* 0x8dd2b55f\n
+* 0x552c34bd\n
+* 0x25560b90\n
+* 0x67b0a3f3\n
+* 0xd5c648f9\n
+
+4. Reverse endianness of the 32-bit words.
+
+\tOriginal   -> Converted\n
+* 0x2738a568 -> 0x68A53827\n
+* 0x2ad52550 -> 0x5025D52A\n
+* 0x17722746 -> 0x46277217\n
+* 0x8dd2b55f -> 0x5FB5D28D\n
+* 0x552c34bd -> 0xBD342C55\n
+* 0x25560b90 -> 0x900B5625\n
+* 0x67b0a3f3 -> 0xF3A3B067\n
+* 0xd5c648f9 -> 0xF948C6D5\n
 
 5. Enter the converted password into the BCR (boot configuration routine) structure
 for the desired function e.g. mass erase, factory reset, or debug lock.
 `;
 }
+
 
 let apEnableOptionsVar = [
     {name: "enabled", displayName: "Enabled"},
@@ -2283,7 +2342,7 @@ if (deviceOptions.SUPPORT_ROM_BSL == true)
             /* BSLPW[0-7] */
             name: "GROUP_BSL_ACCESS_PW",
             displayName: "BSL Access Password",
-            longDescription: sha256Note,
+            longDescription: sha256NoteAlt,
             config: createPWConfig("bslPW", false, 8),
         },
     ];

@@ -3,7 +3,7 @@
 The following example configures ADC0 to trigger single conversion by software
 and turn on LED1 if ADC > 0.5*(external vref). Otherwise, LED1 remains off.
 
-This examples configure ADC12 instance to use internal voltage reference.
+This examples configure ADC12 instance to use external voltage reference.
 ## Peripherals & Pin Assignments
 
 | Peripheral | Pin | Function |

@@ -1,7 +1,17 @@
 ## Example Summary
 
-This example demonstrates a field transmitter implementation. It reads out an ADC for a pressure sensor, compensates and scales the values. To output the readings, a current loop of 4-20 mA is used, so the software controls an DAC to set the coresponding values.
+This example demonstrates a field transmitter implementation. It reads out an ADC for a pressure sensor, compensates and scales the values. To output the readings, a current loop of 4-20 mA is used, so the software controls an DAC to set the corresponding values.
 
+The "adc" folder contians the files relevent to the function and configuration of the on board ADC(s). The identification.c file will read the sensor data aquisition board to determine the software configuraiton for the hardware board.
+
+The "condition" folder contains the ADC condition files, the output conditioning files, and the pressure and temperature condtioning files.
+
+The "output" folder contains the output board configuration based on the output board hardware connected.
+
+The "system" folder contains the system control files such as the system clock, flash, UART communication and the terminal system control functions.
+
+
+For more infomation about the board of the system see the documentation of TIDA-010982 here https://www.ti.com/tool/TIDA-010982
 
 ## Peripherals & Pin Assignments
 

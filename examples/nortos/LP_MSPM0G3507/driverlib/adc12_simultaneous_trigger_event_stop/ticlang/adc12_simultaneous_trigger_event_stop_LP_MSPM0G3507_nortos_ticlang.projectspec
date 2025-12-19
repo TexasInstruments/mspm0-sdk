@@ -48,7 +48,7 @@
             --compiler ticlang
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="Dual ADC12 conversion triggered by a Timer event while in STOP mode">
+        description="Configure multiple ADC instances to simultaneously trigger conversions by a Timer event in low power STOP mode">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

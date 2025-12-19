@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021-24, Texas Instruments Incorporated
+ * Copyright (c) 2021-2025, Texas Instruments Incorporated
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -33,47 +33,66 @@
 #include <ti/eeprom/emulation_type_a/eeprom_emulation_type_a.h>
 #include "ti_msp_dl_config.h"
 
-/* Address in main memory to write to. This is defined in the
- * eeprom_emulation_type_a.h header file. Uncommenting the #define below will
- * overwrite the default #define in the header file. */
-//#define EEPROM_EMULATION_ADDRESS    0x00001000
+/* The starting emulation address is defined in the eeprom_emulation_type_a.h
+ * header file. It is 0x2000. If the example needs to change its location, it is
+ * necessary to define EEPROM_EMULATION_ADDRESS at the project level or change
+ * the value in the header file.
+ */
 
 #define SECTOR_SIZE (1024)
 
 #define NUMBER_OF_WRITES ((SECTOR_SIZE / EEPROM_EMULATION_DATA_SIZE) + 1)
 
-uint32_t header1[] = {0x0000ffff, 0x0000ffff};  //active
-uint32_t header2[] = {0x0000ffff, 0xffffffff};  //recording
-uint32_t header3[] = {0x00000000, 0x0000ffff};  //used
-uint32_t header4[] = {0x00000000, 0xffffffff};  //invalid
-uint32_t header5[] = {0x0f0f0f0f, 0xffffffff};  //invalid
-uint32_t header6[] = {0xffffffff, 0x0000ffff};  //invalid
+/* element headers */
+const uint32_t active_header[]    = {0x0000ffff, 0x0000ffff};
+const uint32_t recording_header[] = {0x0000ffff, 0xffffffff};
+const uint32_t used_header[]      = {0x00000000, 0x0000ffff};
 
-///* 248bytes data for 256bytes record size*/
-//uint32_t DataArray[EEPROM_EMULATION_DATA_SIZE/sizeof(uint32_t)] = {
-//    0x12340000,0x43210fff,0x00FEDCBA,0x87654321,0xABCDEF00,0x12345678,0x00FEDCBA,0x87654321,
-//    0xABCDEF00,0x12345678,0x00FEDCBA,0x87654321,0xABCDEF00,0x12345678,0x00FEDCBA,0x87654321,
-//    0xABCDEF00,0x12345678,0x00FEDCBA,0x87654321,0xABCDEF00,0x12345678,0x00FEDCBA,0x87654321,
-//    0xABCDEF00,0x12345678,0x00FEDCBA,0x87654321,0xABCDEF00,0x12345678,0x00FEDCBA,0x87654321,
-//    0xABCDEF00,0x12345678,0x00FEDCBA,0x87654321,0xABCDEF00,0x12345678,0x00FEDCBA,0x87654321,
-//    0xABCDEF00,0x12345678,0x00FEDCBA,0x87654321,0xABCDEF00,0x12345678,0x00FEDCBA,0x87654321,
-//    0xABCDEF00,0x12345678,0x00FEDCBA,0x87654321,0xABCDEF00,0x12345678,0x00FEDCBA,0x87654321,
-//    0xABCDEF00,0x12345678,0x00FEDCBA,0x87654321,0xABCDEF00,0x12345678};
+const uint32_t recording_data[] = {0x9ec09d16, 0xda7abbbb};
+const uint32_t used_data[]      = {0x012345ed, 0xda7acccc};
 
+#if (EEPROM_EMULATION_RECORD_SIZE == 256)
+/* 248bytes data for 256bytes record size*/
+const uint32_t DataArray[EEPROM_EMULATION_DATA_SIZE / sizeof(uint32_t)] = {
+    0x12340000, 0x43210fff, 0x00FEDCBA, 0x87654321, 0xABCDEF00, 0x12345678,
+    0x00FEDCBA, 0x87654321, 0xABCDEF00, 0x12345678, 0x00FEDCBA, 0x87654321,
+    0xABCDEF00, 0x12345678, 0x00FEDCBA, 0x87654321, 0xABCDEF00, 0x12345678,
+    0x00FEDCBA, 0x87654321, 0xABCDEF00, 0x12345678, 0x00FEDCBA, 0x87654321,
+    0xABCDEF00, 0x12345678, 0x00FEDCBA, 0x87654321, 0xABCDEF00, 0x12345678,
+    0x00FEDCBA, 0x87654321, 0xABCDEF00, 0x12345678, 0x00FEDCBA, 0x87654321,
+    0xABCDEF00, 0x12345678, 0x00FEDCBA, 0x87654321, 0xABCDEF00, 0x12345678,
+    0x00FEDCBA, 0x87654321, 0xABCDEF00, 0x12345678, 0x00FEDCBA, 0x87654321,
+    0xABCDEF00, 0x12345678, 0x00FEDCBA, 0x87654321, 0xABCDEF00, 0x12345678,
+    0x00FEDCBA, 0x87654321, 0xABCDEF00, 0x12345678, 0x00FEDCBA, 0x87654321,
+    0xABCDEF00, 0x12345678};
+
+#elif (EEPROM_EMULATION_RECORD_SIZE == 128)
 /* 120bytes data for 128bytes record size*/
-uint32_t DataArray[EEPROM_EMULATION_DATA_SIZE / sizeof(uint32_t)] = {
+const uint32_t DataArray[EEPROM_EMULATION_DATA_SIZE / sizeof(uint32_t)] = {
     0x12340000, 0x43210fff, 0x00FEDCBA, 0x87654321, 0xABCDEF00, 0x12345678,
     0x00FEDCBA, 0x87654321, 0xABCDEF00, 0x12345678, 0x00FEDCBA, 0x87654321,
     0xABCDEF00, 0x12345678, 0x00FEDCBA, 0x87654321, 0xABCDEF00, 0x12345678,
     0x00FEDCBA, 0x87654321, 0xABCDEF00, 0x12345678, 0x00FEDCBA, 0x87654321,
     0xABCDEF00, 0x12345678, 0x00FEDCBA, 0x87654321, 0xABCDEF00, 0x12345678};
 
-///* 56bytes data for 64bytes record size*/
-//uint32_t DataArray[EEPROM_EMULATION_DATA_SIZE/sizeof(uint32_t)] = {
-//    0xABCDEF00,0x12345678,0x00FEDCBA,0x87654321,0xABCDEF00,0x12345678,0x00FEDCBA,0x87654321,
-//    0xABCDEF00,0x12345678,0x00FEDCBA,0x87654321,0xABCDEF00,0x12345678};
+#elif (EEPROM_EMULATION_RECORD_SIZE == 64)
+/* 56bytes data for 64bytes record size*/
+const uint32_t DataArray[EEPROM_EMULATION_DATA_SIZE / sizeof(uint32_t)] = {
+    0xABCDEF00, 0x12345678, 0x00FEDCBA, 0x87654321, 0xABCDEF00, 0x12345678,
+    0x00FEDCBA, 0x87654321, 0xABCDEF00, 0x12345678, 0x00FEDCBA, 0x87654321,
+    0xABCDEF00, 0x12345678};
+
+#else
+#error "invalid EEPROM_EMULATION_RECORD_SIZE. Must be 64, 128, or 256"
+#endif
 
 uint32_t EEPROMEmulationBuffer[EEPROM_EMULATION_DATA_SIZE / sizeof(uint32_t)];
+
+/* 64bytes data for unexpected case*/
+const uint32_t UnexpectedDataArray[16] = {0xABCDEF00, 0x12345678, 0x00FEDCBA,
+    0x87654321, 0xABCDEF00, 0x12345678, 0x00FEDCBA, 0x87654321, 0xABCDEF00,
+    0x12345678, 0x00FEDCBA, 0x87654321, 0xABCDEF00, 0x12345678, 0x00FEDCBA,
+    0x87654321};
 
 int main(void)
 {
@@ -81,14 +100,60 @@ int main(void)
 
     SYSCFG_DL_init();
 
-    /* Counter for number of times to write to the EEPROM region */
-    uint32_t counter;
+    /*
+     *
+     * 1. Test EEPROM_TypeA_init with previous unused data present.
+     *
+     */
+    DL_FlashCTL_unprotectSector(
+        FLASHCTL, EEPROM_EMULATION_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
+    DL_FlashCTL_eraseMemory(
+        FLASHCTL, EEPROM_EMULATION_ADDRESS, DL_FLASHCTL_COMMAND_SIZE_SECTOR);
 
-    /* Test for EEPROM_TypeA_init */
+    /* seed with old used data */
+    DL_FlashCTL_unprotectSector(
+        FLASHCTL, EEPROM_EMULATION_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
+    DL_FlashCTL_programMemoryBlockingFromRAM64WithECCGenerated(FLASHCTL,
+        EEPROM_EMULATION_ADDRESS, (uint32_t *) &used_header[0], 2,
+        DL_FLASHCTL_REGION_SELECT_MAIN);
+
+    DL_FlashCTL_unprotectSector(
+        FLASHCTL, EEPROM_EMULATION_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
+    DL_FlashCTL_programMemoryBlockingFromRAM64WithECCGenerated(FLASHCTL,
+        EEPROM_EMULATION_ADDRESS + 8, (uint32_t *) &used_data[0], 2,
+        DL_FLASHCTL_REGION_SELECT_MAIN);
+
+    /* seed with active data */
+    DL_FlashCTL_unprotectSector(
+        FLASHCTL, EEPROM_EMULATION_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
+    DL_FlashCTL_programMemoryBlockingFromRAM64WithECCGenerated(FLASHCTL,
+        EEPROM_EMULATION_ADDRESS + EEPROM_EMULATION_RECORD_SIZE,
+        (uint32_t *) &active_header[0], 2, DL_FLASHCTL_REGION_SELECT_MAIN);
+
+    DL_FlashCTL_unprotectSector(
+        FLASHCTL, EEPROM_EMULATION_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
+    DL_FlashCTL_programMemoryBlockingFromRAM64WithECCGenerated(FLASHCTL,
+        EEPROM_EMULATION_ADDRESS + EEPROM_EMULATION_RECORD_SIZE + 8,
+        (uint32_t *) &DataArray[0],
+        EEPROM_EMULATION_DATA_SIZE / sizeof(uint32_t),
+        DL_FLASHCTL_REGION_SELECT_MAIN);
+
+    /* seed with recording data */
+    DL_FlashCTL_unprotectSector(
+        FLASHCTL, EEPROM_EMULATION_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
+    DL_FlashCTL_programMemoryBlockingFromRAM64WithECCGenerated(FLASHCTL,
+        EEPROM_EMULATION_ADDRESS + (EEPROM_EMULATION_RECORD_SIZE * 2),
+        (uint32_t *) &recording_header[0], 2, DL_FLASHCTL_REGION_SELECT_MAIN);
+
+    DL_FlashCTL_unprotectSector(
+        FLASHCTL, EEPROM_EMULATION_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
+    DL_FlashCTL_programMemoryBlockingFromRAM64WithECCGenerated(FLASHCTL,
+        EEPROM_EMULATION_ADDRESS + (EEPROM_EMULATION_RECORD_SIZE * 2) + 8,
+        (uint32_t *) &recording_data[0], 2, DL_FLASHCTL_REGION_SELECT_MAIN);
 
     __BKPT(0);
     /*
-     * In memory browser, search the address 0x00001000
+     * In memory browser, search the address 0x00002000
      * Before EEPROM_TypeA_init, flash is set as:
      * Sector 1:
      *      record 1: Used
@@ -115,11 +180,10 @@ int main(void)
     /* Test for EEPROM_TypeA_writeData */
 
     /* Write NUMBER_OF_WRITE times to the EEPROM region specified in memory */
-    for (counter = 0; counter < NUMBER_OF_WRITES; counter++) {
+    for (uint32_t counter = 0; counter < NUMBER_OF_WRITES; counter++) {
         /* Change the content of EEPROMEmulationBuffer */
         EEPROMEmulationBuffer[0] += 1;
         EEPROMEmulationBuffer[1] += 0x1000;
-        __BKPT(0);
         /*
          * Before EEPROM_TypeA_writeData, the EEPROMEmulationBuffer is
          * updated by user
@@ -139,11 +203,13 @@ int main(void)
         __BKPT(0);
         /*
          * After EEPROM_TypeA_writeData, there will be a new record in
-         * flash, and the last record's header is updated too
+         * flash, and the last record's header is updated to the used state.
+         * If the write triggers a new sector, the previous sector should be
+         * all erased, with one active entry in the new sector.
          */
     }
- 
-    while(1) {
-        __WFI(); 
-    } 
+
+    while (1) {
+        __WFI();
+    }
 }

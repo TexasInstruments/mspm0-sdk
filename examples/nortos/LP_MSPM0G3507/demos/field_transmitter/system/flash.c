@@ -33,8 +33,8 @@
 #include <stdbool.h>
 #include <string.h>
 #include "main.h"
-#include "system/uart.h"
 #include "ti/driverlib/driverlib.h"
+#include "uart.h"
 
 char gAdcConfigRam[256]     = {0};
 char aAdcCondConfigRam[256] = {0};

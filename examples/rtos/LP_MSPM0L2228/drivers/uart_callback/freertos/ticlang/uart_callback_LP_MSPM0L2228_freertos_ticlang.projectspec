@@ -50,7 +50,7 @@
             -llibc.a
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="UART simple echo using callback">
+        description="FreeRTOS example demonstrating UART simple echo using callback">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

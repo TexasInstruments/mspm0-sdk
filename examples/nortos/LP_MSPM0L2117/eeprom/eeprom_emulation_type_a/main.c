@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021-24, Texas Instruments Incorporated
+ * Copyright (c) 2021-2025, Texas Instruments Incorporated
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -33,10 +33,11 @@
 #include <ti/eeprom/emulation_type_a/eeprom_emulation_type_a.h>
 #include "ti_msp_dl_config.h"
 
-/* Address in main memory to write to. This is defined in the
- * eeprom_emulation_type_a.h header file. Uncommenting the #define below will
- * overwrite the default #define in the header file. */
-//#define EEPROM_EMULATION_ADDRESS    0x00001000
+/* The starting emulation address is defined in the eeprom_emulation_type_a.h
+ * header file. It is 0x2000. If the example needs to change its location, it is
+ * necessary to define EEPROM_EMULATION_ADDRESS at the project level or change
+ * the value in the header file.
+ */
 
 #define SECTOR_SIZE (1024)
 
@@ -88,7 +89,7 @@ int main(void)
         __BKPT(0);
     }
 
-    while(1) {
-        __WFI(); 
-    } 
+    while (1) {
+        __WFI();
+    }
 }

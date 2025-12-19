@@ -51,7 +51,7 @@
             --compiler ticlang
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="Implements a secondary bootloader in Main overriding the ROM BSL">
+        description="Implements a secondary bootloader in Main overriding the ROM BSL through a SPI interface">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

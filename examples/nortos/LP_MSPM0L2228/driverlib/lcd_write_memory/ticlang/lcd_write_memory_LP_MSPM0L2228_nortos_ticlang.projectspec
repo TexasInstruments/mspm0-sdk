@@ -48,7 +48,7 @@
             --compiler ticlang
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="Write characters to onboard LCD.">
+        description="Display various characters to onboard LCD panel">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

@@ -64,7 +64,7 @@
             --compiler gcc
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="CRCP16 checksum calculation of a memory block">
+        description="CRCP checksum calculation of a memory block">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

@@ -64,7 +64,7 @@
             --compiler gcc
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="WWDT interval timer mode using LFOSC while device is in STANDBY mode">
+        description="WWDT interval timer mode using LFOSC while device is in STANDBY low power mode">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>
